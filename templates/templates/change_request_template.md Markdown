@@ -1,0 +1,15 @@
+# Engineering Change Request (ECR)
+
+* **ECR ID:** ECR-[YYYYMMDD]-[00X]
+* **Requested By:** [Agent / Lead Engineer]
+* **Date:** [YYYY-MM-DD]
+* **Target Subsystem / Model:** [e.g., UAV Mission Supervisor Stateflow Chart]
+
+## 1. Description of Change
+[Clear description of what needs to be modified or added.]
+
+## 2. Justification & Safety Impact
+[Explain why this change is necessary and analyze any safety or state-transition risks.]
+
+## 3. Affected Requirements
+* [REQ-01]: [Description]
