@@ -1,0 +1,27 @@
+# Team and Project Configuration: Agentic UAV Pipeline Inspection
+project:
+  name: "agentic-uav-pipeline-inspection"
+  domain: "Cyber-Physical Systems & Industrial AIoT"
+  architecture: "Model-Based Design (MBD)"
+  lead_engineer: "Nouran Ismail"
+
+environment:
+  os: "Windows"
+  core_toolchain:
+    - MATLAB
+    - Simulink
+    - Stateflow
+  toolboxes:
+    - Requirements Toolbox
+    - Simulink Test
+    - Simulink Coverage
+    - Computer Vision Toolbox
+    - Statistics and Machine Learning Toolbox
+  integration:
+    - MathWorks Agentic Toolkits (MCP Protocol)
+    - VS Code / Codex AI Coding Assistant
+
+governance:
+  enforce_sldd: true # All parameters must use centralized Simulink Data Dictionaries
+  enforce_traceability: true # Requirements -> Model -> Tests
+  safety_override_priority: "Absolute (Low-Battery / Emergency states override inspection)"
