@@ -1,0 +1,2187 @@
+CV_Database {
+  modelcov {
+    id			    1
+    name		    "uav_mission_supervisor_harness@(R2026a)"
+    unmangledName	    "uav_mission_supervisor_harness"
+    dbVersion		    "(R2026a)"
+    ownerModel		    "uav_mission_supervisor"
+    ownerBlock		    "uav_mission_supervisor"
+    harnessModel	    "uav_mission_supervisor_harness"
+    canHarnessMapBackToOwner 1
+    refModelcovIds	    [1 2]
+    topModelcovId	    [1]
+  }
+  modelcov {
+    id			    2
+    name		    "uav_mission_supervisor@(R2026a)"
+    unmangledName	    "uav_mission_supervisor"
+    dbVersion		    "(R2026a)"
+    ownerModel		    "uav_mission_supervisor"
+    ownerBlock		    "uav_mission_supervisor"
+    harnessModel	    "uav_mission_supervisor_harness"
+    canHarnessMapBackToOwner 1
+    topModelcovId	    [1]
+    rootTree		    [0 3 0 0]
+  }
+  root {
+    id			    3
+    modelcov		    2
+    topSlsf		    6
+    firstTest		    4
+    treeNode		    [2 0 0 0]
+    checksum		    [4040812324 2004962828 1213079810 3341044765]
+    structuralChecksum	    [783275274 3334551697 2534909993 2743337295]
+    metricChecksum	    [0 0 0 0 2904040895 2397481875 529309974 2803881850 0 0 0 0]
+    dataSize		    [72 58 0 79 12 0 0]
+  }
+  testdata {
+    id			    4
+    modelcov		    2
+    ownerBlock		    "uav_mission_supervisor"
+    ownerModel		    "uav_mission_supervisor"
+    harnessModel	    "uav_mission_supervisor_harness"
+    analyzedModel	    "uav_mission_supervisor"
+    description		    "External model-in-the-loop harness for UAV mission supervisor requirements-based tests."
+    uniqueId		    "63b7c07f-df7d-4cb2-ba75-318349b186c4"
+    aggregatedIds	    "9fabcf52-60bb-4fd8-a489-583f358326bb,4a8e5b17-d86c-4d45-a289-91a68a44414c,94a5ede7-2672-4a9f-a0"
+    "08-f7a0c8d4f104,3684b687-4da1-43f2-8cdc-e2ffe27ad1db,08e775ad-6189-48bf-9d98-ef546a4cb85e,cd5b9e9e-2ad4-40b2-9dc5-"
+    "25e11a27d818,4fb40f1e-238a-4c8e-a701-7b7680887642,a9d319c3-9af3-4456-be9c-58f2773c8370,9287f2c1-235f-4f38-b3eb-051"
+    "c8de7a3ff,9621c960-6d82-46f5-889b-dc67ce9f44c4,ffe18c51-f1a9-4371-aa23-8579afc53824,8dd3bf29-a964-405c-badf-431c01"
+    "e88554,8d61f610-8341-45b6-8f87-ae15073ff598,a0d7e815-3d6e-4a25-aa41-6dcf61a96026,29bb87e0-689d-4c00-ae57-93ca67714"
+    "112,9959356f-5440-4781-885b-3dcea9245648,29d17112-29f0-4250-acd6-b743b872140c,5491bf6d-6aef-459a-a7f2-f3c29b6dad21"
+    ",f95c51fc-2573-4d4f-ab35-76af813f1885,43a853e7-6af9-4952-b6de-8738bf86e368,16723198-0691-411b-91a7-eed7057946e0,41"
+    "a69b1b-cccc-40e0-b139-3095c2cba874,eb399c72-769a-40b4-a5f8-8e93d594466b,e4e43e97-37d7-4ed5-b6ea-2624c49a7723,2c08a"
+    "a28-befa-4483-b8a5-e354efdff262,645f9419-0268-4a4a-8907-5b729c63c3b5,b07e1aa9-23fa-4963-baf5-8ace91d8c009,842e554f"
+    "-8499-45e3-b117-cf3357253a99,8f5c94ad-adc0-4dd8-8c16-a4dc15d668a4,48cf6618-1568-46e1-9efe-11528a8fb6b4,d9f49e43-d1"
+    "04-4907-9e66-37b8583b89b2"
+    linkNode		    [3 0 0]
+    settings		    [1 1 0 0 0 0 0]
+    modelVersion	    "1.3"
+    creator		    "Nouran Ismail"
+    lastModifiedDate	    "Tue Aug 25 07:17:31 2026"
+    blockReductionStatus    "forcedOff"
+    defaultParameterBehavior "Tunable"
+    dbVersion		    "(R2026a)"
+    dbversionToRestore	    "(R2026a)"
+    conditionallyExecuteInputs 1
+    startTime		    740219.4300753935
+    stopTime		    740219.4307590278
+    data {
+      decision		      "100 M72x1[24 0 24 0 4 0 24 0 5 12 14 16 2 0 2 0 7 5 2 0 2 0 6 1 2 0 2 0 4 2 2 0 2 0 3 1 2 0 2 0"
+      " 9 5 2 0 2 0 6 3 2 0 2 0 25 6 2 0 2 0 21 4 2 0 2 0 12 9 2 0 2 0 10 2]"
+      condition		      "100 M58x1[30 0 30 0 30 0 8 0 8 0 11 1 9 2 8 1 7 1 3 0 3 0 4 2 0 2 8 0 8 0 13 1 11 2 10 1 9 1 8"
+      " 0 8 0 30 1 28 2 26 2 25 1 3 0 3 0 12 9 0 9]"
+      sfcnCovData	      "100 T\"AAFJTQAAAAAOAAAAmAAAAAYAAAAIAAAAEQAAAAAAAAABAAAAAAAAAAEABABNQ09TAQAAAB4AAABTbENvdi5yZX"
+      "N1bHRzLkNvZGVDb3ZEYXRhR3JvdXAAAA4AAABIAAAABgAAAAgAAAANAAAAAAAAAAUAAAAIAAAABgAAAAEAAAABAAAAAAAAAAYAAAAYAAAAAAAA3Q"
+      "IAAAABAAAAAQAAAAEAAAAFAAAADgAAANgNAAAGAAAACAAAAAkAAAAAAAAABQAAAAgAAAABAAAAqA0AAAEAAAAAAAAAAgAAAKgNAAAAAUlNAAAAAA"
+      "4AAAAIDQAABgAAAAgAAAACAAAAAAAAAAUAAAAIAAAAAQAAAAEAAAABAAAAAAAAAAUABAAFAAAAAQAAAAUAAABNQ09TAAAAAA4AAADADAAABgAAAA"
+      "gAAAARAAAAAAAAAAEAAAAAAAAAAQAEAE1DT1MBAAAADQAAAEZpbGVXcmFwcGVyX18AAAAOAAAAgAwAAAYAAAAIAAAAAQAAAAAAAAAFAAAACAAAAA"
+      "0AAAABAAAAAQAAAAAAAAAOAAAAsAIAAAYAAAAIAAAACQAAAAAAAAAFAAAACAAAAIACAAABAAAAAQAAAAAAAAACAAAAgAIAAAQAAAAQAAAA4AAAAE"
+      "ABAABAAQAAuAEAAEACAABoAgAAaAIAAHACAABEYXRhAHNlcmlhbGl6YXRpb24ATWFwAGNvbnRhaW5lcnMARmlsdGVyZWRJbnN0YW5jZXMASW1wbA"
+      "BOYW1lAERlc2NyaXB0aW9uAE1DRENNb2RlAGludGVybmFsLmNvZGVjb3YAaW50MzIuRGF0YQBpbnQzMgBVTktOT1dOAEtlZXBMb2NhbFRlc3RJbm"
+      "ZvUmVmcwBDb2RlQ292RGF0YUdyb3VwAFNsQ292LnJlc3VsdHMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAADAAAAAAAAAAAAAAAKAAAACQAAAA"
+      "AAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAAoAAAAPAAAAAAAAAAAAAAAQAAAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAA"
+      "AAAAAAAAAAAAAAAAEAAAAEAAAAAQAAAAAAAAAAAAAAAAAAAAIAAAABAAAABAAAAAAAAAAAAAAAAAAAAAMAAAADAAAAAgAAAAAAAAAAAAAAAAAAAA"
+      "QAAAACAAAAAAAAAAAAAAADAAAAAQAAAAEAAAABAAAABQAAAAEAAAACAAAABgAAAAEAAAAHAAAAAQAAAAIAAAABAAAAAAAAAAQAAAAHAAAAAQAAAA"
+      "MAAAAIAAAAAQAAAAQAAAAJAAAAAQAAAAYAAAAOAAAAAgAAAAAAAAAAAAAAAQAAAAsAAAABAAAABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAB4AgAAAAAAAAAAAAAOAAAAAAAAAA4AAAB4AQAABgAAAAgAAAACAAAAAAAAAAUAAAAIAAAAAQAAAA"
+      "EAAAABAAAAAAAAAAUABAALAAAAAQAAADcAAABrZXlzAAAAAAAAAHZhbHVlcwAAAAAAdW5pZm9ybWl0eQBrZXlUeXBlAAAAAHZhbHVlVHlwZQAAAA"
+      "4AAAAoAAAABgAAAAgAAAABAAAAAAAAAAUAAAAIAAAAAQAAAAAAAAABAAAAAAAAAA4AAAAoAAAABgAAAAgAAAABAAAAAAAAAAUAAAAIAAAAAQAAAA"
+      "AAAAABAAAAAAAAAA4AAAAwAAAABgAAAAgAAAAJAgAAAAAAAAUAAAAIAAAAAQAAAAEAAAABAAAAAAAAAAIAAQAAAAAADgAAADAAAAAGAAAACAAAAA"
+      "QAAAAAAAAABQAAAAgAAAABAAAABAAAAAEAAAAAAAAAEAAEAGNoYXIOAAAAMAAAAAYAAAAIAAAABAAAAAAAAAAFAAAACAAAAAEAAAADAAAAAQAAAA"
+      "AAAAAQAAMAYW55AA4AAABIAAAABgAAAAgAAAANAAAAAAAAAAUAAAAIAAAABgAAAAEAAAABAAAAAAAAAAYAAAAYAAAAAAAA3QIAAAABAAAAAQAAAA"
+      "IAAAABAAAADgAAACgAAAAGAAAACAAAAAEAAAAAAAAABQAAAAgAAAAAAAAAAQAAAAEAAAAAAAAADgAAADAAAAAGAAAACAAAAAQAAAAAAAAABQAAAA"
+      "gAAAAAAAAAAAAAAAEAAAAAAAAAEAAAAAAAAAAOAAAAMAAAAAYAAAAIAAAABAAAAAAAAAAFAAAACAAAAAAAAAAAAAAAAQAAAAAAAAAQAAAAAAAAAA"
+      "4AAAAwAAAABgAAAAgAAAAMAAAAAAAAAAUAAAAIAAAAAQAAAAEAAAABAAAAAAAAAAUABAAAAAAADgAAAGACAAAGAAAACAAAAAIAAAAAAAAABQAAAA"
+      "gAAAABAAAAAQAAAAEAAAAAAAAABQAEABcAAAABAAAAigAAAEVudW1lcmF0aW9uSW5zdGFuY2VUYWcAQ2xhc3NOYW1lAAAAAAAAAAAAAAAAAABWYW"
+      "x1ZU5hbWVzAAAAAAAAAAAAAAAAAFZhbHVlcwAAAAAAAAAAAAAAAAAAAAAAVmFsdWVJbmRpY2VzAAAAAAAAAAAAAABCdWlsdGluQ2xhc3NOYW1lAA"
+      "AAAAAAAAAAAAAAAA4AAAAwAAAABgAAAAgAAAANAAAAAAAAAAUAAAAIAAAAAQAAAAEAAAABAAAAAAAAAAYABAAAAADdDgAAADAAAAAGAAAACAAAAA"
+      "0AAAAAAAAABQAAAAgAAAABAAAAAQAAAAEAAAAAAAAABgAEAAIAAAAOAAAAMAAAAAYAAAAIAAAADQAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAA"
+      "AAAAAGAAQADQAAAA4AAAB4AAAABgAAAAgAAAABAAAAAAAAAAUAAAAIAAAAAQAAAAEAAAABAAAAAAAAAA4AAABIAAAABgAAAAgAAAANAAAAAAAAAA"
+      "UAAAAIAAAABgAAAAEAAAABAAAAAAAAAAYAAAAYAAAAAAAA3QIAAAABAAAAAQAAAAQAAAACAAAADgAAADAAAAAGAAAACAAAAA0AAAAAAAAABQAAAA"
+      "gAAAABAAAAAQAAAAEAAAAAAAAABgAEAAAAAAAOAAAAMAAAAAYAAAAIAAAADQAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAGAAQAAwAAAA"
+      "4AAABIAAAABgAAAAgAAAANAAAAAAAAAAUAAAAIAAAABgAAAAEAAAABAAAAAAAAAAYAAAAYAAAAAAAA3QIAAAABAAAAAQAAAAMAAAAEAAAADgAAAK"
+      "gBAAAGAAAACAAAAAEAAAAAAAAABQAAAAgAAAAGAAAAAQAAAAEAAAAAAAAADgAAADgAAAAGAAAACAAAAAIAAAAAAAAABQAAAAgAAAABAAAAAAAAAA"
+      "EAAAAAAAAABQAEAAEAAAABAAAAAAAAAA4AAAA4AAAABgAAAAgAAAACAAAAAAAAAAUAAAAIAAAAAQAAAAAAAAABAAAAAAAAAAUABAABAAAAAQAAAA"
+      "AAAAAOAAAAOAAAAAYAAAAIAAAAAgAAAAAAAAAFAAAACAAAAAEAAAAAAAAAAQAAAAAAAAAFAAQAAQAAAAEAAAAAAAAADgAAADgAAAAGAAAACAAAAA"
+      "IAAAAAAAAABQAAAAgAAAABAAAAAAAAAAEAAAAAAAAABQAEAAEAAAABAAAAAAAAAA4AAAA4AAAABgAAAAgAAAACAAAAAAAAAAUAAAAIAAAAAQAAAA"
+      "AAAAABAAAAAAAAAAUABAABAAAAAQAAAAAAAAAOAAAAOAAAAAYAAAAIAAAAAgAAAAAAAAAFAAAACAAAAAEAAAAAAAAAAQAAAAAAAAAFAAQAAQAAAA"
+      "EAAAAAAAAADgAAAEgAAAAGAAAACAAAAAwAAAAAAAAABQAAAAgAAAAGAAAAAQAAAAEAAAAAAAAABQAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      "AAAAAOAAAAMAIAAAYAAAAIAAAAAQAAAAAAAAAFAAAACAAAAAYAAAABAAAAAQAAAAAAAAAOAAAAOAAAAAYAAAAIAAAAAgAAAAAAAAAFAAAACAAAAA"
+      "EAAAAAAAAAAQAAAAAAAAAFAAQAAQAAAAEAAAAAAAAADgAAADgAAAAGAAAACAAAAAIAAAAAAAAABQAAAAgAAAABAAAAAAAAAAEAAAAAAAAABQAEAA"
+      "EAAAABAAAAAAAAAA4AAACAAAAABgAAAAgAAAACAAAAAAAAAAUAAAAIAAAAAQAAAAEAAAABAAAAAAAAAAUABAALAAAAAQAAAAsAAABpbnQzMi5EYX"
+      "RhAAAAAAAADgAAADAAAAAGAAAACAAAAAwAAAAAAAAABQAAAAgAAAAAAAAAAAAAAAEAAAAAAAAABQAAAAAAAAAOAAAAeAAAAAYAAAAIAAAAAgAAAA"
+      "AAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAFAAQABQAAAAEAAAAFAAAARGF0YQAAAAAOAAAAMAAAAAYAAAAIAAAADAAAAAAAAAAFAAAACAAAAA"
+      "AAAAAAAAAAAQAAAAAAAAAFAAAAAAAAAA4AAAA4AAAABgAAAAgAAAACAAAAAAAAAAUAAAAIAAAAAQAAAAAAAAABAAAAAAAAAAUABAABAAAAAQAAAA"
+      "AAAAAOAAAAOAAAAAYAAAAIAAAAAgAAAAAAAAAFAAAACAAAAAEAAAAAAAAAAQAAAAAAAAAFAAQAAQAAAAEAAAAAAAAADgAAAIgAAAAGAAAACAAAAA"
+      "kAAAAAAAAABQAAAAgAAAABAAAAWAAAAAEAAAAAAAAAAgAAAFgAAAAAAUlNAAAAAA4AAABIAAAABgAAAAgAAAACAAAAAAAAAAUAAAAIAAAAAQAAAA"
+      "EAAAABAAAAAAAAAAUABAAFAAAAAQAAAAUAAABNQ09TAAAAAA4AAAAAAAAA\""
+    }
+    traceOn		    1
+    traceData {
+      decision		      "100 M72x31[9 0 9 0 1 0 9 0 0 1 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 6 0 6 0 1 0 6 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 6 0 6 0 1 0 6 0 0 0 "
+      "1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 1 "
+      "0 0 0 0 0 0 3 0 3 0 1 0 3 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 "
+      "1 0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 3 0 3 0 1 0 3 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 6 0 6 0 1 0 6 0 0 0 1 0 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 3 0 "
+      "3 0 1 0 3 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 "
+      "0 1 0 0 0 0 0 0 0 0 0 0 0 0 5 0 5 0 1 0 5 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 1 2 0 2 0 1 0 2 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 2 0 1 0 2 0 0 0 "
+      "0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 2 0 2 0 1 0 2 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 "
+      "1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 2 0 1 0 2 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 2 0 1 0 2 0 0 0 0 1 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 "
+      "2 0 1 0 2 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 "
+      "0 0 0 0 0 0 0 0 0 0 0 0 0 0 7 0 7 0 1 0 7 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 2 0 "
+      "2 0 2 0 1 1 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 3 0 3 0 1 0 3 0 0 0 0 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 5 0 5 0 1 0 5 0 4 0 "
+      "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 "
+      "1 0 1 0 0 1 15 0 15 0 3 0 15 0 0 2 2 1 1 0 1 0 2 0 1 0 1 0 2 0 2 0 2 0 1 1 1 0 1 0 1 0 1 0 1 0 2 0 2 0 2 0 1 1 1"
+      " 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 15 0 15 0 3 0 15 0 0 2 2 1 1 0 1 0 2 0 1 0 1 0 2 0 2 0 2 0 1 1 1 "
+      "0 1 0 1 0 1 0 1 0 2 0 2 0 2 0 1 1 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 7 0 7 0 1 0 7 0 0 1 0 0 1 0 1 "
+      "0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 "
+      "0 9 0 9 0 1 0 9 0 0 1 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 "
+      "0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 6 0 6 0 1 0 6 0 0 1 0 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 6 0 6 0 1 0 6 0 0 1 0 0 1 0 1 0 0 1 0 0 0 0 0 "
+      "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 6 0 6 0 1 0 6 "
+      "0 0 1 0 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 "
+      "0 1 0 1 0 1 0 1 0 6 0 6 0 1 0 6 0 0 1 0 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 6 0 6 0 1 0 6 0 0 1 0 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 5 0 5 0 1 0 5 0 0 0 1 0 0 0 0 "
+      "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 1 0 0 0 0 0 "
+      "0 5 0 5 0 1 0 5 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 0 1 0 1 0 1 0 1 "
+      "0 1 0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 5 0 5 0 1 0 5 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 "
+      "0 0 1 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 5 0 5 0 1 0 5 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 5 0 5 0 1 0 5 "
+      "0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 "
+      "0 0 1 0 0 0 0 0 0]"
+      condition		      "100 M58x31[10 0 10 0 10 0 4 0 4 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 "
+      "4 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 0 10 0 10 0 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 4 0 1 0 1 0 1 0 1"
+      " 0 4 0 4 0 1 0 1 0 1 0 1 0 2 0 2 0 0 1 0 1 10 0 10 0 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 4 0 1 0 1 "
+      "0 1 0 1 0 4 0 4 0 1 0 1 0 1 0 1 0 2 0 2 0 0 1 0 1 4 0 4 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 0 4 0 4 0 1 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 4 0 4 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "0 0 0 0 0 0 0 0 0 4 0 4 0 1 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 10 0 10 0 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+      " 4 0 4 0 1 0 1 0 1 0 1 0 4 0 4 0 1 0 1 0 1 0 1 0 2 0 2 0 0 1 0 1 4 0 4 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+      " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 4 0 1 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 5 0 5 0 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+      " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 4 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 0 3 0 3 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+      " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 3 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 3 0 3 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0"
+      " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 3 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 4 0 4 0 4 0 0 0 0 0 0 0 0 0 0 0"
+      " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 4 0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0"
+      " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 2 0 2 0 0 0 0 0 0 0"
+      " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 2 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 2 0 2 0 2 0 0 0 0 0"
+      " 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 2 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 10 0 10 0 10 0 "
+      "0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 4 0 2 0 2 0 2 0 2 0 4 0 4 0 1 0 1 0 1 0 1 0 2 0 2 0 0 1 0 1 4 0 4 0 "
+      "4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 4 0 1 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 5 0 "
+      "5 0 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 4 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 0 "
+      "16 0 16 0 16 0 4 0 4 0 2 0 2 0 2 0 2 0 3 0 3 0 1 1 0 1 4 0 4 0 2 0 2 0 2 0 2 0 4 0 4 0 1 0 1 0 1 0 1 0 1 0 1 0 1"
+      " 0 0 0 16 0 16 0 16 0 4 0 4 0 2 0 2 0 2 0 2 0 3 0 3 0 1 1 0 1 4 0 4 0 2 0 2 0 2 0 2 0 4 0 4 0 1 0 1 0 1 0 1 0 1 "
+      "0 1 0 1 0 0 0 9 0 9 0 9 0 4 0 4 0 1 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 4 0 1 0 1 0 1 0 1 "
+      "0 1 0 1 0 1 0 0 0 10 0 10 0 10 0 4 0 4 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 4 0 1 0 1 0"
+      " 1 0 1 0 1 0 1 0 1 0 0 0 8 0 8 0 8 0 3 0 3 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 4 0 1 0"
+      " 1 0 1 0 1 0 1 0 1 0 1 0 0 0 9 0 9 0 9 0 4 0 4 0 1 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 4 0"
+      " 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 0 6 0 6 0 6 0 1 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0"
+      " 4 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 0 7 0 7 0 7 0 2 0 2 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+      " 4 0 4 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 0 7 0 7 0 7 0 2 0 2 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+      " 0 0 4 0 4 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 0 0 9 0 9 0 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 3 0 1 0 1 0"
+      " 0 1 0 0 4 0 4 0 1 0 1 0 1 0 1 0 2 0 2 0 0 1 0 1 10 0 10 0 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 4 0 "
+      "1 0 1 0 1 0 0 1 4 0 4 0 1 0 1 0 1 0 1 0 2 0 2 0 0 1 0 1 7 0 7 0 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 "
+      "1 0 0 1 0 0 0 0 0 0 4 0 4 0 1 0 1 0 1 0 1 0 2 0 2 0 0 1 0 1 8 0 8 0 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "2 0 2 0 1 0 0 1 0 0 0 0 4 0 4 0 1 0 1 0 1 0 1 0 2 0 2 0 0 1 0 1 8 0 8 0 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+      "0 0 2 0 2 0 1 0 0 1 0 0 0 0 4 0 4 0 1 0 1 0 1 0 1 0 2 0 2 0 0 1 0 1]"
+    }
+    testRunInfo		    "100 S'runId','runName','testId'{{M[0],T\"\",M[]}}"
+    aggregatedTestInfo	    "100 S1x31'uniqueId','analyzedModel','description','date','testRunInfo'{{T\"9fabcf52-60bb-4"
+    "fd8-a489-583f358326bb\",T\"uav_mission_supervisor\",T\"External model-in-the-loop harness for UAV mission supervis"
+    "or requirements-based tests.\",T\"25-Aug-2026 10:19:19\",S'runId','runName','testId'{{T\"d6d8c603-d4d3-4cca-b720-b"
+    "c99b140bd2d\",T\"UAV-MSN-TST-001\",T\"478137f7-0afc-489f-a4f8-d5533ed652de\"}}},{T\"4a8e5b17-d86c-4d45-a289-91a68a"
+    "44414c\",T\"uav_mission_supervisor\",T\"External model-in-the-loop harness for UAV mission supervisor requirements"
+    "-based tests.\",T\"25-Aug-2026 10:19:30\",S'runId','runName','testId'{{T\"729ba795-32c1-4379-9163-30a029b9285c\",T"
+    "\"UAV-MSN-TST-002\",T\"78f83fe3-0e12-46a9-9aa0-d9d0c0728794\"}}},{T\"94a5ede7-2672-4a9f-a008-f7a0c8d4f104\",T\"uav"
+    "_mission_supervisor\",T\"External model-in-the-loop harness for UAV mission supervisor requirements-based tests.\""
+    ",T\"25-Aug-2026 10:19:33\",S'runId','runName','testId'{{T\"777d392c-8ef1-45b3-8aca-480ba14b65c9\",T\"UAV-MSN-TST-0"
+    "03\",T\"73b704c8-af47-4232-92d1-01ff7d645003\"}}},{T\"3684b687-4da1-43f2-8cdc-e2ffe27ad1db\",T\"uav_mission_superv"
+    "isor\",T\"External model-in-the-loop harness for UAV mission supervisor requirements-based tests.\",T\"25-Aug-2026"
+    " 10:19:36\",S'runId','runName','testId'{{T\"d55ee019-514a-4063-92be-8bd645084564\",T\"UAV-MSN-TST-004\",T\"b32f9ee"
+    "b-b015-4650-9e7a-789e54f8171f\"}}},{T\"08e775ad-6189-48bf-9d98-ef546a4cb85e\",T\"uav_mission_supervisor\",T\"Exter"
+    "nal model-in-the-loop harness for UAV mission supervisor requirements-based tests.\",T\"25-Aug-2026 10:19:39\",S'r"
+    "unId','runName','testId'{{T\"d3674683-2192-4533-a7f3-afa292a0f799\",T\"UAV-MSN-TST-005\",T\"1dc32ed5-a40f-47ce-90c"
+    "7-46f592844628\"}}},{T\"cd5b9e9e-2ad4-40b2-9dc5-25e11a27d818\",T\"uav_mission_supervisor\",T\"External model-in-th"
+    "e-loop harness for UAV mission supervisor requirements-based tests.\",T\"25-Aug-2026 10:19:41\",S'runId','runName'"
+    ",'testId'{{T\"399f52dd-d15f-4556-b798-8c108001d00f\",T\"UAV-MSN-TST-006\",T\"350c1f65-00f3-45df-9287-6f79b1b27c6d\""
+    "}}},{T\"4fb40f1e-238a-4c8e-a701-7b7680887642\",T\"uav_mission_supervisor\",T\"External model-in-the-loop harness f"
+    "or UAV mission supervisor requirements-based tests.\",T\"25-Aug-2026 10:19:42\",S'runId','runName','testId'{{T\"4e"
+    "914ae6-e98f-408c-b538-0d5f0d84582c\",T\"UAV-MSN-TST-007\",T\"badc8efe-d4b3-4fc9-816d-050406c979bc\"}}},{T\"a9d319c"
+    "3-9af3-4456-be9c-58f2773c8370\",T\"uav_mission_supervisor\",T\"External model-in-the-loop harness for UAV mission "
+    "supervisor requirements-based tests.\",T\"25-Aug-2026 10:19:43\",S'runId','runName','testId'{{T\"cbfe3e33-415c-447"
+    "b-bd6e-6c0472100c7c\",T\"UAV-MSN-TST-008\",T\"857c4915-9b02-4705-9ac5-a13bb1500475\"}}},{T\"9287f2c1-235f-4f38-b3e"
+    "b-051c8de7a3ff\",T\"uav_mission_supervisor\",T\"External model-in-the-loop harness for UAV mission supervisor requ"
+    "irements-based tests.\",T\"25-Aug-2026 10:19:45\",S'runId','runName','testId'{{T\"da2f6a2f-1224-4999-a939-4cac30b8"
+    "e458\",T\"route_false\",T\"5af92aa8-3f50-44ba-be50-36e54c23e624\"}}},{T\"9621c960-6d82-46f5-889b-dc67ce9f44c4\",T\""
+    "uav_mission_supervisor\",T\"External model-in-the-loop harness for UAV mission supervisor requirements-based tests"
+    ".\",T\"25-Aug-2026 10:19:46\",S'runId','runName','testId'{{T\"a2a43eaf-1798-4bf8-880e-57f852ceb57a\",T\"route_true"
+    "\",T\"fb549357-b5a2-450e-8ab1-b6dfc54c5d6b\"}}},{T\"ffe18c51-f1a9-4371-aa23-8579afc53824\",T\"uav_mission_supervis"
+    "or\",T\"External model-in-the-loop harness for UAV mission supervisor requirements-based tests.\",T\"25-Aug-2026 1"
+    "0:19:50\",S'runId','runName','testId'{{T\"f08fab28-8eab-4586-a78f-a7d850646ccb\",T\"UAV-MSN-TST-010\",T\"f2608fab-"
+    "b28f-4a05-8e45-31d3f9fea8f2\"}}},{T\"8dd3bf29-a964-405c-badf-431c01e88554\",T\"uav_mission_supervisor\",T\"Externa"
+    "l model-in-the-loop harness for UAV mission supervisor requirements-based tests.\",T\"25-Aug-2026 10:19:52\",S'run"
+    "Id','runName','testId'{{T\"fd04032e-9b30-4781-837b-dab2aa5e9441\",T\"nan\",T\"8a9226ab-f90a-457f-b44f-aee6a557f504"
+    "\"}}},{T\"8d61f610-8341-45b6-8f87-ae15073ff598\",T\"uav_mission_supervisor\",T\"External model-in-the-loop harness"
+    " for UAV mission supervisor requirements-based tests.\",T\"25-Aug-2026 10:19:53\",S'runId','runName','testId'{{T\""
+    "e583a8ff-eee6-4a83-be8a-b05009ebc88b\",T\"positive_inf\",T\"3e553f14-ed4a-4fcc-8672-001381a00183\"}}},{T\"a0d7e815"
+    "-3d6e-4a25-aa41-6dcf61a96026\",T\"uav_mission_supervisor\",T\"External model-in-the-loop harness for UAV mission s"
+    "upervisor requirements-based tests.\",T\"25-Aug-2026 10:19:55\",S'runId','runName','testId'{{T\"6ad8e015-943f-4ceb"
+    "-98af-dca06e0f1268\",T\"negative_inf\",T\"16a0c479-321c-4683-9153-1cc6577560a2\"}}},{T\"29bb87e0-689d-4c00-ae57-93"
+    "ca67714112\",T\"uav_mission_supervisor\",T\"External model-in-the-loop harness for UAV mission supervisor requirem"
+    "ents-based tests.\",T\"25-Aug-2026 10:19:56\",S'runId','runName','testId'{{T\"2b2c9171-9cf0-4739-83bd-6a9ee865fcc5"
+    "\",T\"UAV-MSN-TST-012\",T\"61e68553-5b2f-4ec6-b193-abb43ddc4e89\"}}},{T\"9959356f-5440-4781-885b-3dcea9245648\",T\""
+    "uav_mission_supervisor\",T\"External model-in-the-loop harness for UAV mission supervisor requirements-based tests"
+    ".\",T\"25-Aug-2026 10:19:58\",S'runId','runName','testId'{{T\"7cbb76fb-6bb5-49ca-8278-9e8a400c9d7b\",T\"UAV-MSN-TS"
+    "T-013\",T\"ecc03908-cc92-4949-868f-2d0435417972\"}}},{T\"29d17112-29f0-4250-acd6-b743b872140c\",T\"uav_mission_sup"
+    "ervisor\",T\"External model-in-the-loop harness for UAV mission supervisor requirements-based tests.\",T\"25-Aug-2"
+    "026 10:19:59\",S'runId','runName','testId'{{T\"b64807a8-2406-4780-b842-a46d03419484\",T\"UAV-MSN-TST-014\",T\"2b5f"
+    "eba8-e233-45db-a377-95bf3737e10a\"}}},{T\"5491bf6d-6aef-459a-a7f2-f3c29b6dad21\",T\"uav_mission_supervisor\",T\"Ex"
+    "ternal model-in-the-loop harness for UAV mission supervisor requirements-based tests.\",T\"25-Aug-2026 10:20:00\","
+    "S'runId','runName','testId'{{T\"66886e6c-52e3-4f42-a120-f2c93a82a91b\",T\"repeat_run_1\",T\"89c13ed9-fbc5-4cee-a64"
+    "2-35eb1fa602c3\"}}},{T\"f95c51fc-2573-4d4f-ab35-76af813f1885\",T\"uav_mission_supervisor\",T\"External model-in-th"
+    "e-loop harness for UAV mission supervisor requirements-based tests.\",T\"25-Aug-2026 10:20:01\",S'runId','runName'"
+    ",'testId'{{T\"37689fb5-1f57-4182-a960-bde2f8653eed\",T\"repeat_run_2\",T\"0901eb5b-4c04-4d2e-afe6-23598763563c\"}}"
+    "},{T\"43a853e7-6af9-4952-b6de-8738bf86e368\",T\"uav_mission_supervisor\",T\"External model-in-the-loop harness for"
+    " UAV mission supervisor requirements-based tests.\",T\"25-Aug-2026 10:20:03\",S'runId','runName','testId'{{T\"d184"
+    "3386-7dfb-4879-9288-9ec810855415\",T\"UAV-MSN-TST-016\",T\"6d222a7b-ba82-4043-85c7-c9bca1823d71\"}}},{T\"16723198-"
+    "0691-411b-91a7-eed7057946e0\",T\"uav_mission_supervisor\",T\"External model-in-the-loop harness for UAV mission su"
+    "pervisor requirements-based tests.\",T\"25-Aug-2026 10:20:04\",S'runId','runName','testId'{{T\"af652330-0175-4bfc-"
+    "9c1d-3805f117c9c0\",T\"UAV-MSN-TST-017\",T\"828c34ff-63e6-4bf7-a5c8-e097b15528f4\"}}},{T\"41a69b1b-cccc-40e0-b139-"
+    "3095c2cba874\",T\"uav_mission_supervisor\",T\"External model-in-the-loop harness for UAV mission supervisor requir"
+    "ements-based tests.\",T\"25-Aug-2026 10:20:05\",S'runId','runName','testId'{{T\"f4a5a51c-1beb-4eb3-95c0-2219f9edce"
+    "1f\",T\"below_zero\",T\"3602c44a-ed62-4828-be21-154ef5c89990\"}}},{T\"eb399c72-769a-40b4-a5f8-8e93d594466b\",T\"ua"
+    "v_mission_supervisor\",T\"External model-in-the-loop harness for UAV mission supervisor requirements-based tests.\""
+    ",T\"25-Aug-2026 10:20:07\",S'runId','runName','testId'{{T\"4f2bcc2b-e629-41e1-92f1-8d31b267ee8c\",T\"above_100\",T"
+    "\"3e0e5ed9-9bf0-46ac-a96b-27c42b2af2d2\"}}},{T\"e4e43e97-37d7-4ed5-b6ea-2624c49a7723\",T\"uav_mission_supervisor\""
+    ",T\"External model-in-the-loop harness for UAV mission supervisor requirements-based tests.\",T\"25-Aug-2026 10:20"
+    ":08\",S'runId','runName','testId'{{T\"ba8d8e8a-db41-4e81-91be-332d95456c00\",T\"nan\",T\"4af42265-4072-4842-9a54-6"
+    "7b7b97f378f\"}}},{T\"2c08aa28-befa-4483-b8a5-e354efdff262\",T\"uav_mission_supervisor\",T\"External model-in-the-l"
+    "oop harness for UAV mission supervisor requirements-based tests.\",T\"25-Aug-2026 10:20:09\",S'runId','runName','t"
+    "estId'{{T\"957aca6c-20f7-4ad5-beb2-fb8cf2c1d399\",T\"positive_inf\",T\"9efdc7f8-9102-4efa-9bb4-c80ecd36e835\"}}},{"
+    "T\"645f9419-0268-4a4a-8907-5b729c63c3b5\",T\"uav_mission_supervisor\",T\"External model-in-the-loop harness for UA"
+    "V mission supervisor requirements-based tests.\",T\"25-Aug-2026 10:20:10\",S'runId','runName','testId'{{T\"efc8644"
+    "3-051b-4100-a2ee-fbda4857f1c0\",T\"negative_inf\",T\"869f8ba2-6103-42ca-aad3-e99af1b1e990\"}}},{T\"b07e1aa9-23fa-4"
+    "963-baf5-8ace91d8c009\",T\"uav_mission_supervisor\",T\"External model-in-the-loop harness for UAV mission supervis"
+    "or requirements-based tests.\",T\"25-Aug-2026 10:20:12\",S'runId','runName','testId'{{T\"38595975-12f1-4697-a8b5-4"
+    "1dbf0719ec9\",T\"below_zero\",T\"2ee368aa-984a-44b3-abbd-007cc6d73cb5\"}}},{T\"842e554f-8499-45e3-b117-cf3357253a9"
+    "9\",T\"uav_mission_supervisor\",T\"External model-in-the-loop harness for UAV mission supervisor requirements-base"
+    "d tests.\",T\"25-Aug-2026 10:20:13\",S'runId','runName','testId'{{T\"c9cbcef4-0d63-4a62-a696-3f18e2c5bac2\",T\"abo"
+    "ve_100\",T\"a32f7e94-411b-4f18-aa92-8a3c461c0e09\"}}},{T\"8f5c94ad-adc0-4dd8-8c16-a4dc15d668a4\",T\"uav_mission_su"
+    "pervisor\",T\"External model-in-the-loop harness for UAV mission supervisor requirements-based tests.\",T\"25-Aug-"
+    "2026 10:20:15\",S'runId','runName','testId'{{T\"a841b8bb-b382-4c66-b98a-b82381b4f331\",T\"nan\",T\"10dce4ff-151e-4"
+    "9fa-befe-dd114039c7ca\"}}},{T\"48cf6618-1568-46e1-9efe-11528a8fb6b4\",T\"uav_mission_supervisor\",T\"External mode"
+    "l-in-the-loop harness for UAV mission supervisor requirements-based tests.\",T\"25-Aug-2026 10:20:16\",S'runId','r"
+    "unName','testId'{{T\"f3e266e8-c5ed-443f-83d4-03fdcd866341\",T\"positive_inf\",T\"6823beca-fc4a-4eb7-8a5d-8aa86bb4d"
+    "fec\"}}},{T\"d9f49e43-d104-4907-9e66-37b8583b89b2\",T\"uav_mission_supervisor\",T\"External model-in-the-loop harn"
+    "ess for UAV mission supervisor requirements-based tests.\",T\"25-Aug-2026 10:20:17\",S'runId','runName','testId'{{"
+    "T\"7917369c-05fd-47d6-8fba-12398ae10f40\",T\"negative_inf\",T\"b8b66f4c-d926-421c-a765-67ec4ecc6230\"}}}}"
+    reqTestMapInfo	    "100 S'Requirement','ImplementLink','VerifyLink','ModelItem','Test','Simulation','modelItemMap'"
+    "{{S1x12'Label','URL','ImplementInd','VerifyInd','FullID'{{T\"Upon initialization, the mission supervisor shall ini"
+    "tialize its active mode and missionMode output to NormalInspection.\",T\"matlab:rmi.navigate('linktype_rmi_slreq',"
+    "'uav_mission_supervisor_requirements.slreqx','1','')\",M1x2[1 2],M[1],T\"uav_mission_supervisor_requirements:#1\"}"
+    ",{T\"While the supervisor is in NormalInspection, if batteryPercent is valid and greater than Battery_Threshold_Lo"
+    "w (25%) and routeComplete is false, the supervisor shall remain in NormalInspection.\",T\"matlab:rmi.navigate('lin"
+    "ktype_rmi_slreq','uav_mission_supervisor_requirements.slreqx','2','')\",M[3],M1x2[2 25],T\"uav_mission_supervisor_"
+    "requirements:#2\"},{T\"While the supervisor is not in a terminal state, when batteryPercent is greater than Batter"
+    "y_Threshold_Critical (10%) and less than or equal to Battery_Threshold_Low (25%), the supervisor shall enter or re"
+    "main in ReturnToHome.\",T\"matlab:rmi.navigate('linktype_rmi_slreq','uav_mission_supervisor_requirements.slreqx','"
+    "3','')\",M1x2[4 5],M1x3[4 5 10],T\"uav_mission_supervisor_requirements:#3\"},{T\"While the supervisor is not in a "
+    "terminal state, when batteryPercent is less than or equal to Battery_Threshold_Critical (10%), the supervisor shal"
+    "l enter or remain in SafeLanding.\",T\"matlab:rmi.navigate('linktype_rmi_slreq','uav_mission_supervisor_requiremen"
+    "ts.slreqx','4','')\",M1x3[6 7 8],M1x4[6 8 12 27],T\"uav_mission_supervisor_requirements:#4\"},{T\"When batteryPerc"
+    "ent is less than or equal to Battery_Threshold_Critical (10%), the supervisor shall select SafeLanding and shall n"
+    "ot select ReturnToHome, even though the value is also below the low-battery threshold.\",T\"matlab:rmi.navigate('l"
+    "inktype_rmi_slreq','uav_mission_supervisor_requirements.slreqx','5','')\",M1x2[9 10],M1x4[7 9 13 28],T\"uav_missio"
+    "n_supervisor_requirements:#5\"},{T\"When routeComplete is true and coincides with a low, critical, or invalid batt"
+    "ery condition, the supervisor shall select the applicable battery safety response instead of MissionComplete.\",T\""
+    "matlab:rmi.navigate('linktype_rmi_slreq','uav_mission_supervisor_requirements.slreqx','6','')\",M1x4[11 12 13 14],"
+    "M1x6[11 14 16 18 20 32],T\"uav_mission_supervisor_requirements:#6\"},{T\"While the supervisor is in NormalInspecti"
+    "on, when routeComplete is true and batteryPercent is valid and greater than Battery_Threshold_Low (25%), the super"
+    "visor shall enter MissionComplete.\",T\"matlab:rmi.navigate('linktype_rmi_slreq','uav_mission_supervisor_requireme"
+    "nts.slreqx','7','')\",M1x2[15 16],M1x2[15 30],T\"uav_mission_supervisor_requirements:#7\"},{T\"Once the supervisor"
+    " enters SafeLanding, it shall remain in SafeLanding for all subsequent input values.\",T\"matlab:rmi.navigate('lin"
+    "ktype_rmi_slreq','uav_mission_supervisor_requirements.slreqx','8','')\",M[17],M[23],T\"uav_mission_supervisor_requ"
+    "irements:#8\"},{T\"Once the supervisor enters MissionComplete, it shall remain in MissionComplete for all subseque"
+    "nt input values.\",T\"matlab:rmi.navigate('linktype_rmi_slreq','uav_mission_supervisor_requirements.slreqx','9',''"
+    ")\",M[18],M[24],T\"uav_mission_supervisor_requirements:#9\"},{T\"Once the supervisor enters ReturnToHome, it shall"
+    " not return to NormalInspection or transition to MissionComplete; it shall remain in ReturnToHome unless a critica"
+    "l or invalid battery input requires escalation to SafeLanding.\",T\"matlab:rmi.navigate('linktype_rmi_slreq','uav_"
+    "mission_supervisor_requirements.slreqx','10','')\",M1x3[19 20 21],M1x2[22 35],T\"uav_mission_supervisor_requiremen"
+    "ts:#10\"},{T\"If batteryPercent is non-finite, below 0%, or above 100%, then the supervisor shall enter SafeLandin"
+    "g, unless it is already in another approved terminal state.\",T\"matlab:rmi.navigate('linktype_rmi_slreq','uav_mis"
+    "sion_supervisor_requirements.slreqx','11','')\",M1x3[22 23 24],M1x5[17 19 21 33 36],T\"uav_mission_supervisor_requ"
+    "irements:#11\"},{T\"For every active state and input combination, the mission supervisor shall produce exactly one"
+    " deterministic next state and a missionMode value corresponding to that state.\",T\"matlab:rmi.navigate('linktype_"
+    "rmi_slreq','uav_mission_supervisor_requirements.slreqx','12','')\",M1x5[25 26 27 28 29],M1x5[3 26 29 31 34],T\"uav"
+    "_mission_supervisor_requirements:#12\"}},S1x29'RequirementIdx','ModelItemIdx'{{M[1],M[1]},{M[1],M[2]},{M[2],M[2]},"
+    "{M[3],M[3]},{M[3],M[4]},{M[4],M[5]},{M[4],M[6]},{M[4],M[7]},{M[5],M[5]},{M[5],M[3]},{M[6],M[8]},{M[6],M[5]},{M[6],"
+    "M[3]},{M[6],M[9]},{M[7],M[9]},{M[7],M[10]},{M[8],M[7]},{M[9],M[10]},{M[10],M[4]},{M[10],M[11]},{M[10],M[6]},{M[11]"
+    ",M[1]},{M[11],M[8]},{M[11],M[11]},{M[12],M[1]},{M[12],M[2]},{M[12],M[4]},{M[12],M[7]},{M[12],M[10]}},S1x36'Require"
+    "mentIdx','TestIdx'{{M[1],M[1]},{M[2],M[1]},{M[12],M[1]},{M[3],M[2]},{M[3],M[3]},{M[4],M[4]},{M[5],M[4]},{M[4],M[5]"
+    "},{M[5],M[5]},{M[3],M[6]},{M[6],M[6]},{M[4],M[7]},{M[5],M[7]},{M[6],M[7]},{M[7],M[8]},{M[6],M[9]},{M[11],M[9]},{M["
+    "6],M[10]},{M[11],M[10]},{M[6],M[11]},{M[11],M[11]},{M[10],M[12]},{M[8],M[13]},{M[9],M[14]},{M[2],M[15]},{M[12],M[1"
+    "5]},{M[4],M[16]},{M[5],M[16]},{M[12],M[16]},{M[7],M[17]},{M[12],M[17]},{M[6],M[18]},{M[11],M[18]},{M[12],M[18]},{M"
+    "[10],M[19]},{M[11],M[19]}},S1x11'SID','ImplementedInd'{{T\"uav_mission_supervisor:7\",M1x3[1 22 25]},{T\"uav_missi"
+    "on_supervisor:7:6\",M1x3[2 3 26]},{T\"uav_mission_supervisor:7:13\",M1x3[4 10 13]},{T\"uav_mission_supervisor:7:7\""
+    ",M1x3[5 19 27]},{T\"uav_mission_supervisor:7:12\",M1x3[6 9 12]},{T\"uav_mission_supervisor:7:16\",M1x2[7 21]},{T\""
+    "uav_mission_supervisor:7:8\",M1x3[8 17 28]},{T\"uav_mission_supervisor:7:11\",M1x2[11 23]},{T\"uav_mission_supervi"
+    "sor:7:14\",M1x2[14 15]},{T\"uav_mission_supervisor:7:9\",M1x3[16 18 29]},{T\"uav_mission_supervisor:7:15\",M1x2[20"
+    " 24]}},S1x19'Label','VerifyInd','SimulationInd','URL'{{T\"UAV-MSN-TST-001\",M1x3[1 2 3],M[1],T\"matlab:rmitmnaviga"
+    "te('uav_mission_supervisor_tests.mldatx','478137f7-0afc-489f-a4f8-d5533ed652de');\"},{T\"UAV-MSN-TST-002\",M[4],M["
+    "2],T\"matlab:rmitmnavigate('uav_mission_supervisor_tests.mldatx','78f83fe3-0e12-46a9-9aa0-d9d0c0728794');\"},{T\"U"
+    "AV-MSN-TST-003\",M[5],M[3],T\"matlab:rmitmnavigate('uav_mission_supervisor_tests.mldatx','73b704c8-af47-4232-92d1-"
+    "01ff7d645003');\"},{T\"UAV-MSN-TST-004\",M1x2[6 7],M[4],T\"matlab:rmitmnavigate('uav_mission_supervisor_tests.mlda"
+    "tx','b32f9eeb-b015-4650-9e7a-789e54f8171f');\"},{T\"UAV-MSN-TST-005\",M1x2[8 9],M[5],T\"matlab:rmitmnavigate('uav_"
+    "mission_supervisor_tests.mldatx','1dc32ed5-a40f-47ce-90c7-46f592844628');\"},{T\"UAV-MSN-TST-006\",M1x2[10 11],M[6"
+    "],T\"matlab:rmitmnavigate('uav_mission_supervisor_tests.mldatx','350c1f65-00f3-45df-9287-6f79b1b27c6d');\"},{T\"UA"
+    "V-MSN-TST-007\",M1x3[12 13 14],M[7],T\"matlab:rmitmnavigate('uav_mission_supervisor_tests.mldatx','badc8efe-d4b3-4"
+    "fc9-816d-050406c979bc');\"},{T\"UAV-MSN-TST-008\",M[15],M[8],T\"matlab:rmitmnavigate('uav_mission_supervisor_tests"
+    ".mldatx','857c4915-9b02-4705-9ac5-a13bb1500475');\"},{T\"UAV-MSN-TST-009\",M1x2[16 17],M1x2[9 10],T\"matlab:rmitmn"
+    "avigate('uav_mission_supervisor_tests.mldatx','df6aed43-9f5d-4755-8ef6-f06d8f351518');\"},{T\"UAV-MSN-TST-010\",M1"
+    "x2[18 19],M[11],T\"matlab:rmitmnavigate('uav_mission_supervisor_tests.mldatx','f2608fab-b28f-4a05-8e45-31d3f9fea8f"
+    "2');\"},{T\"UAV-MSN-TST-011\",M1x2[20 21],M1x3[12 13 14],T\"matlab:rmitmnavigate('uav_mission_supervisor_tests.mld"
+    "atx','81a6e834-f8ae-4dab-803d-280be4d914e5');\"},{T\"UAV-MSN-TST-012\",M[22],M[15],T\"matlab:rmitmnavigate('uav_mi"
+    "ssion_supervisor_tests.mldatx','61e68553-5b2f-4ec6-b193-abb43ddc4e89');\"},{T\"UAV-MSN-TST-013\",M[23],M[16],T\"ma"
+    "tlab:rmitmnavigate('uav_mission_supervisor_tests.mldatx','ecc03908-cc92-4949-868f-2d0435417972');\"},{T\"UAV-MSN-T"
+    "ST-014\",M[24],M[17],T\"matlab:rmitmnavigate('uav_mission_supervisor_tests.mldatx','2b5feba8-e233-45db-a377-95bf37"
+    "37e10a');\"},{T\"UAV-MSN-TST-015\",M1x2[25 26],M1x2[18 19],T\"matlab:rmitmnavigate('uav_mission_supervisor_tests.m"
+    "ldatx','3e7e68ad-038b-43cd-901b-62044e594a76');\"},{T\"UAV-MSN-TST-016\",M1x3[27 28 29],M[20],T\"matlab:rmitmnavig"
+    "ate('uav_mission_supervisor_tests.mldatx','6d222a7b-ba82-4043-85c7-c9bca1823d71');\"},{T\"UAV-MSN-TST-017\",M1x2[3"
+    "0 31],M[21],T\"matlab:rmitmnavigate('uav_mission_supervisor_tests.mldatx','828c34ff-63e6-4bf7-a5c8-e097b15528f4');"
+    "\"},{T\"UAV-MSN-TST-018\",M1x3[32 33 34],M1x5[22 23 24 25 26],T\"matlab:rmitmnavigate('uav_mission_supervisor_test"
+    "s.mldatx','911962dd-3598-41fd-8c9c-88a6a2156e62');\"},{T\"UAV-MSN-TST-019\",M1x2[35 36],M1x5[27 28 29 30 31],T\"ma"
+    "tlab:rmitmnavigate('uav_mission_supervisor_tests.mldatx','5c52bb26-366b-4f57-97b2-8f7d643d1498');\"}},S1x31'RunId'"
+    ",'TestIdx','URL','Label'{{T\"d6d8c603-d4d3-4cca-b720-bc99b140bd2d\",M[1],T\"matlab:stm.internal.util.highlightTest"
+    "Result('d6d8c603-d4d3-4cca-b720-bc99b140bd2d');\",T\"T1\"},{T\"729ba795-32c1-4379-9163-30a029b9285c\",M[2],T\"matl"
+    "ab:stm.internal.util.highlightTestResult('729ba795-32c1-4379-9163-30a029b9285c');\",T\"T2\"},{T\"777d392c-8ef1-45b"
+    "3-8aca-480ba14b65c9\",M[3],T\"matlab:stm.internal.util.highlightTestResult('777d392c-8ef1-45b3-8aca-480ba14b65c9')"
+    ";\",T\"T3\"},{T\"d55ee019-514a-4063-92be-8bd645084564\",M[4],T\"matlab:stm.internal.util.highlightTestResult('d55e"
+    "e019-514a-4063-92be-8bd645084564');\",T\"T4\"},{T\"d3674683-2192-4533-a7f3-afa292a0f799\",M[5],T\"matlab:stm.inter"
+    "nal.util.highlightTestResult('d3674683-2192-4533-a7f3-afa292a0f799');\",T\"T5\"},{T\"399f52dd-d15f-4556-b798-8c108"
+    "001d00f\",M[6],T\"matlab:stm.internal.util.highlightTestResult('399f52dd-d15f-4556-b798-8c108001d00f');\",T\"T6\"}"
+    ",{T\"4e914ae6-e98f-408c-b538-0d5f0d84582c\",M[7],T\"matlab:stm.internal.util.highlightTestResult('4e914ae6-e98f-40"
+    "8c-b538-0d5f0d84582c');\",T\"T7\"},{T\"cbfe3e33-415c-447b-bd6e-6c0472100c7c\",M[8],T\"matlab:stm.internal.util.hig"
+    "hlightTestResult('cbfe3e33-415c-447b-bd6e-6c0472100c7c');\",T\"T8\"},{T\"da2f6a2f-1224-4999-a939-4cac30b8e458\",M["
+    "9],T\"matlab:stm.internal.util.highlightTestResult('da2f6a2f-1224-4999-a939-4cac30b8e458');\",T\"T9\"},{T\"a2a43ea"
+    "f-1798-4bf8-880e-57f852ceb57a\",M[9],T\"matlab:stm.internal.util.highlightTestResult('a2a43eaf-1798-4bf8-880e-57f8"
+    "52ceb57a');\",T\"T10\"},{T\"f08fab28-8eab-4586-a78f-a7d850646ccb\",M[10],T\"matlab:stm.internal.util.highlightTest"
+    "Result('f08fab28-8eab-4586-a78f-a7d850646ccb');\",T\"T11\"},{T\"fd04032e-9b30-4781-837b-dab2aa5e9441\",M[11],T\"ma"
+    "tlab:stm.internal.util.highlightTestResult('fd04032e-9b30-4781-837b-dab2aa5e9441');\",T\"T12\"},{T\"e583a8ff-eee6-"
+    "4a83-be8a-b05009ebc88b\",M[11],T\"matlab:stm.internal.util.highlightTestResult('e583a8ff-eee6-4a83-be8a-b05009ebc8"
+    "8b');\",T\"T13\"},{T\"6ad8e015-943f-4ceb-98af-dca06e0f1268\",M[11],T\"matlab:stm.internal.util.highlightTestResult"
+    "('6ad8e015-943f-4ceb-98af-dca06e0f1268');\",T\"T14\"},{T\"2b2c9171-9cf0-4739-83bd-6a9ee865fcc5\",M[12],T\"matlab:s"
+    "tm.internal.util.highlightTestResult('2b2c9171-9cf0-4739-83bd-6a9ee865fcc5');\",T\"T15\"},{T\"7cbb76fb-6bb5-49ca-8"
+    "278-9e8a400c9d7b\",M[13],T\"matlab:stm.internal.util.highlightTestResult('7cbb76fb-6bb5-49ca-8278-9e8a400c9d7b');\""
+    ",T\"T16\"},{T\"b64807a8-2406-4780-b842-a46d03419484\",M[14],T\"matlab:stm.internal.util.highlightTestResult('b6480"
+    "7a8-2406-4780-b842-a46d03419484');\",T\"T17\"},{T\"66886e6c-52e3-4f42-a120-f2c93a82a91b\",M[15],T\"matlab:stm.inte"
+    "rnal.util.highlightTestResult('66886e6c-52e3-4f42-a120-f2c93a82a91b');\",T\"T18\"},{T\"37689fb5-1f57-4182-a960-bde"
+    "2f8653eed\",M[15],T\"matlab:stm.internal.util.highlightTestResult('37689fb5-1f57-4182-a960-bde2f8653eed');\",T\"T1"
+    "9\"},{T\"d1843386-7dfb-4879-9288-9ec810855415\",M[16],T\"matlab:stm.internal.util.highlightTestResult('d1843386-7d"
+    "fb-4879-9288-9ec810855415');\",T\"T20\"},{T\"af652330-0175-4bfc-9c1d-3805f117c9c0\",M[17],T\"matlab:stm.internal.u"
+    "til.highlightTestResult('af652330-0175-4bfc-9c1d-3805f117c9c0');\",T\"T21\"},{T\"f4a5a51c-1beb-4eb3-95c0-2219f9edc"
+    "e1f\",M[18],T\"matlab:stm.internal.util.highlightTestResult('f4a5a51c-1beb-4eb3-95c0-2219f9edce1f');\",T\"T22\"},{"
+    "T\"4f2bcc2b-e629-41e1-92f1-8d31b267ee8c\",M[18],T\"matlab:stm.internal.util.highlightTestResult('4f2bcc2b-e629-41e"
+    "1-92f1-8d31b267ee8c');\",T\"T23\"},{T\"ba8d8e8a-db41-4e81-91be-332d95456c00\",M[18],T\"matlab:stm.internal.util.hi"
+    "ghlightTestResult('ba8d8e8a-db41-4e81-91be-332d95456c00');\",T\"T24\"},{T\"957aca6c-20f7-4ad5-beb2-fb8cf2c1d399\","
+    "M[18],T\"matlab:stm.internal.util.highlightTestResult('957aca6c-20f7-4ad5-beb2-fb8cf2c1d399');\",T\"T25\"},{T\"efc"
+    "86443-051b-4100-a2ee-fbda4857f1c0\",M[18],T\"matlab:stm.internal.util.highlightTestResult('efc86443-051b-4100-a2ee"
+    "-fbda4857f1c0');\",T\"T26\"},{T\"38595975-12f1-4697-a8b5-41dbf0719ec9\",M[19],T\"matlab:stm.internal.util.highligh"
+    "tTestResult('38595975-12f1-4697-a8b5-41dbf0719ec9');\",T\"T27\"},{T\"c9cbcef4-0d63-4a62-a696-3f18e2c5bac2\",M[19],"
+    "T\"matlab:stm.internal.util.highlightTestResult('c9cbcef4-0d63-4a62-a696-3f18e2c5bac2');\",T\"T28\"},{T\"a841b8bb-"
+    "b382-4c66-b98a-b82381b4f331\",M[19],T\"matlab:stm.internal.util.highlightTestResult('a841b8bb-b382-4c66-b98a-b8238"
+    "1b4f331');\",T\"T29\"},{T\"f3e266e8-c5ed-443f-83d4-03fdcd866341\",M[19],T\"matlab:stm.internal.util.highlightTestR"
+    "esult('f3e266e8-c5ed-443f-83d4-03fdcd866341');\",T\"T30\"},{T\"7917369c-05fd-47d6-8fba-12398ae10f40\",M[19],T\"mat"
+    "lab:stm.internal.util.highlightTestResult('7917369c-05fd-47d6-8fba-12398ae10f40');\",T\"T31\"}},S1x11'Keys','Value"
+    "s'{{T\"uav_mission_supervisor:7\",M[1]},{T\"uav_mission_supervisor:7:11\",M[8]},{T\"uav_mission_supervisor:7:12\","
+    "M[5]},{T\"uav_mission_supervisor:7:13\",M[3]},{T\"uav_mission_supervisor:7:14\",M[9]},{T\"uav_mission_supervisor:7"
+    ":15\",M[11]},{T\"uav_mission_supervisor:7:16\",M[6]},{T\"uav_mission_supervisor:7:6\",M[2]},{T\"uav_mission_superv"
+    "isor:7:7\",M[4]},{T\"uav_mission_supervisor:7:8\",M[7]},{T\"uav_mission_supervisor:7:9\",M[10]}}}}"
+    testobjectives	    [0 0 0 0 0 0 0 0 0 0 0 0 0 5]
+    mcdcMode		    1
+    isDerived		    1
+    covSFcnEnable	    1
+  }
+  metricdata {
+    id			    5
+    metricenumValue	    14
+    metricName		    "cvmetric_Structural_block"
+  }
+  slsfobj {
+    id			    6
+    name		    "uav_mission_supervisor"
+    origin		    SIMULINK_OBJ
+    modelcov		    2
+    treeNode		    [0 7 0 0]
+    metricFlags		    8283
+    metrics		    [28 29 30 31 32 33]
+    hiddenSubSysHandle	    368.0040283203125
+    cvChecksum {
+      u1		      4040812324
+      u2		      2004962828
+      u3		      1213079810
+      u4		      3341044765
+    }
+    cvStructuralChecksum    [783275274 3334551697 2534909993 2743337295]
+    cvMetricChecksum	    [2904040895 2397481875 529309974 2803881850 0 0 0 0]
+  }
+  slsfobj {
+    id			    7
+    name		    "MissionSupervisor"
+    SID			    "7"
+    origin		    SIMULINK_OBJ
+    isAtomicSubsytem	    1
+    modelcov		    2
+    treeNode		    [6 8 0 0]
+    metricFlags		    8283
+    metrics		    [34 35 36 37 38 39]
+    cvChecksum {
+      u1		      2035346509
+      u2		      3703410360
+      u3		      4083781097
+      u4		      2388988
+    }
+    cvStructuralChecksum    [2732289004 1028964785 3804686276 666419045]
+    cvMetricChecksum	    [26353831 1121592703 618845336 1941203554 0 0 0 0]
+  }
+  slsfobj {
+    id			    8
+    name		    " Demux "
+    SID			    "7::110"
+    origin		    SIMULINK_OBJ
+    modelcov		    2
+    treeNode		    [7 0 0 9]
+    cvChecksum {
+      u1		      3439279571
+      u2		      2561743879
+      u3		      3663033115
+      u4		      195740233
+    }
+    cvStructuralChecksum    [3439279571 2561743879 3663033115 195740233]
+  }
+  slsfobj {
+    id			    9
+    name		    " SFunction "
+    SID			    "7::109"
+    origin		    SIMULINK_OBJ
+    modelcov		    2
+    treeNode		    [7 0 8 10]
+    cvChecksum {
+      u1		      3439279571
+      u2		      2561743879
+      u3		      3663033115
+      u4		      195740233
+    }
+    cvStructuralChecksum    [3439279571 2561743879 3663033115 195740233]
+  }
+  slsfobj {
+    id			    10
+    name		    " Terminator "
+    SID			    "7::111"
+    origin		    SIMULINK_OBJ
+    modelcov		    2
+    treeNode		    [7 0 9 11]
+    cvChecksum {
+      u1		      3439279571
+      u2		      2561743879
+      u3		      3663033115
+      u4		      195740233
+    }
+    cvStructuralChecksum    [3439279571 2561743879 3663033115 195740233]
+  }
+  slsfobj {
+    id			    11
+    name		    "MissionSupervisor"
+    origPath		    "uav_mission_supervisor:7"
+    SID			    "7"
+    origin		    STATEFLOW_OBJ
+    refClass		    1
+    modelcov		    2
+    treeNode		    [7 12 10 0]
+    metricFlags		    8283
+    metrics		    [40 41 42 43 44 45]
+    cvChecksum {
+      u1		      4032548453
+      u2		      844866501
+      u3		      3133061575
+      u4		      1280011717
+    }
+    cvStructuralChecksum    [1529860618 2452630883 1233577394 576363443]
+    cvMetricChecksum	    [791947382 2997330503 695938885 2306291510 0 0 0 0]
+  }
+  slsfobj {
+    id			    12
+    name		    "MissionComplete"
+    SID			    "7:9"
+    origin		    STATEFLOW_OBJ
+    refClass		    4
+    modelcov		    2
+    treeNode		    [11 0 0 13]
+    code		    52
+    cvChecksum {
+      u1		      3354143797
+      u2		      1210633443
+      u3		      3600838729
+      u4		      3748068389
+    }
+    cvStructuralChecksum    [3354143797 1210633443 3600838729 3748068389]
+  }
+  slsfobj {
+    id			    13
+    name		    "NormalInspection"
+    SID			    "7:6"
+    origin		    STATEFLOW_OBJ
+    refClass		    4
+    modelcov		    2
+    treeNode		    [11 0 12 14]
+    code		    53
+    cvChecksum {
+      u1		      356740234
+      u2		      2443641747
+      u3		      3813221236
+      u4		      1888933182
+    }
+    cvStructuralChecksum    [356740234 2443641747 3813221236 1888933182]
+  }
+  slsfobj {
+    id			    14
+    name		    "ReturnToHome"
+    SID			    "7:7"
+    origin		    STATEFLOW_OBJ
+    refClass		    4
+    modelcov		    2
+    treeNode		    [11 0 13 15]
+    code		    54
+    cvChecksum {
+      u1		      1479995905
+      u2		      1537506350
+      u3		      2118486958
+      u4		      884055810
+    }
+    cvStructuralChecksum    [1479995905 1537506350 2118486958 884055810]
+  }
+  slsfobj {
+    id			    15
+    name		    "SafeLanding"
+    SID			    "7:8"
+    origin		    STATEFLOW_OBJ
+    refClass		    4
+    modelcov		    2
+    treeNode		    [11 0 14 16]
+    code		    55
+    cvChecksum {
+      u1		      3379888243
+      u2		      918485323
+      u3		      2293047559
+      u4		      3271849461
+    }
+    cvStructuralChecksum    [3379888243 918485323 2293047559 3271849461]
+  }
+  slsfobj {
+    id			    16
+    SID			    "7:10"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [11 0 15 17]
+    code		    56
+    cvChecksum {
+      u1		      555668416
+      u2		      1955580048
+      u3		      3865771421
+      u4		      2562474511
+    }
+    cvStructuralChecksum    [555668416 1955580048 3865771421 2562474511]
+  }
+  slsfobj {
+    id			    17
+    name		    "[isnan(batteryPercent) || isinf(batteryPercent) || batteryPercent < 0 || batteryPercent > 100]"
+    SID			    "7:11"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [11 0 16 18]
+    metricFlags		    8267
+    metrics		    [57 58 59 60 61]
+    code		    84
+    cvChecksum {
+      u1		      1100520074
+      u2		      1798933859
+      u3		      705142347
+      u4		      914482284
+    }
+    cvStructuralChecksum    [3063427607 3818970115 2869556134 2729273567]
+    cvMetricChecksum	    [1645449147 886526742 991901630 3929123741 0 0 0 0]
+  }
+  slsfobj {
+    id			    18
+    name		    "[batteryPercent <= Battery_Threshold_Critical]"
+    SID			    "7:12"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [11 0 17 19]
+    metricFlags		    8257
+    metrics		    [85 86 87]
+    code		    96
+    cvChecksum {
+      u1		      3747910828
+      u2		      1963536385
+      u3		      4030838979
+      u4		      3318807733
+    }
+    cvStructuralChecksum    [2110944507 4272285023 765562186 3159643276]
+    cvMetricChecksum	    [3846926621 1746490171 4272387431 2702471039 0 0 0 0]
+  }
+  slsfobj {
+    id			    19
+    name		    "[batteryPercent <= Battery_Threshold_Low && batteryPercent > Battery_Threshold_Critical]"
+    SID			    "7:13"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [11 0 18 20]
+    metricFlags		    8267
+    metrics		    [97 98 99 100 101]
+    code		    120
+    cvChecksum {
+      u1		      1631995475
+      u2		      1142130619
+      u3		      1203876856
+      u4		      538717620
+    }
+    cvStructuralChecksum    [4127622276 207266982 37162005 1191379361]
+    cvMetricChecksum	    [720308341 2381710737 867995416 1730787893 0 0 0 0]
+  }
+  slsfobj {
+    id			    20
+    name		    "[routeComplete == true]"
+    SID			    "7:14"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [11 0 19 21]
+    metricFlags		    65
+    metrics		    [121 122]
+    code		    127
+    cvChecksum {
+      u1		      3790952645
+      u2		      3697672777
+      u3		      2836207114
+      u4		      2006196568
+    }
+    cvStructuralChecksum    [3790952645 3697672777 2836207114 2006196568]
+  }
+  slsfobj {
+    id			    21
+    name		    "[isnan(batteryPercent) || isinf(batteryPercent) || batteryPercent < 0 || batteryPercent > 100]"
+    SID			    "7:15"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [11 0 20 22]
+    metricFlags		    8267
+    metrics		    [128 129 130 131 132]
+    code		    155
+    cvChecksum {
+      u1		      1100520074
+      u2		      1798933859
+      u3		      705142347
+      u4		      914482284
+    }
+    cvStructuralChecksum    [3063427607 3818970115 2869556134 2729273567]
+    cvMetricChecksum	    [1645449147 886526742 991901630 3929123741 0 0 0 0]
+  }
+  slsfobj {
+    id			    22
+    name		    "[batteryPercent <= Battery_Threshold_Critical]"
+    SID			    "7:16"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [11 0 21 23]
+    metricFlags		    8257
+    metrics		    [156 157 158]
+    code		    167
+    cvChecksum {
+      u1		      3747910828
+      u2		      1963536385
+      u3		      4030838979
+      u4		      3318807733
+    }
+    cvStructuralChecksum    [2110944507 4272285023 765562186 3159643276]
+    cvMetricChecksum	    [3846926621 1746490171 4272387431 2702471039 0 0 0 0]
+  }
+  slsfobj {
+    id			    23
+    name		    "[isnan(batteryPercent) || isinf(batteryPercent) || batteryPercent < 0 || batteryPercent > 100]"
+    SID			    "7:18"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [11 0 22 24]
+    metricFlags		    8267
+    metrics		    [168 169 170 171 172]
+    code		    195
+    cvChecksum {
+      u1		      1100520074
+      u2		      1798933859
+      u3		      705142347
+      u4		      914482284
+    }
+    cvStructuralChecksum    [3063427607 3818970115 2869556134 2729273567]
+    cvMetricChecksum	    [1645449147 886526742 991901630 3929123741 0 0 0 0]
+  }
+  slsfobj {
+    id			    24
+    name		    "[batteryPercent <= Battery_Threshold_Critical]"
+    SID			    "7:19"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [11 0 23 25]
+    metricFlags		    8257
+    metrics		    [196 197 198]
+    code		    207
+    cvChecksum {
+      u1		      3747910828
+      u2		      1963536385
+      u3		      4030838979
+      u4		      3318807733
+    }
+    cvStructuralChecksum    [2110944507 4272285023 765562186 3159643276]
+    cvMetricChecksum	    [3846926621 1746490171 4272387431 2702471039 0 0 0 0]
+  }
+  slsfobj {
+    id			    25
+    name		    "[batteryPercent <= Battery_Threshold_Low && batteryPercent > Battery_Threshold_Critical]"
+    SID			    "7:20"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [11 0 24 26]
+    metricFlags		    8267
+    metrics		    [208 209 210 211 212]
+    code		    231
+    cvChecksum {
+      u1		      1631995475
+      u2		      1142130619
+      u3		      1203876856
+      u4		      538717620
+    }
+    cvStructuralChecksum    [4127622276 207266982 37162005 1191379361]
+    cvMetricChecksum	    [720308341 2381710737 867995416 1730787893 0 0 0 0]
+  }
+  slsfobj {
+    id			    26
+    name		    "[routeComplete == true]"
+    SID			    "7:21"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [11 0 25 27]
+    metricFlags		    65
+    metrics		    [232 233]
+    code		    238
+    cvChecksum {
+      u1		      3790952645
+      u2		      3697672777
+      u3		      2836207114
+      u4		      2006196568
+    }
+    cvStructuralChecksum    [3790952645 3697672777 2836207114 2006196568]
+  }
+  slsfobj {
+    id			    27
+    SID			    "7:22"
+    origin		    STATEFLOW_OBJ
+    refClass		    5
+    modelcov		    2
+    treeNode		    [11 0 26 0]
+    code		    239
+    cvChecksum {
+      u1		      555668416
+      u2		      1955580048
+      u3		      3865771421
+      u4		      2562474511
+    }
+    cvStructuralChecksum    [555668416 1955580048 3865771421 2562474511]
+  }
+  metric {
+    id			    28
+    dataIdx		    [0 -1]
+    justifiedDataIdx	    [1 0]
+    dataCnt		    [24 0 -1 -1]
+    dataWidth		    73
+  }
+  metric {
+    id			    29
+    dataIdx		    [0 -1]
+    justifiedDataIdx	    [1 0]
+    dataCnt		    [32 0 -1 -1]
+    dataWidth		    59
+  }
+  metric {
+    id			    30
+    dataIdx		    [0 -1]
+    justifiedDataIdx	    [1 0]
+    dataCnt		    [16 0 -1 -1]
+    dataWidth		    80
+  }
+  metric {
+    id			    31
+  }
+  metric {
+    id			    32
+    dataCnt		    [26 1 0 0]
+  }
+  metric {
+    id			    33
+  }
+  metric {
+    id			    34
+    dataIdx		    [2 -1]
+    justifiedDataIdx	    [3 0]
+    dataCnt		    [24 0 -1 -1]
+    dataWidth		    71
+  }
+  metric {
+    id			    35
+    dataIdx		    [2 -1]
+    justifiedDataIdx	    [3 0]
+    dataCnt		    [32 0 -1 -1]
+    dataWidth		    57
+  }
+  metric {
+    id			    36
+    dataIdx		    [2 -1]
+    justifiedDataIdx	    [3 0]
+    dataCnt		    [16 0 -1 -1]
+    dataWidth		    78
+  }
+  sigranger {
+    id			    37
+    modelcov		    2
+    slsfobj		    7
+    cov			    [0 1 1 1 0]
+  }
+  metric {
+    id			    38
+    dataIdx		    [1 1]
+    dataCnt		    [25 1 0 0]
+  }
+  metric {
+    id			    39
+  }
+  metric {
+    id			    40
+    baseObjs		    [46]
+    dataIdx		    [6 4]
+    justifiedDataIdx	    [7 5]
+    dataCnt		    [24 4 -1 -1]
+    dataWidth		    69
+  }
+  metric {
+    id			    41
+    dataIdx		    [4 -1]
+    justifiedDataIdx	    [5 0]
+    dataCnt		    [32 0 -1 -1]
+    dataWidth		    55
+  }
+  metric {
+    id			    42
+    dataIdx		    [4 -1]
+    justifiedDataIdx	    [5 0]
+    dataCnt		    [16 0 -1 -1]
+    dataWidth		    76
+  }
+  sigranger {
+    id			    43
+    modelcov		    2
+    cov			    [2 5 1 1 1 1 1 5 0 0 0 0 0]
+  }
+  metric {
+    id			    44
+    dataCnt		    [24 3 0 0]
+  }
+  metric {
+    id			    45
+  }
+  decision {
+    id			    46
+    modelcov		    2
+    slsfobj		    11
+    descriptor		    47
+    outMsgs		    [48 49 50 51]
+    dc			    [4 0 8 0]
+  }
+  message {
+    id			    47
+    keyNum		    16
+    startChar		    -1
+  }
+  message {
+    id			    48
+    keyNum		    160
+    objParams		    [12]
+    startChar		    -1
+  }
+  message {
+    id			    49
+    keyNum		    160
+    objParams		    [13]
+    startChar		    -1
+  }
+  message {
+    id			    50
+    keyNum		    160
+    objParams		    [14]
+    startChar		    -1
+  }
+  message {
+    id			    51
+    keyNum		    160
+    objParams		    [15]
+    startChar		    -1
+  }
+  codeblock {
+    id			    52
+    slsfobj		    12
+    code		    "MissionComplete\nentry, during:\n missionMode = MissionMode.MissionComplete;"
+  }
+  codeblock {
+    id			    53
+    slsfobj		    13
+    code		    "NormalInspection\nentry, during:\n missionMode = MissionMode.NormalInspection;"
+  }
+  codeblock {
+    id			    54
+    slsfobj		    14
+    code		    "ReturnToHome\nentry, during:\n missionMode = MissionMode.ReturnToHome;"
+  }
+  codeblock {
+    id			    55
+    slsfobj		    15
+    code		    "SafeLanding\nentry, during:\n missionMode = MissionMode.SafeLanding;"
+  }
+  codeblock {
+    id			    56
+    slsfobj		    16
+  }
+  metric {
+    id			    57
+    baseObjs		    [62]
+    dataIdx		    [14 12]
+    justifiedDataIdx	    [15 13]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    7
+  }
+  metric {
+    id			    58
+    baseObjs		    [66 67 68 69]
+    dataIdx		    [8 6]
+    justifiedDataIdx	    [9 7]
+    dataCnt		    [8 8 -1 -1]
+    dataWidth		    13
+  }
+  metric {
+    id			    59
+    baseObjs		    [74]
+    dataIdx		    [8 6]
+    justifiedDataIdx	    [9 7]
+    dataCnt		    [4 4 -1 -1]
+    dataWidth		    18
+  }
+  metric {
+    id			    60
+    dataCnt		    [4 4 0 0]
+  }
+  metric {
+    id			    61
+    baseObjs		    [76 77]
+  }
+  decision {
+    id			    62
+    modelcov		    2
+    slsfobj		    17
+    descriptor		    63
+    outMsgs		    [64 65]
+    dc			    [2 0 16 0]
+  }
+  message {
+    id			    63
+    keyNum		    164
+    startChar		    1
+    length		    93
+  }
+  message {
+    id			    64
+    keyNum		    159
+    startChar		    -1
+  }
+  message {
+    id			    65
+    keyNum		    158
+    startChar		    94
+  }
+  condition {
+    id			    66
+    modelcov		    2
+    slsfobj		    17
+    key			    -1
+    descriptor		    70
+    coverage		    [11 10 0]
+  }
+  condition {
+    id			    67
+    modelcov		    2
+    slsfobj		    17
+    key			    -1
+    descriptor		    71
+    coverage		    [13 12 0]
+  }
+  condition {
+    id			    68
+    modelcov		    2
+    slsfobj		    17
+    key			    -1
+    descriptor		    72
+    coverage		    [15 14 0]
+  }
+  condition {
+    id			    69
+    modelcov		    2
+    slsfobj		    17
+    key			    -1
+    descriptor		    73
+    coverage		    [17 16 0]
+  }
+  message {
+    id			    70
+    keyNum		    164
+    startChar		    1
+    length		    22
+  }
+  message {
+    id			    71
+    keyNum		    164
+    startChar		    26
+    length		    22
+  }
+  message {
+    id			    72
+    keyNum		    164
+    startChar		    51
+    length		    19
+  }
+  message {
+    id			    73
+    keyNum		    164
+    startChar		    73
+    length		    21
+  }
+  mcdcentry {
+    id			    74
+    modelcov		    2
+    slsfobj		    17
+    key			    -1
+    numPredicates	    4
+    pathCount		    5
+    pathStorageCount	    1
+    mcdcMode		    MCDCMODE_MASKING
+    bst			    [0 1 -2 2 -2 3 -2]
+    expressionTree	    [7 -1 -1 0 -1 2 -1 4 7 -1 -1 1 -1 3 -1 5 7 2 2 4 4 6 6 -1]
+    descriptor		    75
+    conditions		    [66 67 68 69]
+    dataBaseIdx		    [10 14 18 22 9999 0]
+  }
+  message {
+    id			    75
+    keyNum		    164
+    startChar		    1
+    length		    93
+  }
+  decision {
+    id			    76
+    modelcov		    2
+    slsfobj		    17
+    descriptor		    78
+    outMsgs		    [79 80]
+    dc			    [2 0 0 0]
+  }
+  decision {
+    id			    77
+    modelcov		    2
+    slsfobj		    17
+    relopChkExprIdx	    1
+    descriptor		    81
+    outMsgs		    [82 83]
+    dc			    [2 0 0 0]
+  }
+  message {
+    id			    78
+    keyNum		    162
+    intParams		    [51 69]
+    txtParams		    "batteryPercent - 0"
+    startChar		    51
+    length		    19
+  }
+  message {
+    id			    79
+    keyNum		    35
+    startChar		    -1
+  }
+  message {
+    id			    80
+    keyNum		    42
+    startChar		    -1
+  }
+  message {
+    id			    81
+    keyNum		    162
+    intParams		    [73 93]
+    txtParams		    "batteryPercent - 100"
+    startChar		    73
+    length		    21
+  }
+  message {
+    id			    82
+    keyNum		    36
+    startChar		    -1
+  }
+  message {
+    id			    83
+    keyNum		    41
+    startChar		    -1
+  }
+  codeblock {
+    id			    84
+    slsfobj		    17
+    code		    "[isnan(batteryPercent) || isinf(batteryPercent) || batteryPercent < 0 || batteryPercent > 100]"
+    totalNumOfObjs	    [1 4 1 0]
+  }
+  metric {
+    id			    85
+    baseObjs		    [88]
+    dataIdx		    [20 18]
+    justifiedDataIdx	    [21 19]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    7
+  }
+  metric {
+    id			    86
+    dataCnt		    [1 1 0 0]
+  }
+  metric {
+    id			    87
+    baseObjs		    [92]
+  }
+  decision {
+    id			    88
+    modelcov		    2
+    slsfobj		    18
+    descriptor		    89
+    outMsgs		    [90 91]
+    dc			    [2 0 22 0]
+  }
+  message {
+    id			    89
+    keyNum		    164
+    startChar		    1
+    length		    45
+  }
+  message {
+    id			    90
+    keyNum		    159
+    startChar		    -1
+  }
+  message {
+    id			    91
+    keyNum		    158
+    startChar		    46
+  }
+  decision {
+    id			    92
+    modelcov		    2
+    slsfobj		    18
+    descriptor		    93
+    outMsgs		    [94 95]
+    dc			    [2 0 0 0]
+  }
+  message {
+    id			    93
+    keyNum		    162
+    intParams		    [1 45]
+    txtParams		    "batteryPercent - Battery_Threshold_Critical"
+    startChar		    1
+    length		    45
+  }
+  message {
+    id			    94
+    keyNum		    36
+    startChar		    -1
+  }
+  message {
+    id			    95
+    keyNum		    41
+    startChar		    -1
+  }
+  codeblock {
+    id			    96
+    slsfobj		    18
+    code		    "[batteryPercent <= Battery_Threshold_Critical]"
+    totalNumOfObjs	    [1 0 0 0]
+  }
+  metric {
+    id			    97
+    baseObjs		    [102]
+    dataIdx		    [26 24]
+    justifiedDataIdx	    [27 25]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    7
+  }
+  metric {
+    id			    98
+    baseObjs		    [106 107]
+    dataIdx		    [20 18]
+    justifiedDataIdx	    [21 19]
+    dataCnt		    [4 4 -1 -1]
+    dataWidth		    9
+  }
+  metric {
+    id			    99
+    baseObjs		    [110]
+    dataIdx		    [25 23]
+    justifiedDataIdx	    [26 24]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    12
+  }
+  metric {
+    id			    100
+    dataCnt		    [2 2 0 0]
+  }
+  metric {
+    id			    101
+    baseObjs		    [112 113]
+  }
+  decision {
+    id			    102
+    modelcov		    2
+    slsfobj		    19
+    descriptor		    103
+    outMsgs		    [104 105]
+    dc			    [2 0 28 0]
+  }
+  message {
+    id			    103
+    keyNum		    164
+    startChar		    1
+    length		    87
+  }
+  message {
+    id			    104
+    keyNum		    159
+    startChar		    -1
+  }
+  message {
+    id			    105
+    keyNum		    158
+    startChar		    88
+  }
+  condition {
+    id			    106
+    modelcov		    2
+    slsfobj		    19
+    key			    -1
+    descriptor		    108
+    coverage		    [23 22 0]
+  }
+  condition {
+    id			    107
+    modelcov		    2
+    slsfobj		    19
+    key			    -1
+    descriptor		    109
+    coverage		    [25 24 0]
+  }
+  message {
+    id			    108
+    keyNum		    164
+    startChar		    1
+    length		    40
+  }
+  message {
+    id			    109
+    keyNum		    164
+    startChar		    44
+    length		    44
+  }
+  mcdcentry {
+    id			    110
+    modelcov		    2
+    slsfobj		    19
+    key			    -1
+    numPredicates	    2
+    pathCount		    3
+    pathStorageCount	    1
+    mcdcMode		    MCDCMODE_MASKING
+    bst			    [0 1 -3]
+    expressionTree	    [3 -1 -1 0 3 -1 -1 1 3 2 2 -1]
+    descriptor		    111
+    conditions		    [106 107]
+    dataBaseIdx		    [27 29 31 33 9999 0]
+  }
+  message {
+    id			    111
+    keyNum		    164
+    startChar		    1
+    length		    87
+  }
+  decision {
+    id			    112
+    modelcov		    2
+    slsfobj		    19
+    descriptor		    114
+    outMsgs		    [115 116]
+    dc			    [2 0 0 0]
+  }
+  decision {
+    id			    113
+    modelcov		    2
+    slsfobj		    19
+    relopChkExprIdx	    1
+    descriptor		    117
+    outMsgs		    [118 119]
+    dc			    [2 0 0 0]
+  }
+  message {
+    id			    114
+    keyNum		    162
+    intParams		    [1 40]
+    txtParams		    "batteryPercent - Battery_Threshold_Low"
+    startChar		    1
+    length		    40
+  }
+  message {
+    id			    115
+    keyNum		    36
+    startChar		    -1
+  }
+  message {
+    id			    116
+    keyNum		    41
+    startChar		    -1
+  }
+  message {
+    id			    117
+    keyNum		    162
+    intParams		    [44 87]
+    txtParams		    "batteryPercent - Battery_Threshold_Critical"
+    startChar		    44
+    length		    44
+  }
+  message {
+    id			    118
+    keyNum		    36
+    startChar		    -1
+  }
+  message {
+    id			    119
+    keyNum		    41
+    startChar		    -1
+  }
+  codeblock {
+    id			    120
+    slsfobj		    19
+    code		    "[batteryPercent <= Battery_Threshold_Low && batteryPercent > Battery_Threshold_Critical]"
+    totalNumOfObjs	    [1 2 1 0]
+  }
+  metric {
+    id			    121
+    baseObjs		    [123]
+    dataIdx		    [32 30]
+    justifiedDataIdx	    [33 31]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    7
+  }
+  metric {
+    id			    122
+    dataCnt		    [1 1 0 0]
+  }
+  decision {
+    id			    123
+    modelcov		    2
+    slsfobj		    20
+    descriptor		    124
+    outMsgs		    [125 126]
+    dc			    [2 0 34 0]
+  }
+  message {
+    id			    124
+    keyNum		    164
+    startChar		    1
+    length		    22
+  }
+  message {
+    id			    125
+    keyNum		    159
+    startChar		    -1
+  }
+  message {
+    id			    126
+    keyNum		    158
+    startChar		    23
+  }
+  codeblock {
+    id			    127
+    slsfobj		    20
+    code		    "[routeComplete == true]"
+    totalNumOfObjs	    [1 0 0 0]
+  }
+  metric {
+    id			    128
+    baseObjs		    [133]
+    dataIdx		    [38 36]
+    justifiedDataIdx	    [39 37]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    7
+  }
+  metric {
+    id			    129
+    baseObjs		    [137 138 139 140]
+    dataIdx		    [28 26]
+    justifiedDataIdx	    [29 27]
+    dataCnt		    [8 8 -1 -1]
+    dataWidth		    13
+  }
+  metric {
+    id			    130
+    baseObjs		    [145]
+    dataIdx		    [36 34]
+    justifiedDataIdx	    [37 35]
+    dataCnt		    [4 4 -1 -1]
+    dataWidth		    18
+  }
+  metric {
+    id			    131
+    dataCnt		    [4 4 0 0]
+  }
+  metric {
+    id			    132
+    baseObjs		    [147 148]
+  }
+  decision {
+    id			    133
+    modelcov		    2
+    slsfobj		    21
+    descriptor		    134
+    outMsgs		    [135 136]
+    dc			    [2 0 40 0]
+  }
+  message {
+    id			    134
+    keyNum		    164
+    startChar		    1
+    length		    93
+  }
+  message {
+    id			    135
+    keyNum		    159
+    startChar		    -1
+  }
+  message {
+    id			    136
+    keyNum		    158
+    startChar		    94
+  }
+  condition {
+    id			    137
+    modelcov		    2
+    slsfobj		    21
+    key			    -1
+    descriptor		    141
+    coverage		    [31 30 0]
+  }
+  condition {
+    id			    138
+    modelcov		    2
+    slsfobj		    21
+    key			    -1
+    descriptor		    142
+    coverage		    [33 32 0]
+  }
+  condition {
+    id			    139
+    modelcov		    2
+    slsfobj		    21
+    key			    -1
+    descriptor		    143
+    coverage		    [35 34 0]
+  }
+  condition {
+    id			    140
+    modelcov		    2
+    slsfobj		    21
+    key			    -1
+    descriptor		    144
+    coverage		    [37 36 0]
+  }
+  message {
+    id			    141
+    keyNum		    164
+    startChar		    1
+    length		    22
+  }
+  message {
+    id			    142
+    keyNum		    164
+    startChar		    26
+    length		    22
+  }
+  message {
+    id			    143
+    keyNum		    164
+    startChar		    51
+    length		    19
+  }
+  message {
+    id			    144
+    keyNum		    164
+    startChar		    73
+    length		    21
+  }
+  mcdcentry {
+    id			    145
+    modelcov		    2
+    slsfobj		    21
+    key			    -1
+    numPredicates	    4
+    pathCount		    5
+    pathStorageCount	    1
+    mcdcMode		    MCDCMODE_MASKING
+    bst			    [0 1 -2 2 -2 3 -2]
+    expressionTree	    [7 -1 -1 0 -1 2 -1 4 7 -1 -1 1 -1 3 -1 5 7 2 2 4 4 6 6 -1]
+    descriptor		    146
+    conditions		    [137 138 139 140]
+    dataBaseIdx		    [38 42 46 50 9999 0]
+  }
+  message {
+    id			    146
+    keyNum		    164
+    startChar		    1
+    length		    93
+  }
+  decision {
+    id			    147
+    modelcov		    2
+    slsfobj		    21
+    descriptor		    149
+    outMsgs		    [150 151]
+    dc			    [2 0 0 0]
+  }
+  decision {
+    id			    148
+    modelcov		    2
+    slsfobj		    21
+    relopChkExprIdx	    1
+    descriptor		    152
+    outMsgs		    [153 154]
+    dc			    [2 0 0 0]
+  }
+  message {
+    id			    149
+    keyNum		    162
+    intParams		    [51 69]
+    txtParams		    "batteryPercent - 0"
+    startChar		    51
+    length		    19
+  }
+  message {
+    id			    150
+    keyNum		    35
+    startChar		    -1
+  }
+  message {
+    id			    151
+    keyNum		    42
+    startChar		    -1
+  }
+  message {
+    id			    152
+    keyNum		    162
+    intParams		    [73 93]
+    txtParams		    "batteryPercent - 100"
+    startChar		    73
+    length		    21
+  }
+  message {
+    id			    153
+    keyNum		    36
+    startChar		    -1
+  }
+  message {
+    id			    154
+    keyNum		    41
+    startChar		    -1
+  }
+  codeblock {
+    id			    155
+    slsfobj		    21
+    code		    "[isnan(batteryPercent) || isinf(batteryPercent) || batteryPercent < 0 || batteryPercent > 100]"
+    totalNumOfObjs	    [1 4 1 0]
+  }
+  metric {
+    id			    156
+    baseObjs		    [159]
+    dataIdx		    [44 42]
+    justifiedDataIdx	    [45 43]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    7
+  }
+  metric {
+    id			    157
+    dataCnt		    [1 1 0 0]
+  }
+  metric {
+    id			    158
+    baseObjs		    [163]
+  }
+  decision {
+    id			    159
+    modelcov		    2
+    slsfobj		    22
+    descriptor		    160
+    outMsgs		    [161 162]
+    dc			    [2 0 46 0]
+  }
+  message {
+    id			    160
+    keyNum		    164
+    startChar		    1
+    length		    45
+  }
+  message {
+    id			    161
+    keyNum		    159
+    startChar		    -1
+  }
+  message {
+    id			    162
+    keyNum		    158
+    startChar		    46
+  }
+  decision {
+    id			    163
+    modelcov		    2
+    slsfobj		    22
+    descriptor		    164
+    outMsgs		    [165 166]
+    dc			    [2 0 0 0]
+  }
+  message {
+    id			    164
+    keyNum		    162
+    intParams		    [1 45]
+    txtParams		    "batteryPercent - Battery_Threshold_Critical"
+    startChar		    1
+    length		    45
+  }
+  message {
+    id			    165
+    keyNum		    36
+    startChar		    -1
+  }
+  message {
+    id			    166
+    keyNum		    41
+    startChar		    -1
+  }
+  codeblock {
+    id			    167
+    slsfobj		    22
+    code		    "[batteryPercent <= Battery_Threshold_Critical]"
+    totalNumOfObjs	    [1 0 0 0]
+  }
+  metric {
+    id			    168
+    baseObjs		    [173]
+    dataIdx		    [50 48]
+    justifiedDataIdx	    [51 49]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    7
+  }
+  metric {
+    id			    169
+    baseObjs		    [177 178 179 180]
+    dataIdx		    [40 38]
+    justifiedDataIdx	    [41 39]
+    dataCnt		    [8 8 -1 -1]
+    dataWidth		    13
+  }
+  metric {
+    id			    170
+    baseObjs		    [185]
+    dataIdx		    [53 51]
+    justifiedDataIdx	    [54 52]
+    dataCnt		    [4 4 -1 -1]
+    dataWidth		    18
+  }
+  metric {
+    id			    171
+    dataCnt		    [4 4 0 0]
+  }
+  metric {
+    id			    172
+    baseObjs		    [187 188]
+  }
+  decision {
+    id			    173
+    modelcov		    2
+    slsfobj		    23
+    descriptor		    174
+    outMsgs		    [175 176]
+    dc			    [2 0 52 0]
+  }
+  message {
+    id			    174
+    keyNum		    164
+    startChar		    1
+    length		    93
+  }
+  message {
+    id			    175
+    keyNum		    159
+    startChar		    -1
+  }
+  message {
+    id			    176
+    keyNum		    158
+    startChar		    94
+  }
+  condition {
+    id			    177
+    modelcov		    2
+    slsfobj		    23
+    key			    -1
+    descriptor		    181
+    coverage		    [43 42 0]
+  }
+  condition {
+    id			    178
+    modelcov		    2
+    slsfobj		    23
+    key			    -1
+    descriptor		    182
+    coverage		    [45 44 0]
+  }
+  condition {
+    id			    179
+    modelcov		    2
+    slsfobj		    23
+    key			    -1
+    descriptor		    183
+    coverage		    [47 46 0]
+  }
+  condition {
+    id			    180
+    modelcov		    2
+    slsfobj		    23
+    key			    -1
+    descriptor		    184
+    coverage		    [49 48 0]
+  }
+  message {
+    id			    181
+    keyNum		    164
+    startChar		    1
+    length		    22
+  }
+  message {
+    id			    182
+    keyNum		    164
+    startChar		    26
+    length		    22
+  }
+  message {
+    id			    183
+    keyNum		    164
+    startChar		    51
+    length		    19
+  }
+  message {
+    id			    184
+    keyNum		    164
+    startChar		    73
+    length		    21
+  }
+  mcdcentry {
+    id			    185
+    modelcov		    2
+    slsfobj		    23
+    key			    -1
+    numPredicates	    4
+    pathCount		    5
+    pathStorageCount	    1
+    mcdcMode		    MCDCMODE_MASKING
+    bst			    [0 1 -2 2 -2 3 -2]
+    expressionTree	    [7 -1 -1 0 -1 2 -1 4 7 -1 -1 1 -1 3 -1 5 7 2 2 4 4 6 6 -1]
+    descriptor		    186
+    conditions		    [177 178 179 180]
+    dataBaseIdx		    [55 59 63 67 9999 0]
+  }
+  message {
+    id			    186
+    keyNum		    164
+    startChar		    1
+    length		    93
+  }
+  decision {
+    id			    187
+    modelcov		    2
+    slsfobj		    23
+    descriptor		    189
+    outMsgs		    [190 191]
+    dc			    [2 0 0 0]
+  }
+  decision {
+    id			    188
+    modelcov		    2
+    slsfobj		    23
+    relopChkExprIdx	    1
+    descriptor		    192
+    outMsgs		    [193 194]
+    dc			    [2 0 0 0]
+  }
+  message {
+    id			    189
+    keyNum		    162
+    intParams		    [51 69]
+    txtParams		    "batteryPercent - 0"
+    startChar		    51
+    length		    19
+  }
+  message {
+    id			    190
+    keyNum		    35
+    startChar		    -1
+  }
+  message {
+    id			    191
+    keyNum		    42
+    startChar		    -1
+  }
+  message {
+    id			    192
+    keyNum		    162
+    intParams		    [73 93]
+    txtParams		    "batteryPercent - 100"
+    startChar		    73
+    length		    21
+  }
+  message {
+    id			    193
+    keyNum		    36
+    startChar		    -1
+  }
+  message {
+    id			    194
+    keyNum		    41
+    startChar		    -1
+  }
+  codeblock {
+    id			    195
+    slsfobj		    23
+    code		    "[isnan(batteryPercent) || isinf(batteryPercent) || batteryPercent < 0 || batteryPercent > 100]"
+    totalNumOfObjs	    [1 4 1 0]
+  }
+  metric {
+    id			    196
+    baseObjs		    [199]
+    dataIdx		    [56 54]
+    justifiedDataIdx	    [57 55]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    7
+  }
+  metric {
+    id			    197
+    dataCnt		    [1 1 0 0]
+  }
+  metric {
+    id			    198
+    baseObjs		    [203]
+  }
+  decision {
+    id			    199
+    modelcov		    2
+    slsfobj		    24
+    descriptor		    200
+    outMsgs		    [201 202]
+    dc			    [2 0 58 0]
+  }
+  message {
+    id			    200
+    keyNum		    164
+    startChar		    1
+    length		    45
+  }
+  message {
+    id			    201
+    keyNum		    159
+    startChar		    -1
+  }
+  message {
+    id			    202
+    keyNum		    158
+    startChar		    46
+  }
+  decision {
+    id			    203
+    modelcov		    2
+    slsfobj		    24
+    descriptor		    204
+    outMsgs		    [205 206]
+    dc			    [2 0 0 0]
+  }
+  message {
+    id			    204
+    keyNum		    162
+    intParams		    [1 45]
+    txtParams		    "batteryPercent - Battery_Threshold_Critical"
+    startChar		    1
+    length		    45
+  }
+  message {
+    id			    205
+    keyNum		    36
+    startChar		    -1
+  }
+  message {
+    id			    206
+    keyNum		    41
+    startChar		    -1
+  }
+  codeblock {
+    id			    207
+    slsfobj		    24
+    code		    "[batteryPercent <= Battery_Threshold_Critical]"
+    totalNumOfObjs	    [1 0 0 0]
+  }
+  metric {
+    id			    208
+    baseObjs		    [213]
+    dataIdx		    [62 60]
+    justifiedDataIdx	    [63 61]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    7
+  }
+  metric {
+    id			    209
+    baseObjs		    [217 218]
+    dataIdx		    [52 50]
+    justifiedDataIdx	    [53 51]
+    dataCnt		    [4 4 -1 -1]
+    dataWidth		    9
+  }
+  metric {
+    id			    210
+    baseObjs		    [221]
+    dataIdx		    [70 68]
+    justifiedDataIdx	    [71 69]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    12
+  }
+  metric {
+    id			    211
+    dataCnt		    [2 2 0 0]
+  }
+  metric {
+    id			    212
+    baseObjs		    [223 224]
+  }
+  decision {
+    id			    213
+    modelcov		    2
+    slsfobj		    25
+    descriptor		    214
+    outMsgs		    [215 216]
+    dc			    [2 0 64 0]
+  }
+  message {
+    id			    214
+    keyNum		    164
+    startChar		    1
+    length		    87
+  }
+  message {
+    id			    215
+    keyNum		    159
+    startChar		    -1
+  }
+  message {
+    id			    216
+    keyNum		    158
+    startChar		    88
+  }
+  condition {
+    id			    217
+    modelcov		    2
+    slsfobj		    25
+    key			    -1
+    descriptor		    219
+    coverage		    [55 54 0]
+  }
+  condition {
+    id			    218
+    modelcov		    2
+    slsfobj		    25
+    key			    -1
+    descriptor		    220
+    coverage		    [57 56 0]
+  }
+  message {
+    id			    219
+    keyNum		    164
+    startChar		    1
+    length		    40
+  }
+  message {
+    id			    220
+    keyNum		    164
+    startChar		    44
+    length		    44
+  }
+  mcdcentry {
+    id			    221
+    modelcov		    2
+    slsfobj		    25
+    key			    -1
+    numPredicates	    2
+    pathCount		    3
+    pathStorageCount	    1
+    mcdcMode		    MCDCMODE_MASKING
+    bst			    [0 1 -3]
+    expressionTree	    [3 -1 -1 0 3 -1 -1 1 3 2 2 -1]
+    descriptor		    222
+    conditions		    [217 218]
+    dataBaseIdx		    [72 74 76 78 9999 0]
+  }
+  message {
+    id			    222
+    keyNum		    164
+    startChar		    1
+    length		    87
+  }
+  decision {
+    id			    223
+    modelcov		    2
+    slsfobj		    25
+    descriptor		    225
+    outMsgs		    [226 227]
+    dc			    [2 0 0 0]
+  }
+  decision {
+    id			    224
+    modelcov		    2
+    slsfobj		    25
+    relopChkExprIdx	    1
+    descriptor		    228
+    outMsgs		    [229 230]
+    dc			    [2 0 0 0]
+  }
+  message {
+    id			    225
+    keyNum		    162
+    intParams		    [1 40]
+    txtParams		    "batteryPercent - Battery_Threshold_Low"
+    startChar		    1
+    length		    40
+  }
+  message {
+    id			    226
+    keyNum		    36
+    startChar		    -1
+  }
+  message {
+    id			    227
+    keyNum		    41
+    startChar		    -1
+  }
+  message {
+    id			    228
+    keyNum		    162
+    intParams		    [44 87]
+    txtParams		    "batteryPercent - Battery_Threshold_Critical"
+    startChar		    44
+    length		    44
+  }
+  message {
+    id			    229
+    keyNum		    36
+    startChar		    -1
+  }
+  message {
+    id			    230
+    keyNum		    41
+    startChar		    -1
+  }
+  codeblock {
+    id			    231
+    slsfobj		    25
+    code		    "[batteryPercent <= Battery_Threshold_Low && batteryPercent > Battery_Threshold_Critical]"
+    totalNumOfObjs	    [1 2 1 0]
+  }
+  metric {
+    id			    232
+    baseObjs		    [234]
+    dataIdx		    [68 66]
+    justifiedDataIdx	    [69 67]
+    dataCnt		    [2 2 -1 -1]
+    dataWidth		    7
+  }
+  metric {
+    id			    233
+    dataCnt		    [1 1 0 0]
+  }
+  decision {
+    id			    234
+    modelcov		    2
+    slsfobj		    26
+    descriptor		    235
+    outMsgs		    [236 237]
+    dc			    [2 0 70 0]
+  }
+  message {
+    id			    235
+    keyNum		    164
+    startChar		    1
+    length		    22
+  }
+  message {
+    id			    236
+    keyNum		    159
+    startChar		    -1
+  }
+  message {
+    id			    237
+    keyNum		    158
+    startChar		    23
+  }
+  codeblock {
+    id			    238
+    slsfobj		    26
+    code		    "[routeComplete == true]"
+    totalNumOfObjs	    [1 0 0 0]
+  }
+  codeblock {
+    id			    239
+    slsfobj		    27
+  }
+}

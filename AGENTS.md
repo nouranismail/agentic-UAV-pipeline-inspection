@@ -1,81 +1,165 @@
-# AI Agent Governance - Agentic UAV Pipeline Inspection
+# Organization-Level AI Agent Governance for MATLAB and Simulink
 
-## Core Directive
+**Shared Workflow Version:** 1.0.0
+**Applies To:** All teams, projects, engineers, and AI agents using this repository's shared engineering workflow
 
-Treat this repository as a safety-critical industrial AIoT and Model-Based Design (MBD) project. All work must preserve the safety, determinism, verifiability, traceability, and maintainability of the UAV pipeline-inspection system. Prefer explicit, reviewable model behavior over clever or implicit implementations. Never trade flight safety, safe landing, emergency response, data integrity, or requirement traceability for inspection throughput, autonomy, or convenience.
+## 1. Core Directive
 
-The authoritative engineering artifacts are the approved requirements, Simulink/Stateflow models, centralized data dictionaries, and verified tests. Make only changes that are within the approved scope and can be traced, tested, and reported.
+Preserve safety, determinism, verifiability, traceability, data integrity, and maintainability. Prefer explicit and reviewable engineering behavior over implicit or clever implementations. Project-specific safety behavior belongs in approved project requirements and architecture artifacts, not in this organization-level file or the reusable workflow skill.
 
-## Approved MathWorks Products
+No role or agent may change an engineering artifact outside an explicitly approved scope. A passing developer check is not independent verification, and neither is final acceptance.
 
-Use only the following MathWorks products unless a repository owner explicitly approves an exception:
+## 2. Authority and Artifact Hierarchy
 
-- MATLAB
-- Simulink
-- Stateflow
-- Requirements Toolbox
-- Simulink Test
-- Simulink Coverage
-- Computer Vision Toolbox
-- Statistics and Machine Learning Toolbox
+Apply instructions in this order:
 
-Do not introduce dependencies on unapproved toolboxes, third-party blocks, code generators, hardware-support packages, or external services without written approval.
+1. Organization rules in this `AGENTS.md`.
+2. The approved reusable workflow in `skills/simulink-engineering-workflow/SKILL.md`.
+3. Team roles, conventions, approved products, and assignments in `TEAM.md` and `config/team_configuration.yaml`.
+4. Approved project requirements, architecture, interfaces, configuration, tests, and change records.
+5. The approved ECR and implementation plan for the active work package.
 
-## Mandatory Operating Rules
+If two authoritative artifacts conflict, stop and obtain a recorded disposition from the Project Owner. Do not silently choose one.
 
-### Plan Before Editing
+## 3. Mandatory Task Declaration
 
-- Do not make unplanned model, Stateflow chart, test, requirement, or configuration edits.
-- Before any edit, create or obtain a formal Implementation Plan that identifies the affected requirements, model elements, interfaces, data, hazards, tests, acceptance criteria, and rollback approach.
-- Keep changes minimal and scoped to the approved plan. If investigation reveals a need outside that scope, stop and request an updated plan.
-- Never bypass model integrity checks, disable safety logic, mask test failures, or alter a baseline merely to obtain a passing result.
+Before substantive engineering work, every role and agent shall declare:
+
+```text
+Active role:
+Assigned person:
+Project:
+Branch/baseline:
+Approved ECR:
+Current gate:
+Authorized artifacts:
+Prohibited actions:
+Required workflow version:
+Independence status:
+```
+
+The agent shall then read this file, the reusable workflow skill, the applicable team configuration, the approved request, and the affected project artifacts. Missing role assignment, scope, authority, or workflow version is a stop condition.
+
+## 4. Canonical Roles
+
+The canonical roles and their detailed authorities are defined in `TEAM.md`:
+
+- Project Owner / Approval Authority
+- Lead Systems Engineer / MBD Architect
+- AI & Algorithm Developer
+- Independent Verification & Validation Engineer
+- Integration & Tooling Lead
+
+The minimum engineering handoff is System Engineer -> Model Developer -> Independent Verification Engineer. Project Owner and Integration & Tooling Lead are supporting governance roles.
+
+One person may hold multiple explicitly recorded roles, except that the implementer and Independent Verification Engineer shall be different individuals.
+
+## 5. Approval Gates
+
+### Gate 1 - Scope/ECR Approval
+
+No requirements, architecture, implementation-plan, or artifact-modification work shall begin until the Project Owner records an explicit ECR scope decision identifying the objective, affected artifacts, exclusions, dependencies, and conditions.
+
+### Gate 2 - Requirements Approval
+
+No implementation plan shall be approved until the Project Owner accepts the applicable requirements, interfaces, safety priorities, acceptance criteria, and identified assumptions.
+
+### Gate 3 - Implementation Plan Approval
+
+No repository artifact shall be modified until the Project Owner approves an implementation plan identifying exact affected files, responsible roles, hazards, verification activities, traceability, coverage objectives where applicable, acceptance criteria, and rollback actions.
+
+### Gate 4 - Implementation Evidence Complete
+
+The implementer shall stop after producing the approved change and developer evidence. Developer checks shall not be described as independent verification or final acceptance.
+
+### Gate 5 - Independent Verification
+
+An Independent Verification Engineer shall inspect the frozen candidate and record exactly one decision: `PASS`, `PASS WITH OBSERVATIONS`, or `FAIL / CORRECTIVE ACTION REQUIRED`. A separate AI-agent session alone does not establish independence.
+
+### Gate 6 - Final Acceptance
+
+The Project Owner shall review the change report, independent-verification decision, findings, deviations, and residual risks before explicitly accepting or rejecting the change. No release or baseline claim is permitted before this decision.
+
+For every gate, silence, task continuation, previous general permission, an agent assumption, or implementer self-approval shall not constitute approval.
+
+## 6. Controlled Engineering Rules
+
+### Scope and planning
+
+- Make only changes listed in an approved implementation plan.
+- Treat unexpected downstream impact or a required additional artifact as scope expansion and stop.
+- Preserve unrelated user work and never use a passing result to justify an unapproved change.
+
+### Safety and determinism
+
+- Implement project-defined safety behavior as explicit, deterministic, testable logic with unambiguous priority.
+- Preserve project-approved fail-safe handling for invalid, unavailable, stale, or contradictory inputs.
+- Do not weaken or reorder safety behavior without requirements, hazard, test, and approval updates.
+
+### Configuration and data
+
+- Keep shared parameters, calibrations, enumerations, buses, constants, and tunable design data in the project-approved configuration source, including a Simulink Data Dictionary where applicable.
+- Record units, types, ranges, defaults, and ownership.
+- Do not create ad hoc configuration overrides or duplicate authoritative values in tests.
 
 ### Traceability
 
-- Maintain bidirectional traceability: **Requirements -> Model Elements -> Test Cases**.
-- Every changed model element must link to one or more approved requirements; every changed or added requirement must have model and test links.
-- Use Requirements Toolbox links and stable identifiers where available. Do not rely solely on filenames, comments, or informal descriptions as trace evidence.
-- Update trace links and the traceability report as part of the same approved change.
+- Maintain the project-required evidence chain from requirement to implementation element to test and result.
+- Use stable identifiers and native traceability mechanisms where available.
+- Never create fake links to nonexistent or unapproved artifacts.
 
-### Safety and State-Machine Hierarchy
+### Verification evidence
 
-- Model safety functions as explicit, deterministic, and testable logic with clear priority and transition conditions.
-- Safety-critical conditions always override routine inspection behavior. In particular, a critical low-battery condition shall command the approved safe-landing or return-to-safe-state behavior and override routine inspection, waypoint tracking, imaging, and noncritical communications states.
-- Emergency, collision-avoidance, geofence, propulsion, sensor-validity, and communications-loss responses must have defined priority relative to mission states; ambiguous simultaneous events are unacceptable.
-- Do not weaken, reorder, or remove safety transitions, guards, temporal logic, fault responses, or fallback states without hazard analysis, requirement updates, and explicit approval.
-- Preserve fail-safe defaults: when inputs are invalid, unavailable, stale, or contradictory, transition to the approved safe state rather than continuing autonomous inspection.
+- Execute the verification defined in the approved plan and test plan.
+- For model changes, run applicable diagnostics, simulations, regression tests, and structural coverage review.
+- For documentation or tooling changes, use proportionate validation; model compilation and coverage are not required unless engineering behavior is affected.
+- Report warnings, failures, assumptions, deviations, infeasible objectives, and known limitations.
+- Do not suppress, filter, or mask failures merely to obtain a passing result.
 
-### Configuration and Data Management
+### Products and dependencies
 
-- Store shared parameters, calibration values, enumerations, buses, constants, and tunable design data in centralized Simulink Data Dictionaries (`.sldd`).
-- Do not hardcode configuration values in block dialogs, MATLAB scripts, Stateflow actions, masks, or test harnesses when the value belongs in the project configuration.
-- Use explicit units, data types, ranges, defaults, and ownership for dictionary entries. Changes to a dictionary are configuration changes and require traceability and tests.
-- Maintain model references, variants, solver settings, sample times, and interface definitions under controlled configuration management. Do not make ad hoc local overrides.
+- Use only products, libraries, services, plugins, and toolboxes approved in the team configuration and active plan.
+- New dependencies require a separate recorded scope and dependency approval before installation or use.
 
-### Verification and Evidence
+## 7. Independent Verification
 
-- Execute relevant Simulink Test suites after each approved change. Add or update tests before declaring behavior complete.
-- Assess structural coverage with Simulink Coverage. Safety and decision logic requires decision coverage review; justify and document any uncovered decision or infeasible objective.
-- Record model diagnostics, test results, coverage results, assumptions, known limitations, and deviations in the change report.
-- Treat warnings affecting data types, algebraic loops, sample times, model references, solver behavior, or Stateflow semantics as engineering issues to resolve or formally disposition.
+- Record the implementer and verifier by name.
+- Require an explicit verifier independence declaration.
+- Freeze or hash the candidate before independent review.
+- Any candidate change during review invalidates that review.
+- The verifier may reproduce evidence but shall not repair the implementation during the same review.
+- Corrective work returns to implementation and requires regression and renewed independent review.
+- AI assistance shall be disclosed; a named individual owns the independent decision.
+- Project Owner review does not replace independent verification.
 
-## Sequential 10-Step Change Process
+## 8. Handoffs
 
-Follow all steps in order for every change. Do not skip a step unless the repository owner records an approved exception.
+Every role handoff shall record:
 
-1. **Read project instructions and establish scope.** Read this file, the repository `README.md`, model-specific instructions, requirements, architecture documents, prior baselines, and relevant issue/change-request material. Identify the safety classification, owner, affected interfaces, and success criteria.
-2. **Inspect the model before editing.** Use `model_overview` to understand model structure, referenced models, libraries, data dictionaries, variants, harnesses, and existing verification assets. Record the baseline version or commit.
-3. **Read the affected artifacts.** Use `model_read` to inspect the exact blocks, subsystems, Stateflow charts, signals, parameters, requirement links, tests, and configuration entries involved. Confirm existing behavior and identify downstream impacts.
-4. **Create and obtain approval for the Implementation Plan.** Define requirements affected; proposed model and `.sldd` changes; safety impact and state priority; traceability updates; tests and coverage objectives; acceptance criteria; and rollback plan. Do not edit until the plan is approved.
-5. **Implement controlled changes.** Use `model_edit` only for the approved scope. Make small, atomic changes; preserve interfaces and naming conventions; configure reusable data in the `.sldd`; and document any necessary implementation decisions.
-6. **Update requirement links and design traceability.** Link each changed requirement to its implementing model elements, and connect those elements to the corresponding test cases. Verify both forward and backward traceability.
-7. **Perform model checks and simulation.** Run applicable model diagnostics, compile/update checks, and representative simulations. Investigate unexpected warnings, assertion failures, nondeterministic behavior, invalid data, or unsafe state transitions before proceeding.
-8. **Execute Simulink Test suites.** Run all affected regression, integration, requirements-based, and safety tests in Simulink Test. Add or revise tests for each changed behavior, including priority/override and fault scenarios.
-9. **Check structural coverage.** Collect Simulink Coverage results and review decision coverage, especially for Stateflow transitions and safety-critical decisions. Resolve gaps where feasible; formally justify and trace any infeasible or intentionally uncovered decisions.
-10. **Generate and review a traceable change report.** Produce a report containing the approved plan, baseline and changed artifacts, requirement/model/test links, `.sldd` changes, simulation evidence, test results, coverage results, safety impact, residual risks, deviations, and rollback information. Submit it for required engineering review before release or baseline update.
+```text
+From role:
+To role:
+Completed gate:
+Artifacts produced or changed:
+Evidence available:
+Open findings:
+Assumptions and deviations:
+Next permitted activity:
+Required approver:
+```
 
-## Stop Conditions and Escalation
+## 9. Shared Workflow Versioning
 
-Stop work and escalate to the repository owner or designated safety authority when requirements conflict or are incomplete; a safety priority is ambiguous; a test or coverage objective fails; a model requires an unapproved dependency; an interface or dictionary change affects another component; or the planned change could alter certified, validated, or safety-baselined behavior.
+Shared workflow artifacts use semantic versioning:
 
-Never represent an unverified simulation, incomplete coverage result, or missing trace link as evidence of compliance.
+- Major: incompatible gate, role, authority, or workflow change.
+- Minor: backward-compatible workflow capability or template addition.
+- Patch: clarification with no workflow-behavior change.
+
+Changes to shared governance, skills, or templates require a controlled ECR, validation, independent review, and Project Owner acceptance. Teams shall pin the workflow version in their configuration. Projects shall not locally patch the shared skill to bypass this process.
+
+## 10. Stop Conditions
+
+Stop and escalate when scope or authority is missing; requirements conflict or are incomplete; safety priority is ambiguous; an unapproved dependency is required; an interface or configuration change affects another component; a relevant test or coverage objective fails; traceability is broken; evidence is missing; independent review has a conflict of interest; or a change could alter an approved baseline outside the active plan.
+
+Never represent incomplete, self-reviewed, or unapproved evidence as compliance, independent verification, release, or final acceptance.

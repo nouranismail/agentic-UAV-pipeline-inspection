@@ -1,9 +1,67 @@
 # Team and Project Configuration: Agentic UAV Pipeline Inspection
+
+workflow:
+  name: "simulink-engineering-workflow"
+  version: "1.0.0"
+  skill_path: "skills/simulink-engineering-workflow/SKILL.md"
+  agents_file: "AGENTS.md"
+  required_for_all_engineering_roles: true
+  semantic_versioning: true
+
 project:
   name: "agentic-uav-pipeline-inspection"
   domain: "Cyber-Physical Systems & Industrial AIoT"
   architecture: "Model-Based Design (MBD)"
-  lead_engineer: "Nouran Ismail"
+  project_owner: "Nouran Ismail"
+  final_approval_authority: "Project Owner / Approval Authority"
+  current_branch: "feature/uav-workflow-core"
+
+roles:
+  project_owner:
+    canonical_name: "Project Owner / Approval Authority"
+    assigned_to: "Nouran Ismail"
+    final_acceptance_authority: true
+  systems_engineer:
+    canonical_name: "Lead Systems Engineer / MBD Architect"
+    assigned_to: null
+    assignment_alias: "System Engineer"
+  developer:
+    canonical_name: "AI & Algorithm Developer"
+    assigned_to: null
+    assignment_alias: "Model Developer"
+  independent_verification:
+    canonical_name: "Independent Verification & Validation Engineer"
+    assigned_to: null
+    assignment_alias: "Verification Engineer"
+    must_be_named_individual: true
+    must_differ_from_role: "AI & Algorithm Developer"
+    separate_agent_session_is_sufficient: false
+  integration_tooling:
+    canonical_name: "Integration & Tooling Lead"
+    assigned_to: null
+
+approval_gates:
+  gate_1_scope_ecr:
+    authority: "Project Owner / Approval Authority"
+    required_before: "requirements or architecture work"
+  gate_2_requirements:
+    authority: "Project Owner / Approval Authority"
+    required_before: "implementation-plan approval"
+  gate_3_implementation_plan:
+    authority: "Project Owner / Approval Authority"
+    required_before: "repository artifact modification"
+  gate_4_implementation_evidence:
+    authority: "AI & Algorithm Developer"
+    meaning: "developer evidence complete; not independent verification or final acceptance"
+  gate_5_independent_verification:
+    authority: "Independent Verification & Validation Engineer"
+    decisions:
+      - "PASS"
+      - "PASS WITH OBSERVATIONS"
+      - "FAIL / CORRECTIVE ACTION REQUIRED"
+  gate_6_final_acceptance:
+    authority: "Project Owner / Approval Authority"
+    required_before: "release or baseline claim"
 
 environment:
   os: "Windows"
@@ -11,17 +69,29 @@ environment:
     - MATLAB
     - Simulink
     - Stateflow
-  toolboxes:
+  approved_toolboxes:
     - Requirements Toolbox
     - Simulink Test
     - Simulink Coverage
     - Computer Vision Toolbox
     - Statistics and Machine Learning Toolbox
-  integration:
+  approved_integrations:
     - MathWorks Agentic Toolkits (MCP Protocol)
     - VS Code / Codex AI Coding Assistant
 
 governance:
-  enforce_sldd: true # All parameters must use centralized Simulink Data Dictionaries
-  enforce_traceability: true # Requirements -> Model -> Tests
-  safety_override_priority: "Absolute (Low-Battery / Emergency states override inspection)"
+  require_role_declaration: true
+  require_explicit_gate_approval: true
+  silence_is_approval: false
+  enforce_sldd_where_applicable: true
+  enforce_traceability: true
+  disclose_ai_assistance: true
+  invalidate_review_if_candidate_changes: true
+  safety_override_priority: "Project-defined safety responses override routine behavior"
+  approval_record_fields:
+    - approver_name
+    - approver_role
+    - decision
+    - date
+    - approved_scope
+    - conditions_or_deviations

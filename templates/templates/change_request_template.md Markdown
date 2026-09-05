@@ -1,15 +1,78 @@
-# Engineering Change Request (ECR)
+# Engineering Change Request
 
-* **ECR ID:** ECR-[YYYYMMDD]-[00X]
-* **Requested By:** [Agent / Lead Engineer]
-* **Date:** [YYYY-MM-DD]
-* **Target Subsystem / Model:** [e.g., UAV Mission Supervisor Stateflow Chart]
+**Template Version:** 1.0.0
+**Shared Workflow Version:** 1.0.0
 
-## 1. Description of Change
-[Clear description of what needs to be modified or added.]
+## 1. Identification
 
-## 2. Justification & Safety Impact
-[Explain why this change is necessary and analyze any safety or state-transition risks.]
+| Field | Entry |
+|---|---|
+| ECR ID | ECR-[YYYYMMDD]-[00X] |
+| Project | [Project name] |
+| Branch/baseline | [Branch and commit/version] |
+| Requested by | [Name] |
+| Requestor role | [Canonical role] |
+| Project Owner | [Name] |
+| Request date | [YYYY-MM-DD] |
+| Target artifacts | [Exact paths or identifiers] |
 
-## 3. Affected Requirements
-* [REQ-01]: [Description]
+## 2. Problem and Objective
+
+[Describe the problem, requested outcome, and why the change is necessary.]
+
+## 3. Scope
+
+### In scope
+
+- [Approved candidate scope item]
+
+### Out of scope
+
+- [Explicit exclusion]
+
+### Affected artifacts
+
+| Artifact | Expected impact | Owner |
+|---|---|---|
+| [Path or identifier] | [Create/modify/read-only] | [Role/name] |
+
+## 4. Requirements, Interfaces, and Safety Impact
+
+- **Affected requirements:** [Stable IDs or `None` with rationale]
+- **Affected interfaces:** [Interfaces or `None`]
+- **Safety/hazard impact:** [Analysis or `None` with rationale]
+- **Configuration impact:** [Parameters/data/tool configuration or `None`]
+- **Verification impact:** [Expected tests/reviews]
+
+## 5. Dependencies and Tools
+
+- **Existing approved dependencies:** [List]
+- **Proposed new dependencies:** [List or `None`]
+- **Dependency approval required:** [Yes/No]
+- **Compatibility/security considerations:** [Details]
+
+## 6. Proposed Role Assignments
+
+| Responsibility | Assigned name | Canonical role |
+|---|---|---|
+| Requirements/architecture | [Name/TBD] | Lead Systems Engineer / MBD Architect |
+| Implementation | [Name/TBD] | AI & Algorithm Developer |
+| Independent verification | [Different named individual/TBD] | Independent Verification & Validation Engineer |
+| Final acceptance | [Name] | Project Owner / Approval Authority |
+
+## 7. Assumptions, Constraints, and Known Risks
+
+- [Assumption, constraint, or risk]
+
+## 8. Gate 1 - Scope/ECR Approval
+
+| Approval field | Entry |
+|---|---|
+| Approver name | [Name] |
+| Approver role | Project Owner / Approval Authority |
+| Decision | [APPROVED / REJECTED / RETURNED FOR REVISION] |
+| Date | [YYYY-MM-DD] |
+| Approved scope | [Exact approved scope] |
+| Conditions or deviations | [None or details] |
+
+Approval applies only to the scope recorded above. Silence or task continuation is not approval.
