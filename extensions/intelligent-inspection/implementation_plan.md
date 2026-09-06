@@ -17,9 +17,9 @@
 | Author role | Lead Systems Engineer / MBD Architect |
 | Planned implementers | **TBD:** Integration & Tooling Lead and AI & Algorithm Developer assignments must be recorded before their phases |
 | Independent reviewer | **TBD:** a different named individual from every implementation author |
-| Status | **APPROVED AT GATE 3 — PHASE 1 ONLY** |
+| Status | **PHASES 1–2 COMPLETE; PHASE 3 AUTHORIZED** |
 
-Gate 3 was approved by the Project Owner on 2026-09-06 with execution authority limited to Phase 1. Phases 2–17 remain unauthorized until their documented prerequisites and approval hold points are satisfied and the Project Owner records any required continuation decision. Phase hold points are controls within the Gate 3 work package; they do not replace or renumber repository Gates 1–6.
+Gate 3 was approved by the Project Owner on 2026-09-06, initially with execution authority limited to Phase 1. Phase 1 passed, Phase 2 was subsequently authorized, completed, and accepted, and Phase 3 is now authorized under its exact allowlist. Phases 4–17 remain unauthorized until their documented prerequisites and approval hold points are satisfied and the Project Owner records the required continuation decision. Phase hold points are controls within the Gate 3 work package; they do not replace or renumber repository Gates 1–6.
 
 ## 2. Approved Basis
 
@@ -105,9 +105,14 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 | Phase 2 status | **AUTHORIZED** |
 | Approver | Nouran Ismail — Project Owner |
 | Authorization date | 2026-09-06 |
+| Implementation status | **COMPLETE** |
+| Review result | **ACCEPTED** |
+| Reviewer | Nouran Ismail — Project Owner |
+| Review date | 2026-09-06 |
 | Authorized scope | Create only the reusable intelligent-inspection skill, five reusable reference-guidance files, and four generic templates listed below |
 | Exclusions | No Phase 2 implementation in the authorization-recording task; no test artifact, model, training, test execution, existing Simulink workflow change, or verified UAV artifact change |
-| Later phases | Phases 3–17 remain **NOT AUTHORIZED** |
+| Later phases | Phase 3 is **AUTHORIZED** under its exact allowlist; Phases 4–17 remain **NOT AUTHORIZED** |
+| Review meaning | Project Owner acceptance of Phase 2 implementation; not independent verification or final acceptance of ECR-20260906-001 |
 
 - **Approved requirement IDs:** `IIW-REQ-019`, `IIW-REQ-020`, `IIW-REQ-023`, `IIW-REQ-024`, `IIW-REQ-025`.
 - **Prerequisites:** Phase 1 complete for any tool used; named Integration & Tooling Lead; shared-workflow version remains 1.0.0.
@@ -122,6 +127,17 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 - **Rollback approach:** Remove only the newly created skill, reference, template, and phase-test files after confirming their resolved paths are under the listed directories.
 
 ### Phase 3 — Logical System Composer Reference Architecture
+
+| Authorization field | Decision |
+|---|---|
+| Phase 2 prerequisite | **COMPLETE AND ACCEPTED** |
+| Phase 3 status | **AUTHORIZED** |
+| Approver | Nouran Ismail — Project Owner |
+| Authorization date | 2026-09-06 |
+| Authorized scope | Create the logical reference architecture, generic components, ports, connectors, structure, Phase 3 test definition, and architecture evidence strictly within the existing Phase 3 allowlist |
+| Architecture-generation script | **NOT AUTHORIZED** — no script path is present in the approved Phase 3 allowlist |
+| Exclusions | No Phase 3 implementation in this authorization-recording task; no behavioral algorithms, learned models, prediction implementation, approval behavior, project-specific configuration, simulation environment, protected artifact change, or existing regression execution |
+| Later phases | Phases 4–17 remain **NOT AUTHORIZED** |
 
 - **Approved requirement IDs:** `IIW-REQ-001`, `IIW-REQ-002`, `IIW-REQ-004`, `IIW-REQ-005`, `IIW-REQ-008`–`IIW-REQ-018`, `IIW-REQ-020`–`IIW-REQ-024`.
 - **Prerequisites:** System Composer and required MATLAB/Simulink products verified `AVAILABLE` and approved; Phase 2 architecture procedure complete; logical architecture depth approved at Gate 2.
