@@ -14,7 +14,40 @@ project:
   architecture: "Model-Based Design (MBD)"
   project_owner: "Nouran Ismail"
   final_approval_authority: "Project Owner / Approval Authority"
-  current_branch: "feature/uav-workflow-core"
+  current_branch: "feature/intelligent-inspection-extension"
+
+extensions:
+  intelligent_inspection:
+    ecr: "ECR-20260906-001"
+    branch: "feature/intelligent-inspection-extension"
+    gate_1_status: "APPROVED"
+    gate_2_status: "APPROVED"
+    gate_2_approver: "Nouran Ismail — Project Owner"
+    gate_2_approval_date: "2026-09-06"
+    authorized_next_activity: "implementation plan preparation only"
+    gate_3_status: "PENDING"
+    first_system_composer_architecture: "logical architecture with components, ports, interfaces, and connections"
+    mission_supervisor_status: "verified, unchanged, and protected; interface changes require a separate ECR"
+    independent_verifier_required_before_verification: true
+    optional_products:
+      - name: "System Composer"
+        governance_status: "PROPOSED"
+        availability: "NOT VERIFIED"
+      - name: "Image Processing Toolbox"
+        governance_status: "PROPOSED"
+        availability: "NOT VERIFIED"
+      - name: "Computer Vision Toolbox"
+        governance_status: "APPROVED"
+        availability: "NOT VERIFIED"
+      - name: "Deep Learning Toolbox"
+        governance_status: "PROPOSED"
+        availability: "NOT VERIFIED"
+      - name: "Statistics and Machine Learning Toolbox"
+        governance_status: "APPROVED"
+        availability: "NOT VERIFIED"
+      - name: "Predictive Maintenance Toolbox"
+        governance_status: "PROPOSED"
+        availability: "NOT VERIFIED"
 
 roles:
   project_owner:
