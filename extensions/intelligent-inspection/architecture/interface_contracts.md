@@ -2,9 +2,11 @@
 
 **Associated ECR:** ECR-20260906-001
 
-**Status:** APPROVED — Gate 2 on 2026-09-06
+**Baseline status:** APPROVED — Gate 2 on 2026-09-06
 
-All contracts are logical specifications. Exact MATLAB, Simulink, or System Composer types require a later approved implementation plan.
+**Clarification status:** APPROVED — Nouran Ismail, Project Owner, 2026-09-06
+
+The original contracts below preserve the approved logical element names. The approved runtime realization, exact types, dimensions, units, ranges, validity rules, defaults, and encodings are defined by the detailed schemas in this clarification. Phase 4 will implement those schemas under its existing approved plan and exact allowlist.
 
 | Contract | Producer -> consumer | Mandatory content | Validity rules |
 |---|---|---|---|
@@ -27,3 +29,252 @@ All contracts are logical specifications. Exact MATLAB, Simulink, or System Comp
 - Additive optional fields require documented defaults.
 - Removing, renaming, or changing mandatory-field semantics requires a controlled interface change.
 - Project adapters may translate external formats but shall emit these generic contracts unchanged.
+
+## Approved Runtime Representation Rules
+
+These rules refine, but do not replace, the approved logical elements above.
+
+| Concept | Runtime representation |
+|---|---|
+| Boolean | `boolean`, `[1 1]`, unit `1`, range `{false,true}`, default `false` |
+| Score | `single`, `[1 1]`, unit `1`, range `[0,1]`, default `0` |
+| Timestamp | `uint64`, `[1 1]`, unit `ms`, milliseconds since Unix epoch in UTC, default `0` meaning unassigned |
+| Identifier/reference | `uint32`, `[1 1]`, unit `1`, range `[0,4294967295]`, default `0` meaning unassigned |
+| Version identifier | `uint16`, `[1 1]`, unit `1`, range `[0,65535]`, default `0` meaning unassigned |
+| Status/category | `uint8`, `[1 1]`, unit `1`, default `0`; encoding defined below or supplied by approved project configuration where stated |
+| Optional numeric scalar | Value plus a `boolean` validity element; invalid value is `0`, never NaN-only |
+| Location | `double`, `[3 1]`, unit `m`, each coordinate in `[-realmax('double'),realmax('double')]`; `locationValid=false` requires `[0;0;0]`; `frameId` is `uint16` |
+| Feature vector | Capacity 32; `featureIds` is `uint16 [32 1]`; `featureValues` is `single [32 1]`; unused entries are zero; `featureCount` is `uint8` in `[0,32]` |
+| Reference vector | Capacity 16; existing logical reference-field names are retained; each reference array is `uint32 [16 1]`, unused entries are zero, the associated reference count is `uint8` in `[0,16]`, and identifier zero means unassigned. |
+| Human-readable text | Not carried at runtime. Numeric codes resolve through approved configuration and evidence documentation. |
+
+All numeric values shall be finite when valid. Unless a row says otherwise, units are `1` and arrays default to all zeros.
+
+## Status and Category Encodings
+
+| Element | Encoding |
+|---|---|
+| `modality` | `0=UNASSIGNED`, `1=IMAGE`, `2=VIDEO`, `3=SIGNAL`, `4=MULTIMODAL`, `5=OTHER_CONFIGURED` |
+| Data-quality `status` | `0=UNASSIGNED`, `1=PASS`, `2=REVIEW`, `3=REJECT` |
+| `confidenceStatus` | `0=UNASSIGNED`, `1=ACCEPTABLE`, `2=LOW`, `3=UNAVAILABLE`, `4=INVALID` |
+| Approval `decision` | `0=UNASSIGNED`, `1=APPROVED`, `2=REJECTED`, `3=DEFERRED`, `4=EXPIRED` |
+| `approvalStatus` | `0=UNASSIGNED`, `1=PENDING`, `2=APPROVED`, `3=REJECTED`, `4=DEFERRED`, `5=EXPIRED`, `6=INVALID` |
+| `eventType` | `0=UNASSIGNED`, `1=SOURCE`, `2=QUALITY`, `3=PROCESSING`, `4=DETECTION`, `5=FEATURE`, `6=PREDICTION`, `7=RISK`, `8=APPROVAL`, `9=RECOMMENDATION`, `10=FAILURE` |
+| `outcome` | `0=UNASSIGNED`, `1=SUCCESS`, `2=REVIEW`, `3=REJECTED`, `4=FAILED`, `5=UNAVAILABLE`, `6=TIMEOUT` |
+| `labelId`, `riskLevel`, `actionCode`, `reasonCodes` | `0=UNASSIGNED`; values `1–254` are defined in approved project configuration; `255=INVALID` |
+
+## Approved Runtime Schemas
+
+### `InspectionData`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `itemId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `payloadRef` | `uint32` | `[1 1]` | `1` | Identifier | Must resolve when nonzero; default `0` |
+| `modality` | `uint8` | `[1 1]` | `1` | Modality encoding | Valid values `1–5`; default `0` |
+| `sourceId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `sequenceId` | `uint32` | `[1 1]` | `1` | `[0,4294967295]` | `0` is unassigned; default `0` |
+| `timestamp` | `uint64` | `[1 1]` | `ms` | Unix epoch UTC | Valid when nonzero; default `0` |
+| `schemaVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+
+### `InspectionMetadata`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `itemId` | `uint32` | `[1 1]` | `1` | Identifier | Must match `InspectionData.itemId`; default `0` |
+| `acquisitionContext` | `uint32` | `[1 1]` | `1` | Configuration/evidence reference | Must resolve when nonzero; default `0` |
+| `calibrationRef` | `uint32` | `[1 1]` | `1` | Reference | `0` explicitly means unavailable; default `0` |
+| `contextSchemaVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+
+### `DataQualityResult`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `itemId` | `uint32` | `[1 1]` | `1` | Identifier | Must reference the assessed item; default `0` |
+| `status` | `uint8` | `[1 1]` | `1` | Data-quality encoding | Valid values `1–3`; default `0` |
+| `measures` | `single` | `[32 1]` | `1` | Each entry `[0,1]` | First `measureCount` entries valid; unused entries `0` |
+| `thresholdRefs` | `uint32` | `[32 1]` | `1` | Reference identifiers | Aligned with `measures`; unused entries `0` |
+| `reasonCodes` | `uint8` | `[16 1]` | `1` | Configured code encoding | First `reasonCodeCount` entries valid; unused entries `0` |
+| `validatorVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `measureCount` (added) | `uint8` | `[1 1]` | `1` | `[0,32]` | Default `0` |
+| `reasonCodeCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+
+### `ProcessedData`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `processedItemId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `sourceItemId` | `uint32` | `[1 1]` | `1` | Identifier | Must resolve to the source item; default `0` |
+| `representationRef` | `uint32` | `[1 1]` | `1` | Reference | Must resolve when nonzero; default `0` |
+| `transformRecordRef` | `uint32` | `[1 1]` | `1` | Evidence reference | Must resolve when nonzero; default `0` |
+| `configurationVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `schemaVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+
+### `DetectionResult`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `resultId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `processedItemId` | `uint32` | `[1 1]` | `1` | Identifier | Must resolve to processed data; default `0` |
+| `labelId` | `uint8` | `[1 1]` | `1` | Configured category code | `0=UNASSIGNED`, `255=INVALID`; default `0` |
+| `confidence` | `single` | `[1 1]` | `1` | `[0,1]` | Validity declared by `confidenceValid`; default `0` |
+| `location` | `double` | `[3 1]` | `m` | Each entry `[-realmax('double'),realmax('double')]` | Validity declared by `locationValid`; invalid value `[0;0;0]` |
+| `modelVersion` | `uint16` | `[1 1]` | `1` | Version identifier | `0` means no model version; default `0` |
+| `schemaVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `confidenceValid` (added) | `boolean` | `[1 1]` | `1` | Boolean | Default `false`; false requires `confidence=0` |
+| `locationValid` (added) | `boolean` | `[1 1]` | `1` | Boolean | Default `false`; false requires zero location |
+| `frameId` (added) | `uint16` | `[1 1]` | `1` | Project-frame identifier | Nonzero when location is valid; default `0` |
+
+### `NumericalFeatureSet`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `featureSetId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `sourceRefs` | `uint32` | `[16 1]` | `1` | Reference vector | First `referenceCount` entries valid; unused entries `0` |
+| `names` | Logical concept only | — | — | Approved runtime realization is `featureIds` below | Human-readable names resolve through version-controlled project configuration |
+| `values` | Logical concept only | — | — | Approved runtime realization is `featureValues` below | The runtime interface carries only the fixed-capacity numeric vector |
+| `unitDeclarations` | `uint16` | `[32 1]` | `1` | Configured unit-code identifiers | Aligned with active features; unused entries `0` |
+| `validity` | `boolean` | `[32 1]` | `1` | Boolean vector | Aligned with active features; unused entries `false` |
+| `extractorVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `schemaVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `featureIds` (approved runtime realization of `names`) | `uint16` | `[32 1]` | `1` | Numeric feature identifiers | First `featureCount` entries active; unused entries `0` |
+| `featureValues` (approved runtime realization of `values`) | `single` | `[32 1]` | `1` | Each entry `[-realmax('single'),realmax('single')]` | First `featureCount` entries active; unused entries `0` |
+| `featureCount` (added) | `uint8` | `[1 1]` | `1` | `[0,32]` | Default `0` |
+| `referenceCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+
+### `HealthPrediction`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `predictionId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `featureSetId` | `uint32` | `[1 1]` | `1` | Identifier | Must resolve to a feature set; default `0` |
+| `estimate` | `single` | `[1 1]` | `1` | `[-realmax('single'),realmax('single')]` | Validity declared by `estimateValid`; default `0` |
+| `contextOrHorizon` | `uint32` | `[1 1]` | `1` | Reference to configured context/horizon definition | Validity declared by `contextOrHorizonValid`; default `0` |
+| `uncertainty` | `single` | `[1 1]` | `1` | `[0,1]` | Validity declared by `uncertaintyValid`; default `0` |
+| `confidenceStatus` | `uint8` | `[1 1]` | `1` | Confidence-status encoding | Default `0` |
+| `modelVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `schemaVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `estimateValid` (added) | `boolean` | `[1 1]` | `1` | Boolean | Default `false`; false requires `estimate=0` |
+| `contextOrHorizonValid` (added) | `boolean` | `[1 1]` | `1` | Boolean | Default `false`; false requires zero reference |
+| `uncertaintyValid` (added) | `boolean` | `[1 1]` | `1` | Boolean | Default `false`; false requires `uncertainty=0` |
+
+### `RiskAssessment`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `assessmentId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `evidenceRefs` | `uint32` | `[16 1]` | `1` | Reference vector | First `referenceCount` entries valid; unused entries `0` |
+| `riskLevel` | `uint8` | `[1 1]` | `1` | Configured category code | `0=UNASSIGNED`, `255=INVALID`; default `0` |
+| `riskScore` | `single` | `[1 1]` | `1` | `[0,1]` | Validity declared by `riskScoreValid`; default `0` |
+| `confidenceStatus` | `uint8` | `[1 1]` | `1` | Confidence-status encoding | Default `0` |
+| `rationaleCodes` | `uint8` | `[16 1]` | `1` | Configured code encoding | First `rationaleCount` entries valid; unused entries `0` |
+| `policyVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `referenceCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+| `riskScoreValid` (added) | `boolean` | `[1 1]` | `1` | Boolean | Default `false`; false requires `riskScore=0` |
+| `rationaleCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+
+### `ApprovalRequest`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `requestId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `assessmentId` | `uint32` | `[1 1]` | `1` | Identifier | Must resolve to risk assessment; default `0` |
+| `proposedRecommendation` | `uint32` | `[1 1]` | `1` | Proposed-record reference | Must resolve when nonzero; default `0` |
+| `evidenceRefs` | `uint32` | `[16 1]` | `1` | Reference vector | First `referenceCount` entries valid; unused entries `0` |
+| `requestedAt` | `uint64` | `[1 1]` | `ms` | Unix epoch UTC | Valid when nonzero; default `0` |
+| `expiresAt` | `uint64` | `[1 1]` | `ms` | Unix epoch UTC | Must exceed `requestedAt`; default `0` |
+| `policyVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `referenceCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+
+### `ApprovalDecision`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `requestId` | `uint32` | `[1 1]` | `1` | Identifier | Must match a request; default `0` |
+| `decision` | `uint8` | `[1 1]` | `1` | Approval-decision encoding | Valid values `1–4`; default `0` |
+| `decidedBy` | `uint32` | `[1 1]` | `1` | Actor identifier | Required except system expiry; default `0` |
+| `decidedAt` | `uint64` | `[1 1]` | `ms` | Unix epoch UTC | Valid when nonzero; default `0` |
+| `comments` | `uint32` | `[1 1]` | `1` | Evidence-document reference | `0` explicitly means no comment; default `0` |
+| `decisionVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+
+### `RecommendedAction`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `recommendationId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `actionCode` | `uint8` | `[1 1]` | `1` | Configured category code | `0=UNASSIGNED`, `255=INVALID`; default `0` |
+| `parameters` | `single` | `[16 1]` | `1` | Each entry `[-realmax('single'),realmax('single')]` | First `parameterCount` entries active; unused entries `0` |
+| `evidenceRefs` | `uint32` | `[16 1]` | `1` | Reference vector | First `referenceCount` entries valid; unused entries `0` |
+| `confidenceStatus` | `uint8` | `[1 1]` | `1` | Confidence-status encoding | Default `0` |
+| `approvalStatus` | `uint8` | `[1 1]` | `1` | Approval-status encoding | Default `0` |
+| `validFrom` | `uint64` | `[1 1]` | `ms` | Unix epoch UTC | Valid when nonzero; default `0` |
+| `validUntil` | `uint64` | `[1 1]` | `ms` | Unix epoch UTC | Must exceed `validFrom`; default `0` |
+| `configurationVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `parameterCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+| `referenceCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+
+### `EvidenceRecord`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `recordId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `eventType` | `uint8` | `[1 1]` | `1` | Event-type encoding | Valid values `1–10`; default `0` |
+| `artifactRefs` | `uint32` | `[16 1]` | `1` | Reference vector | First `artifactReferenceCount` entries valid; unused entries `0` |
+| `dataVersions` | `uint16` | `[16 1]` | `1` | Version identifiers | First `dataVersionCount` entries valid; unused entries `0` |
+| `modelVersions` | `uint16` | `[16 1]` | `1` | Version identifiers | First `modelVersionCount` entries valid; unused entries `0` |
+| `configurationVersions` | `uint16` | `[16 1]` | `1` | Version identifiers | First `configurationVersionCount` entries valid; unused entries `0` |
+| `actorOrComponent` | `uint32` | `[1 1]` | `1` | Actor/component identifier | Valid when nonzero; default `0` |
+| `timestamp` | `uint64` | `[1 1]` | `ms` | Unix epoch UTC | Valid when nonzero; default `0` |
+| `outcome` | `uint8` | `[1 1]` | `1` | Outcome encoding | Valid values `1–6`; default `0` |
+| `integrityMetadata` | `uint32` | `[1 1]` | `1` | Integrity-record reference | `0` means unavailable; default `0` |
+| `artifactReferenceCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+| `dataVersionCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+| `modelVersionCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+| `configurationVersionCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+
+## Approved Architecture Boundary
+
+| Direction | Port | Interface |
+|---|---|---|
+| Input | `inspectionDataIn` | `InspectionData` |
+| Input | `inspectionMetadataIn` | `InspectionMetadata` |
+| Input | `approvalDecisionIn` | `ApprovalDecision` |
+| Output | `approvalRequestOut` | `ApprovalRequest` |
+| Output | `recommendedActionOut` | `RecommendedAction` |
+| Output | `evidenceRecordOut` | `EvidenceRecord` |
+
+`HumanApprovalGate` emits `ApprovalRequest`, receives `ApprovalDecision` from the external approval authority, and forwards only a validated decision to `RecommendedAction`. It cannot approve its own request and has no safety-critical command interface.
+
+## Approved Evidence-Observation Interface Assignment
+
+| Producing component | Observation interface |
+|---|---|
+| `InspectionSource` | `InspectionMetadata` |
+| `DataQualityValidation` | `DataQualityResult` |
+| `Preprocessing` | `ProcessedData` |
+| `Detection` | `DetectionResult` |
+| `FeatureExtraction` | `NumericalFeatureSet` |
+| `HealthPrediction` | `HealthPrediction` |
+| `RiskAssessment` | `RiskAssessment` |
+| `HumanApprovalGate` | `ApprovalDecision` |
+| `RecommendedAction` | `RecommendedAction` |
+| `EvidenceRecorder` | `EvidenceRecord` |
+
+## Approved Clarification Decisions
+
+1. Logical `NumericalFeatureSet.names` is realized at runtime as `featureIds: uint16 [32 1]`; logical `values` is realized as `featureValues: single [32 1]`; `featureCount` is `uint8` in `[0,32]`. Human-readable feature names resolve through version-controlled project configuration.
+2. Existing reference-field names (`sourceRefs`, `evidenceRefs`, and `artifactRefs`) are retained. Each uses `uint32 [16 1]`, an associated `uint8` count in `[0,16]`, zero-filled unused entries, and identifier zero meaning unassigned.
+3. `contextOrHorizon` is a `uint32` reference with `contextOrHorizonValid`. Its meaning, unit, horizon, and interpretation are defined in the applicable version-controlled project configuration and evidence record.
+
+## Clarification Approval Record
+
+| Field | Entry |
+|---|---|
+| Decision | **APPROVED** |
+| Approver | Nouran Ismail — Project Owner |
+| Approval date | 2026-09-06 |
+| Interface-ambiguity blocker | **RESOLVED** |
+| Phase 4 | **AUTHORIZED AND READY TO EXECUTE** |
+| Later phases | Phases 5–17 remain **NOT AUTHORIZED** |
+
+This approval authorizes later Phase 4 execution only under its existing four-file implementation allowlist. It does not implement Phase 4.

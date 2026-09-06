@@ -2,7 +2,9 @@
 
 **Associated ECR:** ECR-20260906-001
 
-**Status:** APPROVED — Gate 2 on 2026-09-06
+**Baseline status:** APPROVED — Gate 2 on 2026-09-06
+
+**Clarification status:** APPROVED — Nouran Ismail, Project Owner, 2026-09-06
 
 ## Boundary Rules
 
@@ -53,3 +55,33 @@ Project configuration
   -> unchanged generic workflow contracts
   -> project verification evidence
 ```
+
+## Approved Runtime Schema Ownership
+
+| Definition | Reusable interface schema | Project configuration/evidence |
+|---|---:|---:|
+| Primitive type and fixed dimension | Owns | Cannot override |
+| Timestamp epoch and unit | Owns | Supplies actual timestamps |
+| Identifier width and zero-unassigned rule | Owns | Allocates and resolves identifiers |
+| Feature/reference capacities and count rules | Owns | Populates within bounds |
+| Status encoding reserved values | Owns | Cannot redefine |
+| Configurable category codes `1–254` | Reserves numeric domain | Defines human-readable meanings |
+| Location vector unit and validity rule | Owns | Defines `frameId` and frame transform |
+| Unit-code arrays | Owns representation | Defines code-to-unit mapping |
+| Scores and validity flags | Owns `[0,1]` representation | Defines approved thresholds |
+| Human-readable names and comments | Excludes from runtime interfaces | Owns and records by numeric reference |
+
+The logical names `names`, `values`, and the existing aggregate reference fields remain traceable in the approved baseline. Their numeric runtime realizations and retained field-name policy are approved in `architecture/interface_contracts.md`.
+
+## Approved Architecture Boundary Mapping
+
+| Boundary port | Generic interface | Ownership boundary |
+|---|---|---|
+| `inspectionDataIn` | `InspectionData` | External source adapter to reusable architecture |
+| `inspectionMetadataIn` | `InspectionMetadata` | External source adapter to reusable architecture |
+| `approvalDecisionIn` | `ApprovalDecision` | External approval authority to reusable architecture |
+| `approvalRequestOut` | `ApprovalRequest` | Reusable architecture to external approval authority |
+| `recommendedActionOut` | `RecommendedAction` | Reusable architecture to project adapter |
+| `evidenceRecordOut` | `EvidenceRecord` | Reusable architecture to evidence store |
+
+No boundary port grants the reusable architecture external safety authority. The interface-ambiguity blocker is **RESOLVED**, and Phase 4 is **AUTHORIZED AND READY TO EXECUTE**. Phases 5–17 remain **NOT AUTHORIZED**.

@@ -2,7 +2,9 @@
 
 **Associated ECR:** ECR-20260906-001
 
-**Status:** APPROVED — Gate 2 on 2026-09-06
+**Baseline status:** APPROVED — Gate 2 on 2026-09-06
+
+**Clarification status:** APPROVED — Nouran Ismail, Project Owner, 2026-09-06
 
 ## Priority Order
 
@@ -28,3 +30,15 @@
 ## First-Application Boundary
 
 For the first project configuration, the verified `MissionSupervisor` remains unchanged and authoritative for flight-safety behavior. Intelligent recommendations cannot directly command `SafeLanding`; any future interface change to that supervisor requires a separate approved ECR. Approval delay or inspection-workflow failure cannot delay an existing supervisor safety response.
+
+## Approved Approval-Authority Boundary Clarification
+
+1. `HumanApprovalGate.approvalRequestOut` produces `ApprovalRequest` and connects to architecture output `approvalRequestOut`.
+2. Architecture input `approvalDecisionIn` carries `ApprovalDecision` from an external accountable approval authority to `HumanApprovalGate.approvalDecisionIn`.
+3. `HumanApprovalGate` shall not create, infer, or self-issue an approval decision.
+4. The gate may expose the externally received decision to `RecommendedAction` and `EvidenceRecorder`, but behavioral validation remains outside this clarification phase.
+5. Architecture output `recommendedActionOut` carries advisory `RecommendedAction` only.
+6. No approval, recommendation, or evidence port is a safety-critical command interface.
+7. Approval waiting and evidence persistence remain outside the external safety-response path.
+
+The representation of decisions, status, validity, identifiers, and timestamps is defined in `interface_contracts.md`. The interface-ambiguity blocker is **RESOLVED**, and Phase 4 is **AUTHORIZED AND READY TO EXECUTE**. Phases 5–17 remain **NOT AUTHORIZED**.

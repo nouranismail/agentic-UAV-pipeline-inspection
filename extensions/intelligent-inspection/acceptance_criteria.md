@@ -2,7 +2,9 @@
 
 **Associated ECR:** ECR-20260906-001
 
-**Status:** APPROVED — Gate 2 on 2026-09-06
+**Baseline status:** APPROVED — Gate 2 on 2026-09-06
+
+**Clarification status:** APPROVED — Nouran Ismail, Project Owner, 2026-09-06
 
 These criteria define how later work will be judged. They do not report executed tests or achieved model performance.
 
@@ -91,6 +93,25 @@ Regression acceptance additionally requires proof that inputs are numerical feat
 | IIW-AC-018 | Inspection AI remains outside the simulation-environment boundary. | Architecture inspection finds no detection, feature, prediction, risk, or approval implementation inside that boundary. |
 | IIW-AC-019 | Source substitution preserves evidence provenance. | Evidence records distinguish adapter/source versions while retaining the same generic chain structure. |
 
+## Approved Phase 4 Interface-Schema Acceptance Criteria
+
+| ID | Criterion | Measurement |
+|---|---|---|
+| IIW-AC-020 | Exactly the twelve approved interface names exist once each in the authorized interface dictionary. | Dictionary inspection reports 12 expected interfaces, zero missing, zero duplicate, and zero unexpected interfaces. |
+| IIW-AC-021 | Every approved logical element is retained or has an explicitly approved runtime realization recorded in the clarification. | Baseline-to-runtime matrix reports 100% disposition and zero silent rename or removal. |
+| IIW-AC-022 | Every runtime element has a type, fixed dimension, unit, range or encoding, validity rule, and default. | Automated schema comparison reports 100% match to the approved detailed tables. |
+| IIW-AC-023 | Optional numeric scalars use an explicit Boolean validity element and use zero, not NaN-only, when invalid. | Schema inspection and default-value checks report full conformance. |
+| IIW-AC-024 | Feature and reference arrays use capacities 32 and 16 respectively, with bounded counts and zero-filled unused entries. | Dimensions, count ranges, and defaults match the approved representation rules. |
+| IIW-AC-025 | Runtime identifiers and categories are numeric; human-readable names remain in configuration or evidence documentation. | Interface inspection finds no runtime string/text element. |
+| IIW-AC-026 | The architecture has exactly the three approved typed inputs and three approved typed outputs. | Boundary-port inventory matches `interface_contracts.md` exactly. |
+| IIW-AC-027 | Exactly ten approved top-level components remain and all approved logical and evidence flows remain connected. | Component and connector comparison reports no missing, duplicate, or unexpected component and no broken approved flow. |
+| IIW-AC-028 | Every evidence-observation output uses its approved interface and `EvidenceRecorder` has no control or approval authority. | Port-to-interface matrix matches all ten assignments and finds no evidence-to-decision connector. |
+| IIW-AC-029 | `HumanApprovalGate` emits `ApprovalRequest`, receives external `ApprovalDecision`, cannot self-approve, and has no safety-critical command interface. | Static architecture inspection confirms direction, external boundary, and absence of a self-decision or safety-command path. |
+| IIW-AC-030 | Every required architecture exchange is typed and the model and dictionary open, update, save, close, and reopen without unresolved architecture errors. | Phase 4 test reports zero untyped required ports and all lifecycle checks pass. |
+| IIW-AC-031 | Interface, element, component, port, and connector names remain application-independent. | Automated prohibited-terminology scan reports zero occurrence in runtime names. |
+
+These criteria are approved for Phase 4 implementation and verification. This approval does not constitute Phase 4 implementation, verification, or acceptance.
+
 ## Unresolved Acceptance Decisions
 
 - Applicable data-quality measures and thresholds.
@@ -108,3 +129,13 @@ Regression acceptance additionally requires proof that inputs are numerical feat
 | Approver | Nouran Ismail — Project Owner |
 | Approval date | 2026-09-06 |
 | Comments | Approved for implementation-plan preparation only under ECR-20260906-001. Project metric values, thresholds, and anomaly classes require approval before training. |
+
+## Gate 2 Interface-Schema Clarification Review
+
+| Field | Entry |
+|---|---|
+| Decision | **APPROVED** |
+| Clarification status | **APPROVED** |
+| Approver | Nouran Ismail — Project Owner |
+| Approval date | 2026-09-06 |
+| Comments | Acceptance criteria `IIW-AC-020` through `IIW-AC-031` are approved. The interface-ambiguity blocker is **RESOLVED**; Phase 4 is **AUTHORIZED AND READY TO EXECUTE** but has not started. Phases 5–17 remain **NOT AUTHORIZED**. |

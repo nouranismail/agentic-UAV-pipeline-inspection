@@ -328,7 +328,7 @@ Phase 1 was not executed while this approval was recorded. Product availability 
 | Phase 3 review | **ACCEPTED** |
 | Phase 3 reviewer | Nouran Ismail — Project Owner |
 | Phase 3 evidence | `extensions/intelligent-inspection/evidence/reference_architecture_validation.md` |
-| Phase 4 decision | **AUTHORIZED** |
+| Phase 4 decision | **AUTHORIZED AND READY TO EXECUTE** |
 | Phase 4 authorized scope | Implement only the detailed generic interface schemas defined by the approved requirements and interface contracts. |
 | Phase 4 exact allowlist | `extensions/intelligent-inspection/architecture/models/intelligent_inspection_reference_architecture.slx`; `extensions/intelligent-inspection/architecture/data/intelligent_inspection_interfaces.sldd`; `tests/intelligent-inspection/test_architecture_interfaces.m`; `extensions/intelligent-inspection/evidence/interface_conformance.md` |
 | Phase 4 implementation status | **NOT STARTED** |
@@ -336,3 +336,28 @@ Phase 1 was not executed while this approval was recorded. Product availability 
 | Conditions | This decision records authorization only. It does not implement Phase 4, authorize work outside its allowlist, modify the verified `MissionSupervisor`, or authorize any later phase. |
 
 The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not an independent-verification decision or final acceptance of ECR-20260906-001.
+
+## 16. Targeted Gate 2 Interface-Schema Clarification
+
+| Clarification field | Entry |
+|---|---|
+| Status | **APPROVED** |
+| Prepared under authority of | Nouran Ismail — Project Owner |
+| Preparation date | 2026-09-06 |
+| Purpose | Resolve Phase 4 implementation-critical types, dimensions, units, ranges, defaults, encodings, null handling, boundary ports, approval-authority direction, and evidence-port assignments. |
+| Authoritative detailed schema | `extensions/intelligent-inspection/architecture/interface_contracts.md` |
+| Supporting clarifications | `extensions/intelligent-inspection/architecture/component_definitions.md`; `extensions/intelligent-inspection/architecture/safety_and_approval_priorities.md`; `extensions/intelligent-inspection/acceptance_criteria.md`; `extensions/intelligent-inspection/artifact_mapping.md` |
+| Project Owner decisions | **APPROVED:** logical `names`/`values` are realized at runtime as `featureIds`/`featureValues` with `featureCount`; existing evidence-reference field names are retained with the approved fixed-capacity representation; `contextOrHorizon` is a `uint32` project-configuration reference with an explicit Boolean validity field; the six boundary ports, external approval-authority direction, evidence-observation assignments, and `IIW-AC-020` through `IIW-AC-031` are approved. |
+| Interface-ambiguity blocker | **RESOLVED** |
+| Phase 4 current status | **AUTHORIZED AND READY TO EXECUTE — NOT STARTED** |
+| Later phases | Phases 5–17 remain **NOT AUTHORIZED** |
+| Model and implementation impact | None in this clarification task. No model, dictionary, test, algorithm, or evidence artifact may be created or modified. |
+
+### Clarification Review
+
+| Approval field | Entry |
+|---|---|
+| Decision | **APPROVED** |
+| Approver | Nouran Ismail — Project Owner |
+| Approval date | 2026-09-06 |
+| Conditions or deviations | Approval authorizes Phase 4 execution only under its exact four-file allowlist. It does not implement Phase 4 or authorize Phases 5–17. The verified `MissionSupervisor` remains protected. |

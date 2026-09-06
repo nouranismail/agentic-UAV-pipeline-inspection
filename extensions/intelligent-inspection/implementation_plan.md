@@ -17,9 +17,9 @@
 | Author role | Lead Systems Engineer / MBD Architect |
 | Planned implementers | **TBD:** Integration & Tooling Lead and AI & Algorithm Developer assignments must be recorded before their phases |
 | Independent reviewer | **TBD:** a different named individual from every implementation author |
-| Status | **PHASES 1–3 COMPLETE AND ACCEPTED; PHASE 4 AUTHORIZED** |
+| Status | **PHASES 1–3 COMPLETE AND ACCEPTED; PHASE 4 AUTHORIZED AND READY TO EXECUTE** |
 
-Gate 3 was approved by the Project Owner on 2026-09-06, initially with execution authority limited to Phase 1. Phase 1 passed; Phases 2 and 3 were subsequently authorized, completed, and accepted. Phase 4 is now authorized under its exact allowlist. Phases 5–17 remain unauthorized until their documented prerequisites and approval hold points are satisfied and the Project Owner records the required continuation decision. Phase hold points are controls within the Gate 3 work package; they do not replace or renumber repository Gates 1–6.
+Gate 3 was approved by the Project Owner on 2026-09-06, initially with execution authority limited to Phase 1. Phase 1 passed; Phases 2 and 3 were subsequently authorized, completed, and accepted. The Project Owner approved the targeted Gate 2 interface-schema clarification on 2026-09-06, resolving the interface-ambiguity blocker. Phase 4 is authorized and ready to execute under its exact allowlist but has not started. Phases 5–17 remain unauthorized until their documented prerequisites and approval hold points are satisfied and the Project Owner records the required continuation decision. Phase hold points are controls within the Gate 3 work package; they do not replace or renumber repository Gates 1–6.
 
 ## 2. Approved Basis
 
@@ -111,7 +111,7 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 | Review date | 2026-09-06 |
 | Authorized scope | Create only the reusable intelligent-inspection skill, five reusable reference-guidance files, and four generic templates listed below |
 | Exclusions | No Phase 2 implementation in the authorization-recording task; no test artifact, model, training, test execution, existing Simulink workflow change, or verified UAV artifact change |
-| Later phases | Phase 3 is **COMPLETE AND ACCEPTED**; Phase 4 is **AUTHORIZED** under its exact allowlist; Phases 5–17 remain **NOT AUTHORIZED** |
+| Later phases | Phase 3 is **COMPLETE AND ACCEPTED**; Phase 4 is **AUTHORIZED AND READY TO EXECUTE** but not started; Phases 5–17 remain **NOT AUTHORIZED** |
 | Review meaning | Project Owner acceptance of Phase 2 implementation; not independent verification or final acceptance of ECR-20260906-001 |
 
 - **Approved requirement IDs:** `IIW-REQ-019`, `IIW-REQ-020`, `IIW-REQ-023`, `IIW-REQ-024`, `IIW-REQ-025`.
@@ -143,7 +143,7 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 | Architecture-generation script | **NOT AUTHORIZED** — no script path is present in the approved Phase 3 allowlist |
 | Evidence | `extensions/intelligent-inspection/evidence/reference_architecture_validation.md` |
 | Review meaning | Project Owner acceptance of Phase 3 implementation evidence; not independent verification or final acceptance of ECR-20260906-001 |
-| Later phases | Phase 4 is **AUTHORIZED** under its exact allowlist; Phases 5–17 remain **NOT AUTHORIZED** |
+| Later phases | Phase 4 is **AUTHORIZED AND READY TO EXECUTE** but not started; Phases 5–17 remain **NOT AUTHORIZED** |
 
 - **Approved requirement IDs:** `IIW-REQ-001`, `IIW-REQ-002`, `IIW-REQ-004`, `IIW-REQ-005`, `IIW-REQ-008`–`IIW-REQ-018`, `IIW-REQ-020`–`IIW-REQ-024`.
 - **Prerequisites:** System Composer and required MATLAB/Simulink products verified `AVAILABLE` and approved; Phase 2 architecture procedure complete; logical architecture depth approved at Gate 2.
@@ -162,22 +162,23 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 | Authorization field | Decision |
 |---|---|
 | Phase 3 prerequisite | **COMPLETE AND ACCEPTED** |
-| Phase 4 status | **AUTHORIZED** |
+| Phase 4 status | **AUTHORIZED AND READY TO EXECUTE** |
 | Approver | Nouran Ismail — Project Owner |
 | Authorization date | 2026-09-06 |
 | Implementation status | **NOT STARTED** |
+| Clarification status | **APPROVED — Nouran Ismail, Project Owner, 2026-09-06** |
 | Exact authorized allowlist | `extensions/intelligent-inspection/architecture/models/intelligent_inspection_reference_architecture.slx`; `extensions/intelligent-inspection/architecture/data/intelligent_inspection_interfaces.sldd`; `tests/intelligent-inspection/test_architecture_interfaces.m`; `extensions/intelligent-inspection/evidence/interface_conformance.md` |
 | Authorized scope | Implement only the detailed generic interface schemas defined by the approved requirements and interface contracts, assign them within the logical architecture, create the Phase 4 interface test, and record conformance evidence |
-| Exclusions | No Phase 4 implementation in this authorization-recording task; no behavioral algorithm, project-specific configuration, trained model, protected baseline change, or existing regression execution |
+| Exclusions | No behavioral algorithm, project-specific configuration, trained model, protected baseline change, existing regression execution, or file outside the exact Phase 4 allowlist |
 | Later phases | Phases 5–17 remain **NOT AUTHORIZED** |
 
 - **Approved requirement IDs:** `IIW-REQ-001`, `IIW-REQ-002`, `IIW-REQ-004`, `IIW-REQ-005`–`IIW-REQ-013`, `IIW-REQ-016`–`IIW-REQ-018`, `IIW-REQ-020`–`IIW-REQ-023`, `IIW-REQ-025`.
-- **Prerequisites:** Phase 3 accepted; exact System Composer interface mechanism confirmed by Phase 1 compatibility evidence.
+- **Prerequisites:** Phase 3 accepted; exact System Composer interface mechanism confirmed by Phase 1 compatibility evidence; targeted Gate 2 interface-schema clarification approved, including the three decisions recorded in `architecture/interface_contracts.md`.
 - **Exact allowed files:** `extensions/intelligent-inspection/architecture/models/intelligent_inspection_reference_architecture.slx`; `extensions/intelligent-inspection/architecture/data/intelligent_inspection_interfaces.sldd`; `tests/intelligent-inspection/test_architecture_interfaces.m`; `extensions/intelligent-inspection/evidence/interface_conformance.md`.
 - **Protected files:** Section 4 and all behavioral implementation files.
 - **Responsible engineering role:** Lead Systems Engineer / MBD Architect.
 - **Implementation actions:** Define the twelve approved logical contracts as architecture interfaces/value types; assign directions and interfaces to all ports; encode version identifiers, required fields, and declared units/domains without project-specific values.
-- **Measurable acceptance criteria:** All twelve contracts exist once; 100% ports use named contracts; mandatory fields match the approved specification; `NumericalFeatureSet` has no raw-payload field; architecture update succeeds.
+- **Measurable acceptance criteria:** `IIW-AC-020` through `IIW-AC-031`; all twelve contracts exist once; 100% required ports use named contracts; every approved logical field is retained or has an explicitly approved runtime realization; mandatory fields match the approved detailed schema; `NumericalFeatureSet` has no raw-payload field; architecture update succeeds.
 - **Tests and metrics:** `IIW-TST-IF-001` schema inventory, `IIW-TST-IF-002` port assignment, `IIW-TST-IF-003` forbidden-field check, `IIW-TST-IF-004` schema-version check; zero unnamed exchanges.
 - **Evidence produced:** Interface dictionary report, port-to-contract matrix, diagnostics, and hashes.
 - **Approval gate:** Gate 3 and Phase 3 exit hold point; interface mismatch or unexpected generated metadata is a stop condition.
@@ -474,8 +475,8 @@ This Gate 3 decision authorizes Phase 1 preflight only. It does not authorize mo
 | Evidence available | `extensions/intelligent-inspection/evidence/reference_architecture_validation.md` and the approved Phase 3 artifacts |
 | Open findings | Unresolved prerequisites in Section 8 |
 | Assumptions and deviations | Phase 3 Project Owner acceptance is not independent verification or final ECR acceptance; Phase 4 has not started |
-| Next permitted activity | Execute Phase 4 only in a subsequent controlled task, limited to its four-file allowlist; Phases 5–17 remain unauthorized |
-| Required approver | Project Owner disposition at the Phase 4 exit hold point and before any later phase |
+| Next permitted activity | Execute Phase 4 only in a subsequent controlled task using its exact four-file allowlist |
+| Required approver | Project Owner disposition at the Phase 4 exit hold point; later phase authorization remains separately required |
 
 ## 14. Controlled Phase Continuation Record
 
@@ -488,8 +489,10 @@ This Gate 3 decision authorizes Phase 1 preflight only. It does not authorize mo
 | Phase 3 review | **ACCEPTED** |
 | Phase 3 reviewer | Nouran Ismail — Project Owner |
 | Phase 3 evidence | `extensions/intelligent-inspection/evidence/reference_architecture_validation.md` |
-| Phase 4 decision | **AUTHORIZED** |
+| Phase 4 scope authorization | **RECORDED** |
 | Phase 4 exact allowlist | `extensions/intelligent-inspection/architecture/models/intelligent_inspection_reference_architecture.slx`; `extensions/intelligent-inspection/architecture/data/intelligent_inspection_interfaces.sldd`; `tests/intelligent-inspection/test_architecture_interfaces.m`; `extensions/intelligent-inspection/evidence/interface_conformance.md` |
-| Phase 4 implementation | **NOT STARTED** |
+| Interface-schema clarification | **APPROVED — Nouran Ismail, Project Owner, 2026-09-06** |
+| Interface-ambiguity blocker | **RESOLVED** |
+| Phase 4 implementation | **AUTHORIZED AND READY TO EXECUTE — NOT STARTED** |
 | Later phases | Phases 5–17 remain **NOT AUTHORIZED** |
-| Conditions | The verified `MissionSupervisor` remains protected. Phase 4 is limited to approved generic interface schemas and its exact allowlist. This record does not authorize Phase 4 implementation during the authorization-recording task. |
+| Conditions | The verified `MissionSupervisor` remains protected. Phase 4 is limited to the approved generic interface schemas and its exact four-file allowlist. Phases 5–17 remain not authorized. |
