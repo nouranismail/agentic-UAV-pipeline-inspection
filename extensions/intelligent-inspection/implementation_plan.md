@@ -99,9 +99,19 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 
 ### Phase 2 — Reusable Intelligent-Inspection Skill and Templates
 
+| Authorization field | Decision |
+|---|---|
+| Phase 1 prerequisite | **PASS** |
+| Phase 2 status | **AUTHORIZED** |
+| Approver | Nouran Ismail — Project Owner |
+| Authorization date | 2026-09-06 |
+| Authorized scope | Create only the reusable intelligent-inspection skill, five reusable reference-guidance files, and four generic templates listed below |
+| Exclusions | No Phase 2 implementation in the authorization-recording task; no test artifact, model, training, test execution, existing Simulink workflow change, or verified UAV artifact change |
+| Later phases | Phases 3–17 remain **NOT AUTHORIZED** |
+
 - **Approved requirement IDs:** `IIW-REQ-019`, `IIW-REQ-020`, `IIW-REQ-023`, `IIW-REQ-024`, `IIW-REQ-025`.
 - **Prerequisites:** Phase 1 complete for any tool used; named Integration & Tooling Lead; shared-workflow version remains 1.0.0.
-- **Exact allowed files:** `skills/intelligent-inspection-workflow/SKILL.md`; `skills/intelligent-inspection-workflow/references/system-composer-architecture.md`; `skills/intelligent-inspection-workflow/references/inspection-source-and-data-quality.md`; `skills/intelligent-inspection-workflow/references/vision-and-preprocessing.md`; `skills/intelligent-inspection-workflow/references/features-regression-and-uncertainty.md`; `skills/intelligent-inspection-workflow/references/human-approval-integration-and-evidence.md`; `templates/templates/intelligent_inspection_project_template.md`; `templates/templates/dataset_governance_template.md`; `templates/templates/model_card_template.md`; `templates/templates/ai_verification_report_template.md`; `tests/intelligent-inspection/test_workflow_governance.m`.
+- **Exact allowed files:** `skills/intelligent-inspection-workflow/SKILL.md`; `skills/intelligent-inspection-workflow/references/system-composer-architecture.md`; `skills/intelligent-inspection-workflow/references/inspection-source-and-data-quality.md`; `skills/intelligent-inspection-workflow/references/vision-and-preprocessing.md`; `skills/intelligent-inspection-workflow/references/features-regression-and-uncertainty.md`; `skills/intelligent-inspection-workflow/references/human-approval-integration-and-evidence.md`; `templates/templates/intelligent_inspection_project_template.md`; `templates/templates/dataset_governance_template.md`; `templates/templates/model_card_template.md`; `templates/templates/ai_verification_report_template.md`.
 - **Protected files:** Section 4, especially the existing Simulink workflow skill and governance templates not listed above.
 - **Responsible engineering role:** Integration & Tooling Lead.
 - **Implementation actions:** Create the optional modular skill, reusable procedures, and four templates; require role declaration, inherited Gates 1–6, dataset/model governance, independent verification, and application-neutral terminology.
