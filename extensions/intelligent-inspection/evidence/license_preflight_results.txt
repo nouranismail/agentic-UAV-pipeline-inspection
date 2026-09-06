@@ -1,0 +1,74 @@
+MATLAB License Preflight
+Date: 06-Sep-2026 12:20:19
+Release: 2026a
+
+Feature: MATLAB
+License exists: 1
+Checkout successful: 1
+Message: none
+
+Feature: Simulink
+License exists: 1
+Checkout successful: 1
+Message: none
+
+Feature: Stateflow
+License exists: 1
+Checkout successful: 1
+Message: none
+
+Feature: System_Composer
+License exists: 1
+Checkout successful: 1
+Message: none
+
+Feature: Image_Toolbox
+License exists: 1
+Checkout successful: 1
+Message: none
+
+Feature: Video_and_Image_Blockset
+License exists: 1
+Checkout successful: 1
+Message: none
+
+Feature: Neural_Network_Toolbox
+License exists: 1
+Checkout successful: 1
+Message: none
+
+Feature: Statistics_Toolbox
+License exists: 1
+Checkout successful: 1
+Message: none
+
+Feature: PredMaint_Toolbox
+License exists: 0
+Checkout successful: 0
+Message: MathWorks Licensing Error 5
+
+Unable to find a license for PredMaint_Toolbox.
+
+For help with this issue, see this support article: 
+https://www.mathworks.com/support/lme/5
+
+Details for Support
+Feature: PredMaint_Toolbox
+License: C:\Users\Nouran Ismail\Desktop\license.lic;C:\Users\Nouran Ismail\AppData\Roaming\MathWorks\MATLAB\R2026a_licenses;C:\Program Files\MATLAB\R2026a\licenses\license.dat;C:\Program Files\MATLAB\R2026a\licenses\license_DESKTOP-7PQCARM_41143519_11079968_R2026a.lic
+Error Code: -5.2
+
+Feature: Simulink_Requirements
+License exists: 1
+Checkout successful: 1
+Message: none
+
+Feature: Simulink_Test
+License exists: 1
+Checkout successful: 1
+Message: none
+
+Feature: Simulink_Coverage
+License exists: 1
+Checkout successful: 1
+Message: none
+

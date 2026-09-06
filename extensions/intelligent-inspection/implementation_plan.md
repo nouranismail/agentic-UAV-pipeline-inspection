@@ -76,6 +76,15 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 
 ### Phase 1 — Dependency and MATLAB-Product Preflight
 
+| Execution field | Result |
+|---|---|
+| Attempt date | 2026-09-06 |
+| Completion date | 2026-09-06 |
+| Status | **PASS** |
+| Evidence | `extensions/intelligent-inspection/evidence/dependency_preflight.md`; raw results in `extensions/intelligent-inspection/evidence/license_preflight_results.txt` and `extensions/intelligent-inspection/evidence/diagnostic_feature_designer_license.txt` |
+| Finding | All twelve products are installed at version 26.1 and license available. The correct Predictive Maintenance Toolbox feature is `pred_maintenance_toolbox`; the prior failed check used the incorrect identifier `PredMaint_Toolbox`. |
+| Enabled phases | Phase 2 is eligible for Project Owner authorization but is not yet authorized. Phases 3–17 remain not authorized. |
+
 - **Approved requirement IDs:** `IIW-REQ-025`.
 - **Prerequisites:** Gate 3 approval; named Integration & Tooling Lead; MATLAB launch explicitly authorized for this phase; no installation authorization is inferred.
 - **Exact allowed files:** `config/team_configuration.yaml`; `extensions/intelligent-inspection/dependency_register.md`; `extensions/intelligent-inspection/evidence/dependency_preflight.md`; `extensions/intelligent-inspection/tools/run_dependency_preflight.m`.
@@ -360,7 +369,7 @@ Phase 17 verifies the complete set `IIW-REQ-001` through `IIW-REQ-025` and does 
 |---|---|---|---|
 | Named Integration & Tooling Lead and AI & Algorithm Developer | Their first implementation phase | Project Owner | **PENDING** |
 | Different named Independent Verification Engineer | Phase 17 independent review | Project Owner | **PENDING** |
-| MATLAB/product release and availability evidence | Any product-dependent phase | Integration & Tooling Lead; Project Owner disposition | **NOT VERIFIED** |
+| MATLAB/product release and availability evidence | Any product-dependent phase | Integration & Tooling Lead; Project Owner disposition | **PASS — all twelve required products installed and license available** |
 | Approval for each proposed optional product | Use of that product | Project Owner | **PENDING where configuration says PROPOSED** |
 | Requirements migration/native traceability mechanism | Native link creation | Lead Systems Engineer; Project Owner | **PENDING** |
 | Dataset source, license, ownership, permitted use, split, leakage control, version | Any training/tuning | Dataset owner and Project Owner | **PENDING** |
@@ -416,10 +425,10 @@ This Gate 3 decision authorizes Phase 1 preflight only. It does not authorize mo
 |---|---|
 | From role | Lead Systems Engineer / MBD Architect |
 | To role | Project Owner / Approval Authority |
-| Completed gate | Gate 3 approved for Phase 1 only |
+| Completed gate | Gate 3 approved for Phase 1 only; Phase 1 completed with PASS on 2026-09-06 |
 | Artifacts produced or changed | Implementation plan, ECR approval record, and team configuration approval status |
-| Evidence available | Approved ECR, approved Gate 2 specifications, approved implementation plan, and approval-record validation |
+| Evidence available | Approved ECR, approved Gate 2 specifications, approved implementation plan, installation inventory, and per-product license-checkout results |
 | Open findings | Unresolved prerequisites in Section 8 |
-| Assumptions and deviations | Phase 1 was not executed; no product availability was inferred; responsible role assignment remains required |
-| Next permitted activity | Phase 1 dependency and MATLAB-product/license preflight in a subsequent controlled task |
+| Assumptions and deviations | Phase 1 evidence was reconciled without running MATLAB in this activity; the previous Predictive Maintenance result used an incorrect feature identifier; responsible role assignment remains required |
+| Next permitted activity | Project Owner may consider authorization of Phase 2; Phase 2 is eligible but not yet authorized, and Phases 3–17 remain unauthorized |
 | Required approver | Project Owner disposition for proposed products and any continuation beyond Phase 1 |
