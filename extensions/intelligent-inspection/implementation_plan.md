@@ -17,9 +17,9 @@
 | Author role | Lead Systems Engineer / MBD Architect |
 | Planned implementers | **TBD:** Integration & Tooling Lead and AI & Algorithm Developer assignments must be recorded before their phases |
 | Independent reviewer | **TBD:** a different named individual from every implementation author |
-| Status | **PHASES 1–3 COMPLETE AND ACCEPTED; PHASE 4 AUTHORIZED AND READY TO EXECUTE** |
+| Status | **PHASES 1–4 COMPLETE AND ACCEPTED; PHASE 5 AUTHORIZED — NOT STARTED** |
 
-Gate 3 was approved by the Project Owner on 2026-09-06, initially with execution authority limited to Phase 1. Phase 1 passed; Phases 2 and 3 were subsequently authorized, completed, and accepted. The Project Owner approved the targeted Gate 2 interface-schema clarification on 2026-09-06, resolving the interface-ambiguity blocker. Phase 4 is authorized and ready to execute under its exact allowlist but has not started. Phases 5–17 remain unauthorized until their documented prerequisites and approval hold points are satisfied and the Project Owner records the required continuation decision. Phase hold points are controls within the Gate 3 work package; they do not replace or renumber repository Gates 1–6.
+Gate 3 was approved by the Project Owner on 2026-09-06, initially with execution authority limited to Phase 1. Phases 1 through 4 were subsequently completed and accepted through their controlled hold points. On 2026-09-07, the Project Owner accepted Phase 4 developer evidence and authorized the narrowed Phase 5 source-ingestion and data-quality scope recorded below. Phase 5 has not started. Phases 6–17 remain unauthorized until their documented prerequisites and approval hold points are satisfied and the Project Owner records the required continuation decision. Phase hold points are controls within the Gate 3 work package; they do not replace or renumber repository Gates 1–6.
 
 ## 2. Approved Basis
 
@@ -34,7 +34,7 @@ The plan implements the approved Gate 2 package:
 - `artifact_mapping.md`
 - `dependency_register.md`
 
-The approved requirements are `IIW-REQ-001` through `IIW-REQ-025`. The approved acceptance criteria are `IIW-AC-001` through `IIW-AC-019`.
+The approved requirements are `IIW-REQ-001` through `IIW-REQ-025`. The approved acceptance criteria are `IIW-AC-001` through `IIW-AC-031`; the Project Owner accepted the Phase 4 results for `IIW-AC-020` through `IIW-AC-031` on 2026-09-07.
 
 ## 3. Global Sequencing and Stop Controls
 
@@ -184,19 +184,30 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 - **Approval gate:** Gate 3 and Phase 3 exit hold point; interface mismatch or unexpected generated metadata is a stop condition.
 - **Rollback approach:** Restore the Phase 3 model hash and remove only the new interface dictionary, interface test, and evidence report.
 
-### Phase 5 — Image-Quality Validation and Preprocessing
+### Phase 5 — Inspection Source and Data-Quality Validation
 
-- **Approved requirement IDs:** `IIW-REQ-002`–`IIW-REQ-004`, `IIW-REQ-017`, `IIW-REQ-018`, `IIW-REQ-020`, `IIW-REQ-023`.
-- **Prerequisites:** MATLAB and Image Processing Toolbox verified and approved; Phase 4 contracts accepted; metric definitions selected. Project threshold values are not required for generic configurable functions but must be approved before project use.
-- **Exact allowed files:** `extensions/intelligent-inspection/core/+iiw/+quality/validateInspectionData.m`; `extensions/intelligent-inspection/core/+iiw/+preprocessing/preprocessInspectionData.m`; `extensions/intelligent-inspection/core/+iiw/+preprocessing/recordTransform.m`; `tests/intelligent-inspection/test_data_quality.m`; `tests/intelligent-inspection/test_preprocessing.m`; `tests/intelligent-inspection/fixtures/quality_contract_fixtures.mat`; `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md`.
-- **Protected files:** Section 4 and detection/prediction implementations.
+| Authorization field | Decision |
+|---|---|
+| Phase 4 prerequisite | **COMPLETE; developer verification PASS — 7/7 tests; Project Owner review ACCEPTED** |
+| Phase 4 acceptance criteria | `IIW-AC-020` through `IIW-AC-031`: **ACCEPTED** |
+| Phase 5 status | **AUTHORIZED — NOT STARTED** |
+| Approver | Nouran Ismail — Project Owner |
+| Authorization date | 2026-09-07 |
+| Authorized scope | Reusable `InspectionSource` contract-boundary ingestion and `DataQualityValidation` only |
+| Later phases | Phases 6–17 remain **NOT AUTHORIZED** |
+
+- **Approved requirement IDs:** `IIW-REQ-001` through `IIW-REQ-003`, `IIW-REQ-017`, `IIW-REQ-018`, `IIW-REQ-020`, `IIW-REQ-021`, `IIW-REQ-023`.
+- **Prerequisites:** Phase 4 contracts accepted; MATLAB availability remains verified; any optional-product use requires its recorded dependency approval; quality algorithms, score aggregation, configurable boundaries, and invalid-input dispositions must be deterministic and documented before developer verification.
+- **Exact authorized allowlist:** `extensions/intelligent-inspection/core/+iiw/+quality/validateInspectionData.m`; `tests/intelligent-inspection/test_data_quality.m`; `tests/intelligent-inspection/fixtures/quality_contract_fixtures.mat`; `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md`.
+- **Allowlist derivation:** This is the non-preprocessing subset of the previously approved Phase 5 allowlist. The existing evidence filename is retained for plan compatibility but does not authorize preprocessing content. No separate `InspectionSource` implementation path exists in the approved plan; generic image/sensor ingestion is therefore limited to contract-boundary acceptance and validation within `validateInspectionData.m`. A separate source implementation artifact requires a Project Owner-approved plan amendment before creation.
+- **Protected files:** Section 4; Phase 4 interfaces and architecture; all preprocessing, detection, deep-learning, feature-extraction, regression, risk, approval, recommendation, and mission-control implementations.
 - **Responsible engineering role:** AI & Algorithm Developer.
-- **Implementation actions:** Implement configurable quality measures, explicit `PASS/REVIEW/REJECT` results, rejection/reacquisition disposition, ordered preprocessing, immutable source reference, and transformation provenance.
-- **Measurable acceptance criteria:** Each input yields exactly one quality result; all rejected inputs yield no actionable downstream record; all processed outputs retain source and ordered transform/version references; no threshold is hard-coded as project authority.
-- **Tests and metrics:** `IIW-TST-QUAL-001` through `IIW-TST-QUAL-006` and `IIW-TST-PRE-001` through `IIW-TST-PRE-004`; boundary, corrupt, missing-metadata, unsupported-schema, deterministic-repeat, and provenance checks; applicable metrics follow the approved metric definitions without claiming achieved project performance.
-- **Evidence produced:** Unit-test results, selected-metric definitions, boundary table, provenance samples, diagnostics, and coverage report for deterministic branching where supported.
-- **Approval gate:** Gate 3 plus Phase 1 dependency disposition; any need for unapproved thresholds stops project-specific use.
-- **Rollback approach:** Remove only the listed quality/preprocessing code, tests, fixtures, and evidence; restore no unrelated configuration.
+- **Implementation actions:** Accept generic image or numerical sensor payloads through the approved inspection contracts; validate required metadata and detect missing, malformed, unsupported, or invalid input; calculate configurable brightness, contrast, blur, and saturation/overexposure measures for applicable image payloads; produce a generic quality score, validity/status, and reason codes; deterministically reject or route unacceptable data to review/reacquisition without producing an operational change; preserve the same contract for later recorded, real, and simulated source adapters.
+- **Measurable acceptance criteria:** Every input produces exactly one typed quality result; missing or malformed payload/metadata and unacceptable quality deterministically produce `REVIEW` or `REJECT` with reason codes and no autonomous operational output; applicable image measures and the aggregate quality score are finite and bounded in `[0,1]`; numerical sensor inputs are accepted without image-only metrics being falsely marked valid; repeated identical inputs/configuration produce identical results; source replacement requires no generic contract change.
+- **Tests and metrics:** `IIW-TST-QUAL-001` through `IIW-TST-QUAL-006`; valid image, valid numerical sensor, missing payload, malformed metadata, unsupported schema, brightness boundaries, contrast boundaries, blur boundaries, saturation/overexposure boundaries, deterministic repeat, rejected-input fail-safe, and source-contract compatibility cases. Tests shall use deterministic synthetic fixtures and shall not claim project performance.
+- **Evidence produced:** `quality_preprocessing_results.md`, limited in this authorization to source-ingestion and data-quality results, selected metric definitions, boundary cases, diagnostics, test results, and deterministic-branch coverage where applicable.
+- **Approval gate:** Project Owner authorization is recorded, but implementation shall not begin with an unapproved optional product, undefined deterministic quality rule, or required file outside the four-file allowlist. Phase exit requires developer evidence and Project Owner disposition before Phase 6.
+- **Rollback approach:** Remove only the three newly authorized implementation/test/fixture artifacts and the Phase 5 evidence file, or restore them to their pre-phase hashes if they already exist; do not alter Phase 4 or protected artifacts.
 
 ### Phase 6 — Replaceable Computer-Vision Detection
 
@@ -469,14 +480,14 @@ This Gate 3 decision authorizes Phase 1 preflight only. It does not authorize mo
 | Handoff field | Entry |
 |---|---|
 | From role | Lead Systems Engineer / MBD Architect |
-| To role | Lead Systems Engineer / MBD Architect for the separately executed Phase 4 task |
-| Completed activity | Phase 3 implementation COMPLETE; verification PASS — 7/7 tests passed; Project Owner review ACCEPTED on 2026-09-06 |
-| Artifacts produced or changed | Phase 3 architecture model, architecture test, and validation evidence; current authorization records |
-| Evidence available | `extensions/intelligent-inspection/evidence/reference_architecture_validation.md` and the approved Phase 3 artifacts |
-| Open findings | Unresolved prerequisites in Section 8 |
-| Assumptions and deviations | Phase 3 Project Owner acceptance is not independent verification or final ECR acceptance; Phase 4 has not started |
-| Next permitted activity | Execute Phase 4 only in a subsequent controlled task using its exact four-file allowlist |
-| Required approver | Project Owner disposition at the Phase 4 exit hold point; later phase authorization remains separately required |
+| To role | AI & Algorithm Developer for the separately executed Phase 5 task |
+| Completed activity | Phase 4 implementation COMPLETE; developer verification PASS — 7/7 tests; Project Owner review ACCEPTED on 2026-09-07 |
+| Artifacts produced or changed | Phase 4 architecture model, interface dictionary, interface test, conformance evidence, and current authorization records |
+| Evidence available | `extensions/intelligent-inspection/evidence/interface_conformance.md` and the accepted Phase 4 artifacts |
+| Open findings | A named AI & Algorithm Developer must be recorded before implementation; optional-product approval and deterministic metric-rule prerequisites remain as stated in Phase 5 and Section 8 |
+| Assumptions and deviations | Phase 4 Project Owner acceptance is a phase-exit decision, not independent verification or final ECR acceptance; Phase 5 has not started |
+| Next permitted activity | Execute only the narrowed Phase 5 scope in a subsequent controlled task using its exact four-file allowlist and satisfied prerequisites |
+| Required approver | Project Owner disposition at the Phase 5 exit hold point; Phase 6 authorization remains separately required |
 
 ## 14. Controlled Phase Continuation Record
 
@@ -493,6 +504,14 @@ This Gate 3 decision authorizes Phase 1 preflight only. It does not authorize mo
 | Phase 4 exact allowlist | `extensions/intelligent-inspection/architecture/models/intelligent_inspection_reference_architecture.slx`; `extensions/intelligent-inspection/architecture/data/intelligent_inspection_interfaces.sldd`; `tests/intelligent-inspection/test_architecture_interfaces.m`; `extensions/intelligent-inspection/evidence/interface_conformance.md` |
 | Interface-schema clarification | **APPROVED — Nouran Ismail, Project Owner, 2026-09-06** |
 | Interface-ambiguity blocker | **RESOLVED** |
-| Phase 4 implementation | **AUTHORIZED AND READY TO EXECUTE — NOT STARTED** |
-| Later phases | Phases 5–17 remain **NOT AUTHORIZED** |
-| Conditions | The verified `MissionSupervisor` remains protected. Phase 4 is limited to the approved generic interface schemas and its exact four-file allowlist. Phases 5–17 remain not authorized. |
+| Phase 4 implementation | **COMPLETE** |
+| Phase 4 developer verification | **PASS — 7/7 tests** |
+| Phase 4 review | **ACCEPTED** |
+| Phase 4 reviewer | Nouran Ismail — Project Owner |
+| Phase 4 review date | 2026-09-07 |
+| Phase 4 acceptance criteria | `IIW-AC-020` through `IIW-AC-031`: **ACCEPTED** |
+| Phase 4 evidence | `extensions/intelligent-inspection/evidence/interface_conformance.md` |
+| Phase 5 | **AUTHORIZED — NOT STARTED** |
+| Phase 5 exact allowlist | `extensions/intelligent-inspection/core/+iiw/+quality/validateInspectionData.m`; `tests/intelligent-inspection/test_data_quality.m`; `tests/intelligent-inspection/fixtures/quality_contract_fixtures.mat`; `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md` |
+| Later phases | Phases 6–17 remain **NOT AUTHORIZED** |
+| Conditions | The verified `MissionSupervisor` and Phase 4 artifacts remain protected. Phase 5 is limited to reusable source-ingestion contract handling and data-quality validation; preprocessing and all later capabilities are excluded. |

@@ -361,3 +361,24 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Approver | Nouran Ismail — Project Owner |
 | Approval date | 2026-09-06 |
 | Conditions or deviations | Approval authorizes Phase 4 execution only under its exact four-file allowlist. It does not implement Phase 4 or authorize Phases 5–17. The verified `MissionSupervisor` remains protected. |
+
+## 17. Phase 4 Acceptance and Phase 5 Authorization
+
+| Decision field | Entry |
+|---|---|
+| Project Owner | Nouran Ismail — Project Owner |
+| Decision date | 2026-09-07 |
+| Phase 4 implementation | **COMPLETE** |
+| Phase 4 developer verification | **PASS — 7/7 tests** |
+| Phase 4 review decision | **ACCEPTED** |
+| Reviewer | Nouran Ismail — Project Owner |
+| Review date | 2026-09-07 |
+| Phase 4 acceptance criteria | `IIW-AC-020` through `IIW-AC-031`: **ACCEPTED** |
+| Phase 4 evidence | `extensions/intelligent-inspection/evidence/interface_conformance.md` |
+| Phase 5 decision | **AUTHORIZED — NOT STARTED** |
+| Phase 5 scope | Reusable `InspectionSource` contract-boundary ingestion and `DataQualityValidation` implementation only |
+| Phase 5 exact allowlist | `extensions/intelligent-inspection/core/+iiw/+quality/validateInspectionData.m`; `tests/intelligent-inspection/test_data_quality.m`; `tests/intelligent-inspection/fixtures/quality_contract_fixtures.mat`; `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md` |
+| Allowlist disposition | The four paths are the non-preprocessing subset of the approved Phase 5 plan allowlist. The legacy evidence filename does not authorize preprocessing. No separate `InspectionSource` implementation path is approved; adding one requires a Project Owner-approved plan amendment. |
+| Phase 5 exclusions | Preprocessing, detection, deep learning, feature extraction, regression, risk assessment, recommendations, mission changes, project-specific logic, verified `MissionSupervisor` changes, and existing UAV regression execution |
+| Later phases | Phases 6–17 remain **NOT AUTHORIZED** |
+| Conditions | Phase 5 execution must stop for an unapproved optional product, undefined deterministic quality rule, or required artifact outside the exact allowlist. This decision is not independent verification or final ECR acceptance. |
