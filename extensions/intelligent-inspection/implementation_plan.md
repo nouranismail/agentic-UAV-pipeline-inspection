@@ -15,7 +15,7 @@
 | Gate 2 planning baseline | `6a7d6d9e3445b3aa6878dc345f9fda411b8b0177` |
 | Plan author | Codex, assisting Nouran Ismail |
 | Author role | Lead Systems Engineer / MBD Architect |
-| Planned implementers | Phase 5A AI & Algorithm Developer: Nouran Ismail; Phase 5B assignment and other phase assignments remain **TBD** |
+| Planned implementers | Phase 5A and Phase 5B AI & Algorithm Developer: Nouran Ismail; other phase assignments remain **TBD** |
 | Independent reviewer | **TBD:** a different named individual from every implementation author; Nouran Ismail is ineligible to independently verify her own Phase 5A implementation |
 | Status | **PHASES 1–4 AND 5A COMPLETE AND ACCEPTED; PHASE 5B AUTHORIZED — NOT STARTED; PHASES 6–17 NOT AUTHORIZED** |
 
@@ -228,6 +228,9 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 | Phase 5B status | **AUTHORIZED — NOT STARTED** |
 | Approver | Nouran Ismail — Project Owner |
 | Authorization date | 2026-09-07 |
+| Assigned implementer | Nouran Ismail — AI & Algorithm Developer |
+| Assigned by/date | Nouran Ismail — Project Owner; 2026-09-07 |
+| Independence | Developer assignment does not establish independent verification; independent verification must use a different named person |
 | Approved requirement | `IIW-REQ-004` |
 | Approved acceptance criteria | `IIW-AC-032` through `IIW-AC-037` |
 | Phase 6 status | Replaceable Computer-Vision Detection — **NOT AUTHORIZED** |
@@ -237,7 +240,7 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 - **Exact authorized allowlist:** `extensions/intelligent-inspection/core/+iiw/+preprocessing/preprocessInspectionData.m`; `extensions/intelligent-inspection/core/+iiw/+preprocessing/recordTransform.m`; `tests/intelligent-inspection/test_preprocessing.m`; `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md`.
 - **Allowlist derivation:** All four paths are recovered from the originally approved Phase 5 allowlist at commit `c52d7f59b382463f8a531f23f2fc25ff3f2838a6`. The completed Phase 5A fixture `tests/intelligent-inspection/fixtures/quality_contract_fixtures.mat` is protected and may be read but not modified. Deterministic preprocessing fixtures shall be defined within `test_preprocessing.m`; if a separate fixture artifact is required, implementation stops for a Project Owner-approved allowlist amendment.
 - **Protected files:** Section 4; all completed Phase 5A implementation, test, and fixture artifacts; Phase 4 interfaces and architecture; every detection, segmentation, deep-learning, feature-extraction, regression, risk, approval, recommendation, and operational-control implementation. The shared evidence file may receive only a clearly separated Phase 5B section while its Phase 5A evidence remains unchanged.
-- **Responsible engineering role:** AI & Algorithm Developer; assignment must be confirmed before implementation. Developer verification is not independent verification.
+- **Responsible engineering role:** Nouran Ismail — AI & Algorithm Developer, assigned by Nouran Ismail — Project Owner on 2026-09-07. Developer verification is not independent verification.
 - **Implementation actions:** Accept only quality-approved image data; deterministically normalize approved image formats or channels; resize to configured dimensions; apply configured intensity normalization, denoising, and contrast adjustment in the approved order; preserve the source record; emit the approved `ProcessedData` contract; and record every applied operation, exact parameter value, input/output reference, implementation version, and configuration version.
 - **Measurable acceptance criteria:** `IIW-AC-032` through `IIW-AC-037` pass. Identical inputs and configuration produce identical output and transform records; `REVIEW` and `REJECT` inputs produce no processed output; no operation is applied unless enabled by configuration; no transformation hides or changes the original quality disposition; every processed output resolves its immutable source and complete ordered transform record.
 - **Tests and metrics:** `IIW-TST-PRE-001` through `IIW-TST-PRE-006`; quality-gate rejection, format/channel normalization, configured resize, enabled/disabled deterministic transforms, ordered parameter provenance, deterministic repeat, invalid configuration, schema conformance, scope, and prohibited-terminology tests. Run only the Phase 5B test during implementation; no achieved result is claimed by this amendment.
@@ -461,7 +464,7 @@ Phase 17 verifies the complete set `IIW-REQ-001` through `IIW-REQ-025` and does 
 |---|---|---|---|
 | Named Integration & Tooling Lead | Its next implementation phase | Project Owner | **PENDING** |
 | Named AI & Algorithm Developer for Phase 5A | Phase 5A implementation | Project Owner | **RESOLVED — Nouran Ismail assigned on 2026-09-07** |
-| Named AI & Algorithm Developer for Phase 5B | Before Phase 5B implementation | Project Owner | **PENDING** |
+| Named AI & Algorithm Developer for Phase 5B | Before Phase 5B implementation | Project Owner | **RESOLVED — Nouran Ismail assigned on 2026-09-07** |
 | Different named Independent Verification Engineer | Phase 17 independent review | Project Owner | **PENDING** |
 | MATLAB/product release and availability evidence | Any product-dependent phase | Integration & Tooling Lead; Project Owner disposition | **PASS — all twelve required products installed and license available** |
 | Image Processing Toolbox approval | Phase 5A and Phase 5B use | Project Owner | **APPROVED FOR PHASE 5 — Nouran Ismail, Project Owner, 2026-09-07** |
@@ -523,7 +526,7 @@ This Gate 3 decision authorizes Phase 1 preflight only. It does not authorize mo
 | Completed activity | Phase 5A implementation COMPLETE; developer verification PASS — 16/16; Project Owner review ACCEPTED on 2026-09-07 |
 | Artifacts produced or changed | Phase 5A data-quality implementation, test, fixture, evidence, and this Phase 5A/5B control amendment |
 | Evidence available | `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md`, limited currently to the accepted Phase 5A evidence |
-| Open findings | Phase 5B developer assignment remains pending; a different named Independent Verification Engineer remains required at Gate 5 |
+| Open findings | A different named Independent Verification Engineer remains required at Gate 5 |
 | Assumptions and deviations | Phase 5A Project Owner acceptance is a subphase-exit decision, not independent verification or final ECR acceptance; Phase 5B has not started |
 | Next permitted activity | After confirming the developer assignment and prerequisites, execute only Phase 5B using its exact four-file allowlist |
 | Required approver | Project Owner disposition at the Phase 5B exit hold point; Phase 6 authorization remains separately required |
@@ -558,6 +561,8 @@ This Gate 3 decision authorizes Phase 1 preflight only. It does not authorize mo
 | Phase 5A boundary clarification | **APPROVED** by Nouran Ismail — Project Owner on 2026-09-07; inclusive `[minimum, maximum]` comparisons in `single`, no tolerance, nonfinite values rejected first, equality-only when minimum equals maximum |
 | Phase 5A exact allowlist | `extensions/intelligent-inspection/core/+iiw/+quality/validateInspectionData.m`; `tests/intelligent-inspection/test_data_quality.m`; `tests/intelligent-inspection/fixtures/quality_contract_fixtures.mat`; `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md` |
 | Phase 5B | **AUTHORIZED — NOT STARTED** |
+| Phase 5B implementer | Nouran Ismail — AI & Algorithm Developer, assigned by Nouran Ismail — Project Owner on 2026-09-07 |
+| Phase 5B independence | Developer verification will not constitute independent verification; a different named person is required |
 | Phase 5B requirement and criteria | `IIW-REQ-004`; `IIW-AC-032` through `IIW-AC-037` |
 | Phase 5B exact allowlist | `extensions/intelligent-inspection/core/+iiw/+preprocessing/preprocessInspectionData.m`; `extensions/intelligent-inspection/core/+iiw/+preprocessing/recordTransform.m`; `tests/intelligent-inspection/test_preprocessing.m`; `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md` |
 | Phase 6 | Replaceable Computer-Vision Detection — **NOT AUTHORIZED** |
