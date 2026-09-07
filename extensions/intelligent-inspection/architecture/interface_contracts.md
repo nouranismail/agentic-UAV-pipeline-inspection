@@ -50,6 +50,26 @@ These rules refine, but do not replace, the approved logical elements above.
 
 All numeric values shall be finite when valid. Unless a row says otherwise, units are `1` and arrays default to all zeros.
 
+## Approved Phase 5 Quality-Boundary Comparison Rules
+
+The Project Owner approved the following deterministic comparison rules for Phase 5 on 2026-09-07:
+
+1. Minimum acceptance boundaries are inclusive: `measuredValue >= minimumThreshold`.
+2. Maximum acceptance boundaries are inclusive: `measuredValue <= maximumThreshold`.
+3. The measured value and configured threshold shall both be represented as MATLAB `single` values before comparison.
+4. No implicit or undocumented numeric tolerance is permitted.
+5. `NaN`, positive infinity, and negative infinity shall be rejected before any comparison.
+6. If the minimum and maximum thresholds are equal, only a measured `single` value exactly equal to that threshold satisfies the range.
+
+| Clarification field | Entry |
+|---|---|
+| Decision | **APPROVED** |
+| Approver | Nouran Ismail — Project Owner |
+| Approval date | 2026-09-07 |
+| Corrective authority | Phase 5 corrective repair only |
+| Phase 5 status | **FAIL — CORRECTIVE REPAIR AUTHORIZED** |
+| Later phases | Phases 6–17 remain **NOT AUTHORIZED** |
+
 ## Status and Category Encodings
 
 | Element | Encoding |

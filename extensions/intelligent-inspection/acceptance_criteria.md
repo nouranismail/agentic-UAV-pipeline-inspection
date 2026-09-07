@@ -31,6 +31,25 @@ Projects shall select applicable measures and approve their thresholds before im
 
 Acceptance requires each selected metric to define unit/domain, computation version, threshold reference, boundary behavior, and reason code. No threshold value is approved by this package.
 
+### Approved Phase 5 Numeric-Boundary Clarification
+
+For Phase 5 data-quality comparisons:
+
+- A measured value satisfies a minimum boundary when `measuredValue >= minimumThreshold`.
+- A measured value satisfies a maximum boundary when `measuredValue <= maximumThreshold`.
+- Both the measured value and configured threshold shall be represented as MATLAB `single` values before comparison, consistent with the approved quality-score representation.
+- No implicit or undocumented numeric tolerance is permitted.
+- `NaN`, positive infinity, and negative infinity shall be rejected before any boundary comparison.
+- When `minimumThreshold == maximumThreshold`, only a measured `single` value exactly equal to that value satisfies the range.
+
+| Clarification field | Entry |
+|---|---|
+| Decision | **APPROVED** |
+| Approver | Nouran Ismail — Project Owner |
+| Approval date | 2026-09-07 |
+| Phase 5 status | **FAIL — CORRECTIVE REPAIR AUTHORIZED** |
+| Later phases | Phases 6–17 remain **NOT AUTHORIZED** |
+
 ## Detection and Classification Metrics
 
 - Per-label precision, recall, and F1 score.

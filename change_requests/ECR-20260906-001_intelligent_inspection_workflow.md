@@ -388,3 +388,22 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Phase 5 exclusions | Preprocessing, detection, deep learning, feature extraction, regression, risk assessment, recommendations, mission changes, project-specific logic, verified `MissionSupervisor` changes, and existing UAV regression execution |
 | Later phases | Phases 6–17 remain **NOT AUTHORIZED** |
 | Conditions | Phase 5 execution must stop for an unapproved optional product, undefined deterministic quality rule, or required artifact outside the exact allowlist. This decision is not independent verification or final ECR acceptance. |
+
+## 18. Phase 5 Numeric-Boundary Clarification and Corrective Authorization
+
+| Decision field | Entry |
+|---|---|
+| Clarification decision | **APPROVED** |
+| Approver | Nouran Ismail — Project Owner |
+| Approval date | 2026-09-07 |
+| Minimum comparison | Inclusive: `measuredValue >= minimumThreshold` |
+| Maximum comparison | Inclusive: `measuredValue <= maximumThreshold` |
+| Numeric representation | Convert both the measured value and configured threshold to MATLAB `single` before comparison |
+| Tolerance | No implicit or undocumented tolerance is permitted |
+| Nonfinite handling | Reject `NaN`, positive infinity, and negative infinity before comparison |
+| Equal thresholds | When minimum equals maximum, only an exactly equal measured `single` value satisfies the range |
+| Phase 5 corrective repair | **AUTHORIZED** within the existing four-file Phase 5 allowlist |
+| Phase 5 status | **FAIL — CORRECTIVE REPAIR AUTHORIZED** |
+| Corrective limit | Correct only `exactBrightnessBoundaryPasses` and the field-name representation comparison in `resultMatchesApprovedSchema`; rerun only `tests/intelligent-inspection/test_data_quality.m` |
+| Later phases | Phases 6–17 remain **NOT AUTHORIZED** |
+| Conditions | This clarification does not modify or accept the Phase 5 implementation, authorize preprocessing, authorize a later phase, or constitute independent verification or final acceptance. |
