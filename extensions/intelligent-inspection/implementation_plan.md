@@ -15,8 +15,8 @@
 | Gate 2 planning baseline | `6a7d6d9e3445b3aa6878dc345f9fda411b8b0177` |
 | Plan author | Codex, assisting Nouran Ismail |
 | Author role | Lead Systems Engineer / MBD Architect |
-| Planned implementers | **TBD:** Integration & Tooling Lead and AI & Algorithm Developer assignments must be recorded before their phases |
-| Independent reviewer | **TBD:** a different named individual from every implementation author |
+| Planned implementers | Phase 5 AI & Algorithm Developer: Nouran Ismail; other phase assignments remain **TBD** |
+| Independent reviewer | **TBD:** a different named individual from every implementation author; Nouran Ismail is ineligible to independently verify her own Phase 5 implementation |
 | Status | **PHASES 1–4 COMPLETE AND ACCEPTED; PHASE 5 AUTHORIZED — NOT STARTED** |
 
 Gate 3 was approved by the Project Owner on 2026-09-06, initially with execution authority limited to Phase 1. Phases 1 through 4 were subsequently completed and accepted through their controlled hold points. On 2026-09-07, the Project Owner accepted Phase 4 developer evidence and authorized the narrowed Phase 5 source-ingestion and data-quality scope recorded below. Phase 5 has not started. Phases 6–17 remain unauthorized until their documented prerequisites and approval hold points are satisfied and the Project Owner records the required continuation decision. Phase hold points are controls within the Gate 3 work package; they do not replace or renumber repository Gates 1–6.
@@ -193,6 +193,10 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 | Phase 5 status | **AUTHORIZED — NOT STARTED** |
 | Approver | Nouran Ismail — Project Owner |
 | Authorization date | 2026-09-07 |
+| Assigned developer | Nouran Ismail — AI & Algorithm Developer |
+| Developer assignment date | 2026-09-07 |
+| Approved dependency | Image Processing Toolbox — **APPROVED FOR PHASE 5 USE** by Nouran Ismail — Project Owner on 2026-09-07 |
+| Independence | Developer assignment is not independent verification; Nouran Ismail shall not independently verify her own Phase 5 implementation |
 | Authorized scope | Reusable `InspectionSource` contract-boundary ingestion and `DataQualityValidation` only |
 | Later phases | Phases 6–17 remain **NOT AUTHORIZED** |
 
@@ -423,10 +427,12 @@ Phase 17 verifies the complete set `IIW-REQ-001` through `IIW-REQ-025` and does 
 
 | Prerequisite | Required before | Owner/approver | Current status |
 |---|---|---|---|
-| Named Integration & Tooling Lead and AI & Algorithm Developer | Their first implementation phase | Project Owner | **PENDING** |
+| Named Integration & Tooling Lead | Its next implementation phase | Project Owner | **PENDING** |
+| Named AI & Algorithm Developer for Phase 5 | Phase 5 implementation | Project Owner | **RESOLVED — Nouran Ismail assigned on 2026-09-07** |
 | Different named Independent Verification Engineer | Phase 17 independent review | Project Owner | **PENDING** |
 | MATLAB/product release and availability evidence | Any product-dependent phase | Integration & Tooling Lead; Project Owner disposition | **PASS — all twelve required products installed and license available** |
-| Approval for each proposed optional product | Use of that product | Project Owner | **PENDING where configuration says PROPOSED** |
+| Image Processing Toolbox approval | Phase 5 use | Project Owner | **APPROVED FOR PHASE 5 — Nouran Ismail, Project Owner, 2026-09-07** |
+| Approval for each other proposed optional product | Use of that product | Project Owner | **PENDING where configuration says PROPOSED** |
 | Requirements migration/native traceability mechanism | Native link creation | Lead Systems Engineer; Project Owner | **PENDING** |
 | Dataset source, license, ownership, permitted use, split, leakage control, version | Any training/tuning | Dataset owner and Project Owner | **PENDING** |
 | Taxonomy, anomaly classes, metric thresholds, support, operating slices | CV/DL/project evaluation | Lead Systems Engineer and Project Owner | **PENDING** |
@@ -484,7 +490,7 @@ This Gate 3 decision authorizes Phase 1 preflight only. It does not authorize mo
 | Completed activity | Phase 4 implementation COMPLETE; developer verification PASS — 7/7 tests; Project Owner review ACCEPTED on 2026-09-07 |
 | Artifacts produced or changed | Phase 4 architecture model, interface dictionary, interface test, conformance evidence, and current authorization records |
 | Evidence available | `extensions/intelligent-inspection/evidence/interface_conformance.md` and the accepted Phase 4 artifacts |
-| Open findings | A named AI & Algorithm Developer must be recorded before implementation; optional-product approval and deterministic metric-rule prerequisites remain as stated in Phase 5 and Section 8 |
+| Open findings | Deterministic metric-rule prerequisites remain as stated in Phase 5; a different named Independent Verification Engineer remains required at Gate 5 |
 | Assumptions and deviations | Phase 4 Project Owner acceptance is a phase-exit decision, not independent verification or final ECR acceptance; Phase 5 has not started |
 | Next permitted activity | Execute only the narrowed Phase 5 scope in a subsequent controlled task using its exact four-file allowlist and satisfied prerequisites |
 | Required approver | Project Owner disposition at the Phase 5 exit hold point; Phase 6 authorization remains separately required |
@@ -512,6 +518,9 @@ This Gate 3 decision authorizes Phase 1 preflight only. It does not authorize mo
 | Phase 4 acceptance criteria | `IIW-AC-020` through `IIW-AC-031`: **ACCEPTED** |
 | Phase 4 evidence | `extensions/intelligent-inspection/evidence/interface_conformance.md` |
 | Phase 5 | **AUTHORIZED — NOT STARTED** |
+| Phase 5 assigned developer | Nouran Ismail — AI & Algorithm Developer, assigned by the Project Owner on 2026-09-07 |
+| Phase 5 dependency approval | Image Processing Toolbox — **APPROVED FOR PHASE 5 USE** by Nouran Ismail — Project Owner on 2026-09-07 |
+| Phase 5 independence | The developer assignment is not independent verification; Nouran Ismail shall not be recorded as Independent Verification Engineer for her own Phase 5 implementation |
 | Phase 5 exact allowlist | `extensions/intelligent-inspection/core/+iiw/+quality/validateInspectionData.m`; `tests/intelligent-inspection/test_data_quality.m`; `tests/intelligent-inspection/fixtures/quality_contract_fixtures.mat`; `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md` |
 | Later phases | Phases 6–17 remain **NOT AUTHORIZED** |
 | Conditions | The verified `MissionSupervisor` and Phase 4 artifacts remain protected. Phase 5 is limited to reusable source-ingestion contract handling and data-quality validation; preprocessing and all later capabilities are excluded. |

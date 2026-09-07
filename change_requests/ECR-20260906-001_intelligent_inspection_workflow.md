@@ -376,6 +376,12 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Phase 4 acceptance criteria | `IIW-AC-020` through `IIW-AC-031`: **ACCEPTED** |
 | Phase 4 evidence | `extensions/intelligent-inspection/evidence/interface_conformance.md` |
 | Phase 5 decision | **AUTHORIZED — NOT STARTED** |
+| Phase 5 assigned developer | Nouran Ismail — AI & Algorithm Developer |
+| Phase assignment | Phase 5 implementation |
+| Developer assignment authority and date | Nouran Ismail — Project Owner; 2026-09-07 |
+| Phase 5 dependency approval | Image Processing Toolbox — **APPROVED FOR PHASE 5 USE** |
+| Dependency approval authority and date | Nouran Ismail — Project Owner; 2026-09-07 |
+| Independence restriction | The developer assignment does not provide independent verification. Nouran Ismail shall not be recorded as the Independent Verification Engineer for her own Phase 5 implementation; independent verification remains a separate future gate. |
 | Phase 5 scope | Reusable `InspectionSource` contract-boundary ingestion and `DataQualityValidation` implementation only |
 | Phase 5 exact allowlist | `extensions/intelligent-inspection/core/+iiw/+quality/validateInspectionData.m`; `tests/intelligent-inspection/test_data_quality.m`; `tests/intelligent-inspection/fixtures/quality_contract_fixtures.mat`; `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md` |
 | Allowlist disposition | The four paths are the non-preprocessing subset of the approved Phase 5 plan allowlist. The legacy evidence filename does not authorize preprocessing. No separate `InspectionSource` implementation path is approved; adding one requires a Project Owner-approved plan amendment. |
