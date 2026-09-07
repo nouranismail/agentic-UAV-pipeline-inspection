@@ -422,6 +422,11 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Phase 5A review date | 2026-09-07 |
 | Phase 5A independent verification | **PENDING** — it must be performed by a different named reviewer |
 | Phase 5B decision | **AUTHORIZED — NOT STARTED** |
+| Phase 5B implementer | Nouran Ismail |
+| Implementer role | AI & Algorithm Developer |
+| Assigned by | Nouran Ismail — Project Owner |
+| Assignment date | 2026-09-07 |
+| Independence restriction | The implementer may perform developer verification but may not independently verify her own Phase 5B work; independent verification must use a different named person |
 | Phase 5B scope | Reusable deterministic image preprocessing only after `DataQualityValidation` returns `PASS` |
 | Phase 5B requirement | Revised `IIW-REQ-004`; no new requirement ID |
 | Phase 5B acceptance criteria | `IIW-AC-032` through `IIW-AC-037` |
