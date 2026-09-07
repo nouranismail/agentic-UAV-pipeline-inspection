@@ -47,8 +47,22 @@ For Phase 5 data-quality comparisons:
 | Decision | **APPROVED** |
 | Approver | Nouran Ismail — Project Owner |
 | Approval date | 2026-09-07 |
-| Phase 5 status | **FAIL — CORRECTIVE REPAIR AUTHORIZED** |
-| Later phases | Phases 6–17 remain **NOT AUTHORIZED** |
+| Phase 5A status | **COMPLETE; developer verification PASS — 16/16; Project Owner review ACCEPTED** |
+| Phase 5B status | **AUTHORIZED — NOT STARTED** |
+| Later phases | Phase 6 remains Replaceable Computer-Vision Detection and is **NOT AUTHORIZED**; Phases 7–17 remain **NOT AUTHORIZED** |
+
+## Phase 5B Image-Preprocessing Acceptance Criteria
+
+| ID | Criterion | Measurement |
+|---|---|---|
+| IIW-AC-032 | Preprocessing accepts only an input whose `DataQualityResult.status` is `PASS`. | Tests show every `REVIEW`, `REJECT`, missing, malformed, and unsupported quality disposition produces no `ProcessedData` output and an explicit failure record. |
+| IIW-AC-033 | Format/channel normalization and resizing are deterministic and use only approved configuration values. | Repeated identical inputs and configuration produce identical outputs; output type, channel count, and configured dimensions match exactly. |
+| IIW-AC-034 | Intensity normalization, denoising, and contrast adjustment are applied only when selected by approved configuration and in the configured order. | Operation-order tests cover enabled and disabled operations and find no unrecorded transformation or hard-coded project threshold. |
+| IIW-AC-035 | Every processed output preserves source provenance and records all applied operations and parameter values. | Each `ProcessedData` record resolves its source item, transform record, implementation version, configuration version, ordered operation identifiers, and exact parameter values. |
+| IIW-AC-036 | Preprocessing does not conceal, repair, or relabel rejected input as valid. | Rejected-input tests produce no processed payload or downstream-analysis eligibility, including when an image transformation could visually improve the input. |
+| IIW-AC-037 | The Phase 5B implementation remains application-independent and contains no detection, segmentation, learned-model, feature, prediction, risk, approval, recommendation, or operational-control behavior. | Static scope and prohibited-terminology checks report zero prohibited implementation and zero project-specific terminology. |
+
+Phase 5B acceptance is governed by `IIW-REQ-004`. These criteria define future verification and do not claim that preprocessing has been implemented or tested.
 
 ## Detection and Classification Metrics
 

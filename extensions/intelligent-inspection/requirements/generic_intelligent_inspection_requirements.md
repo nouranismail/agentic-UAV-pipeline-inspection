@@ -13,7 +13,7 @@ These requirements define observable behavior and governance constraints. They d
 | IIW-REQ-001 | The workflow shall accept inspection data and acquisition metadata through a versioned inspection-source contract. | Allows sources to be replaced without changing downstream components. | Contract inspection confirms mandatory payload reference, modality, source identifier, timestamp, sequence identifier, and schema version fields. |
 | IIW-REQ-002 | When inspection data is received, the workflow shall validate payload availability, schema conformance, metadata completeness, and configured quality measures before analysis. | Prevents unsuitable inputs from reaching analysis components. | Every submitted item produces exactly one quality result containing status, measured values, configured thresholds, and reason codes. |
 | IIW-REQ-003 | If data quality is rejected, the workflow shall prevent autonomous action generation from that data and shall request reacquisition or review. | Enforces fail-controlled behavior for unsuitable evidence. | A rejected quality result produces no actionable recommendation and produces a recorded reacquisition-or-review disposition. |
-| IIW-REQ-004 | When quality validation passes, preprocessing shall produce a versioned processed-data reference and transformation record without altering the source record. | Preserves provenance and reproducibility. | Each processed output references its source item and records the ordered transformations and configuration version. |
+| IIW-REQ-004 | Only when quality validation returns `PASS`, preprocessing shall apply the approved deterministic, configured transformations and produce a versioned processed-data reference and transformation record without altering the source record. A `REVIEW` or `REJECT` result shall not be transformed into apparently acceptable data. | Preserves provenance and reproducibility while preventing preprocessing from bypassing data-quality disposition. | Each processed output references a `PASS` source item and records every applied operation, parameter value, execution order, implementation version, and configuration version; `REVIEW` and `REJECT` inputs produce no processed-data output. |
 | IIW-REQ-005 | The detection capability shall be replaceable through a common detection contract. | Supports interchangeable conventional and learned implementations. | Two conforming mock implementation descriptions can be substituted without changing the consuming interface definitions. |
 | IIW-REQ-006 | Where a learned detection implementation is selected, it shall publish model identity, version, input contract, output contract, and confidence semantics. | Prevents opaque model substitution. | The model record contains all five fields and is linked by identifier from every corresponding detection result. |
 | IIW-REQ-007 | Detection results shall identify the analyzed item, detected label identifiers, confidence values, and optional location information using the generic detection contract. | Makes results traceable and application-neutral. | Contract validation accepts complete results and rejects missing analyzed-item, label, confidence, or schema fields. |
@@ -44,3 +44,15 @@ These requirements define observable behavior and governance constraints. They d
 | Approver | Nouran Ismail — Project Owner |
 | Approval date | 2026-09-06 |
 | Comments | Approved for implementation-plan preparation only under ECR-20260906-001. Model implementation, MATLAB execution, training, and testing remain unauthorized pending Gate 3. |
+
+## Phase 5 Subphase Amendment
+
+| Field | Entry |
+|---|---|
+| Decision | **APPROVED** |
+| Approver | Nouran Ismail — Project Owner |
+| Approval date | 2026-09-07 |
+| Revised requirement IDs | `IIW-REQ-004` only |
+| New requirement IDs | None |
+| Disposition | Phase 5 is divided into Phase 5A — Reusable `DataQualityValidation` and Phase 5B — Reusable Image Preprocessing. Phase 5B is authorized but not started. |
+| Conditions | Phase 5B accepts only `PASS` inputs, preserves immutable source evidence, records every configured transformation, and does not authorize detection or any Phase 6–17 behavior. |

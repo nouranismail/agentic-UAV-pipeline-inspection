@@ -407,3 +407,28 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Corrective limit | Correct only `exactBrightnessBoundaryPasses` and the field-name representation comparison in `resultMatchesApprovedSchema`; rerun only `tests/intelligent-inspection/test_data_quality.m` |
 | Later phases | Phases 6–17 remain **NOT AUTHORIZED** |
 | Conditions | This clarification does not modify or accept the Phase 5 implementation, authorize preprocessing, authorize a later phase, or constitute independent verification or final acceptance. |
+
+## 19. Phase 5A Acceptance and Phase 5B Authorization Amendment
+
+| Decision field | Entry |
+|---|---|
+| Project Owner | Nouran Ismail — Project Owner |
+| Decision date | 2026-09-07 |
+| Phase numbering disposition | Phase 5 is divided into controlled subphases 5A and 5B; Phases 6–17 are not renumbered |
+| Phase 5A implementation | **COMPLETE** |
+| Phase 5A developer verification | **PASS — 16/16** |
+| Phase 5A review decision | **ACCEPTED** |
+| Phase 5A reviewer | Nouran Ismail — Project Owner |
+| Phase 5A review date | 2026-09-07 |
+| Phase 5A independent verification | **PENDING** — it must be performed by a different named reviewer |
+| Phase 5B decision | **AUTHORIZED — NOT STARTED** |
+| Phase 5B scope | Reusable deterministic image preprocessing only after `DataQualityValidation` returns `PASS` |
+| Phase 5B requirement | Revised `IIW-REQ-004`; no new requirement ID |
+| Phase 5B acceptance criteria | `IIW-AC-032` through `IIW-AC-037` |
+| Phase 5B exact allowlist | `extensions/intelligent-inspection/core/+iiw/+preprocessing/preprocessInspectionData.m`; `extensions/intelligent-inspection/core/+iiw/+preprocessing/recordTransform.m`; `tests/intelligent-inspection/test_preprocessing.m`; `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md` |
+| Allowlist provenance | The four paths are recovered from the originally approved Phase 5 implementation plan at commit `c52d7f59b382463f8a531f23f2fc25ff3f2838a6`. The completed Phase 5A fixture remains protected and is not part of the Phase 5B modifiable allowlist. |
+| Phase 5B permitted behavior | Configured deterministic format/channel normalization, resizing, intensity normalization, denoising, contrast adjustment, and complete ordered transformation/parameter recording |
+| Phase 5B restrictions | Do not process `REVIEW` or `REJECT` inputs into processed output; do not hide or repair rejected input; do not implement detection, segmentation, learned models, feature extraction, regression, risk, approval, recommendations, operational commands, project-specific behavior, or MissionSupervisor changes |
+| Phase 6 | Replaceable Computer-Vision Detection — **NOT AUTHORIZED** |
+| Later phases | Phases 7–17 remain **NOT AUTHORIZED** |
+| Conditions | This amendment authorizes Phase 5B only within its exact allowlist. It does not constitute Phase 5B implementation, developer verification, independent verification, or final ECR acceptance. |
