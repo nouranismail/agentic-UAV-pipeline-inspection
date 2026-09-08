@@ -8,12 +8,14 @@
 | Activity | Phase 7 dataset-selection research |
 | Prepared by | Nouran Ismail — AI & Algorithm Developer, with Codex assistance |
 | Preparation date | 2026-09-08 |
-| Decision status | **PENDING PROJECT OWNER SELECTION** |
+| Decision status | **CONDITIONALLY SELECTED BY PROJECT OWNER — VERIFICATION PENDING** |
+| Selected dataset | Kolektor Surface-Defect Dataset 2 (KolektorSDD2 / KSDD2) |
+| Selection authority/date | Nouran Ismail — Project Owner; 2026-09-08 |
 | Dataset downloaded | **NO** |
 | Dataset manifest created | **NO** |
 | Training or evaluation performed | **NO** |
 
-This proposal compares public datasets only. It does not approve a dataset, authorize a download, alter annotations, authorize training, or report model performance. Facts below come from the linked publisher sources. Values explicitly marked **estimate** are planning estimates that must be verified after selection and before download or training.
+The Project Owner conditionally selected KSDD2 for a non-commercial internship research/demonstration and authorized controlled acquisition and governance steps only. Selection remains subject to source, license, archive, and annotation verification. Dataset use, annotation modification, training, tuning, calibration, performance evaluation, model creation, and performance claims remain prohibited. Facts below come from the linked publisher sources. Values explicitly marked **estimate** are planning estimates that must be verified after acquisition.
 
 ## 2. Candidate Comparison
 
@@ -74,7 +76,7 @@ This proposal compares public datasets only. It does not approve a dataset, auth
 
 ## 4. Recommendation
 
-Recommend **KolektorSDD2**, subject to Project Owner selection and a pre-download license/metadata confirmation.
+The Project Owner has conditionally selected **KolektorSDD2**, subject to the approved source, license, archive, and annotation verification sequence.
 
 Reasons:
 
@@ -85,11 +87,11 @@ Reasons:
 - Mask-derived region results can be adapted to the existing generic `DetectionResult` without changing the interface or claiming physical coordinates.
 - MVTec AD remains a strong future reuse candidate for demonstrating a different unsupervised anomaly-detection configuration. The METU dataset is useful as a classification baseline but is not recommended because it lacks localization annotations and may not permit a defensible parent-group split from released metadata.
 
-This recommendation is not dataset approval. Before selection or download, the Project Owner must approve the exact dataset/version, intended non-commercial use, redistribution approach, category scope, annotation interpretation, split policy, metrics, thresholds, and compute budget.
+The Project Owner selected KSDD2 on 2026-09-08 subject to successful source, license, archive, and annotation verification. This conditional selection is not approval to train or evaluate a model. Before training, the Project Owner must approve the verified dataset version, integrity hashes, category and annotation interpretation, immutable split membership, leakage analysis, metrics, thresholds, confidence policy, and compute budget.
 
-## 5. Required Gate Before Download or Training
+## 5. Required Verification and Training Hold Points
 
-The next approval record must resolve:
+The acquisition evidence and later training-approval record must resolve:
 
 1. Selected dataset and immutable publisher version.
 2. License compatibility, attribution text, ShareAlike handling, and whether repository redistribution is permitted or prohibited.
@@ -98,5 +100,4 @@ The next approval record must resolve:
 5. Inclusion, exclusion, deduplication, split membership, and leakage-analysis procedure.
 6. Numeric label mapping, approved anomaly scope, preprocessing, augmentation, metrics, operating slices, thresholds, confidence policy, and compute limits.
 
-Until that approval is recorded, dataset selection, download, annotation changes, training, tuning, calibration, and performance evaluation remain prohibited.
-
+Controlled download from the official source is authorized only to an approved external location after the source and license pre-checks. Annotation changes, training, tuning, calibration, model creation, performance evaluation, and performance claims remain prohibited.

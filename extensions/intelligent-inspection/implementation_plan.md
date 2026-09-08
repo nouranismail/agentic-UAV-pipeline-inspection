@@ -286,25 +286,29 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 
 | Authorization field | Decision |
 |---|---|
-| Status | **AUTHORIZED — NOT STARTED** |
+| Status | **AUTHORIZED — DATASET ACQUISITION AND GOVERNANCE ONLY; MODEL IMPLEMENTATION BLOCKED** |
 | Approver/date | Nouran Ismail — Project Owner; 2026-09-08 |
 | Deep Learning Toolbox | **APPROVED FOR PHASE 7** |
 | Implementer | Nouran Ismail — AI & Algorithm Developer; assigned by Nouran Ismail — Project Owner on 2026-09-08 |
 | Independence | Developer verification does not establish independent verification; a different named person must perform independent verification |
 | Dataset planning amendment | **APPROVED** by Nouran Ismail — Project Owner on 2026-09-08 |
 | Dataset research and proposal | **AUTHORIZED** only in `extensions/intelligent-inspection/datasets/dataset_selection_proposal.md` |
-| Dataset selection | **NOT YET APPROVED** |
-| Dataset download, annotation modification, model training, and performance evaluation | **NOT AUTHORIZED** |
-| Other Phase 7 artifacts | The other seven allowlisted implementation artifacts remain unimplemented |
-| Execution hold | Dataset source, license, ownership, immutable version, annotations, split, leakage controls, classes, metrics, thresholds, and compute constraints remain pending |
+| Dataset selection | **KSDD2 CONDITIONALLY SELECTED** by Nouran Ismail — Project Owner on 2026-09-08 |
+| Dataset acquisition | Download from the official source to an approved external location is **AUTHORIZED — NOT EXECUTED**; extraction, integrity hashing, provenance recording, structure/annotation inspection, and manifest creation are authorized |
+| Dataset use | **BLOCKED** pending successful source, license, archive, annotation, and split-metadata verification |
+| Annotation modification, model training, model creation, and performance evaluation | **NOT AUTHORIZED** |
+| Storage boundary | Resolve `IIW_DATASET_ROOT` to a location outside this Git repository; use `IIW_DATASET_ROOT/KSDD2/source/` for the source archive and `IIW_DATASET_ROOT/KSDD2/extracted/` for extracted content |
+| Repository boundary | Raw archives, extracted images, and derived dataset payloads shall not be stored or redistributed in this repository; no `.gitignore` amendment is required for the approved external-storage approach |
+| Download utility | No repository utility is required; acquisition shall use the publisher-controlled official source and record the final resolved URL, timestamp, archive name, byte size, and cryptographic hash in the manifest |
+| Execution hold | Metrics, thresholds, numeric class mapping, immutable leakage-safe split membership, annotation interpretation, and compute constraints remain pending Project Owner approval |
 | Later phases | Phases 8–17 remain **NOT AUTHORIZED** |
 
 - **Approved requirement IDs:** `IIW-REQ-005`–`IIW-REQ-007`, `IIW-REQ-012`, `IIW-REQ-017`–`IIW-REQ-020`, `IIW-REQ-023`.
-- **Prerequisites:** Phase 6 contract accepted; Deep Learning Toolbox verified and approved; dataset source, license, owner, immutable version, annotation policy, split, leakage controls, anomaly classes, metrics, thresholds, and compute constraints approved in writing.
+- **Prerequisites:** Phase 6 contract accepted and Deep Learning Toolbox verified and approved. KSDD2 is conditionally selected for non-commercial internship use, with attribution and ShareAlike mandatory. Before dataset use, verify the source, license, archive hash and structure, image/mask encodings, annotation semantics, counts, and split metadata. Before training, approve immutable split membership, leakage controls, numeric class mapping, metrics, thresholds, confidence policy, and compute constraints in writing.
 - **Exact allowed files:** `extensions/intelligent-inspection/core/+iiw/+detection/deepLearningDetector.m`; `extensions/intelligent-inspection/training/train_deep_learning_detector.m`; `extensions/intelligent-inspection/models/deep_learning_detector.mat`; `extensions/intelligent-inspection/model_cards/deep_learning_detector.md`; `extensions/intelligent-inspection/datasets/deep_learning_dataset_manifest.yaml`; `extensions/intelligent-inspection/datasets/dataset_selection_proposal.md`; `tests/intelligent-inspection/test_deep_learning_detector.m`; `extensions/intelligent-inspection/evidence/deep_learning_detection_results.md`.
 - **Protected files:** Section 4, raw datasets outside the approved manifest, and the conventional detector contract.
 - **Responsible engineering role:** AI & Algorithm Developer.
-- **Implementation actions:** If all prerequisites pass, implement the optional adapter, controlled training pipeline, immutable model artifact, confidence/calibration evaluation, and model card. Otherwise mark the phase deferred; do not fabricate a model or result.
+- **Implementation actions:** Current authorization is limited to acquiring KSDD2 from the official source into external storage, extracting it, computing integrity hashes, inspecting the archive and annotations, and recording verified facts in the dataset manifest. The optional adapter, training pipeline, model artifact, evaluation, and model card remain blocked until the later hold points pass.
 - **Measurable acceptance criteria:** Adapter conforms without consumer changes; model identity/version and confidence semantics accompany every result; approved validation/test split remains isolated; every approved metric is reported against its pass threshold.
 - **Tests and metrics:** `IIW-TST-DL-001` through `IIW-TST-DL-006`; schema, model-version, split-integrity, reproducibility, failure, performance-slice, and calibration checks; metrics only as approved in the dataset/metric record.
 - **Evidence produced:** Dataset manifest, training configuration/log, model hash, model card, test results, confusion/performance/calibration evidence, and limitations.
@@ -613,7 +617,7 @@ This Gate 3 decision authorizes Phase 1 preflight only. It does not authorize mo
 | Phase 6 independence | **PENDING** — a different named reviewer is required |
 | Phase 6 exact allowlist | `extensions/intelligent-inspection/core/+iiw/+detection/DetectorContract.m`; `extensions/intelligent-inspection/core/+iiw/+detection/runDetector.m`; `extensions/intelligent-inspection/core/+iiw/+detection/conventionalDetector.m`; `tests/intelligent-inspection/test_detection_contract.m`; `tests/intelligent-inspection/test_detector_replacement.m`; `tests/intelligent-inspection/fixtures/detection_contract_fixtures.mat`; `extensions/intelligent-inspection/evidence/conventional_detection_results.md` |
 | Phase 6 scope control | Consume `ProcessedData`, emit `DetectionResult`, retain replaceability and configurable thresholds, handle low-confidence/no-detection outcomes, and issue no operational or safety commands; segmentation is not authorized |
-| Phase 7 | Optional Deep-Learning Detection — **AUTHORIZED — NOT STARTED; EXECUTION BLOCKED PENDING PREREQUISITES** |
+| Phase 7 | Optional Deep-Learning Detection — **AUTHORIZED FOR KSDD2 ACQUISITION AND GOVERNANCE ONLY; MODEL IMPLEMENTATION BLOCKED** |
 | Phase 7 exact allowlist | `extensions/intelligent-inspection/core/+iiw/+detection/deepLearningDetector.m`; `extensions/intelligent-inspection/training/train_deep_learning_detector.m`; `extensions/intelligent-inspection/models/deep_learning_detector.mat`; `extensions/intelligent-inspection/model_cards/deep_learning_detector.md`; `extensions/intelligent-inspection/datasets/deep_learning_dataset_manifest.yaml`; `extensions/intelligent-inspection/datasets/dataset_selection_proposal.md`; `tests/intelligent-inspection/test_deep_learning_detector.m`; `extensions/intelligent-inspection/evidence/deep_learning_detection_results.md` |
 | Later phases | Phases 8–17 remain **NOT AUTHORIZED** |
-| Conditions | Phase 6 acceptance is not independent verification. Phase 7 is assigned to Nouran Ismail. Only dataset research and proposal creation are currently authorized; dataset selection, download, annotation modification, training, and performance evaluation remain unauthorized. Nouran Ismail may not independently verify her own Phase 7 work. The verified `MissionSupervisor` remains protected. |
+| Conditions | KSDD2 is conditionally selected. Official-source download to external storage, extraction, integrity/provenance verification, annotation inspection, and manifest creation are authorized but not executed. Dataset use, annotation modification, training, model creation, and evaluation remain blocked. Nouran Ismail may not independently verify her own Phase 7 work. The verified `MissionSupervisor` remains protected. |

@@ -497,3 +497,24 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Performance evaluation | **NOT AUTHORIZED** |
 | Other Phase 7 artifacts | The other seven allowlisted implementation artifacts remain unimplemented |
 | Later phases | Phases 8–17 remain **NOT AUTHORIZED** |
+
+### Phase 7 Conditional Dataset Selection and Acquisition Authorization
+
+| Decision field | Entry |
+|---|---|
+| Decision authority/date | Nouran Ismail — Project Owner; 2026-09-08 |
+| Selected dataset | Kolektor Surface-Defect Dataset 2 (KolektorSDD2 / KSDD2) |
+| Official source | `https://www.vicos.si/resources/kolektorsdd2/` |
+| Owner/provider | ViCoS Laboratory and Kolektor Group |
+| Permitted project use | Non-commercial internship research and demonstration |
+| License | CC BY-NC-SA 4.0 |
+| Obligations | Attribution and ShareAlike are mandatory; commercial-use claims are prohibited |
+| Selection condition | Source, license, archive, annotation, and split-metadata verification must succeed before dataset use |
+| Authorized acquisition | Download from the official source to approved external storage; extract; compute integrity hashes; record provenance, archive structure, image/mask encodings, annotations, counts, and split metadata |
+| Authorized repository artifact | Create `extensions/intelligent-inspection/datasets/deep_learning_dataset_manifest.yaml` using verified evidence only |
+| External storage | `IIW_DATASET_ROOT/KSDD2/source/` and `IIW_DATASET_ROOT/KSDD2/extracted/`, where `IIW_DATASET_ROOT` resolves outside the Git repository |
+| Repository redistribution | Raw archive, extracted images, masks, and derived dataset payloads are prohibited from this Git repository |
+| Utility / `.gitignore` disposition | No repository download utility and no `.gitignore` modification are required for the approved external-storage approach |
+| Still prohibited | Annotation modification, model adapter implementation, training, tuning, calibration, model creation, testing, performance evaluation, and performance claims |
+| Remaining training blockers | Project Owner approval of metrics, thresholds, numeric class mapping, immutable leakage-safe split membership, leakage controls, annotation interpretation, and compute constraints |
+| Other artifacts | Phase 7 model/training/model-card/test/result artifacts remain unimplemented; Phases 8–17 remain **NOT AUTHORIZED** |
