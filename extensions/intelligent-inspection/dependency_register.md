@@ -20,7 +20,7 @@ On 2026-09-07, Nouran Ismail — Project Owner approved Image Processing Toolbox
 | Statistics and Machine Learning Toolbox | Regression and statistical evaluation | Existing approved toolbox; optional for extension | 26.1 | INSTALLED | AVAILABLE | INSTALLED AND LICENSE AVAILABLE | AVAILABLE |
 | System Composer | Architecture models and interface definitions | Proposed optional dependency | 26.1 | INSTALLED | AVAILABLE | INSTALLED AND LICENSE AVAILABLE | AVAILABLE |
 | Image Processing Toolbox | Phase 5 data-quality measurement; preprocessing remains outside the authorized Phase 5 scope | APPROVED FOR PHASE 5 — Nouran Ismail, Project Owner, 2026-09-07 | 26.1 | INSTALLED | AVAILABLE | INSTALLED AND LICENSE AVAILABLE | AVAILABLE |
-| Deep Learning Toolbox | Optional learned detection implementation | Proposed optional dependency | 26.1 | INSTALLED | AVAILABLE | INSTALLED AND LICENSE AVAILABLE | AVAILABLE |
+| Deep Learning Toolbox | Optional learned detection implementation | APPROVED FOR PHASE 7 — Nouran Ismail, Project Owner, 2026-09-08 | 26.1 | INSTALLED | AVAILABLE | INSTALLED AND LICENSE AVAILABLE | AVAILABLE |
 | Predictive Maintenance Toolbox | Optional condition-feature and prediction workflows | Proposed optional dependency | 26.1 | INSTALLED | AVAILABLE — feature `pred_maintenance_toolbox` confirmed in use | INSTALLED AND LICENSE AVAILABLE | AVAILABLE |
 
 ## Dependency Rules

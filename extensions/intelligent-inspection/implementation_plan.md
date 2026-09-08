@@ -15,11 +15,11 @@
 | Gate 2 planning baseline | `6a7d6d9e3445b3aa6878dc345f9fda411b8b0177` |
 | Plan author | Codex, assisting Nouran Ismail |
 | Author role | Lead Systems Engineer / MBD Architect |
-| Planned implementers | Phase 5A and Phase 5B AI & Algorithm Developer: Nouran Ismail; other phase assignments remain **TBD** |
-| Independent reviewer | **TBD:** a different named individual from every implementation author; Nouran Ismail is ineligible to independently verify her own Phase 5A or Phase 5B implementation |
-| Status | **PHASES 1–5 COMPLETE AND ACCEPTED; PHASE 6 AUTHORIZED — NOT STARTED; PHASES 7–17 NOT AUTHORIZED** |
+| Planned implementers | Phase 5A, Phase 5B, Phase 6, and Phase 7 AI & Algorithm Developer: Nouran Ismail; other phase assignments remain **TBD** |
+| Independent reviewer | **TBD:** a different named individual from every implementation author; Nouran Ismail is ineligible to independently verify her own Phase 5A, Phase 5B, Phase 6, or Phase 7 implementation |
+| Status | **PHASES 1–6 COMPLETE AND ACCEPTED; PHASE 7 AUTHORIZED — NOT STARTED; PHASES 8–17 NOT AUTHORIZED** |
 
-Gate 3 was approved by the Project Owner on 2026-09-06, initially with execution authority limited to Phase 1. Phases 1 through 4 were subsequently completed and accepted through their controlled hold points. On 2026-09-07, the Project Owner accepted Phase 4 developer evidence and authorized the narrowed data-quality scope. After an approved corrective repair, Phase 5A developer verification passed 16 of 16 tests and the Project Owner accepted Phase 5A. The Project Owner divided Phase 5 into Phase 5A — Reusable `DataQualityValidation` and Phase 5B — Reusable Image Preprocessing without renumbering Phases 6–17. On 2026-09-08, the Project Owner reviewed the Phase 5B evidence, accepted its 16/16 developer-verification result, recorded overall Phase 5 complete, and authorized Phase 6 conventional Detection. Phase 6 is authorized but not started; its implementer assignment remains a pre-execution hold point. Phases 7–17 remain unauthorized. Phase hold points are controls within the Gate 3 work package; they do not replace or renumber repository Gates 1–6.
+Gate 3 was approved by the Project Owner on 2026-09-06, initially with execution authority limited to Phase 1. Phases 1 through 4 were subsequently completed and accepted through their controlled hold points. On 2026-09-07, the Project Owner accepted Phase 4 developer evidence and authorized the narrowed data-quality scope. After an approved corrective repair, Phase 5A developer verification passed 16 of 16 tests and the Project Owner accepted Phase 5A. The Project Owner divided Phase 5 into Phase 5A — Reusable `DataQualityValidation` and Phase 5B — Reusable Image Preprocessing without renumbering Phases 6–17. On 2026-09-08, the Project Owner accepted Phase 5B and then Phase 6 developer evidence, recording 16/16 for each. Phase 6 is complete and accepted, with independent verification pending. Phase 7 Optional Deep-Learning Detection is authorized and assigned to Nouran Ismail, but execution remains blocked until its dataset, metric, class, and compute prerequisites are approved. Phases 8–17 remain unauthorized. Phase hold points are controls within the Gate 3 work package; they do not replace or renumber repository Gates 1–6.
 
 ## 2. Approved Basis
 
@@ -256,7 +256,7 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 
 | Authorization field | Decision |
 |---|---|
-| Status | **AUTHORIZED — NOT STARTED** |
+| Status | **COMPLETE AND ACCEPTED** |
 | Approver/date | Nouran Ismail — Project Owner; 2026-09-08 |
 | Implementer | Nouran Ismail — AI & Algorithm Developer |
 | Assigned by/date | Nouran Ismail — Project Owner; 2026-09-08 |
@@ -266,6 +266,9 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 | Required behavior | Configurable thresholds; application-independent implementation; controlled low-confidence and no-detection results; no operational or safety command output |
 | Segmentation | **NOT AUTHORIZED** — it is not an implementation action in the approved Phase 6 plan |
 | Training/tuning | **NOT AUTHORIZED** without the separately approved dataset and metric record |
+| Developer verification | **PASS — 16/16** |
+| Review | **ACCEPTED** by Nouran Ismail — Project Owner on 2026-09-08 |
+| Independent verification | **PENDING** — a different named reviewer is required |
 
 - **Approved requirement IDs:** `IIW-REQ-005`–`IIW-REQ-007`, `IIW-REQ-017`–`IIW-REQ-020`, `IIW-REQ-023`, `IIW-REQ-024`.
 - **Prerequisites:** Computer Vision Toolbox verified and approved; Phase 5A and Phase 5B accepted. Contract-only and deterministic fixture work may proceed without training; dataset-dependent fitting or tuning requires the complete approved dataset and metric record.
@@ -280,6 +283,16 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 - **Rollback approach:** Remove only the listed detector code, tests, fixtures, and evidence; do not alter consumers or substitute another library silently.
 
 ### Phase 7 — Optional Deep-Learning Detection
+
+| Authorization field | Decision |
+|---|---|
+| Status | **AUTHORIZED — NOT STARTED** |
+| Approver/date | Nouran Ismail — Project Owner; 2026-09-08 |
+| Deep Learning Toolbox | **APPROVED FOR PHASE 7** |
+| Implementer | Nouran Ismail — AI & Algorithm Developer; assigned by Nouran Ismail — Project Owner on 2026-09-08 |
+| Independence | Developer verification does not establish independent verification; a different named person must perform independent verification |
+| Execution hold | Dataset source, license, ownership, immutable version, annotations, split, leakage controls, classes, metrics, thresholds, and compute constraints remain pending |
+| Later phases | Phases 8–17 remain **NOT AUTHORIZED** |
 
 - **Approved requirement IDs:** `IIW-REQ-005`–`IIW-REQ-007`, `IIW-REQ-012`, `IIW-REQ-017`–`IIW-REQ-020`, `IIW-REQ-023`.
 - **Prerequisites:** Phase 6 contract accepted; Deep Learning Toolbox verified and approved; dataset source, license, owner, immutable version, annotation policy, split, leakage controls, anomaly classes, metrics, thresholds, and compute constraints approved in writing.
@@ -483,9 +496,11 @@ Phase 17 verifies the complete set `IIW-REQ-001` through `IIW-REQ-025` and does 
 | Named AI & Algorithm Developer for Phase 5A | Phase 5A implementation | Project Owner | **RESOLVED — Nouran Ismail assigned on 2026-09-07** |
 | Named AI & Algorithm Developer for Phase 5B | Before Phase 5B implementation | Project Owner | **RESOLVED — Nouran Ismail assigned on 2026-09-07** |
 | Named AI & Algorithm Developer for Phase 6 | Before Phase 6 implementation | Project Owner | **RESOLVED — Nouran Ismail assigned on 2026-09-08** |
+| Named AI & Algorithm Developer for Phase 7 | Before Phase 7 implementation | Project Owner | **RESOLVED — Nouran Ismail assigned on 2026-09-08** |
 | Different named Independent Verification Engineer | Phase 17 independent review | Project Owner | **PENDING** |
 | MATLAB/product release and availability evidence | Any product-dependent phase | Integration & Tooling Lead; Project Owner disposition | **PASS — all twelve required products installed and license available** |
 | Image Processing Toolbox approval | Phase 5A and Phase 5B use | Project Owner | **APPROVED FOR PHASE 5 — Nouran Ismail, Project Owner, 2026-09-07** |
+| Deep Learning Toolbox approval | Phase 7 use | Project Owner | **APPROVED FOR PHASE 7 — Nouran Ismail, Project Owner, 2026-09-08** |
 | Approval for each other proposed optional product | Use of that product | Project Owner | **PENDING where configuration says PROPOSED** |
 | Requirements migration/native traceability mechanism | Native link creation | Lead Systems Engineer; Project Owner | **PENDING** |
 | Dataset source, license, ownership, permitted use, split, leakage control, version | Any training/tuning | Dataset owner and Project Owner | **PENDING** |
@@ -540,14 +555,14 @@ This Gate 3 decision authorizes Phase 1 preflight only. It does not authorize mo
 | Handoff field | Entry |
 |---|---|
 | From role | Lead Systems Engineer / MBD Architect |
-| To role | Nouran Ismail — AI & Algorithm Developer, assigned to Phase 6 |
-| Completed activity | Phase 5A and Phase 5B implementation COMPLETE; each developer verification PASS — 16/16; Project Owner reviews ACCEPTED on 2026-09-07 and 2026-09-08 respectively |
-| Artifacts produced or changed | Phase 5A data-quality implementation/test/fixture/evidence and Phase 5B preprocessing implementation/test/evidence |
-| Evidence available | `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md`, containing the accepted Phase 5A and Phase 5B developer evidence |
+| To role | Nouran Ismail — AI & Algorithm Developer for Phase 7 |
+| Completed activity | Phase 6 implementation COMPLETE; developer verification PASS — 16/16; Project Owner review ACCEPTED on 2026-09-08 |
+| Artifacts produced or changed | Phase 6 detector contract, dispatch, conventional implementation, tests, fixture, and developer evidence |
+| Evidence available | `extensions/intelligent-inspection/evidence/conventional_detection_results.md` |
 | Open findings | A different named Independent Verification Engineer remains required at Gate 5 |
 | Assumptions and deviations | Project Owner subphase acceptance is not independent verification or final ECR acceptance; segmentation is outside the approved Phase 6 actions |
-| Next permitted activity | After confirming Phase 6 prerequisites, execute only Phase 6 using its exact seven-file allowlist |
-| Required approver | Project Owner disposition at the Phase 6 developer-evidence hold point; later independent verification requires a different named reviewer |
+| Next permitted activity | Resolve every dataset, metric, class, and compute prerequisite before any Phase 7 execution |
+| Required approver | Project Owner approval of the remaining Phase 7 prerequisites; later independent verification requires a different named reviewer |
 
 ## 14. Controlled Phase Continuation Record
 
@@ -586,10 +601,14 @@ This Gate 3 decision authorizes Phase 1 preflight only. It does not authorize mo
 | Phase 5B requirement and criteria | `IIW-REQ-004`; `IIW-AC-032` through `IIW-AC-037` |
 | Phase 5B exact allowlist | `extensions/intelligent-inspection/core/+iiw/+preprocessing/preprocessInspectionData.m`; `extensions/intelligent-inspection/core/+iiw/+preprocessing/recordTransform.m`; `tests/intelligent-inspection/test_preprocessing.m`; `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md` |
 | Overall Phase 5 | **COMPLETE** |
-| Phase 6 | Replaceable Computer-Vision Detection — **AUTHORIZED — NOT STARTED** |
+| Phase 6 implementation | **COMPLETE** |
+| Phase 6 developer verification | **PASS — 16/16** |
+| Phase 6 review | **ACCEPTED** by Nouran Ismail — Project Owner on 2026-09-08 |
 | Phase 6 implementer | Nouran Ismail — AI & Algorithm Developer, assigned by Nouran Ismail — Project Owner on 2026-09-08 |
-| Phase 6 independence | Developer verification will not constitute independent verification; a different named person is required |
+| Phase 6 independence | **PENDING** — a different named reviewer is required |
 | Phase 6 exact allowlist | `extensions/intelligent-inspection/core/+iiw/+detection/DetectorContract.m`; `extensions/intelligent-inspection/core/+iiw/+detection/runDetector.m`; `extensions/intelligent-inspection/core/+iiw/+detection/conventionalDetector.m`; `tests/intelligent-inspection/test_detection_contract.m`; `tests/intelligent-inspection/test_detector_replacement.m`; `tests/intelligent-inspection/fixtures/detection_contract_fixtures.mat`; `extensions/intelligent-inspection/evidence/conventional_detection_results.md` |
 | Phase 6 scope control | Consume `ProcessedData`, emit `DetectionResult`, retain replaceability and configurable thresholds, handle low-confidence/no-detection outcomes, and issue no operational or safety commands; segmentation is not authorized |
-| Later phases | Phases 7–17 remain **NOT AUTHORIZED** |
-| Conditions | Phase 5B developer evidence is accepted but remains pending independent verification. Before Phase 6 execution, confirm all prerequisites. The verified `MissionSupervisor` and all Phase 7–17 behavior remain protected. |
+| Phase 7 | Optional Deep-Learning Detection — **AUTHORIZED — NOT STARTED; EXECUTION BLOCKED PENDING PREREQUISITES** |
+| Phase 7 exact allowlist | `extensions/intelligent-inspection/core/+iiw/+detection/deepLearningDetector.m`; `extensions/intelligent-inspection/training/train_deep_learning_detector.m`; `extensions/intelligent-inspection/models/deep_learning_detector.mat`; `extensions/intelligent-inspection/model_cards/deep_learning_detector.md`; `extensions/intelligent-inspection/datasets/deep_learning_dataset_manifest.yaml`; `tests/intelligent-inspection/test_deep_learning_detector.m`; `extensions/intelligent-inspection/evidence/deep_learning_detection_results.md` |
+| Later phases | Phases 8–17 remain **NOT AUTHORIZED** |
+| Conditions | Phase 6 acceptance is not independent verification. Phase 7 is assigned to Nouran Ismail; execution still requires approved dataset, metric, class, and compute prerequisites. Nouran Ismail may not independently verify her own Phase 7 work. The verified `MissionSupervisor` remains protected. |

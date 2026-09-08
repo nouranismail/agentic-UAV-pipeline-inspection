@@ -462,3 +462,21 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Phase 6 independence | Developer verification does not establish independent verification; a different named person must perform independent verification |
 | Later phases | Phases 7–17 remain **NOT AUTHORIZED** |
 | Independence and acceptance | Project Owner acceptance of developer evidence is not independent verification or final ECR acceptance; the verified `MissionSupervisor` remains protected |
+
+## 21. Phase 6 Acceptance and Phase 7 Authorization
+
+| Decision field | Entry |
+|---|---|
+| Project Owner/date | Nouran Ismail — Project Owner; 2026-09-08 |
+| Phase 6 implementation | **COMPLETE** |
+| Phase 6 developer verification | **PASS — 16/16** |
+| Phase 6 review | **ACCEPTED** |
+| Phase 6 independent verification | **PENDING — different named reviewer required** |
+| Phase 7 | Optional Deep-Learning Detection — **AUTHORIZED — NOT STARTED; EXECUTION BLOCKED PENDING PREREQUISITES** |
+| Phase 7 implementer | Nouran Ismail — AI & Algorithm Developer |
+| Assigned by/date | Nouran Ismail — Project Owner; 2026-09-08 |
+| Phase 7 independence | Developer verification does not establish independent verification; a different named person must perform independent verification |
+| Deep Learning Toolbox | **APPROVED FOR PHASE 7** |
+| Phase 7 exact allowlist | `extensions/intelligent-inspection/core/+iiw/+detection/deepLearningDetector.m`; `extensions/intelligent-inspection/training/train_deep_learning_detector.m`; `extensions/intelligent-inspection/models/deep_learning_detector.mat`; `extensions/intelligent-inspection/model_cards/deep_learning_detector.md`; `extensions/intelligent-inspection/datasets/deep_learning_dataset_manifest.yaml`; `tests/intelligent-inspection/test_deep_learning_detector.m`; `extensions/intelligent-inspection/evidence/deep_learning_detection_results.md` |
+| Preconditions before execution | Approve dataset source, license, ownership, immutable version, annotations, split, leakage controls, classes, metrics, thresholds, and compute constraints |
+| Later phases | Phases 8–17 remain **NOT AUTHORIZED** |
