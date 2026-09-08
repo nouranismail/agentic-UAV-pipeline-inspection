@@ -149,3 +149,140 @@ Git status was clean immediately before Phase 5. After implementation and test e
 **PASS — all 16 Phase 5 tests passed with zero failures and zero incomplete tests after the authorized corrective repair.**
 
 This is developer evidence, not independent verification or Project Owner acceptance. Phases 6–17 remain unauthorized.
+
+# Phase 5B Reusable Image-Preprocessing Evidence
+
+**Associated ECR:** ECR-20260906-001
+
+**Subphase:** 5B — Reusable Image Preprocessing
+
+**Execution date:** 2026-09-08
+
+**Developer:** Nouran Ismail — AI & Algorithm Developer
+
+**Developer evidence status:** **PASS — 16/16**
+
+The Phase 5A content above is preserved. Its pre-Phase-5B SHA-256 was `610C8079F088F8A18E99E46FD73F108A8AC522313FA47AD7791CAB414A318124`.
+
+## Phase 5B Toolchain
+
+| Product | Version | Evidence basis |
+|---|---|---|
+| MATLAB | R2026a Update 4 (`26.1.0.3312084`) | Approved dependency preflight and the Phase 5B batch execution |
+| Image Processing Toolbox | `26.1` | Approved dependency preflight, license evidence, and Phase 5 authorization |
+
+## Function Interfaces
+
+```matlab
+[processedData, outputImage, transformHistory] = ...
+    iiw.preprocessing.preprocessInspectionData( ...
+        inspectionData, dataQualityResult, inputImage, configuration)
+
+entry = iiw.preprocessing.recordTransform( ...
+    order, operationCode, parameterIds, parameterValues, ...
+    implementationVersion, configurationVersion, ...
+    inputReference, outputReference)
+```
+
+`preprocessInspectionData` returns the default all-zero `ProcessedData`, an empty image, and an empty history for non-`PASS`, malformed, unsupported, or invalidly configured input. It does not transform such input or relabel it as valid.
+
+## Deterministic Operation Configuration
+
+Operations are selected and ordered by the numeric `configuration.operationOrder` vector:
+
+| Operation code | Operation | Recorded parameters |
+|---:|---|---|
+| 1 | Format and channel normalization | Target channel count |
+| 2 | Resize | Target rows, target columns, interpolation encoding |
+| 3 | Intensity normalization | Input and output ranges |
+| 4 | Gaussian denoising | Sigma and odd filter size |
+| 5 | Contrast adjustment | Input range, output range, gamma |
+
+Interpolation uses `1=nearest`, `2=bilinear`, and `3=bicubic`. Project-selected values remain in configuration. The reusable implementation contains no application threshold or taxonomy.
+
+Every executed operation produces a transform-history entry containing its order, operation code, fixed-capacity numeric parameter identifiers and values, implementation and configuration versions, and chained input/output references. The final reference equals `ProcessedData.representationRef`.
+
+## Approved `ProcessedData` Output
+
+Successful processing produces exactly:
+
+```text
+processedItemId       uint32 [1 1]
+sourceItemId          uint32 [1 1]
+representationRef     uint32 [1 1]
+transformRecordRef    uint32 [1 1]
+configurationVersion uint16 [1 1]
+schemaVersion        uint16 [1 1]
+```
+
+The source input is retained by MATLAB value semantics and is not modified. The processed record refers back to the original source item and the configured transformation record.
+
+## Phase 5B Test Inventory
+
+Deterministic fixtures are defined inside `tests/intelligent-inspection/test_preprocessing.m`. The 16 tests cover:
+
+1. `PASS` input processing.
+2. `REJECT` input bypass.
+3. `REVIEW` input bypass.
+4. Grayscale/color format and channel normalization.
+5. Configured resizing and interpolation.
+6. Intensity normalization.
+7. Denoising enabled and disabled.
+8. Contrast adjustment enabled and disabled.
+9. Configured operation order.
+10. Transformation provenance and reference chaining.
+11. Original-input preservation.
+12. Exact `ProcessedData` schema conformance.
+13. Deterministic repeated execution.
+14. Invalid-configuration handling.
+15. Prohibited-terminology absence.
+16. Confirmation that rejected data cannot be repaired into processed output.
+
+## Test Execution Results
+
+Only `tests/intelligent-inspection/test_preprocessing.m` was executed.
+
+The initial full run executed all 16 tests. Fifteen passed; the prohibited-terminology test errored while concatenating unequal-length character arrays before inspection:
+
+```text
+15 passed
+1 failed
+1 incomplete
+```
+
+The test was corrected to normalize both file contents to MATLAB strings before concatenation. No prohibited term, assertion, test case, or implementation behavior was removed or weakened.
+
+The complete 16-test file was then rerun:
+
+```text
+Running test_preprocessing
+.......... ......
+Done test_preprocessing
+
+PHASE5B_COUNTS passed=16 failed=0 incomplete=0 total=16
+```
+
+Final result: **16 passed, 0 failed, 0 incomplete**.
+
+## Warnings and Errors
+
+- Initial run: one terminology-test text-concatenation error, recorded above.
+- Corrective rerun: no test warning or error was reported.
+- MATLAB startup was slow but remained responsive; no second concurrent evidence run was launched.
+
+## Scope and Protected Artifacts
+
+Phase 5B implemented no detection, segmentation, learned model, feature extraction, regression, uncertainty, risk, approval, recommendation, operational command, or project-specific behavior. It did not modify the architecture, interface dictionary, requirements, authorization records, implementation plan, verified `MissionSupervisor`, or UAV artifacts. No Phase 5A, architecture, or UAV test was run.
+
+The only Phase 5B paths are:
+
+- `extensions/intelligent-inspection/core/+iiw/+preprocessing/preprocessInspectionData.m`
+- `extensions/intelligent-inspection/core/+iiw/+preprocessing/recordTransform.m`
+- `tests/intelligent-inspection/test_preprocessing.m`
+- `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md`
+
+## Phase 5B Disposition
+
+**PASS — all 16 Phase 5B developer tests passed with zero failures and zero incomplete tests.**
+
+This is developer verification, not independent verification or Project Owner acceptance. Phase 6 and Phases 7–17 remain unauthorized.

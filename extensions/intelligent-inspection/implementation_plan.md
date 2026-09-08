@@ -16,10 +16,10 @@
 | Plan author | Codex, assisting Nouran Ismail |
 | Author role | Lead Systems Engineer / MBD Architect |
 | Planned implementers | Phase 5A and Phase 5B AI & Algorithm Developer: Nouran Ismail; other phase assignments remain **TBD** |
-| Independent reviewer | **TBD:** a different named individual from every implementation author; Nouran Ismail is ineligible to independently verify her own Phase 5A implementation |
-| Status | **PHASES 1–4 AND 5A COMPLETE AND ACCEPTED; PHASE 5B AUTHORIZED — NOT STARTED; PHASES 6–17 NOT AUTHORIZED** |
+| Independent reviewer | **TBD:** a different named individual from every implementation author; Nouran Ismail is ineligible to independently verify her own Phase 5A or Phase 5B implementation |
+| Status | **PHASES 1–5 COMPLETE AND ACCEPTED; PHASE 6 AUTHORIZED — NOT STARTED; PHASES 7–17 NOT AUTHORIZED** |
 
-Gate 3 was approved by the Project Owner on 2026-09-06, initially with execution authority limited to Phase 1. Phases 1 through 4 were subsequently completed and accepted through their controlled hold points. On 2026-09-07, the Project Owner accepted Phase 4 developer evidence and authorized the narrowed data-quality scope. After an approved corrective repair, Phase 5A developer verification passed 16 of 16 tests and the Project Owner accepted Phase 5A. The Project Owner divided Phase 5 into Phase 5A — Reusable `DataQualityValidation` and Phase 5B — Reusable Image Preprocessing without renumbering Phases 6–17. Phase 5B is authorized but not started; Phase 6 remains Replaceable Computer-Vision Detection and is not authorized; Phases 7–17 remain unauthorized. Phase hold points are controls within the Gate 3 work package; they do not replace or renumber repository Gates 1–6.
+Gate 3 was approved by the Project Owner on 2026-09-06, initially with execution authority limited to Phase 1. Phases 1 through 4 were subsequently completed and accepted through their controlled hold points. On 2026-09-07, the Project Owner accepted Phase 4 developer evidence and authorized the narrowed data-quality scope. After an approved corrective repair, Phase 5A developer verification passed 16 of 16 tests and the Project Owner accepted Phase 5A. The Project Owner divided Phase 5 into Phase 5A — Reusable `DataQualityValidation` and Phase 5B — Reusable Image Preprocessing without renumbering Phases 6–17. On 2026-09-08, the Project Owner reviewed the Phase 5B evidence, accepted its 16/16 developer-verification result, recorded overall Phase 5 complete, and authorized Phase 6 conventional Detection. Phase 6 is authorized but not started; its implementer assignment remains a pre-execution hold point. Phases 7–17 remain unauthorized. Phase hold points are controls within the Gate 3 work package; they do not replace or renumber repository Gates 1–6.
 
 ## 2. Approved Basis
 
@@ -225,7 +225,7 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 | Authorization field | Decision |
 |---|---|
 | Phase 5A prerequisite | **COMPLETE; developer verification PASS — 16/16; Project Owner review ACCEPTED** |
-| Phase 5B status | **AUTHORIZED — NOT STARTED** |
+| Phase 5B status | **COMPLETE AND ACCEPTED** |
 | Approver | Nouran Ismail — Project Owner |
 | Authorization date | 2026-09-07 |
 | Assigned implementer | Nouran Ismail — AI & Algorithm Developer |
@@ -233,7 +233,11 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 | Independence | Developer assignment does not establish independent verification; independent verification must use a different named person |
 | Approved requirement | `IIW-REQ-004` |
 | Approved acceptance criteria | `IIW-AC-032` through `IIW-AC-037` |
-| Phase 6 status | Replaceable Computer-Vision Detection — **NOT AUTHORIZED** |
+| Phase 5B developer verification | **PASS — 16/16** |
+| Phase 5B review | **ACCEPTED** by Nouran Ismail — Project Owner on 2026-09-08 |
+| Phase 5B independent verification | **PENDING** — a different named reviewer is required |
+| Overall Phase 5 | **COMPLETE** |
+| Phase 6 status | Replaceable Computer-Vision Detection — **AUTHORIZED — NOT STARTED** |
 | Later phases | Phases 7–17 remain **NOT AUTHORIZED** |
 
 - **Prerequisites:** Phase 5A accepted; Image Processing Toolbox remains verified and approved for the Phase 5 work package; the input has an approved `DataQualityResult.status` of `PASS`; preprocessing operation selection, order, dimensions, parameters, implementation version, and configuration version are explicitly configured. A `REVIEW`, `REJECT`, missing, malformed, or unsupported quality result is a controlled no-output condition.
@@ -245,17 +249,30 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 - **Measurable acceptance criteria:** `IIW-AC-032` through `IIW-AC-037` pass. Identical inputs and configuration produce identical output and transform records; `REVIEW` and `REJECT` inputs produce no processed output; no operation is applied unless enabled by configuration; no transformation hides or changes the original quality disposition; every processed output resolves its immutable source and complete ordered transform record.
 - **Tests and metrics:** `IIW-TST-PRE-001` through `IIW-TST-PRE-006`; quality-gate rejection, format/channel normalization, configured resize, enabled/disabled deterministic transforms, ordered parameter provenance, deterministic repeat, invalid configuration, schema conformance, scope, and prohibited-terminology tests. Run only the Phase 5B test during implementation; no achieved result is claimed by this amendment.
 - **Evidence produced:** A distinct Phase 5B section in `quality_preprocessing_results.md` containing configuration, operations, parameters, versions, test output, warnings, errors, changed-file inventory, protected-artifact hashes, and actual PASS/FAIL/BLOCKED disposition.
-- **Approval gate:** Phase 5B implementation is authorized within the exact allowlist, but execution has not started. Stop at its developer-evidence hold point for Project Owner review; independent verification remains a later gate using a different named individual.
+- **Approval gate:** Phase 5B implementation and 16/16 developer verification are complete and were accepted by the Project Owner on 2026-09-08. This is not independent verification; a different named individual remains required at Gate 5.
 - **Rollback approach:** Remove only the two new preprocessing functions and preprocessing test, and restore only the Phase 5B addition to the shared evidence file. Do not alter Phase 5A evidence or any protected artifact.
 
 ### Phase 6 — Replaceable Computer-Vision Detection
+
+| Authorization field | Decision |
+|---|---|
+| Status | **AUTHORIZED — NOT STARTED** |
+| Approver/date | Nouran Ismail — Project Owner; 2026-09-08 |
+| Implementer | Nouran Ismail — AI & Algorithm Developer |
+| Assigned by/date | Nouran Ismail — Project Owner; 2026-09-08 |
+| Independence | Developer verification is not independent verification; a different named person must perform independent verification |
+| Scope | Reusable, replaceable conventional computer-vision Detection only |
+| Input/output | Consume approved `ProcessedData`; emit approved `DetectionResult` |
+| Required behavior | Configurable thresholds; application-independent implementation; controlled low-confidence and no-detection results; no operational or safety command output |
+| Segmentation | **NOT AUTHORIZED** — it is not an implementation action in the approved Phase 6 plan |
+| Training/tuning | **NOT AUTHORIZED** without the separately approved dataset and metric record |
 
 - **Approved requirement IDs:** `IIW-REQ-005`–`IIW-REQ-007`, `IIW-REQ-017`–`IIW-REQ-020`, `IIW-REQ-023`, `IIW-REQ-024`.
 - **Prerequisites:** Computer Vision Toolbox verified and approved; Phase 5A and Phase 5B accepted. Contract-only and deterministic fixture work may proceed without training; dataset-dependent fitting or tuning requires the complete approved dataset and metric record.
 - **Exact allowed files:** `extensions/intelligent-inspection/core/+iiw/+detection/DetectorContract.m`; `extensions/intelligent-inspection/core/+iiw/+detection/runDetector.m`; `extensions/intelligent-inspection/core/+iiw/+detection/conventionalDetector.m`; `tests/intelligent-inspection/test_detection_contract.m`; `tests/intelligent-inspection/test_detector_replacement.m`; `tests/intelligent-inspection/fixtures/detection_contract_fixtures.mat`; `extensions/intelligent-inspection/evidence/conventional_detection_results.md`.
 - **Protected files:** Section 4, DL files reserved for Phase 7, and project datasets/models not explicitly approved.
 - **Responsible engineering role:** AI & Algorithm Developer.
-- **Implementation actions:** Implement a common detector boundary and one conventional reference implementation; emit label, confidence, optional location, schema, and model/implementation version; never synthesize success on failure.
+- **Implementation actions:** Implement a common detector boundary and one replaceable conventional reference implementation consuming `ProcessedData`; emit the approved `DetectionResult`, including label, confidence, optional location, schema, and model/implementation version; apply configurable thresholds; return controlled low-confidence or no-detection results; never synthesize success on failure or issue an operational or safety command.
 - **Measurable acceptance criteria:** Two test doubles or implementations substitute without consumer changes; complete outputs pass schema validation; incomplete outputs fail explicitly; project taxonomy remains external.
 - **Tests and metrics:** `IIW-TST-DET-001` through `IIW-TST-DET-006`; contract, replacement, invalid-output, deterministic-repeat, confidence-domain, and provenance tests. Precision/recall/F1 or localization metrics are reported only after an approved dataset and pass criteria exist.
 - **Evidence produced:** Contract-conformance results, replacement demonstration, failure logs, version records, and any approved dataset-based metric report.
@@ -465,6 +482,7 @@ Phase 17 verifies the complete set `IIW-REQ-001` through `IIW-REQ-025` and does 
 | Named Integration & Tooling Lead | Its next implementation phase | Project Owner | **PENDING** |
 | Named AI & Algorithm Developer for Phase 5A | Phase 5A implementation | Project Owner | **RESOLVED — Nouran Ismail assigned on 2026-09-07** |
 | Named AI & Algorithm Developer for Phase 5B | Before Phase 5B implementation | Project Owner | **RESOLVED — Nouran Ismail assigned on 2026-09-07** |
+| Named AI & Algorithm Developer for Phase 6 | Before Phase 6 implementation | Project Owner | **RESOLVED — Nouran Ismail assigned on 2026-09-08** |
 | Different named Independent Verification Engineer | Phase 17 independent review | Project Owner | **PENDING** |
 | MATLAB/product release and availability evidence | Any product-dependent phase | Integration & Tooling Lead; Project Owner disposition | **PASS — all twelve required products installed and license available** |
 | Image Processing Toolbox approval | Phase 5A and Phase 5B use | Project Owner | **APPROVED FOR PHASE 5 — Nouran Ismail, Project Owner, 2026-09-07** |
@@ -522,14 +540,14 @@ This Gate 3 decision authorizes Phase 1 preflight only. It does not authorize mo
 | Handoff field | Entry |
 |---|---|
 | From role | Lead Systems Engineer / MBD Architect |
-| To role | AI & Algorithm Developer assigned to the separately executed Phase 5B task |
-| Completed activity | Phase 5A implementation COMPLETE; developer verification PASS — 16/16; Project Owner review ACCEPTED on 2026-09-07 |
-| Artifacts produced or changed | Phase 5A data-quality implementation, test, fixture, evidence, and this Phase 5A/5B control amendment |
-| Evidence available | `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md`, limited currently to the accepted Phase 5A evidence |
+| To role | Nouran Ismail — AI & Algorithm Developer, assigned to Phase 6 |
+| Completed activity | Phase 5A and Phase 5B implementation COMPLETE; each developer verification PASS — 16/16; Project Owner reviews ACCEPTED on 2026-09-07 and 2026-09-08 respectively |
+| Artifacts produced or changed | Phase 5A data-quality implementation/test/fixture/evidence and Phase 5B preprocessing implementation/test/evidence |
+| Evidence available | `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md`, containing the accepted Phase 5A and Phase 5B developer evidence |
 | Open findings | A different named Independent Verification Engineer remains required at Gate 5 |
-| Assumptions and deviations | Phase 5A Project Owner acceptance is a subphase-exit decision, not independent verification or final ECR acceptance; Phase 5B has not started |
-| Next permitted activity | After confirming the developer assignment and prerequisites, execute only Phase 5B using its exact four-file allowlist |
-| Required approver | Project Owner disposition at the Phase 5B exit hold point; Phase 6 authorization remains separately required |
+| Assumptions and deviations | Project Owner subphase acceptance is not independent verification or final ECR acceptance; segmentation is outside the approved Phase 6 actions |
+| Next permitted activity | After confirming Phase 6 prerequisites, execute only Phase 6 using its exact seven-file allowlist |
+| Required approver | Project Owner disposition at the Phase 6 developer-evidence hold point; later independent verification requires a different named reviewer |
 
 ## 14. Controlled Phase Continuation Record
 
@@ -560,11 +578,18 @@ This Gate 3 decision authorizes Phase 1 preflight only. It does not authorize mo
 | Phase 5A independence | **PENDING** — a different named reviewer is required |
 | Phase 5A boundary clarification | **APPROVED** by Nouran Ismail — Project Owner on 2026-09-07; inclusive `[minimum, maximum]` comparisons in `single`, no tolerance, nonfinite values rejected first, equality-only when minimum equals maximum |
 | Phase 5A exact allowlist | `extensions/intelligent-inspection/core/+iiw/+quality/validateInspectionData.m`; `tests/intelligent-inspection/test_data_quality.m`; `tests/intelligent-inspection/fixtures/quality_contract_fixtures.mat`; `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md` |
-| Phase 5B | **AUTHORIZED — NOT STARTED** |
+| Phase 5B implementation | **COMPLETE** |
+| Phase 5B developer verification | **PASS — 16/16** |
+| Phase 5B review | **ACCEPTED** by Nouran Ismail — Project Owner on 2026-09-08 |
 | Phase 5B implementer | Nouran Ismail — AI & Algorithm Developer, assigned by Nouran Ismail — Project Owner on 2026-09-07 |
-| Phase 5B independence | Developer verification will not constitute independent verification; a different named person is required |
+| Phase 5B independence | **PENDING** — a different named reviewer is required |
 | Phase 5B requirement and criteria | `IIW-REQ-004`; `IIW-AC-032` through `IIW-AC-037` |
 | Phase 5B exact allowlist | `extensions/intelligent-inspection/core/+iiw/+preprocessing/preprocessInspectionData.m`; `extensions/intelligent-inspection/core/+iiw/+preprocessing/recordTransform.m`; `tests/intelligent-inspection/test_preprocessing.m`; `extensions/intelligent-inspection/evidence/quality_preprocessing_results.md` |
-| Phase 6 | Replaceable Computer-Vision Detection — **NOT AUTHORIZED** |
+| Overall Phase 5 | **COMPLETE** |
+| Phase 6 | Replaceable Computer-Vision Detection — **AUTHORIZED — NOT STARTED** |
+| Phase 6 implementer | Nouran Ismail — AI & Algorithm Developer, assigned by Nouran Ismail — Project Owner on 2026-09-08 |
+| Phase 6 independence | Developer verification will not constitute independent verification; a different named person is required |
+| Phase 6 exact allowlist | `extensions/intelligent-inspection/core/+iiw/+detection/DetectorContract.m`; `extensions/intelligent-inspection/core/+iiw/+detection/runDetector.m`; `extensions/intelligent-inspection/core/+iiw/+detection/conventionalDetector.m`; `tests/intelligent-inspection/test_detection_contract.m`; `tests/intelligent-inspection/test_detector_replacement.m`; `tests/intelligent-inspection/fixtures/detection_contract_fixtures.mat`; `extensions/intelligent-inspection/evidence/conventional_detection_results.md` |
+| Phase 6 scope control | Consume `ProcessedData`, emit `DetectionResult`, retain replaceability and configurable thresholds, handle low-confidence/no-detection outcomes, and issue no operational or safety commands; segmentation is not authorized |
 | Later phases | Phases 7–17 remain **NOT AUTHORIZED** |
-| Conditions | Phase 5B processes only `PASS` inputs, applies only configured deterministic transformations, preserves source provenance, and records every operation and parameter. The verified `MissionSupervisor`, completed Phase 5A artifacts, and all Phase 6–17 behavior remain protected. |
+| Conditions | Phase 5B developer evidence is accepted but remains pending independent verification. Before Phase 6 execution, confirm all prerequisites. The verified `MissionSupervisor` and all Phase 7–17 behavior remain protected. |

@@ -437,3 +437,28 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Phase 6 | Replaceable Computer-Vision Detection — **NOT AUTHORIZED** |
 | Later phases | Phases 7–17 remain **NOT AUTHORIZED** |
 | Conditions | This amendment authorizes Phase 5B only within its exact allowlist. It does not constitute Phase 5B implementation, developer verification, independent verification, or final ECR acceptance. |
+
+## 20. Phase 5B Acceptance and Phase 6 Authorization
+
+| Decision field | Entry |
+|---|---|
+| Project Owner | Nouran Ismail — Project Owner |
+| Decision date | 2026-09-08 |
+| Phase 5B implementation | **COMPLETE** |
+| Phase 5B developer verification | **PASS — 16/16** |
+| Phase 5B review decision | **ACCEPTED** |
+| Phase 5B reviewer | Nouran Ismail — Project Owner |
+| Phase 5B review date | 2026-09-08 |
+| Phase 5B independent verification | **PENDING** — it must be performed by a different named reviewer |
+| Overall Phase 5 implementation | **COMPLETE** |
+| Phase 6 decision | **AUTHORIZED — NOT STARTED** |
+| Phase 6 scope | Reusable, replaceable conventional computer-vision Detection consuming the approved `ProcessedData` and producing the approved `DetectionResult` |
+| Phase 6 required behavior | Use configurable thresholds; remain application-independent; provide controlled low-confidence and no-detection results; never issue operational or safety commands |
+| Phase 6 segmentation disposition | **NOT AUTHORIZED** — segmentation is not included in the approved Phase 6 implementation actions |
+| Phase 6 exact allowlist | `extensions/intelligent-inspection/core/+iiw/+detection/DetectorContract.m`; `extensions/intelligent-inspection/core/+iiw/+detection/runDetector.m`; `extensions/intelligent-inspection/core/+iiw/+detection/conventionalDetector.m`; `tests/intelligent-inspection/test_detection_contract.m`; `tests/intelligent-inspection/test_detector_replacement.m`; `tests/intelligent-inspection/fixtures/detection_contract_fixtures.mat`; `extensions/intelligent-inspection/evidence/conventional_detection_results.md` |
+| Phase 6 implementer | Nouran Ismail — AI & Algorithm Developer |
+| Phase 6 assigned by | Nouran Ismail — Project Owner |
+| Phase 6 assignment date | 2026-09-08 |
+| Phase 6 independence | Developer verification does not establish independent verification; a different named person must perform independent verification |
+| Later phases | Phases 7–17 remain **NOT AUTHORIZED** |
+| Independence and acceptance | Project Owner acceptance of developer evidence is not independent verification or final ECR acceptance; the verified `MissionSupervisor` remains protected |
