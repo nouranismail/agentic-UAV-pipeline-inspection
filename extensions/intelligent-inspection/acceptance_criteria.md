@@ -76,6 +76,22 @@ Phase 5B acceptance is governed by `IIW-REQ-004`. These criteria define future v
 
 Dataset splits, thresholds, minimum sample support, and pass values remain project decisions. No achieved value is claimed.
 
+### Approved Phase 7 KSDD2 Acceptance Criteria
+
+| ID | Criterion | Required result |
+|---|---|---|
+| IIW-AC-038 | The official KSDD2 test partition remains isolated from development decisions. | Zero official-test samples are used for training, validation, fitting, preprocessing decisions, threshold tuning, model selection, or early stopping. |
+| IIW-AC-039 | Training and validation use a deterministic stratified 80/20 split of the official training partition. | Stable SHA-256 ordering and the recorded seed/configuration reproduce identical membership; exact duplicates and approved acquisition groups never cross partitions. |
+| IIW-AC-040 | The optional learned detector performs binary semantic segmentation and maps results to the approved generic `DetectionResult`. | Background/anomaly segmentation remains behind `DetectorContract`; the conventional detector and generic interfaces have zero changes. |
+| IIW-AC-041 | Training is reproducible and traceable. | Evidence records MATLAB/toolbox versions, hardware, seed, hyperparameters, execution time, preprocessing configuration, imbalance treatment, early stopping, and any pretrained-weight source/license. |
+| IIW-AC-042 | Confidence handling is controlled. | The default pixel threshold is 0.50; tuning uses validation only and records the selected threshold; low-confidence output abstains or uses the approved controlled status. |
+| IIW-AC-043 | Required performance evidence is partition-specific. | Pixel Dice, pixel IoU, image-level precision/recall/F1, negative-image false-positive rate, inference time, and confusion matrix are reported separately for validation and untouched official test data. |
+| IIW-AC-044 | Minimum demonstration thresholds are fixed before official-test evaluation. | Test recall >= 0.75, precision >= 0.70, F1 >= 0.72, positive-image mean Dice >= 0.50, negative-image false-positive rate <= 0.15, zero interface-schema violations, and zero uncontrolled execution failures. |
+| IIW-AC-045 | Missed thresholds are reported without post-test relaxation. | Any miss yields `FAIL` or `APPROVED WITH LIMITATIONS`; no threshold changes after official-test results are viewed. |
+| IIW-AC-046 | Dataset and model license controls remain explicit. | Dataset payloads remain outside Git; the model and model card preserve attribution and CC BY-NC-SA 4.0 non-commercial/ShareAlike restrictions; no production-readiness or pipeline-domain-validation claim appears. |
+
+These criteria were approved by Nouran Ismail, Project Owner, on 2026-09-09. They authorize Phase 7 dataset use, training, and evaluation within the existing Phase 7 allowlist. They do not claim that training or evaluation occurred and do not authorize Phases 8-17.
+
 ## Regression Metrics
 
 - Mean absolute error and root mean squared error.
@@ -148,8 +164,8 @@ These criteria are approved for Phase 4 implementation and verification. This ap
 ## Unresolved Acceptance Decisions
 
 - Applicable data-quality measures and thresholds.
-- Label taxonomy and minimum per-label support.
-- Detection, calibration, and regression pass thresholds.
+- Label taxonomies and minimum per-label support not specifically approved for the Phase 7 KSDD2 binary task.
+- Detection, calibration, and regression pass thresholds other than the approved Phase 7 KSDD2 criteria.
 - Required operating-condition slices and robustness scenarios.
 - Approval expiry, timeout, delegation, and audit-retention policies.
 - Evidence-retention duration and integrity mechanism.

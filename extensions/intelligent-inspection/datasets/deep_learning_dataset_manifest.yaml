@@ -1,0 +1,243 @@
+manifest_version: "1.0"
+ecr_id: "ECR-20260906-001"
+phase: "Phase 7"
+dataset:
+  name: "Kolektor Surface-Defect Dataset 2"
+  short_name: "KSDD2"
+  task: "binary anomaly localization/detection"
+  selection_status: "ACCEPTED"
+  acquisition_status: "COMPLETE"
+  verification_status: "PASS WITH OBSERVATION"
+  training_readiness: "AUTHORIZED - NOT STARTED"
+  observation: >-
+    The publisher archive contains exact duplicate copies named
+    10301 (copy).png and 10301_GT (copy).png. Excluding those duplicate files,
+    the observed canonical counts exactly match the official documentation.
+
+provenance:
+  official_page: "https://www.vicos.si/resources/kolektorsdd2/"
+  official_download_link: "https://go.vicos.si/kolektorsdd2"
+  resolved_archive_url: "https://data.vicos.si/datasets/KSDD/KolektorSDD2.zip"
+  owner_provider:
+    - "ViCoS Laboratory, University of Ljubljana"
+    - "Kolektor Group"
+  source_restriction: "Official publisher-controlled download only"
+  download_date_utc: "2026-09-09"
+  citation: >-
+    Jakob Bozic, Domen Tabernik, and Danijel Skocaj, Mixed supervision for
+    surface-defect detection: from weakly to fully supervised learning,
+    Computers in Industry, 2021.
+
+license:
+  identifier: "CC BY-NC-SA 4.0"
+  url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  permitted_project_use: "Non-commercial internship research/demonstration"
+  attribution_required: true
+  share_alike_required: true
+  commercial_use_claims_permitted: false
+  repository_redistribution_permitted: false
+  obligations:
+    - "Credit the dataset providers and cited publication."
+    - "Provide the license reference and indicate modifications."
+    - "Distribute adaptations only under the applicable ShareAlike terms."
+    - "Do not commit raw images, annotations, or the source archive to Git."
+
+locations:
+  root_environment_variable: "IIW_DATASET_ROOT"
+  archive: "KSDD2/source/KolektorSDD2.zip"
+  extracted_root: "KSDD2/extracted"
+  official_training_partition: "KSDD2/extracted/train"
+  official_test_partition: "KSDD2/extracted/test"
+  path_policy: >-
+    Resolve every location relative to IIW_DATASET_ROOT; reusable code shall
+    not contain a user-specific absolute path.
+
+archive:
+  filename: "KolektorSDD2.zip"
+  byte_size: 853126555
+  sha256: "EDCDB486809B24F1D17B785E30C52FAFC5999554DD5FE18DDF77B61CEB6F36A8"
+  content_type: "application/zip"
+  publisher_last_modified_utc: "2023-09-28T10:40:04Z"
+  preserved_unchanged: true
+  extraction_location_is_separate: true
+  unsafe_archive_paths_found: 0
+
+verified_facts:
+  official_documentation_counts:
+    training:
+      positive: 246
+      negative: 2085
+      total: 2331
+    test:
+      positive: 110
+      negative: 894
+      total: 1004
+    overall:
+      positive: 356
+      negative: 2979
+      total: 3335
+  observed_canonical_counts:
+    training:
+      images: 2331
+      annotations: 2331
+      positive: 246
+      negative: 2085
+    test:
+      images: 1004
+      annotations: 1004
+      positive: 110
+      negative: 894
+    overall:
+      images: 3335
+      annotations: 3335
+      positive: 356
+      negative: 2979
+  raw_archive_counts:
+    png_files: 6672
+    auxiliary_split_files: 5
+    extra_duplicate_files: 2
+  duplicate_copy_files:
+    - duplicate: "train/10301 (copy).png"
+      canonical: "train/10301.png"
+      exact_sha256_match: true
+    - duplicate: "train/10301_GT (copy).png"
+      canonical: "train/10301_GT.png"
+      exact_sha256_match: true
+
+formats:
+  image:
+    encoding: "PNG"
+    mode: "RGB"
+    channels: 3
+    observed_width_pixels: [184, 241]
+    observed_height_pixels: [597, 665]
+  annotation:
+    encoding: "PNG"
+    mode: "grayscale"
+    channels: 1
+    observed_values: [0, 255]
+    interpretation: "0 is background; 255 is the binary anomaly mask"
+  pairing:
+    image_pattern: "<sample_id>.png"
+    annotation_pattern: "<sample_id>_GT.png"
+  auxiliary_files:
+    format: "Python pickle protocol 4 (.pyb)"
+    filenames:
+      - "split_weakly_0.pyb"
+      - "split_weakly_16.pyb"
+      - "split_weakly_53.pyb"
+      - "split_weakly_126.pyb"
+      - "split_weakly_246.pyb"
+    execution_status: "NOT EXECUTED"
+
+integrity:
+  all_png_files_readable: true
+  unreadable_png_count: 0
+  canonical_missing_annotation_count: 0
+  canonical_orphan_annotation_count: 0
+  cross_partition_exact_input_image_duplicate_hashes: 0
+  cross_partition_exact_annotation_duplicate_hashes: 16
+  annotation_duplicate_interpretation: >-
+    Sixteen annotation byte hashes occur in both partitions. No corresponding
+    source image hash crosses partitions; repeated binary masks alone do not
+    establish duplicate inspection images.
+  official_partition_identification:
+    training_directory: "train"
+    test_directory: "test"
+  count_comparison: >-
+    Canonical observed counts match official documentation exactly after the
+    two exact publisher-archive copy files are identified and excluded from
+    sample membership. The original archive and extracted files remain
+    unchanged.
+
+proposed_validation_split:
+  status: "APPROVED - NOT MATERIALIZED"
+  source_partition: "Official training partition only"
+  official_test_partition_usage: "Held out unchanged for final testing"
+  target_fraction: 0.20
+  method:
+    - >-
+      Exclude the two documented copy filenames from split membership without
+      deleting or modifying them.
+    - >-
+      Group exact duplicate source-image hashes and any approved acquisition or
+      near-duplicate groups so that a group cannot cross train and validation.
+    - >-
+      Stratify groups by binary annotation disposition where group integrity
+      permits.
+    - >-
+      Order groups by SHA-256 of the UTF-8 string
+      KSDD2-validation-v1|<canonical-group-id> and select the first 20 percent
+      of each stratum for validation; assign the remainder to training.
+    - "Freeze sample IDs, hashes, method version, and membership before training."
+  seed_configuration: "KSDD2-validation-v1"
+  constraints:
+    - "Stratify by positive and negative annotation status."
+    - "Keep exact duplicates and approved acquisition groups in one partition."
+    - "Never use official test data for fitting, threshold tuning, model selection, early stopping, or preprocessing decisions."
+
+limitations:
+  - "Images represent one controlled industrial production context."
+  - "Lighting, material, camera, and product diversity are limited."
+  - "The binary classes are substantially imbalanced."
+  - "Physical location cannot be inferred without separate calibration."
+  - "The archive contains two redundant copy files in the training directory."
+  - "Auxiliary pickle files were identified but not executed or trusted as code."
+
+authorization:
+  dataset_selected_by_project_owner: true
+  acquisition_and_verification_authorized: true
+  manifest_creation_authorized: true
+  annotation_modification_authorized: false
+  dataset_manifest_review: "ACCEPTED"
+  project_owner: "Nouran Ismail"
+  review_date: "2026-09-09"
+  model_training_authorized: true
+  model_creation_authorized: true
+  performance_evaluation_authorized: true
+  phases_8_through_17_authorized: false
+
+approved_learning_task:
+  type: "binary semantic segmentation"
+  classes: ["background", "anomaly"]
+  output_mapping: "Convert segmentation results to generic DetectionResult regions."
+  replacement_contract: "DetectorContract"
+  scope_boundary: "Segmentation is confined to the optional deep-learning detector and shall not modify the conventional detector or generic interfaces."
+
+approved_training_configuration:
+  architecture: "Compact U-Net-style network suitable for available hardware"
+  resizing: "Approved configurable preprocessing path"
+  imbalance_handling: "Class weighting or another approved imbalance-aware loss"
+  deterministic_random_seeds_required: true
+  validation_based_early_stopping_required: true
+  execution_record_fields: ["MATLAB version", "toolbox versions", "hardware", "random seed", "hyperparameters", "execution time"]
+  execution_device: "Controlled GPU when available, with controlled CPU fallback"
+  pretrained_weights_policy: "Prohibited unless source and license are recorded"
+
+approved_confidence_policy:
+  default_pixel_decision_threshold: 0.50
+  tuning_partition: "Validation data only"
+  final_threshold_record_required: true
+  low_confidence_disposition: "Abstain or return the approved controlled status"
+  operational_authority: "No mission or safety command authority"
+
+approved_metrics:
+  names: ["Pixel Dice score", "Pixel Intersection over Union", "Image-level precision", "Image-level recall", "Image-level F1", "False-positive rate on negative images", "Inference time", "Confusion matrix"]
+  reporting_partition_rule: "Report validation and untouched official-test results separately"
+
+minimum_demonstration_acceptance:
+  test_image_level_recall_minimum: 0.75
+  test_image_level_precision_minimum: 0.70
+  test_image_level_f1_minimum: 0.72
+  positive_image_mean_dice_minimum: 0.50
+  negative_image_false_positive_rate_maximum: 0.15
+  interface_schema_violations_maximum: 0
+  uncontrolled_execution_failures_maximum: 0
+  failure_disposition: "Report Phase 7 as FAIL or APPROVED WITH LIMITATIONS; do not change thresholds after viewing test results."
+
+model_license_and_claim_controls:
+  trained_model_attribution_required: true
+  model_card_attribution_required: true
+  trained_model_noncommercial_sharealike_notice_required: true
+  production_readiness_claim_permitted: false
+  pipeline_domain_validation_claim_permitted: false

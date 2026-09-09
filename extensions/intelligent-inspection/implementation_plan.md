@@ -286,34 +286,54 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 
 | Authorization field | Decision |
 |---|---|
-| Status | **AUTHORIZED — DATASET ACQUISITION AND GOVERNANCE ONLY; MODEL IMPLEMENTATION BLOCKED** |
+| Status | **AUTHORIZED — DATASET USE AND MODEL TRAINING; NOT STARTED** |
 | Approver/date | Nouran Ismail — Project Owner; 2026-09-08 |
 | Deep Learning Toolbox | **APPROVED FOR PHASE 7** |
 | Implementer | Nouran Ismail — AI & Algorithm Developer; assigned by Nouran Ismail — Project Owner on 2026-09-08 |
 | Independence | Developer verification does not establish independent verification; a different named person must perform independent verification |
 | Dataset planning amendment | **APPROVED** by Nouran Ismail — Project Owner on 2026-09-08 |
 | Dataset research and proposal | **AUTHORIZED** only in `extensions/intelligent-inspection/datasets/dataset_selection_proposal.md` |
-| Dataset selection | **KSDD2 CONDITIONALLY SELECTED** by Nouran Ismail — Project Owner on 2026-09-08 |
-| Dataset acquisition | Download from the official source to an approved external location is **AUTHORIZED — NOT EXECUTED**; extraction, integrity hashing, provenance recording, structure/annotation inspection, and manifest creation are authorized |
-| Dataset use | **BLOCKED** pending successful source, license, archive, annotation, and split-metadata verification |
-| Annotation modification, model training, model creation, and performance evaluation | **NOT AUTHORIZED** |
+| Dataset selection | **KSDD2 MANIFEST ACCEPTED** by Nouran Ismail — Project Owner on 2026-09-09 |
+| Dataset acquisition | **COMPLETE**; official archive preserved under approved external storage and verified by manifest evidence |
+| Dataset use, model training, model creation, and performance evaluation | **AUTHORIZED — NOT STARTED**, within the existing Phase 7 allowlist and approved controls |
+| Annotation modification | **NOT AUTHORIZED** |
 | Storage boundary | Resolve `IIW_DATASET_ROOT` to a location outside this Git repository; use `IIW_DATASET_ROOT/KSDD2/source/` for the source archive and `IIW_DATASET_ROOT/KSDD2/extracted/` for extracted content |
 | Repository boundary | Raw archives, extracted images, and derived dataset payloads shall not be stored or redistributed in this repository; no `.gitignore` amendment is required for the approved external-storage approach |
 | Download utility | No repository utility is required; acquisition shall use the publisher-controlled official source and record the final resolved URL, timestamp, archive name, byte size, and cryptographic hash in the manifest |
-| Execution hold | Metrics, thresholds, numeric class mapping, immutable leakage-safe split membership, annotation interpretation, and compute constraints remain pending Project Owner approval |
+| Execution hold | Resolved for Phase 7 by the Project Owner decision dated 2026-09-09; actual training and evaluation remain not started and must follow the fixed approved controls |
 | Later phases | Phases 8–17 remain **NOT AUTHORIZED** |
 
 - **Approved requirement IDs:** `IIW-REQ-005`–`IIW-REQ-007`, `IIW-REQ-012`, `IIW-REQ-017`–`IIW-REQ-020`, `IIW-REQ-023`.
-- **Prerequisites:** Phase 6 contract accepted and Deep Learning Toolbox verified and approved. KSDD2 is conditionally selected for non-commercial internship use, with attribution and ShareAlike mandatory. Before dataset use, verify the source, license, archive hash and structure, image/mask encodings, annotation semantics, counts, and split metadata. Before training, approve immutable split membership, leakage controls, numeric class mapping, metrics, thresholds, confidence policy, and compute constraints in writing.
+- **Prerequisites:** Phase 6 contract accepted; Deep Learning Toolbox verified and approved; KSDD2 manifest accepted for non-commercial internship use; deterministic split, leakage controls, binary class mapping, metrics, fixed thresholds, confidence policy, and compute approach approved by the Project Owner on 2026-09-09. Training remains not started.
 - **Exact allowed files:** `extensions/intelligent-inspection/core/+iiw/+detection/deepLearningDetector.m`; `extensions/intelligent-inspection/training/train_deep_learning_detector.m`; `extensions/intelligent-inspection/models/deep_learning_detector.mat`; `extensions/intelligent-inspection/model_cards/deep_learning_detector.md`; `extensions/intelligent-inspection/datasets/deep_learning_dataset_manifest.yaml`; `extensions/intelligent-inspection/datasets/dataset_selection_proposal.md`; `tests/intelligent-inspection/test_deep_learning_detector.m`; `extensions/intelligent-inspection/evidence/deep_learning_detection_results.md`.
 - **Protected files:** Section 4, raw datasets outside the approved manifest, and the conventional detector contract.
 - **Responsible engineering role:** AI & Algorithm Developer.
-- **Implementation actions:** Current authorization is limited to acquiring KSDD2 from the official source into external storage, extracting it, computing integrity hashes, inspecting the archive and annotations, and recording verified facts in the dataset manifest. The optional adapter, training pipeline, model artifact, evaluation, and model card remain blocked until the later hold points pass.
+- **Implementation actions:** Implement the optional replaceable learned detector and controlled training pipeline using the accepted KSDD2 manifest and approved split, task, training, confidence, metric, threshold, and licensing controls. Preserve dataset payloads outside Git, record complete execution provenance, map segmentation output to generic `DetectionResult`, and issue no mission or safety command.
 - **Measurable acceptance criteria:** Adapter conforms without consumer changes; model identity/version and confidence semantics accompany every result; approved validation/test split remains isolated; every approved metric is reported against its pass threshold.
 - **Tests and metrics:** `IIW-TST-DL-001` through `IIW-TST-DL-006`; schema, model-version, split-integrity, reproducibility, failure, performance-slice, and calibration checks; metrics only as approved in the dataset/metric record.
 - **Evidence produced:** Dataset manifest, training configuration/log, model hash, model card, test results, confusion/performance/calibration evidence, and limitations.
 - **Approval gate:** Gate 3 plus explicit dataset, metric, class, product, and compute approval hold point; failure of any prerequisite defers Phase 7 without blocking non-DL phases.
 - **Rollback approach:** Quarantine then remove only the listed optional model, training, adapter, manifest, tests, card, and evidence under approved corrective scope; restore the common detector selection to its prior approved version.
+
+#### Phase 7 KSDD2 Manifest Review and Training Hold-Point Decision
+
+| Decision field | Approved value |
+|---|---|
+| Dataset manifest review | **ACCEPTED** |
+| Project Owner / date | Nouran Ismail — Project Owner; 2026-09-09 |
+| Phase 7 dataset use and model training | **AUTHORIZED — NOT STARTED** |
+| Learning task | Binary semantic segmentation: background versus anomaly; convert results to generic `DetectionResult` regions behind `DetectorContract` |
+| Split | Deterministic stratified 80% training / 20% validation from official training only, using stable SHA-256 ordering and recorded seed/configuration |
+| Official test | Untouched and prohibited from fitting, preprocessing decisions, threshold tuning, model selection, early stopping, training, and validation |
+| Training configuration | Compact U-Net-style network; approved configurable resizing; class weighting or approved imbalance-aware loss; deterministic seeds; validation early stopping; controlled GPU with CPU fallback |
+| Confidence | Default pixel threshold 0.50; validation-only tuning; record final threshold; controlled abstention for low confidence |
+| Evidence | Record MATLAB/toolbox versions, hardware, seed, hyperparameters, execution time, threshold, metrics, and partition-specific results |
+| Acceptance criteria | `IIW-AC-038` through `IIW-AC-046` |
+| Licensing | CC BY-NC-SA 4.0 non-commercial use; dataset outside Git; attribution and ShareAlike notice in model and model card |
+| Failure disposition | Missed thresholds require `FAIL` or `APPROVED WITH LIMITATIONS`; thresholds cannot change after official-test results are viewed |
+| Later phases | Phases 8–17 remain **NOT AUTHORIZED** |
+
+This decision supersedes the earlier Phase 7 acquisition-only execution hold. It authorizes only the already planned Phase 7 artifacts and actions; it does not record implementation, training, evaluation, developer verification, independent verification, or acceptance results.
 
 ### Phase 8 — Numerical Feature Extraction
 

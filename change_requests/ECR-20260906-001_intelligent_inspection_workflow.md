@@ -518,3 +518,23 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Still prohibited | Annotation modification, model adapter implementation, training, tuning, calibration, model creation, testing, performance evaluation, and performance claims |
 | Remaining training blockers | Project Owner approval of metrics, thresholds, numeric class mapping, immutable leakage-safe split membership, leakage controls, annotation interpretation, and compute constraints |
 | Other artifacts | Phase 7 model/training/model-card/test/result artifacts remain unimplemented; Phases 8–17 remain **NOT AUTHORIZED** |
+
+### Phase 7 KSDD2 Manifest Review and Training Authorization
+
+| Decision field | Entry |
+|---|---|
+| Dataset manifest review | **ACCEPTED** |
+| Project Owner / date | Nouran Ismail — Project Owner; 2026-09-09 |
+| Verified integrity | SHA-256 `EDCDB486809B24F1D17B785E30C52FAFC5999554DD5FE18DDF77B61CEB6F36A8`; 3,335 canonical images and masks; 356 positive and 2,979 negative samples |
+| Duplicate disposition | The two publisher-supplied `(copy)` files are excluded from split membership without modifying the source archive |
+| Split approval | Deterministic stratified 80% training / 20% validation split from official training only; stable SHA-256 ordering with recorded seed/configuration; exact duplicates and approved acquisition groups remain together |
+| Official test isolation | Official test data shall not be used for fitting, preprocessing decisions, threshold tuning, model selection, early stopping, training, or validation |
+| Learning task | Binary semantic segmentation, background versus anomaly, mapped to generic `DetectionResult` regions behind `DetectorContract` |
+| Training and confidence | Compact U-Net-style network; approved resizing; imbalance-aware loss; deterministic seed; validation early stopping; controlled GPU/CPU execution; default pixel threshold 0.50 with validation-only tuning and controlled abstention |
+| Required metrics | Pixel Dice and IoU; image-level precision, recall, and F1; negative-image false-positive rate; inference time; confusion matrix; validation and official-test results reported separately |
+| Fixed thresholds | Test recall >= 0.75; precision >= 0.70; F1 >= 0.72; positive-image mean Dice >= 0.50; negative-image false-positive rate <= 0.15; zero interface violations; zero uncontrolled failures |
+| Failure disposition | A missed threshold shall be reported as `FAIL` or `APPROVED WITH LIMITATIONS`; thresholds shall not change after official-test results are viewed |
+| Licensing and claims | CC BY-NC-SA 4.0 non-commercial use; no dataset payload in Git; model/model-card attribution and non-commercial/ShareAlike notice required; no production-readiness or pipeline-domain-validation claim |
+| Phase 7 dataset use and model training | **AUTHORIZED — NOT STARTED** |
+| Annotation modification | **NOT AUTHORIZED** |
+| Later phases | Phases 8–17 remain **NOT AUTHORIZED** |
