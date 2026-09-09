@@ -8,11 +8,59 @@ dataset:
   selection_status: "ACCEPTED"
   acquisition_status: "COMPLETE"
   verification_status: "PASS WITH OBSERVATION"
-  training_readiness: "AUTHORIZED - NOT STARTED"
+  training_readiness: "EXECUTED - DEVELOPER ACCEPTANCE FAILED"
   observation: >-
     The publisher archive contains exact duplicate copies named
     10301 (copy).png and 10301_GT (copy).png. Excluding those duplicate files,
     the observed canonical counts exactly match the official documentation.
+
+training_execution:
+  status: "COMPLETE"
+  developer_acceptance: "FAIL"
+  execution_date: "2026-09-09"
+  split:
+    training_samples: 1865
+    validation_samples: 466
+    official_test_samples: 1004
+    official_test_used_for_tuning: false
+    official_test_evaluation_count: 2
+    method: "Deterministic stratified SHA-256 ordering of the official training partition"
+    seed: 7092026
+    seed_configuration: "KSDD2-validation-v1"
+  model:
+    artifact: "extensions/intelligent-inspection/models/deep_learning_detector.mat"
+    version: 1
+    byte_size: 733560
+    sha256: "5D44D817C708104A67632A0290B4C5D10A942FC9D130302F97C7E5C58A42D93B"
+    pixel_threshold: 0.45
+  validation_metrics:
+    pixel_dice: 0.5665564283
+    pixel_iou: 0.3952415285
+    image_precision: 0.9459459459
+    image_recall: 0.7291666667
+    image_f1: 0.8235294118
+    negative_image_false_positive_rate: 0.0047846890
+    positive_image_mean_dice: 0.4192863975
+  official_test_metrics:
+    pixel_dice: 0.4202618940
+    pixel_iou: 0.2660326369
+    image_precision: 0.875
+    image_recall: 0.6363636364
+    image_f1: 0.7368421053
+    negative_image_false_positive_rate: 0.0111856823
+    positive_image_mean_dice: 0.2959458171
+    confusion_matrix_tn_fp_fn_tp: [884, 10, 40, 70]
+    mean_inference_seconds: 0.0123093934
+    uncontrolled_failures: 0
+  acceptance:
+    passed: false
+    execution_deviation: >-
+      The official-test evaluation ran twice because the first completed
+      evaluation could not be persisted after a repository-root model-save
+      path error. Configuration and threshold were unchanged.
+    failed_thresholds:
+      - "Test image-level recall 0.6363636364 is below 0.75."
+      - "Positive-image mean Dice 0.2959458171 is below 0.50."
 
 provenance:
   official_page: "https://www.vicos.si/resources/kolektorsdd2/"
@@ -195,6 +243,60 @@ authorization:
   model_training_authorized: true
   model_creation_authorized: true
   performance_evaluation_authorized: true
+  phases_8_through_17_authorized: false
+
+corrective_training_authorization:
+  status: "AUTHORIZED"
+  phase_7_status: "FAIL - CORRECTIVE TRAINING AUTHORIZED"
+  implementer: "Nouran Ismail - AI & Algorithm Developer"
+  project_owner: "Nouran Ismail"
+  authorization_date: "2026-09-09"
+  failed_results:
+    official_test_image_recall: 0.636364
+    required_minimum_recall: 0.75
+    official_test_positive_image_mean_dice: 0.295946
+    required_minimum_positive_image_mean_dice: 0.50
+  acceptance_thresholds_unchanged: true
+  input_representation:
+    preferred_size: [72, 192, 3]
+    aspect_ratio_preserving: true
+    documented_downsampling_compatible_equivalent_permitted: true
+    mask_interpolation: "nearest-neighbor"
+    image_mask_alignment_required: true
+  training_controls:
+    maximum_epochs: 10
+    validation_early_stopping_required: true
+    patience_must_be_documented: true
+    maximum_candidates: 3
+    candidate_selection_data: "training and validation only"
+    imbalance_aware_method_required: true
+    deterministic_training_only_augmentation:
+      - "horizontal reflection where valid"
+      - "small translations with aligned image and mask transforms"
+      - "small intensity variation applied to images only"
+  threshold_controls:
+    predefined_grid_required_before_execution: true
+    selection_partition: "validation only"
+  freeze_before_final_evaluation:
+    architecture: true
+    weights: true
+    preprocessing: true
+    threshold: true
+  official_test_controls:
+    prior_evaluation_count_disclosed: 2
+    additional_evaluations_authorized: 1
+    fully_blind_claim_permitted: false
+    prohibited_uses:
+      - "training"
+      - "augmentation selection"
+      - "early stopping"
+      - "threshold selection"
+      - "candidate selection"
+  unchanged_controls:
+    - "dataset partitions and official-test membership"
+    - "DetectorContract and DetectionResult"
+    - "seven-file Phase 7 implementation allowlist"
+    - "CC BY-NC-SA 4.0 non-commercial restrictions"
   phases_8_through_17_authorized: false
 
 approved_learning_task:

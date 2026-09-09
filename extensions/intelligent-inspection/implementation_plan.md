@@ -17,9 +17,9 @@
 | Author role | Lead Systems Engineer / MBD Architect |
 | Planned implementers | Phase 5A, Phase 5B, Phase 6, and Phase 7 AI & Algorithm Developer: Nouran Ismail; other phase assignments remain **TBD** |
 | Independent reviewer | **TBD:** a different named individual from every implementation author; Nouran Ismail is ineligible to independently verify her own Phase 5A, Phase 5B, Phase 6, or Phase 7 implementation |
-| Status | **PHASES 1–6 COMPLETE AND ACCEPTED; PHASE 7 AUTHORIZED — NOT STARTED; PHASES 8–17 NOT AUTHORIZED** |
+| Status | **PHASES 1-6 COMPLETE AND ACCEPTED; PHASE 7 FAIL - CORRECTIVE TRAINING AUTHORIZED; PHASES 8-17 NOT AUTHORIZED** |
 
-Gate 3 was approved by the Project Owner on 2026-09-06, initially with execution authority limited to Phase 1. Phases 1 through 4 were subsequently completed and accepted through their controlled hold points. On 2026-09-07, the Project Owner accepted Phase 4 developer evidence and authorized the narrowed data-quality scope. After an approved corrective repair, Phase 5A developer verification passed 16 of 16 tests and the Project Owner accepted Phase 5A. The Project Owner divided Phase 5 into Phase 5A — Reusable `DataQualityValidation` and Phase 5B — Reusable Image Preprocessing without renumbering Phases 6–17. On 2026-09-08, the Project Owner accepted Phase 5B and then Phase 6 developer evidence, recording 16/16 for each. Phase 6 is complete and accepted, with independent verification pending. Phase 7 Optional Deep-Learning Detection is authorized and assigned to Nouran Ismail, but execution remains blocked until its dataset, metric, class, and compute prerequisites are approved. Phases 8–17 remain unauthorized. Phase hold points are controls within the Gate 3 work package; they do not replace or renumber repository Gates 1–6.
+Gate 3 was approved by the Project Owner on 2026-09-06, initially with execution authority limited to Phase 1. Phases 1 through 4 were subsequently completed and accepted through their controlled hold points. On 2026-09-07, the Project Owner accepted Phase 4 developer evidence and authorized the narrowed data-quality scope. After an approved corrective repair, Phase 5A developer verification passed 16 of 16 tests and the Project Owner accepted Phase 5A. The Project Owner divided Phase 5 into Phase 5A — Reusable `DataQualityValidation` and Phase 5B — Reusable Image Preprocessing without renumbering Phases 6–17. On 2026-09-08, the Project Owner accepted Phase 5B and then Phase 6 developer evidence, recording 16/16 for each. Phase 6 is complete and accepted, with independent verification pending. Phase 7 training completed but failed two fixed performance criteria. On 2026-09-09, the Project Owner authorized controlled corrective training within the unchanged seven-file implementation allowlist. Phases 8–17 remain unauthorized. Phase hold points are controls within the Gate 3 work package; they do not replace or renumber repository Gates 1–6.
 
 ## 2. Approved Basis
 
@@ -286,7 +286,7 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 
 | Authorization field | Decision |
 |---|---|
-| Status | **AUTHORIZED — DATASET USE AND MODEL TRAINING; NOT STARTED** |
+| Status | **FAIL - CORRECTIVE TRAINING AUTHORIZED** |
 | Approver/date | Nouran Ismail — Project Owner; 2026-09-08 |
 | Deep Learning Toolbox | **APPROVED FOR PHASE 7** |
 | Implementer | Nouran Ismail — AI & Algorithm Developer; assigned by Nouran Ismail — Project Owner on 2026-09-08 |
@@ -304,8 +304,8 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 | Later phases | Phases 8–17 remain **NOT AUTHORIZED** |
 
 - **Approved requirement IDs:** `IIW-REQ-005`–`IIW-REQ-007`, `IIW-REQ-012`, `IIW-REQ-017`–`IIW-REQ-020`, `IIW-REQ-023`.
-- **Prerequisites:** Phase 6 contract accepted; Deep Learning Toolbox verified and approved; KSDD2 manifest accepted for non-commercial internship use; deterministic split, leakage controls, binary class mapping, metrics, fixed thresholds, confidence policy, and compute approach approved by the Project Owner on 2026-09-09. Training remains not started.
-- **Exact allowed files:** `extensions/intelligent-inspection/core/+iiw/+detection/deepLearningDetector.m`; `extensions/intelligent-inspection/training/train_deep_learning_detector.m`; `extensions/intelligent-inspection/models/deep_learning_detector.mat`; `extensions/intelligent-inspection/model_cards/deep_learning_detector.md`; `extensions/intelligent-inspection/datasets/deep_learning_dataset_manifest.yaml`; `extensions/intelligent-inspection/datasets/dataset_selection_proposal.md`; `tests/intelligent-inspection/test_deep_learning_detector.m`; `extensions/intelligent-inspection/evidence/deep_learning_detection_results.md`.
+- **Prerequisites:** Phase 6 contract accepted; Deep Learning Toolbox verified and approved; KSDD2 manifest accepted for non-commercial internship use; deterministic split, leakage controls, binary class mapping, metrics, fixed thresholds, confidence policy, and compute approach approved. Initial training failed two fixed criteria; corrective training was authorized by the Project Owner on 2026-09-09.
+- **Exact allowed files:** `extensions/intelligent-inspection/core/+iiw/+detection/deepLearningDetector.m`; `extensions/intelligent-inspection/training/train_deep_learning_detector.m`; `extensions/intelligent-inspection/models/deep_learning_detector.mat`; `extensions/intelligent-inspection/model_cards/deep_learning_detector.md`; `extensions/intelligent-inspection/datasets/deep_learning_dataset_manifest.yaml`; `tests/intelligent-inspection/test_deep_learning_detector.m`; `extensions/intelligent-inspection/evidence/deep_learning_detection_results.md`. The completed dataset-selection proposal is a planning record, not a corrective implementation artifact.
 - **Protected files:** Section 4, raw datasets outside the approved manifest, and the conventional detector contract.
 - **Responsible engineering role:** AI & Algorithm Developer.
 - **Implementation actions:** Implement the optional replaceable learned detector and controlled training pipeline using the accepted KSDD2 manifest and approved split, task, training, confidence, metric, threshold, and licensing controls. Preserve dataset payloads outside Git, record complete execution provenance, map segmentation output to generic `DetectionResult`, and issue no mission or safety command.
@@ -334,6 +334,28 @@ Every phase protects the following unless a separate ECR explicitly authorizes a
 | Later phases | Phases 8–17 remain **NOT AUTHORIZED** |
 
 This decision supersedes the earlier Phase 7 acquisition-only execution hold. It authorizes only the already planned Phase 7 artifacts and actions; it does not record implementation, training, evaluation, developer verification, independent verification, or acceptance results.
+
+#### Phase 7 Corrective-Training Control
+
+| Control | Approved value |
+|---|---|
+| Authorization | **CORRECTIVE TRAINING AUTHORIZED** by Nouran Ismail - Project Owner on 2026-09-09 |
+| Current status | **FAIL - CORRECTIVE TRAINING AUTHORIZED** |
+| Implementer | Nouran Ismail - AI & Algorithm Developer |
+| Failed criteria | Official-test recall 0.636364 < 0.75; positive-image mean Dice 0.295946 < 0.50 |
+| Thresholds | Unchanged; lowering is prohibited |
+| Candidate budget | Maximum three candidates selected using training and validation data only |
+| Input | Aspect-ratio-preserving `72x192`, unless a documented downsampling-compatible equivalent is required |
+| Mask handling | Preserve alignment and use nearest-neighbor mask interpolation |
+| Training | Maximum 10 epochs; deterministic seeds; approved imbalance handling; validation-based early stopping with documented patience |
+| Augmentation | Training-only deterministic horizontal reflection where valid, small translations, and small image-only intensity variation; never misalign images and masks |
+| Threshold grid | Predefine and record before execution; select using validation only |
+| Freeze | Freeze architecture, weights, preprocessing, and threshold before final evaluation |
+| Official test | Exactly one additional evaluation is authorized after freeze; prior two evaluations remain disclosed, and the result is not fully blind |
+| Prohibited influence | Official test data cannot affect training, augmentation, early stopping, threshold selection, or candidate selection |
+| Exact allowlist | Unchanged seven-file Phase 7 implementation allowlist; `dataset_selection_proposal.md` remains a completed planning artifact and is not part of corrective implementation |
+| Protected controls | Dataset partitions, official-test membership, `DetectorContract`, `DetectionResult`, acceptance thresholds, and CC BY-NC-SA 4.0 restrictions |
+| Later phases | Phases 8-17 remain **NOT AUTHORIZED** |
 
 ### Phase 8 — Numerical Feature Extraction
 

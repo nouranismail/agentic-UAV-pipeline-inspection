@@ -538,3 +538,27 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Phase 7 dataset use and model training | **AUTHORIZED — NOT STARTED** |
 | Annotation modification | **NOT AUTHORIZED** |
 | Later phases | Phases 8–17 remain **NOT AUTHORIZED** |
+
+### Phase 7 Corrective-Training Authorization
+
+| Decision field | Entry |
+|---|---|
+| Decision | **CORRECTIVE TRAINING AUTHORIZED** |
+| Current Phase 7 status | **FAIL - CORRECTIVE TRAINING AUTHORIZED** |
+| Implementer | Nouran Ismail - AI & Algorithm Developer |
+| Project Owner / authorization date | Nouran Ismail - Project Owner; 2026-09-09 |
+| Observed failures | Official-test recall 0.636364 versus required >= 0.75; positive-image mean Dice 0.295946 versus required >= 0.50 |
+| Threshold disposition | Approved acceptance thresholds remain unchanged and shall not be lowered |
+| Input representation | Use aspect-ratio-preserving `72x192`, or a documented equivalent divisible by the network downsampling factor if MATLAB/network constraints require it |
+| Alignment | Preserve image-mask alignment; segmentation masks use nearest-neighbor interpolation |
+| Training | Maximum 10 epochs; validation-based early stopping with documented patience |
+| Training-only augmentation | Deterministic horizontal reflection where valid, small translations, and small image-only intensity variation; no image-mask misalignment |
+| Imbalance handling | Continue approved class weighting or another approved imbalance-aware loss |
+| Threshold selection | Validation-only selection from a predefined grid recorded before execution |
+| Candidate limit | No more than three corrective candidates, compared using training and validation data only |
+| Freeze rule | Freeze architecture, weights, preprocessing, and threshold before official-test evaluation |
+| Additional official-test authority | Exactly one additional evaluation after freeze; disclose the earlier two evaluations and do not describe the final result as fully blind |
+| Unchanged controls | Thresholds, dataset partitions and test membership, `DetectorContract`, `DetectionResult`, and non-commercial licensing restrictions |
+| Exact seven-file corrective allowlist | `extensions/intelligent-inspection/core/+iiw/+detection/deepLearningDetector.m`; `extensions/intelligent-inspection/training/train_deep_learning_detector.m`; `extensions/intelligent-inspection/models/deep_learning_detector.mat`; `extensions/intelligent-inspection/model_cards/deep_learning_detector.md`; `extensions/intelligent-inspection/datasets/deep_learning_dataset_manifest.yaml`; `tests/intelligent-inspection/test_deep_learning_detector.m`; `extensions/intelligent-inspection/evidence/deep_learning_detection_results.md` |
+| Prohibited use | Official test data shall not influence training, augmentation, early stopping, threshold selection, or candidate selection |
+| Later phases | Phases 8-17 remain **NOT AUTHORIZED** |
