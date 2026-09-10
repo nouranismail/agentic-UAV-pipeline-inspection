@@ -611,3 +611,24 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Operational source | Accepted Phase 6 `DetectionResult`; Phase 7 deep-learning detector remains disabled |
 | Phases 9–17 | **NOT AUTHORIZED** |
 | Required approver | Nouran Ismail — Project Owner |
+
+## 23. Phase 8 Project Owner Review and Phase 9 Planning Authorization
+
+| Decision field | Entry |
+|---|---|
+| Reviewer / date | Nouran Ismail — Project Owner; 2026-09-10 |
+| Phase 8 implementation | **COMPLETE** |
+| Developer verification | **PASS — 14/14** |
+| Project Owner review | **ACCEPTED** |
+| Independent verification | **PENDING — a different named reviewer is required** |
+| Phase 8 evidence basis | Approved feature IDs 1–6 occur exactly once in deterministic ascending order; catalog, extractor, and schema versions are 1; approved unit, validity, no-detection, and empty-invalid-output rules are implemented; no raw images or invented physical/degradation measurements are used |
+| Phase 8 change scope | Exactly the five approved Phase 8 artifacts; no protected or later-phase artifact changed |
+| Actual Phase 9 | **Predictive-Maintenance Regression** |
+| Phase 9 authorization | **PLANNING/SPECIFICATION AUTHORIZED — IMPLEMENTATION AND TRAINING NOT AUTHORIZED** |
+| Reusable planning boundary | Predictor contract; `NumericalFeatureSet` validation; `HealthPrediction` output; model loading and execution; uncertainty/status handling; evidence and model-card rules |
+| Motor-project planning boundary | Separately governed motor feature IDs/names, units/ranges, dataset, health/RUL target, trained regression model, thresholds, and acceptance metrics |
+| Current dataset status | **NOT SELECTED / NOT APPROVED**; the approved plan requires dataset governance, target, split, metrics, uncertainty method, and pass thresholds before implementation or training |
+| Phase 9 implementation allowlist | `extensions/intelligent-inspection/core/+iiw/+prediction/predictHealth.m`; `extensions/intelligent-inspection/training/train_health_regression.m`; `extensions/intelligent-inspection/models/health_regression.mat`; `extensions/intelligent-inspection/model_cards/health_regression.md`; `extensions/intelligent-inspection/datasets/regression_dataset_manifest.yaml`; `tests/intelligent-inspection/test_health_prediction.m`; `extensions/intelligent-inspection/evidence/health_prediction_results.md` — all **NOT AUTHORIZED** for implementation |
+| Phase 9 planning/specification allowlist | Existing generic requirements, interface contracts, acceptance criteria, implementation plan, this ECR, and team configuration only; no new file |
+| Phase 9 planning assignment | **PENDING — must be recorded before substantive specification work** |
+| Later phases | Phases 10–17 remain **NOT AUTHORIZED** |
