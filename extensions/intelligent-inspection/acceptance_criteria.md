@@ -161,6 +161,22 @@ Regression acceptance additionally requires proof that inputs are numerical feat
 
 These criteria are approved for Phase 4 implementation and verification. This approval does not constitute Phase 4 implementation, verification, or acceptance.
 
+## Approved Phase 8 Feature-Catalog Acceptance Criteria
+
+**Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-10**
+
+| ID | Criterion | Required result |
+|---|---|---|
+| IIW-AC-047 | Catalog content is limited to approved `DetectionResult` information. | Exactly six features use IDs 1–6; no raw-image, mask, region size/shape/count, or uncalibrated physical measurement exists. |
+| IIW-AC-048 | Ordering and representation are deterministic. | Active IDs are unique and ascending; capacity remains 32; repeated identical inputs/configuration produce identical output. |
+| IIW-AC-049 | No-detection output is exact. | Six entries; presence and location availability are valid zero; coordinates are zero and invalid; confidence follows `confidenceValid`; unused entries are zero/false. |
+| IIW-AC-050 | Malformed/nonfinite inputs fail controllably. | Exact all-zero empty output, false validity, zero counts, no partial output, and no uncontrolled error. |
+| IIW-AC-051 | Units and versions conform. | Codes `1=dimensionless`, `2=metre`; nonempty output has supported nonzero schema/extractor versions; mismatches are rejected. |
+| IIW-AC-052 | Source trace and array alignment are preserved. | `sourceRefs(1)=resultId`, `referenceCount=1`, active arrays align, and unused capacity is zero-filled. |
+| IIW-AC-053 | Prediction boundary is numerical and reusable. | No raw payload, taxonomy name, project-specific term, or disabled learned-detector dependency appears in the catalog or extractor interface. |
+
+`IIW-AC-047` through `IIW-AC-053` are approved. Acceptance does not establish predictive-maintenance sufficiency and does not authorize claims that the catalog contains anomaly geometry, degradation, vibration, temperature, current, operating time, or remaining-useful-life information.
+
 ## Unresolved Acceptance Decisions
 
 - Applicable data-quality measures and thresholds.

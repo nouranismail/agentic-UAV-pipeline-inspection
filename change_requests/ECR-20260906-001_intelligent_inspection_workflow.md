@@ -588,3 +588,26 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Phase 8 exact allowlist | `extensions/intelligent-inspection/core/+iiw/+features/extractNumericalFeatures.m`; `extensions/intelligent-inspection/core/+iiw/+features/validateFeatureSet.m`; `tests/intelligent-inspection/test_feature_extraction.m`; `tests/intelligent-inspection/fixtures/feature_contract_fixtures.mat`; `extensions/intelligent-inspection/evidence/feature_extraction_results.md` |
 | Phase 8 execution prerequisite | Project-specific feature names, units, validity rules, and extraction versions must be approved before implementation |
 | Subsequent phases | Phases 9–17 remain **NOT AUTHORIZED** |
+
+### Phase 8 Feature-Catalog Clarification Approval
+
+| Decision field | Entry |
+|---|---|
+| Feature catalog | **APPROVED** |
+| Approver / date | Nouran Ismail — Project Owner; 2026-09-10 |
+| Source boundary | Accepted Phase 6 conventional-detector `DetectionResult`; disabled Phase 7 detector excluded from the operational path |
+| Catalog | Six ordered features: detection presence, confidence, location availability, and three location coordinates |
+| Runtime representation | Stable `uint16` IDs 1–6, `single` values, unchanged capacity/count representation |
+| Excluded derivations | Raw images, masks, region size/shape/count, uncalibrated physical dimensions, taxonomy semantics, and version identifiers as predictors |
+| Approved requirement IDs | `IIW-REQ-026` through `IIW-REQ-029` |
+| Approved acceptance IDs | `IIW-AC-047` through `IIW-AC-053` |
+| Versions and units | Catalog version 1; extractor version 1; `0=UNASSIGNED`, `1=DIMENSIONLESS`, `2=METRE` |
+| Approved behavior | Exact no-detection and malformed/invalid-input behavior in `interface_contracts.md` |
+| Limitation | The catalog contains only approved `DetectionResult` information and is not sufficient alone for predictive-maintenance training; it contains no anomaly size, degradation, vibration, temperature, current, operating time, or remaining-useful-life information |
+| Reuse boundary | Generic `NumericalFeatureSet` remains the predictor input; separately governed project sensor adapters may add IDs; domain-specific names, units, and mappings remain in project configuration |
+| Interface-change control | Adding anomaly area, width, height, or mask features requires separate interface-change approval |
+| Phase 8 | **AUTHORIZED — NOT STARTED** |
+| Phase 8 implementer | Nouran Ismail — AI & Algorithm Developer |
+| Operational source | Accepted Phase 6 `DetectionResult`; Phase 7 deep-learning detector remains disabled |
+| Phases 9–17 | **NOT AUTHORIZED** |
+| Required approver | Nouran Ismail — Project Owner |

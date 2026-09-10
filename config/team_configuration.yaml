@@ -24,7 +24,7 @@ extensions:
     gate_2_status: "APPROVED"
     gate_2_approver: "Nouran Ismail — Project Owner"
     gate_2_approval_date: "2026-09-06"
-    authorized_next_activity: "Phase 8 Numerical Feature Extraction is authorized but not started; execution requires approved configuration-specific feature definitions; Phases 9-17 remain unauthorized"
+    authorized_next_activity: "Phase 8 Numerical Feature Extraction is authorized but not started; Phases 9-17 remain unauthorized"
     gate_3_status: "APPROVED"
     gate_3_approver: "Nouran Ismail — Project Owner"
     gate_3_approval_date: "2026-09-06"
@@ -265,6 +265,18 @@ extensions:
       - "tests/intelligent-inspection/fixtures/feature_contract_fixtures.mat"
       - "extensions/intelligent-inspection/evidence/feature_extraction_results.md"
     phase_8_execution_prerequisite: "Project-specific feature names, units, validity rules, and extraction versions require approval before implementation"
+    phase_8_feature_catalog_status: "APPROVED"
+    phase_8_feature_catalog_approver: "Nouran Ismail - Project Owner"
+    phase_8_feature_catalog_approval_date: "2026-09-10"
+    phase_8_approved_requirement_ids: "IIW-REQ-026 through IIW-REQ-029"
+    phase_8_approved_acceptance_criteria: "IIW-AC-047 through IIW-AC-053"
+    phase_8_feature_catalog_version: 1
+    phase_8_proposed_extractor_version: 1
+    phase_8_feature_ids: [1, 2, 3, 4, 5, 6]
+    phase_8_operational_source: "Accepted Phase 6 conventional-detector DetectionResult; Phase 7 deep-learning detector remains disabled"
+    phase_8_catalog_limitation: "Contains only DetectionResult-supported features; not sufficient alone for predictive-maintenance training and contains no anomaly size, degradation, vibration, temperature, current, operating time, or remaining-useful-life information"
+    phase_8_reuse_boundary: "Generic NumericalFeatureSet remains predictor input; additional sensor feature IDs require separate governance and domain-specific names, units, and mappings remain in project configuration"
+    phase_8_geometry_change_control: "Anomaly area, width, height, or mask features require a separately approved interface change"
     phases_9_through_17_status: "NOT AUTHORIZED; prerequisites and approval hold points remain"
     first_system_composer_architecture: "logical architecture with components, ports, interfaces, and connections"
     mission_supervisor_status: "verified, unchanged, and protected; interface changes require a separate ECR"

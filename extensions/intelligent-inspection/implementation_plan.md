@@ -359,7 +359,7 @@ This decision supersedes the earlier Phase 7 acquisition-only execution hold. It
 
 ### Phase 8 — Numerical Feature Extraction
 
-**Project Owner authorization (2026-09-09):** **AUTHORIZED — NOT STARTED**. Implementer: Nouran Ismail — AI & Algorithm Developer. Phase 8 may consume the approved `DetectionResult` from the accepted Phase 6 conventional detector; Phase 7 performance acceptance is not a prerequisite. Execution remains held until configuration-specific feature names, units, validity rules, and extraction versions are approved. Phases 9–17 remain **NOT AUTHORIZED**.
+**Project Owner authorization (2026-09-10):** **AUTHORIZED — NOT STARTED**. Implementer: Nouran Ismail — AI & Algorithm Developer. The Project Owner approved feature IDs 1–6, deterministic ascending order, catalog/extractor version 1, unit codes, exact no-detection and invalid-input behavior, `IIW-REQ-026`–`IIW-REQ-029`, and `IIW-AC-047`–`IIW-AC-053`. Operational input is the accepted Phase 6 `DetectionResult`; the Phase 7 detector remains disabled. The catalog is not predictive-maintenance-sufficient by itself. Project-specific sensor features require separately governed IDs/configuration, and anomaly area, width, height, or mask features require a separately approved interface change. Phases 9–17 remain **NOT AUTHORIZED**.
 
 - **Approved requirement IDs:** `IIW-REQ-008`, `IIW-REQ-009`, `IIW-REQ-017`–`IIW-REQ-020`, `IIW-REQ-023`.
 - **Prerequisites:** Phase 4 contract accepted and applicable Phase 5B/6 output available; feature names, units, validity rules, and extraction versions approved for each configuration.

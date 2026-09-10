@@ -298,3 +298,40 @@ The Project Owner approved the following deterministic comparison rules for Phas
 | Later phases | Phases 5–17 remain **NOT AUTHORIZED** |
 
 This approval authorizes later Phase 4 execution only under its existing four-file implementation allowlist. It does not implement Phase 4.
+
+## Approved Phase 8 Numerical Feature Catalog Clarification
+
+**Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-10**
+
+The catalog is derived only from the approved ten-field `DetectionResult`. It does not infer region size, shape, count, masks, pixel measurements, or any other unavailable information. Runtime ordering is ascending `featureId`. Catalog version and proposed extractor version are both `1`.
+
+| ID | Generic feature name | Source or exact derivation | MATLAB type | Unit/code | Range | Default | Validity rule | No-detection behavior | Malformed/nonfinite behavior | Extractor version | Rationale for health prediction |
+|---:|---|---|---|---|---|---:|---|---|---|---:|---|
+| 1 | `detectionPresent` | `single(labelId >= 1 && labelId <= 254)` | `single [1 1]` | dimensionless/`1` | `[0,1]` | `0` | Valid for every conforming result; `labelId=255` is malformed | `0`, valid | Controlled empty set | 1 | Distinguishes absence from measured attributes |
+| 2 | `detectionConfidence` | `single(confidence)` | `single [1 1]` | dimensionless/`1` | `[0,1]` | `0` | Valid only when `confidenceValid=true` and the value is finite and in range | `0`; valid only when explicitly valid at source | Invalid asserted value produces the controlled empty set; `confidenceValid=false` gives `0`, invalid | 1 | Provides bounded evidence strength without raw data |
+| 3 | `locationAvailable` | `single(locationValid)` after location/frame validation | `single [1 1]` | dimensionless/`1` | `[0,1]` | `0` | Valid for every conforming result; asserted location requires nonzero `frameId` and finite coordinates | `0`, valid | Controlled empty set | 1 | Distinguishes unavailable spatial context from zero coordinates |
+| 4 | `locationCoordinate1` | `single(location(1))` | `single [1 1]` | metre/`2` | finite `single` range | `0` | Valid only for valid location/frame and finite conversion | `0`, invalid | Controlled empty set for malformed/nonfinite asserted location | 1 | Supplies calibrated generic spatial context when available |
+| 5 | `locationCoordinate2` | `single(location(2))` | `single [1 1]` | metre/`2` | finite `single` range | `0` | Same as feature 4 | `0`, invalid | Same as feature 4 | 1 | Supplies calibrated generic spatial context when available |
+| 6 | `locationCoordinate3` | `single(location(3))` | `single [1 1]` | metre/`2` | finite `single` range | `0` | Same as feature 4 | `0`, invalid | Same as feature 4 | 1 | Supplies calibrated generic spatial context when available |
+
+Proposed unit codes are `0=UNASSIGNED`, `1=DIMENSIONLESS`, and `2=METRE`. Human-readable names resolve from this version-controlled catalog; runtime continues to carry numeric IDs and values only. Category and version identifiers remain configuration/provenance and are not treated as ordinal regression features.
+
+For a conforming no-detection result (`labelId=0`), emit all six entries in ID order: `featureIds(1:6)=uint16(1:6)`, `featureCount=uint8(6)`, detection presence and location availability are valid zero, coordinates are zero and invalid, and confidence follows its explicit source validity. Set `sourceRefs(1)=resultId`, `referenceCount=1`, zero-fill all unused entries, and require configured nonzero `featureSetId`, `extractorVersion=1`, and supported `schemaVersion`.
+
+For a malformed result, unsupported schema, required identifier/version violation, `labelId=255`, invalid asserted confidence/location, or nonfinite asserted value, return the exact controlled empty `NumericalFeatureSet`: all numeric fields and arrays zero, all validity entries false, `featureCount=0`, and `referenceCount=0`. Emit no partial set.
+
+Schema validation requires the exact approved fields, types and dimensions; aligned IDs, values, units and validity; unique ascending active IDs; zero-filled unused capacity; supported nonzero schema/extractor versions for nonempty output; a resolvable source reference; and no raw payload. Catalog or extractor-version mismatch is rejected as controlled empty output and recorded as a failure.
+
+### Approved limitation and reuse boundary
+
+This catalog contains only features supported by the approved `DetectionResult`. It is not sufficient by itself to train a predictive-maintenance model and shall not be presented as containing anomaly size, degradation, vibration, temperature, current, operating time, or remaining-useful-life information.
+
+The generic `NumericalFeatureSet` remains the predictor input. Separately governed project sensor adapters may populate additional feature IDs. Domain-specific feature names, units, and mappings belong in the applicable project configuration, not the reusable Phase 8 implementation. Adding anomaly area, width, height, or mask features requires a separately approved interface change because those values are absent from the current `DetectionResult`.
+
+| Approval field | Entry |
+|---|---|
+| Decision | **APPROVED** |
+| Approver | Nouran Ismail — Project Owner |
+| Approval date | 2026-09-10 |
+| Approved catalog | Feature IDs 1–6; ascending order; catalog version 1; extractor version 1; unit codes `0=UNASSIGNED`, `1=DIMENSIONLESS`, `2=METRE` |
+| Approved behavior | Exact no-detection and malformed/invalid-input behavior defined above |

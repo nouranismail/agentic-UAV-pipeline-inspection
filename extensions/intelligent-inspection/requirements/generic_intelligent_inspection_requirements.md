@@ -36,6 +36,19 @@ These requirements define observable behavior and governance constraints. They d
 | IIW-REQ-024 | The same reusable workflow version shall support at least two distinct inspection configurations without core-file modification. | Provides measurable reuse evidence. | Repository comparison shows both configurations use the same core artifact hashes and differ only in approved configuration/adapters. |
 | IIW-REQ-025 | Product availability shall be recorded independently from product approval status. | Prevents an approval record from becoming a false installation claim. | Every dependency entry contains separate governance-status and availability-status fields, with availability limited to `AVAILABLE`, `UNAVAILABLE`, or `NOT VERIFIED`. |
 
+## Approved Phase 8 Feature-Catalog Requirements
+
+**Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-10**
+
+| ID | Requirement | Rationale | Verification criterion |
+|---|---|---|---|
+| IIW-REQ-026 | Feature extraction from `DetectionResult` shall emit only the approved six-feature catalog in ascending stable-ID order and shall not infer unavailable measurements. | Prevents invented geometry and hidden raw-data coupling. | Review finds only IDs 1–6 and no raw-image, mask, pixel, region-size/shape/count, or uncalibrated physical derivation. |
+| IIW-REQ-027 | A conforming no-detection result shall emit the deterministic six-entry representation with explicit validity and zero defaults. | Distinguishes valid absence from malformed input. | Repeated no-detection inputs produce identical values, ordered IDs, and the approved validity pattern. |
+| IIW-REQ-028 | Malformed, nonfinite, or unsupported-schema input, or unsupported extractor configuration, shall produce the exact controlled empty `NumericalFeatureSet` and no partial values. | Prevents corrupted evidence from reaching prediction. | Each invalid category produces all-zero numeric fields, false validity, zero counts, and no uncontrolled error. |
+| IIW-REQ-029 | Nonempty feature sets shall preserve source identity and validate schema version, extractor version, unit codes, alignment, unused capacity, and absence of raw payloads. | Preserves deterministic traceability and conformance. | Tests confirm one source reference, supported versions, aligned fixed arrays, zero-filled unused entries, and no raw inspection data. |
+
+`IIW-REQ-026` through `IIW-REQ-029` are approved subject to the limitation that the six-feature catalog is not sufficient by itself for predictive-maintenance training. Additional project sensor features require separately governed IDs and project configuration; unavailable anomaly geometry may not be inferred without an approved interface change.
+
 ## Gate 2 Review
 
 | Field | Entry |
