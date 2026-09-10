@@ -8,7 +8,7 @@ dataset:
   selection_status: "ACCEPTED"
   acquisition_status: "COMPLETE"
   verification_status: "PASS WITH OBSERVATION"
-  training_readiness: "EXECUTED - DEVELOPER ACCEPTANCE FAILED"
+  training_readiness: "CORRECTIVE TRAINING EXECUTED - DEVELOPER ACCEPTANCE FAILED"
   observation: >-
     The publisher archive contains exact duplicate copies named
     10301 (copy).png and 10301_GT (copy).png. Excluding those duplicate files,
@@ -298,6 +298,81 @@ corrective_training_authorization:
     - "seven-file Phase 7 implementation allowlist"
     - "CC BY-NC-SA 4.0 non-commercial restrictions"
   phases_8_through_17_authorized: false
+
+corrective_training_execution:
+  status: "COMPLETE"
+  developer_status: "FAIL"
+  execution_date: "2026-09-09"
+  candidate_count: 1
+  selected_candidate: "corrective-01"
+  split_unchanged: true
+  counts:
+    training: 1865
+    validation: 466
+    official_test: 1004
+  frozen_configuration:
+    model_version: 2
+    input_size: [192, 72, 3]
+    input_representation: "aspect-ratio-preserving centered letterbox"
+    documented_equivalent_reason: "KSDD2 is portrait-oriented; 192x72 preserves its geometry and both dimensions are divisible by the U-Net downsampling factor."
+    mask_interpolation: "nearest-neighbor"
+    encoder_depth: 2
+    first_encoder_filters: 8
+    maximum_epochs: 10
+    completed_epoch: 6
+    output_network_iteration: 450
+    validation_patience: 4
+    training_seconds: 689.446329
+    class_weights: [1, 8]
+    threshold_grid: [0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75]
+    selected_threshold: 0.45
+    official_test_exposure_number: 3
+    fully_blind_evaluation: false
+  augmentation:
+    deterministic_seed: 7092026
+    horizontal_reflection: true
+    maximum_translation_pixels: 4
+    maximum_image_intensity_variation: 0.05
+    image_mask_alignment_preserved: true
+  selected_validation_metrics:
+    pixel_dice: 0.5791763341
+    pixel_iou: 0.4076342111
+    image_precision: 0.3644067797
+    image_recall: 0.8775510204
+    image_f1: 0.5149700599
+    positive_image_mean_dice: 0.5339601334
+    negative_image_false_positive_rate: 0.1798561151
+    mean_inference_seconds: 0.01352508004
+  third_official_test_metrics:
+    pixel_dice: 0.5009976587
+    pixel_iou: 0.3342207313
+    image_precision: 0.3692307692
+    image_recall: 0.8727272727
+    image_f1: 0.5189189189
+    positive_image_mean_dice: 0.4801202251
+    negative_image_false_positive_rate: 0.1834451902
+    confusion_matrix_tn_fp_fn_tp: [730, 164, 14, 96]
+    mean_inference_seconds: 0.01374497072
+    uncontrolled_failures: 0
+  locked_acceptance:
+    test_recall: "PASS"
+    test_precision: "FAIL"
+    test_f1: "FAIL"
+    positive_image_mean_dice: "FAIL"
+    negative_image_false_positive_rate: "FAIL"
+    schema_violations: "PASS"
+    uncontrolled_failures: "PASS"
+  model:
+    artifact: "extensions/intelligent-inspection/models/deep_learning_detector.mat"
+    byte_size: 773126
+    sha256: "2F5557B291B7220DD8E59A7B93ABDA7B54963B4E3C3E334577F214BB7976A0B6"
+  developer_tests:
+    passed: 10
+    failed: 0
+    incomplete: 0
+  limitations:
+    - "The third official-test exposure is not fully blind because two prior results were observed."
+    - "Four locked performance criteria remain unsatisfied."
 
 approved_learning_task:
   type: "binary semantic segmentation"

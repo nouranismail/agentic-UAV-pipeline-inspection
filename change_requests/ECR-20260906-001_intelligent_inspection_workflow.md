@@ -562,3 +562,29 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Exact seven-file corrective allowlist | `extensions/intelligent-inspection/core/+iiw/+detection/deepLearningDetector.m`; `extensions/intelligent-inspection/training/train_deep_learning_detector.m`; `extensions/intelligent-inspection/models/deep_learning_detector.mat`; `extensions/intelligent-inspection/model_cards/deep_learning_detector.md`; `extensions/intelligent-inspection/datasets/deep_learning_dataset_manifest.yaml`; `tests/intelligent-inspection/test_deep_learning_detector.m`; `extensions/intelligent-inspection/evidence/deep_learning_detection_results.md` |
 | Prohibited use | Official test data shall not influence training, augmentation, early stopping, threshold selection, or candidate selection |
 | Later phases | Phases 8-17 remain **NOT AUTHORIZED** |
+
+## 22. Phase 7 Project Owner Disposition and Phase 8 Authorization
+
+| Decision field | Entry |
+|---|---|
+| Reviewer / date | Nouran Ismail — Project Owner; 2026-09-09 |
+| Phase 7 implementation activity | **COMPLETE** |
+| Developer unit verification | **PASS — 10/10** |
+| Locked performance acceptance | **FAIL** |
+| Project Owner decision | **NOT ACCEPTED FOR DEPLOYMENT** |
+| Artifact disposition | **RETAINED AS AN EXPERIMENTAL PROTOTYPE WITH LIMITATIONS** |
+| Deep-learning detector default status | **DISABLED** |
+| Approved operational detector | Phase 6 conventional detector |
+| Failed criteria | Precision 0.369231 versus required 0.70; F1 0.518919 versus required 0.72; positive-image mean Dice 0.480120 versus required 0.50; negative-image false-positive rate 0.183445 versus maximum 0.15 |
+| Passed criteria | Recall 0.872727; interface conformance passed; controlled execution passed |
+| Test exposure limitation | Three official-test exposures occurred; the final evaluation is not fully blind |
+| Independent verification | **NOT REQUESTED** until performance is accepted |
+| Further official KSDD2 test evaluation | **NOT AUTHORIZED** |
+| Result preservation | Failed results and locked thresholds remain unchanged; the model is not production-ready and shall not be selected by default |
+| Actual next phase | Phase 8 — Numerical Feature Extraction |
+| Phase 8 dependency basis | May consume the approved `DetectionResult` from the accepted Phase 6 conventional detector without Phase 7 performance acceptance |
+| Phase 8 status | **AUTHORIZED — NOT STARTED** |
+| Phase 8 implementer | Nouran Ismail — AI & Algorithm Developer |
+| Phase 8 exact allowlist | `extensions/intelligent-inspection/core/+iiw/+features/extractNumericalFeatures.m`; `extensions/intelligent-inspection/core/+iiw/+features/validateFeatureSet.m`; `tests/intelligent-inspection/test_feature_extraction.m`; `tests/intelligent-inspection/fixtures/feature_contract_fixtures.mat`; `extensions/intelligent-inspection/evidence/feature_extraction_results.md` |
+| Phase 8 execution prerequisite | Project-specific feature names, units, validity rules, and extraction versions must be approved before implementation |
+| Subsequent phases | Phases 9–17 remain **NOT AUTHORIZED** |

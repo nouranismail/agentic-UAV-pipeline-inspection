@@ -15,11 +15,11 @@
 | Gate 2 planning baseline | `6a7d6d9e3445b3aa6878dc345f9fda411b8b0177` |
 | Plan author | Codex, assisting Nouran Ismail |
 | Author role | Lead Systems Engineer / MBD Architect |
-| Planned implementers | Phase 5A, Phase 5B, Phase 6, and Phase 7 AI & Algorithm Developer: Nouran Ismail; other phase assignments remain **TBD** |
-| Independent reviewer | **TBD:** a different named individual from every implementation author; Nouran Ismail is ineligible to independently verify her own Phase 5A, Phase 5B, Phase 6, or Phase 7 implementation |
-| Status | **PHASES 1-6 COMPLETE AND ACCEPTED; PHASE 7 FAIL - CORRECTIVE TRAINING AUTHORIZED; PHASES 8-17 NOT AUTHORIZED** |
+| Planned implementers | Phase 5A, Phase 5B, Phase 6, Phase 7, and Phase 8 AI & Algorithm Developer: Nouran Ismail; other phase assignments remain **TBD** |
+| Independent reviewer | **TBD:** a different named individual from every implementation author; Nouran Ismail is ineligible to independently verify her own Phase 5A, Phase 5B, Phase 6, Phase 7, or Phase 8 implementation |
+| Status | **PHASES 1-6 COMPLETE AND ACCEPTED; PHASE 7 COMPLETE, PERFORMANCE FAIL, NOT ACCEPTED FOR DEPLOYMENT; PHASE 8 AUTHORIZED - NOT STARTED; PHASES 9-17 NOT AUTHORIZED** |
 
-Gate 3 was approved by the Project Owner on 2026-09-06, initially with execution authority limited to Phase 1. Phases 1 through 4 were subsequently completed and accepted through their controlled hold points. On 2026-09-07, the Project Owner accepted Phase 4 developer evidence and authorized the narrowed data-quality scope. After an approved corrective repair, Phase 5A developer verification passed 16 of 16 tests and the Project Owner accepted Phase 5A. The Project Owner divided Phase 5 into Phase 5A — Reusable `DataQualityValidation` and Phase 5B — Reusable Image Preprocessing without renumbering Phases 6–17. On 2026-09-08, the Project Owner accepted Phase 5B and then Phase 6 developer evidence, recording 16/16 for each. Phase 6 is complete and accepted, with independent verification pending. Phase 7 training completed but failed two fixed performance criteria. On 2026-09-09, the Project Owner authorized controlled corrective training within the unchanged seven-file implementation allowlist. Phases 8–17 remain unauthorized. Phase hold points are controls within the Gate 3 work package; they do not replace or renumber repository Gates 1–6.
+Gate 3 was approved by the Project Owner on 2026-09-06, initially with execution authority limited to Phase 1. Phases 1 through 4 were subsequently completed and accepted through their controlled hold points. On 2026-09-07, the Project Owner accepted Phase 4 developer evidence and authorized the narrowed data-quality scope. After an approved corrective repair, Phase 5A developer verification passed 16 of 16 tests and the Project Owner accepted Phase 5A. The Project Owner divided Phase 5 into Phase 5A — Reusable `DataQualityValidation` and Phase 5B — Reusable Image Preprocessing without renumbering Phases 6–17. On 2026-09-08, the Project Owner accepted Phase 5B and then Phase 6 developer evidence, recording 16/16 for each. Phase 6 is complete and accepted, with independent verification pending. Phase 7 implementation and developer verification completed, but locked performance acceptance failed after three disclosed official-test exposures. On 2026-09-09, the Project Owner retained the deep-learning artifact only as a disabled experimental prototype and did not request independent verification. Phase 8 is authorized to use the accepted Phase 6 conventional detector output; its configuration-specific feature definitions remain an execution prerequisite. Phases 9–17 remain unauthorized. Phase hold points are controls within the Gate 3 work package; they do not replace or renumber repository Gates 1–6.
 
 ## 2. Approved Basis
 
@@ -358,6 +358,8 @@ This decision supersedes the earlier Phase 7 acquisition-only execution hold. It
 | Later phases | Phases 8-17 remain **NOT AUTHORIZED** |
 
 ### Phase 8 — Numerical Feature Extraction
+
+**Project Owner authorization (2026-09-09):** **AUTHORIZED — NOT STARTED**. Implementer: Nouran Ismail — AI & Algorithm Developer. Phase 8 may consume the approved `DetectionResult` from the accepted Phase 6 conventional detector; Phase 7 performance acceptance is not a prerequisite. Execution remains held until configuration-specific feature names, units, validity rules, and extraction versions are approved. Phases 9–17 remain **NOT AUTHORIZED**.
 
 - **Approved requirement IDs:** `IIW-REQ-008`, `IIW-REQ-009`, `IIW-REQ-017`–`IIW-REQ-020`, `IIW-REQ-023`.
 - **Prerequisites:** Phase 4 contract accepted and applicable Phase 5B/6 output available; feature names, units, validity rules, and extraction versions approved for each configuration.
