@@ -73,6 +73,29 @@ Project configuration
 
 The logical names `names`, `values`, and the existing aggregate reference fields remain traceable in the approved baseline. Their numeric runtime realizations and retained field-name policy are approved in `architecture/interface_contracts.md`.
 
+## Approved Phase 9A/9B Ownership Mapping
+
+**Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-10**
+
+| Concern | Phase 9A reusable framework | Phase 9B UAV pipeline demonstration |
+|---|---|---|
+| Input/output | Unchanged `NumericalFeatureSet` and `HealthPrediction` | Conforms to both contracts |
+| Feature semantics | Validates generic representation only | Owns IDs 101–115, names, units, ranges, validity, and source mapping |
+| Predictor | Contract, replaceable execution, loading, failure handling | Selects and supplies trained project model |
+| Target/horizon | Carries configured references and validity | Owns health score `[0,100]`, 30-day horizon, context ID 9001 |
+| Dataset | Defines governance/evidence expectations | Owns governed synthetic generator, manifest, partitions, and hashes |
+| Metrics/thresholds | Requires approved metrics and dispositions | Owns MAE/RMSE/R-squared and interval criteria |
+| Uncertainty | Generic validity/status/abstention behavior | Selects 90% split-conformal calibration policy |
+| Evidence/model card | Defines mandatory provenance and limitation fields | Records generator, data, feature, model, target, horizon, metric, and limitation details |
+
+```text
+project CV + sensors + inspection history
+  -> PipelineFeatureAdapter (Phase 9B)
+  -> NumericalFeatureSet (unchanged generic contract)
+  -> predictHealth / replaceable predictor (Phase 9A)
+  -> HealthPrediction (unchanged generic contract)
+```
+
 ## Approved Architecture Boundary Mapping
 
 | Boundary port | Generic interface | Ownership boundary |

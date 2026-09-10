@@ -328,6 +328,50 @@ This catalog contains only features supported by the approved `DetectionResult`.
 
 The generic `NumericalFeatureSet` remains the predictor input. Separately governed project sensor adapters may populate additional feature IDs. Domain-specific feature names, units, and mappings belong in the applicable project configuration, not the reusable Phase 8 implementation. Adding anomaly area, width, height, or mask features requires a separately approved interface change because those values are absent from the current `DetectionResult`.
 
+## Approved Phase 9A/9B Prediction Boundary
+
+**Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-10**
+
+Phase 9A retains the approved `NumericalFeatureSet -> HealthPrediction` boundary without adding or changing interface fields. A generic predictor contract validates the input, loads and executes a replaceable model implementation, and emits the exact approved eleven-field `HealthPrediction`. Project-specific names, units, target semantics, horizon meaning, thresholds, and model selection are resolved by version-controlled configuration and evidence.
+
+The controlled invalid/failure output is: all numeric fields `0`; `estimateValid=false`; `contextOrHorizonValid=false`; `uncertaintyValid=false`; `confidenceStatus=4` (`INVALID`); and no valid prediction claim. A conforming no-estimate/abstention result uses the project-approved confidence status, zero invalid values, and preserves only identifiers and versions that remain valid and traceable. No exception is converted into a successful prediction.
+
+Phase 9B places `PipelineFeatureAdapter` before the reusable predictor. It converts approved project-specific CV, sensor, and inspection-history values into the unchanged `NumericalFeatureSet`; `predictHealth` consumes only that record. Proposed context/horizon configuration ID `9001` means “pipeline health score 30 days after the observation timestamp”; the runtime field remains the approved `uint32` reference and its human-readable meaning remains project configuration.
+
+### Approved UAV pipeline feature catalog version 1
+
+Runtime values remain `single`; validity is carried by `featureValidity`; IDs are emitted in ascending order. Invalid values are zero and invalid. Derived values are emitted only when every source is valid.
+
+| ID | Project feature name | Source/derivation | Unit | Valid range | Default/validity |
+|---:|---|---|---|---|---|
+| 101 | `inspectionFindingPresent` | Approved Phase 8 feature 1 | dimensionless | `[0,1]`, binary | `0`; valid when source feature is valid |
+| 102 | `inspectionFindingConfidence` | Approved Phase 8 feature 2 | dimensionless | `[0,1]` | `0`; follows source confidence validity |
+| 103 | `inspectionLocationAvailable` | Approved Phase 8 feature 3 | dimensionless | `[0,1]`, binary | `0`; valid when source feature is valid |
+| 104 | `assetLongitudinalCoordinate` | Approved Phase 8 feature 4 after approved frame mapping | metre | `[-1.0e7,1.0e7]` | `0`; valid only with approved frame and valid source |
+| 105 | `assetLateralCoordinate` | Approved Phase 8 feature 5 after approved frame mapping | metre | `[-1.0e4,1.0e4]` | `0`; valid only with approved frame and valid source |
+| 106 | `surfaceTemperature` | Calibrated thermal adapter | degree Celsius | `[-80,300]` | `0`; valid only with current calibrated measurement |
+| 107 | `ambientTemperature` | Calibrated environmental adapter | degree Celsius | `[-80,80]` | `0`; valid only with current calibrated measurement |
+| 108 | `temperatureDifference` | `surfaceTemperature-ambientTemperature` | degree Celsius | `[-160,380]` | `0`; valid only when IDs 106 and 107 are valid |
+| 109 | `gasConcentration` | Calibrated gas-sensor adapter | part per million | `[0,1.0e6]` | `0`; valid only with current calibrated measurement |
+| 110 | `internalPressure` | Calibrated pressure adapter | kilopascal | `[0,1.0e5]` | `0`; valid only with current calibrated measurement |
+| 111 | `pressureChangeRate` | Time-normalized change from valid pressure history | kilopascal/hour | `[-5.0e4,5.0e4]` | `0`; valid only with two valid ordered observations |
+| 112 | `inspectionAge` | Observation time minus previous valid inspection time | day | `[0,3650]` | `0`; valid only when both timestamps are valid |
+| 113 | `priorFindingCount` | Governed inspection-history count | count | `[0,65535]` | `0`; valid when history window is complete |
+| 114 | `priorHealthScore` | Most recent approved score | percent | `[0,100]` | `0`; valid only with approved prior record |
+| 115 | `timeSinceMaintenance` | Observation time minus last confirmed maintenance time | day | `[0,3650]` | `0`; valid only when maintenance timestamp exists |
+
+Proposed project unit codes are: `3=DEGREE_CELSIUS`, `4=PART_PER_MILLION`, `5=KILOPASCAL`, `6=KILOPASCAL_PER_HOUR`, `7=DAY`, `8=COUNT`, and `9=PERCENT`. Codes `0=UNASSIGNED`, `1=DIMENSIONLESS`, and `2=METRE` remain unchanged. The Phase 9B configuration shall own this mapping. This proposal does not infer anomaly area, width, height, leak rate, or other values unavailable from approved sources.
+
+### Approved Phase 9 controls
+
+- Phase 9A shall bound every valid estimate to `[0,100]` using the versioned project policy and shall emit controlled invalid/review status for unsupported feature sets or out-of-distribution inputs.
+- Phase 9B shall freeze and version target equations and noise distributions before generation.
+- Asset-group allocation shall occur before any data-dependent transformation; no group may cross partitions.
+- Test data shall not influence feature selection, model selection, hyperparameters, thresholds, or conformal calibration.
+- Calibration membership shall remain disjoint from model-selection membership.
+- `priorHealthScore` is valid only when available at inference time and shall never contain the future target.
+- Location coordinates are contextual and are not causal degradation measurements.
+
 | Approval field | Entry |
 |---|---|
 | Decision | **APPROVED** |

@@ -177,6 +177,27 @@ These criteria are approved for Phase 4 implementation and verification. This ap
 
 `IIW-AC-047` through `IIW-AC-053` are approved. Acceptance does not establish predictive-maintenance sufficiency and does not authorize claims that the catalog contains anomaly geometry, degradation, vibration, temperature, current, operating time, or remaining-useful-life information.
 
+## Approved Phase 9A/9B Acceptance Criteria
+
+**Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-10**
+
+| ID | Criterion | Required result |
+|---|---|---|
+| IIW-AC-054 | Phase 9A is application-independent. | Static inspection finds only generic predictor, feature-set validation, prediction, uncertainty/status, model-version, evidence, and model-card behavior; zero prohibited Phase 9B terms or thresholds. |
+| IIW-AC-055 | Predictor implementations are replaceable. | Two contract-conforming predictors execute through the same entry point with no caller or schema change. |
+| IIW-AC-056 | Input and output schemas conform exactly. | Valid `NumericalFeatureSet` input produces the exact approved `HealthPrediction`; malformed/nonfinite/version-invalid input produces the exact controlled invalid output. |
+| IIW-AC-057 | Failure and uncertainty behavior is controlled. | Loading, execution, invalid-output, out-of-distribution, and excessive-uncertainty cases produce no fabricated valid estimate and no uncontrolled failure. |
+| IIW-AC-058 | The pipeline adapter implements only approved project mappings. | IDs 101–115 occur once in ascending order with approved units, ranges, validity, zero defaults, provenance, and no raw-image predictor input. |
+| IIW-AC-059 | Synthetic data is reproducible and leakage-controlled. | Generator version, seed, distributions, dependencies, and dataset hash are recorded; group-safe 70/15/15 membership reproduces exactly; no asset/acquisition group crosses partitions. |
+| IIW-AC-060 | Target and horizon are fixed before training. | Target is a synthetic `[0,100]` health score at 30 days using context ID 9001; formula and all generator parameters are frozen before fitting. |
+| IIW-AC-061 | Candidate selection does not inspect the test partition. | Baseline plus no more than three approved candidates use training and validation-selection data only; uncertainty calibration uses the reserved validation-calibration subset; test is evaluated once after freeze. |
+| IIW-AC-062 | Locked regression performance criteria are met. | Synthetic test MAE `<=8.0`, RMSE `<=12.0`, and R-squared `>=0.65`; validation and test values are reported separately without post-test threshold changes. |
+| IIW-AC-063 | Uncertainty evidence is adequate. | Deterministic 90% split-conformal intervals have synthetic-test empirical coverage in `[0.80,0.98]`; mean interval width is reported; invalid/OOD inputs abstain. |
+| IIW-AC-064 | Interface and execution integrity hold. | Zero `NumericalFeatureSet` or `HealthPrediction` schema violations, zero uncontrolled failures, deterministic repeated inference, and complete model/dataset/configuration provenance. |
+| IIW-AC-065 | Claims remain bounded. | Every dataset, model-card, and evidence artifact states: “Integration and workflow demonstration only; not evidence of real pipeline prognostic accuracy or production readiness.” |
+
+`IIW-AC-054` through `IIW-AC-065` are approved. Acceptance additionally requires frozen/versioned target equations and noise distributions before generation; asset-group assignment before data-dependent transformation; zero group overlap; strict separation of selection, calibration, and test data; inference-time availability and no future-target leakage for `priorHealthScore`; non-causal treatment of location; `[0,100]` prediction bounding; and controlled invalid/review status for unsupported or out-of-distribution input.
+
 ## Unresolved Acceptance Decisions
 
 - Applicable data-quality measures and thresholds.

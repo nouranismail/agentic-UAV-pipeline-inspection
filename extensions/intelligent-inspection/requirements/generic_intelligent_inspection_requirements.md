@@ -49,6 +49,23 @@ These requirements define observable behavior and governance constraints. They d
 
 `IIW-REQ-026` through `IIW-REQ-029` are approved subject to the limitation that the six-feature catalog is not sufficient by itself for predictive-maintenance training. Additional project sensor features require separately governed IDs and project configuration; unavailable anomaly geometry may not be inferred without an approved interface change.
 
+## Approved Phase 9 Health-Prediction Requirements
+
+**Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-10**
+
+| ID | Requirement | Rationale | Verification criterion |
+|---|---|---|---|
+| IIW-REQ-030 | The reusable health-prediction framework shall consume only a conforming `NumericalFeatureSet` and shall reject malformed, nonfinite, unsupported-schema, unsupported-catalog, or unsupported-model input without uncontrolled failure. | Preserves the approved numerical boundary. | Contract tests cover every invalid category and produce the exact controlled invalid `HealthPrediction`. |
+| IIW-REQ-031 | A replaceable predictor shall be selected through a generic contract and shall emit the exact approved `HealthPrediction` without project terminology or project thresholds. | Keeps regression implementations substitutable and reusable. | Two conforming predictors can be substituted without changing the caller or output schema. |
+| IIW-REQ-032 | Every valid prediction shall identify its input feature set, prediction identifier, estimate validity, configured context or horizon, uncertainty validity, confidence status, model version, and schema version. | Makes predictions reproducible and interpretable. | Schema tests report an exact field/type/dimension match and resolvable identifiers and versions. |
+| IIW-REQ-033 | Predictor loading, execution failure, invalid output, excessive uncertainty, and out-of-distribution input shall produce configured controlled status and evidence and shall not fabricate a valid estimate. | Prevents silent or synthetic success. | Failure-injection tests produce `estimateValid=false`, zero invalid numeric values, explicit status, and no uncontrolled exception. |
+| IIW-REQ-034 | Project adapters shall own project feature IDs, names, units, ranges, targets, horizons, datasets, models, thresholds, and metric criteria while emitting the unchanged generic contracts. | Separates reusable behavior from the first application. | Static review finds all project semantics outside Phase 9A and confirms unchanged `NumericalFeatureSet` and `HealthPrediction` schemas. |
+| IIW-REQ-035 | The UAV pipeline demonstration shall use a governed synthetic dataset solely to demonstrate integration and workflow execution, with group-safe deterministic partitions and no claim of real prognostic accuracy or production readiness. | Prevents synthetic evidence from being overstated. | Dataset manifest, generator configuration, model card, and evidence contain the required limitation and reproduce the approved split. |
+| IIW-REQ-036 | The UAV pipeline adapter shall map approved CV, thermal, gas, pressure, and inspection-history inputs to the approved project feature catalog and shall not pass raw images to prediction. | Establishes a traceable project boundary. | Mapping tests cover every approved ID, unit, range, validity rule, and invalid-input disposition and find no raw-image field. |
+| IIW-REQ-037 | The UAV pipeline demonstration shall predict a health score on `[0,100]` for the approved fixed horizon and shall report approved regression and uncertainty metrics separately for validation and untouched synthetic test data. | Creates measurable but bounded demonstration evidence. | Evidence reports MAE, RMSE, R-squared, interval coverage/width, split integrity, and all locked criteria without post-test changes. |
+
+`IIW-REQ-030` through `IIW-REQ-037` are approved. Phase 9A is authorized but not started. Phase 9B is approved in principle, but implementation and synthetic-data generation remain unauthorized until Phase 9A passes and is accepted. `priorHealthScore` may be used only when genuinely available at inference time and shall contain no future-target information. Location coordinates are contextual and shall not be treated as causal degradation measurements. Every valid health prediction shall be bounded to `[0,100]`; unsupported feature sets and out-of-distribution inputs shall return controlled invalid/review status.
+
 ## Gate 2 Review
 
 | Field | Entry |

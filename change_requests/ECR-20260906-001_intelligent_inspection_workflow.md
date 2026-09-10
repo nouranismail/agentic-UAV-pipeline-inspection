@@ -626,9 +626,27 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Actual Phase 9 | **Predictive-Maintenance Regression** |
 | Phase 9 authorization | **PLANNING/SPECIFICATION AUTHORIZED — IMPLEMENTATION AND TRAINING NOT AUTHORIZED** |
 | Reusable planning boundary | Predictor contract; `NumericalFeatureSet` validation; `HealthPrediction` output; model loading and execution; uncertainty/status handling; evidence and model-card rules |
-| Motor-project planning boundary | Separately governed motor feature IDs/names, units/ranges, dataset, health/RUL target, trained regression model, thresholds, and acceptance metrics |
+| UAV pipeline planning boundary | Separately governed pipeline feature IDs/names, units/ranges, governed synthetic dataset, health-score target, trained regression model, thresholds, and acceptance metrics |
 | Current dataset status | **NOT SELECTED / NOT APPROVED**; the approved plan requires dataset governance, target, split, metrics, uncertainty method, and pass thresholds before implementation or training |
 | Phase 9 implementation allowlist | `extensions/intelligent-inspection/core/+iiw/+prediction/predictHealth.m`; `extensions/intelligent-inspection/training/train_health_regression.m`; `extensions/intelligent-inspection/models/health_regression.mat`; `extensions/intelligent-inspection/model_cards/health_regression.md`; `extensions/intelligent-inspection/datasets/regression_dataset_manifest.yaml`; `tests/intelligent-inspection/test_health_prediction.m`; `extensions/intelligent-inspection/evidence/health_prediction_results.md` — all **NOT AUTHORIZED** for implementation |
 | Phase 9 planning/specification allowlist | Existing generic requirements, interface contracts, acceptance criteria, implementation plan, this ECR, and team configuration only; no new file |
-| Phase 9 planning assignment | **PENDING — must be recorded before substantive specification work** |
+| Phase 9 planning assignment | **SUPERSEDED by the approved Phase 9A/9B amendment in Section 24** |
 | Later phases | Phases 10–17 remain **NOT AUTHORIZED** |
+
+## 24. Approved Phase 9A/9B Planning Amendment
+
+| Decision field | Entry |
+|---|---|
+| Amendment status | **APPROVED** |
+| Approver / date | Nouran Ismail — Project Owner; 2026-09-10 |
+| Primary demonstration | UAV pipeline inspection; no motor, pump, or bearing project is introduced |
+| Phase 9A | Reusable Health-Prediction Framework; generic predictor contract, feature-set validation, replaceable execution, exact `HealthPrediction`, context/horizon, uncertainty/status, model identity/version, generic tests and evidence |
+| Phase 9B | UAV Pipeline Predictive-Maintenance Demonstration; `PipelineFeatureAdapter`, IDs 101–115, governed synthetic data, 30-day `[0,100]` health target, regression comparison, project model card/tests/evidence |
+| Synthetic-data limitation | “Integration and workflow demonstration only; not evidence of real pipeline prognostic accuracy or production readiness.” |
+| Proposed requirements | `IIW-REQ-030` through `IIW-REQ-037` |
+| Proposed acceptance criteria | `IIW-AC-054` through `IIW-AC-065` |
+| Phase 9A implementation | **AUTHORIZED — NOT STARTED**; implementer Nouran Ismail — AI & Algorithm Developer; exact six-file allowlist in the approved plan |
+| Phase 9B disposition | **APPROVED IN PRINCIPLE BUT NOT AUTHORIZED FOR IMPLEMENTATION**; synthetic-data generation, training, and evaluation remain prohibited until Phase 9A passes and is accepted |
+| Mandatory controls | Freeze/version generator equations and noise before generation; allocate groups before data-dependent transformation; zero cross-partition groups; isolate test from selection/tuning/calibration; keep calibration separate from selection; prohibit future-target leakage through prior health; treat location as non-causal context; bound predictions to `[0,100]`; controlled invalid/review status for unsupported/OOD input; disclaimer in every Phase 9B dataset/model-card/evidence artifact |
+| Phases 10–17 | **NOT AUTHORIZED** |
+| Required next decision | Project Owner Phase 9A implementation-evidence review after authorized implementation and developer verification; Phase 9B remains blocked |
