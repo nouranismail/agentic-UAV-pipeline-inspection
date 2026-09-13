@@ -650,3 +650,26 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Mandatory controls | Freeze/version generator equations and noise before generation; allocate groups before data-dependent transformation; zero cross-partition groups; isolate test from selection/tuning/calibration; keep calibration separate from selection; prohibit future-target leakage through prior health; treat location as non-causal context; bound predictions to `[0,100]`; controlled invalid/review status for unsupported/OOD input; disclaimer in every Phase 9B dataset/model-card/evidence artifact |
 | Phases 10–17 | **NOT AUTHORIZED** |
 | Required next decision | Project Owner Phase 9A implementation-evidence review after authorized implementation and developer verification; Phase 9B remains blocked |
+
+## 25. Phase 9A Review and Simplified Phase 9B Authorization
+
+| Decision field | Entry |
+|---|---|
+| Reviewer / date | Nouran Ismail — Project Owner; 2026-09-13 |
+| Phase 9A implementation | **COMPLETE** |
+| Phase 9A developer verification | **PASS — 16/16** |
+| Phase 9A Project Owner review | **ACCEPTED** |
+| Phase 9A independent verification | **PENDING — a different named reviewer is required** |
+| Phase 9A evidence basis | Exactly six authorized artifacts changed; `PredictorContract` is replaceable; `NumericalFeatureSet` and the eleven-field `HealthPrediction` are validated; controlled invalid, execution-failure, and out-of-distribution behavior exists; no project model or dataset was introduced; protected artifacts remained unchanged |
+| Phase 9B simplified-plan decision | **APPROVED** |
+| Phase 9B implementation | **AUTHORIZED — NOT STARTED** |
+| Implementer | Nouran Ismail — AI & Algorithm Developer |
+| Dataset | Generator version 1; seed `20260910`; 100 synthetic pipeline-section groups; six chronological observations per group; 600 observations; deterministic group-safe 70/15/15 split yielding 70/15/15 groups and 420/90/90 observations; test untouched until freeze |
+| Target | Synthetic health score bounded to `[0,100]` at a 30-day horizon |
+| Active predictors | Feature IDs 101–103 and 106–115; IDs 104–105 remain catalogued but are excluded from causal regression input |
+| Model | One fixed regularized linear-regression model; median-target baseline is reference-only; no regression tree, bagged ensemble, multi-model comparison, or hyperparameter search |
+| Metrics and uncertainty | MAE, RMSE, R-squared, deterministic residual-based uncertainty from validation RMSE, zero interface violations, and zero uncontrolled failures; locked MAE/RMSE/R-squared thresholds remain unchanged |
+| Products approved | Statistics and Machine Learning Toolbox; Predictive Maintenance Toolbox |
+| Exact Phase 9B allowlist | `extensions/intelligent-inspection/configurations/uav-pipeline/PipelineFeatureAdapter.m`; `extensions/intelligent-inspection/configurations/uav-pipeline/pipeline_feature_catalog.yaml`; `extensions/intelligent-inspection/training/generate_pipeline_degradation_dataset.m`; `extensions/intelligent-inspection/datasets/pipeline_degradation_dataset_manifest.yaml`; `extensions/intelligent-inspection/datasets/generated/pipeline_degradation_synthetic.mat`; `extensions/intelligent-inspection/training/train_pipeline_health_regression.m`; `extensions/intelligent-inspection/models/pipeline_health_regression.mat`; `extensions/intelligent-inspection/model_cards/pipeline_health_regression.md`; `tests/intelligent-inspection/test_pipeline_health_prediction.m`; `extensions/intelligent-inspection/evidence/pipeline_health_prediction_results.md` |
+| Mandatory limitation | “Integration and workflow demonstration only; not evidence of real pipeline prognostic accuracy or production readiness.” |
+| Later phases | Phases 10–17 remain **NOT AUTHORIZED** |
