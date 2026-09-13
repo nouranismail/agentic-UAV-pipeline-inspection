@@ -85,7 +85,7 @@ The logical names `names`, `values`, and the existing aggregate reference fields
 | Target/horizon | Carries configured references and validity | Owns health score `[0,100]`, 30-day horizon, context ID 9001 |
 | Dataset | Defines governance/evidence expectations | Owns governed synthetic generator, manifest, partitions, and hashes |
 | Metrics/thresholds | Requires approved metrics and dispositions | Owns MAE/RMSE/R-squared and interval criteria |
-| Uncertainty | Generic validity/status/abstention behavior | Selects 90% split-conformal calibration policy |
+| Uncertainty | Generic validity/status/abstention behavior | Uses the approved deterministic validation-residual uncertainty policy; no split-conformal or complex calibration |
 | Evidence/model card | Defines mandatory provenance and limitation fields | Records generator, data, feature, model, target, horizon, metric, and limitation details |
 
 ```text
