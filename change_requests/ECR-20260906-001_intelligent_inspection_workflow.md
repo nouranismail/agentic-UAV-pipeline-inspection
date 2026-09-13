@@ -676,3 +676,40 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Mandatory limitation | “Integration and workflow demonstration only; not evidence of real pipeline prognostic accuracy or production readiness.” |
 | Later phases | Phases 10–17 remain **NOT AUTHORIZED** |
 | Remaining review assignment | A different named independent verifier must be assigned before independent verification |
+
+## 26. Approved Phase 9B Corrective Repair
+
+| Decision field | Approved entry |
+|---|---|
+| Approver / date | Nouran Ismail — Project Owner; 2026-09-13 |
+| Phase 9B | **FAIL — CORRECTIVE REPAIR APPROVED**; Phase 9B remains failed until corrective execution passes |
+| Root cause | Synthetic generator invariant violation: version 1 may emit `locationAvailable=true` while `detectionPresent=false`, contrary to the approved implication `locationAvailable=true` only when `detectionPresent=true`. |
+| Approved rule | Generator version 1.1 shall compute `locationAvailable = detectionPresent && locationAvailableCandidate;`. |
+| Corrective implementation | **AUTHORIZED — NOT STARTED** |
+| Additional permitted test exposure | **Exactly 1** after the corrected generator, regenerated dataset, retrained model, preprocessing, and thresholds are frozen |
+| Execution boundary | Regenerate the dataset and retrain because input data changes; then freeze the corrected candidate before the one additional final test-partition evaluation. |
+| Exact future allowlist | Unchanged ten Phase 9B artifact paths recorded in Section 25; no file is added. |
+| Preserved controls | Feature meanings; interface contracts; all existing tests; seed `20260910`; 100 groups; six observations per group; group-safe 70/15/15 split; ridge `Lambda=0.1`; training-only standardization; approved uncertainty formula; locked performance thresholds; mandatory disclaimer. |
+| Evidence history | Original test exposure and its failed interface result remain recorded; deletion, concealment, suppression, or reclassification is prohibited. |
+| Tuning restriction | Previous test metrics shall not influence generator, model, feature, preprocessing, uncertainty, or threshold choices. |
+| Protected scope | Phase 9A and verified UAV artifacts remain unchanged. Phases 10–17 remain **NOT AUTHORIZED**. |
+| Decision | **APPROVED**; corrective execution is limited to the existing ten Phase 9B paths |
+
+## 27. Phase 9B Corrective Project Owner Review
+
+| Review field | Decision |
+|---|---|
+| Reviewer / date | Nouran Ismail — Project Owner; 2026-09-13 |
+| Evidence basis | Existing saved generator, manifest, model card, model artifact hashes, test definition, corrective developer report, and Git scope inspection; MATLAB, generation, training, and tests were not rerun for this review |
+| Phase 9B implementation | **COMPLETE** |
+| Corrective developer verification | **PASS — 14/14** |
+| Performance acceptance | **PASS** — MAE 0.677789, RMSE 0.833918, R-squared 0.995110, zero interface-schema violations, and zero uncontrolled failures |
+| Project Owner review | **ACCEPTED** |
+| Generator and data | Version 1.1; seed `20260910`; 100 groups; six observations each; 600 rows; group-safe 70/15/15 split; zero cross-partition groups; zero location/detection invariant violations |
+| Model controls | Ridge `Lambda=0.1`; training-only standardization; predictions bounded to `[0,100]`; `uncertainty=min(validationRMSE/100,1)` |
+| Exposure history | Original failed exposure and corrective exposure both disclosed; additional test-partition evaluations remaining: **0** |
+| Test integrity | No test was weakened, removed, suppressed, or bypassed |
+| Artifact scope | Exactly the ten approved Phase 9B artifacts changed; Phase 9A and verified UAV artifacts remained unchanged |
+| Independent verification | **PENDING — different named reviewer required** |
+| Model classification | **DEMONSTRATION ONLY — NOT PRODUCTION READY** |
+| Later phases | Phases 10–17 remain **NOT AUTHORIZED**; this review authorizes no subsequent phase |

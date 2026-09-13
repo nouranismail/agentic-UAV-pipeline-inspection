@@ -198,6 +198,14 @@ These criteria are approved for Phase 4 implementation and verification. This ap
 
 Phase 9A acceptance remains recorded against `IIW-AC-054` through `IIW-AC-057`. Revised `IIW-AC-058` through `IIW-AC-065` and the simplified Phase 9B clarification are approved. Locked synthetic-test thresholds are MAE `<=8.0`, RMSE `<=12.0`, and R-squared `>=0.65`, with zero interface violations and zero uncontrolled failures. Acceptance additionally requires frozen/versioned formulas, coefficients, distributions, clipping, missing-data rules, and noise before generation; group assignment before data-dependent transformation; zero group overlap; test isolation until the model and thresholds are frozen; training-only standardization; inference-time availability and no future-target leakage for `priorHealthScore`; exclusion of location coordinates from causal regression predictors; `[0,100]` prediction bounding; and controlled invalid/review status for unsupported or out-of-distribution input.
 
+### Approved Phase 9B Corrective Acceptance Control
+
+**Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-13**
+
+No acceptance criterion or threshold was weakened. The corrected generator version 1.1 candidate satisfies `IIW-AC-058`, `IIW-AC-059`, and `IIW-AC-064`: every generated row satisfies `locationAvailable=true` only when `detectionPresent=true`, implemented as `locationAvailable = detectionPresent && locationAvailableCandidate`; invariant violations, interface-schema violations, and uncontrolled failures are zero. The existing 14 tests remain present and unsuppressed and passed 14/14. The original test exposure and interface failure remain in evidence history. The one additional final test-partition evaluation was consumed; zero further evaluations are authorized.
+
+**Phase 9B Project Owner disposition:** **PERFORMANCE PASS; ACCEPTED — Nouran Ismail, Project Owner, 2026-09-13.** The result is classified **DEMONSTRATION ONLY — NOT PRODUCTION READY**. Independent verification remains pending and requires a different named reviewer.
+
 ## Unresolved Acceptance Decisions
 
 - Applicable data-quality measures and thresholds.
