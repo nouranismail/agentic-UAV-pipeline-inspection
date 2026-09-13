@@ -651,7 +651,7 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Phases 10–17 | **NOT AUTHORIZED** |
 | Required next decision | Project Owner Phase 9A implementation-evidence review after authorized implementation and developer verification; Phase 9B remains blocked |
 
-## 25. Phase 9A Review and Simplified Phase 9B Authorization
+## 25. Phase 9A Review and Approved Simplified Phase 9B Clarification
 
 | Decision field | Entry |
 |---|---|
@@ -661,15 +661,18 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Phase 9A Project Owner review | **ACCEPTED** |
 | Phase 9A independent verification | **PENDING — a different named reviewer is required** |
 | Phase 9A evidence basis | Exactly six authorized artifacts changed; `PredictorContract` is replaceable; `NumericalFeatureSet` and the eleven-field `HealthPrediction` are validated; controlled invalid, execution-failure, and out-of-distribution behavior exists; no project model or dataset was introduced; protected artifacts remained unchanged |
-| Phase 9B simplified-plan decision | **APPROVED** |
+| Phase 9B simplified-plan decision | **APPROVED** by Nouran Ismail — Project Owner on 2026-09-13 |
 | Phase 9B implementation | **AUTHORIZED — NOT STARTED** |
 | Implementer | Nouran Ismail — AI & Algorithm Developer |
 | Dataset | Generator version 1; seed `20260910`; 100 synthetic pipeline-section groups; six chronological observations per group; 600 observations; deterministic group-safe 70/15/15 split yielding 70/15/15 groups and 420/90/90 observations; test untouched until freeze |
+| Generator freeze | All version-1 formulas, coefficients, distributions, clipping rules, missing-data rules, and noise parameters recorded in the approved plan are frozen by this approval, shall be recorded in the dataset manifest, and shall not be tuned after viewing test results |
 | Target | Synthetic health score bounded to `[0,100]` at a 30-day horizon |
 | Active predictors | Feature IDs 101–103 and 106–115; IDs 104–105 remain catalogued but are excluded from causal regression input |
-| Model | One fixed regularized linear-regression model; median-target baseline is reference-only; no regression tree, bagged ensemble, multi-model comparison, or hyperparameter search |
-| Metrics and uncertainty | MAE, RMSE, R-squared, deterministic residual-based uncertainty from validation RMSE, zero interface violations, and zero uncontrolled failures; locked MAE/RMSE/R-squared thresholds remain unchanged |
-| Products approved | Statistics and Machine Learning Toolbox; Predictive Maintenance Toolbox |
+| Model | Ridge linear regression with fixed `Lambda=0.1`; median-target baseline is reference-only; no ensemble, model comparison, hyperparameter search, Regression Learner, or conformal prediction |
+| Predictor preprocessing | Training-only column means and standard deviations; zero standard deviation replaced by `1`; values stored in the model and applied unchanged to validation, test, and future inputs |
+| Metrics and uncertainty | MAE, RMSE, R-squared, `uncertainty=min(validationRMSE/100,1)`, zero interface violations, and zero uncontrolled failures; `validationRMSE` stored in the model and test excluded from uncertainty calculation |
+| Dependencies | Statistics and Machine Learning Toolbox and Predictive Maintenance Toolbox are installed, license-available, and approved for the authorized Phase 9B scope |
 | Exact Phase 9B allowlist | `extensions/intelligent-inspection/configurations/uav-pipeline/PipelineFeatureAdapter.m`; `extensions/intelligent-inspection/configurations/uav-pipeline/pipeline_feature_catalog.yaml`; `extensions/intelligent-inspection/training/generate_pipeline_degradation_dataset.m`; `extensions/intelligent-inspection/datasets/pipeline_degradation_dataset_manifest.yaml`; `extensions/intelligent-inspection/datasets/generated/pipeline_degradation_synthetic.mat`; `extensions/intelligent-inspection/training/train_pipeline_health_regression.m`; `extensions/intelligent-inspection/models/pipeline_health_regression.mat`; `extensions/intelligent-inspection/model_cards/pipeline_health_regression.md`; `tests/intelligent-inspection/test_pipeline_health_prediction.m`; `extensions/intelligent-inspection/evidence/pipeline_health_prediction_results.md` |
 | Mandatory limitation | “Integration and workflow demonstration only; not evidence of real pipeline prognostic accuracy or production readiness.” |
 | Later phases | Phases 10–17 remain **NOT AUTHORIZED** |
+| Remaining review assignment | A different named independent verifier must be assigned before independent verification |

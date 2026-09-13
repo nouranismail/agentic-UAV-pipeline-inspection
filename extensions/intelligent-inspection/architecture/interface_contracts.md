@@ -328,9 +328,9 @@ This catalog contains only features supported by the approved `DetectionResult`.
 
 The generic `NumericalFeatureSet` remains the predictor input. Separately governed project sensor adapters may populate additional feature IDs. Domain-specific feature names, units, and mappings belong in the applicable project configuration, not the reusable Phase 8 implementation. Adding anomaly area, width, height, or mask features requires a separately approved interface change because those values are absent from the current `DetectionResult`.
 
-## Approved Phase 9A/9B Prediction Boundary
+## Approved Phase 9A Boundary and Simplified Phase 9B Configuration
 
-**Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-10**
+**Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-13**
 
 Phase 9A retains the approved `NumericalFeatureSet -> HealthPrediction` boundary without adding or changing interface fields. A generic predictor contract validates the input, loads and executes a replaceable model implementation, and emits the exact approved eleven-field `HealthPrediction`. Project-specific names, units, target semantics, horizon meaning, thresholds, and model selection are resolved by version-controlled configuration and evidence.
 
@@ -367,8 +367,10 @@ Proposed project unit codes are: `3=DEGREE_CELSIUS`, `4=PART_PER_MILLION`, `5=KI
 - Phase 9A shall bound every valid estimate to `[0,100]` using the versioned project policy and shall emit controlled invalid/review status for unsupported feature sets or out-of-distribution inputs.
 - Phase 9B shall freeze and version target equations and noise distributions before generation.
 - Asset-group allocation shall occur before any data-dependent transformation; no group may cross partitions.
-- Test data shall not influence feature selection, model selection, hyperparameters, thresholds, or conformal calibration.
-- Calibration membership shall remain disjoint from model-selection membership.
+- Test data shall not influence feature selection, model configuration, thresholds, preprocessing, or residual-uncertainty definition and shall remain untouched until the single model and thresholds are frozen.
+- Phase 9B shall use ridge linear regression with fixed `Lambda=0.1`, a median-target baseline for reference, and deterministic validation-residual uncertainty; model comparison, ensembles, hyperparameter search, Regression Learner, and conformal prediction are excluded.
+- Predictor columns shall be standardized using training-partition means and standard deviations only. Zero standard deviations shall be replaced by `1`; the stored training statistics shall be applied unchanged to validation, test, and future inputs.
+- The model artifact shall store the training means, training standard deviations after zero replacement, and `validationRMSE`. Uncertainty shall equal `min(validationRMSE/100,1)` and shall not use test data.
 - `priorHealthScore` is valid only when available at inference time and shall never contain the future target.
 - Location coordinates are contextual and are not causal degradation measurements.
 

@@ -73,19 +73,19 @@ Project configuration
 
 The logical names `names`, `values`, and the existing aggregate reference fields remain traceable in the approved baseline. Their numeric runtime realizations and retained field-name policy are approved in `architecture/interface_contracts.md`.
 
-## Approved Phase 9A/9B Ownership Mapping
+## Approved Phase 9A and Phase 9B Ownership Mapping
 
-**Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-10**
+**Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-13**
 
 | Concern | Phase 9A reusable framework | Phase 9B UAV pipeline demonstration |
 |---|---|---|
 | Input/output | Unchanged `NumericalFeatureSet` and `HealthPrediction` | Conforms to both contracts |
 | Feature semantics | Validates generic representation only | Owns IDs 101–115, names, units, ranges, validity, and source mapping |
-| Predictor | Contract, replaceable execution, loading, failure handling | Selects and supplies trained project model |
+| Predictor | Contract, replaceable execution, loading, failure handling | Supplies one ridge model with `Lambda=0.1` and stores training-only standardization statistics |
 | Target/horizon | Carries configured references and validity | Owns health score `[0,100]`, 30-day horizon, context ID 9001 |
 | Dataset | Defines governance/evidence expectations | Owns governed synthetic generator, manifest, partitions, and hashes |
-| Metrics/thresholds | Requires approved metrics and dispositions | Owns MAE/RMSE/R-squared and interval criteria |
-| Uncertainty | Generic validity/status/abstention behavior | Uses the approved deterministic validation-residual uncertainty policy; no split-conformal or complex calibration |
+| Metrics/thresholds | Requires approved metrics and dispositions | Owns MAE/RMSE/R-squared criteria; zero schema violations and zero uncontrolled failures |
+| Uncertainty | Generic validity/status/abstention behavior | Stores `validationRMSE` and uses `min(validationRMSE/100,1)`; test data is excluded |
 | Evidence/model card | Defines mandatory provenance and limitation fields | Records generator, data, feature, model, target, horizon, metric, and limitation details |
 
 ```text
