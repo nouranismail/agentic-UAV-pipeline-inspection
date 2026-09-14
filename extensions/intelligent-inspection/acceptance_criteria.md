@@ -206,6 +206,20 @@ No acceptance criterion or threshold was weakened. The corrected generator versi
 
 **Phase 9B Project Owner disposition:** **PERFORMANCE PASS; ACCEPTED — Nouran Ismail, Project Owner, 2026-09-13.** The result is classified **DEMONSTRATION ONLY — NOT PRODUCTION READY**. Independent verification remains pending and requires a different named reviewer.
 
+## Approved Phase 10 Risk-Policy Acceptance Criteria
+
+**Status:** APPROVED — Nouran Ismail, Project Owner, 2026-09-13.
+
+| ID | Criterion | Required result |
+|---|---|---|
+| IIW-AC-066 | Risk-policy version and encodings conform. | Policy version is `1`; all five risk levels and approved rationale codes match the approved numeric tables exactly. |
+| IIW-AC-067 | Evidence sufficiency is conjunctive and deterministic. | Each required condition passes in the nominal case; independently invalidating each condition produces `REVIEW_REQUIRED` and no autonomous or safety action. |
+| IIW-AC-068 | Confidence and uncertainty boundaries conform. | `0.20` uncertainty and `0.80` confidence pass; values beyond those limits and all nonfinite/out-of-range values produce `REVIEW_REQUIRED`. |
+| IIW-AC-069 | Health thresholds and boundaries conform. | `0` is `HIGH`, `50` is `MEDIUM`, `80` and `100` are `LOW`; adjacent in-range cases follow the approved intervals. |
+| IIW-AC-070 | Decision priority is exact. | Every approved combination selects the highest-priority applicable rule; decision-table conformance is 100%. |
+| IIW-AC-071 | Conservative fallback and safety boundary hold. | Unsupported status/version, missing field, invalid numeric input, and injected internal failure produce `REVIEW_REQUIRED`, required review, prohibited autonomous action, and no safety command or approval bypass. |
+| IIW-AC-072 | Verification evidence is complete. | `IIW-TST-RISK-001` through `IIW-TST-RISK-007` pass; decision/condition coverage is 100% or each residual has documented structural-infeasibility justification; traceability and policy hash are recorded. |
+
 ## Unresolved Acceptance Decisions
 
 - Applicable data-quality measures and thresholds.

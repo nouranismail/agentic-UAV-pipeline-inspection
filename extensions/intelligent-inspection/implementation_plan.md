@@ -432,16 +432,18 @@ This decision supersedes the earlier Phase 7 acquisition-only execution hold. It
 
 ### Phase 10 — Risk Assessment
 
+**Authorization decision (2026-09-13):** **AUTHORIZED — NOT STARTED.** Nouran Ismail — Project Owner approved risk policy version 1 and resolved the prior policy blockers. Nouran Ismail — AI & Algorithm Developer is the implementer; Nouran Ismail — Project Owner / Lead Systems Engineer is policy owner/reviewer; Yahya Helmy — Independent Verification & Validation Engineer remains assigned with independent verification **PENDING**.
+
 - **Approved requirement IDs:** `IIW-REQ-011`, `IIW-REQ-012`, `IIW-REQ-014`–`IIW-REQ-018`, `IIW-REQ-020`, `IIW-REQ-023`.
-- **Prerequisites:** Required upstream contracts accepted; project risk scale, evidence sufficiency, confidence/uncertainty thresholds, rationale codes, and conservative fallback approved.
+- **Prerequisites:** **SATISFIED for start.** Required upstream contracts are accepted; risk scale, evidence sufficiency, thresholds and inclusive boundaries, rationale codes, exact priority, conservative fallback, safety boundary, implementer, and policy reviewer were approved on 2026-09-13.
 - **Exact allowed files:** `extensions/intelligent-inspection/core/+iiw/+risk/assessRisk.m`; `extensions/intelligent-inspection/core/+iiw/+risk/validateRiskPolicy.m`; `extensions/intelligent-inspection/config/risk_policy_schema.yaml`; `tests/intelligent-inspection/test_risk_assessment.m`; `extensions/intelligent-inspection/evidence/risk_assessment_results.md`.
 - **Protected files:** Section 4 and project policy values outside separately approved configuration phases.
-- **Responsible engineering role:** AI & Algorithm Developer with Lead Systems Engineer review.
+- **Responsible engineering role:** Nouran Ismail — AI & Algorithm Developer; policy owner/reviewer Nouran Ismail — Project Owner / Lead Systems Engineer; independent verifier Yahya Helmy — Independent Verification & Validation Engineer, decision pending.
 - **Implementation actions:** Implement deterministic evidence validation and versioned policy interpretation; emit risk level/score/rationale/evidence references; force review or reacquisition when mandatory evidence is missing or uncertainty limits fail.
-- **Measurable acceptance criteria:** Every output identifies inputs and policy version; boundary behavior is deterministic; rejected/low-confidence cases produce no autonomous action; no direct safety command exists.
+- **Measurable acceptance criteria:** `IIW-AC-066` through `IIW-AC-072`; every output identifies inputs and policy version; boundary and priority behavior is deterministic; rejected/low-confidence cases produce no autonomous action; no direct safety command exists.
 - **Tests and metrics:** `IIW-TST-RISK-001` through `IIW-TST-RISK-007`; nominal, missing evidence, rejected quality, low confidence, excessive uncertainty, boundary, and repeatability cases; 100% approved decision-table conformance and structural decision/condition coverage or justified infeasible objectives.
 - **Evidence produced:** Decision table, test results, coverage review, rationale-code matrix, and policy hash.
-- **Approval gate:** Gate 3 plus Project Owner approval of project policy values before configuration use; safety ambiguity is a stop condition.
+- **Approval gate:** Phase 10 implementation is authorized but must stop after developer evidence for Project Owner review and later independent verification. Phases 11–17 remain **NOT AUTHORIZED**.
 - **Rollback approach:** Remove only the listed risk implementation/schema/tests/evidence and restore the prior selected policy version.
 
 ### Phase 11 — HumanApprovalGate
@@ -593,7 +595,7 @@ Phase 17 verifies the complete set `IIW-REQ-001` through `IIW-REQ-025` and does 
 | Named AI & Algorithm Developer for Phase 5B | Before Phase 5B implementation | Project Owner | **RESOLVED — Nouran Ismail assigned on 2026-09-07** |
 | Named AI & Algorithm Developer for Phase 6 | Before Phase 6 implementation | Project Owner | **RESOLVED — Nouran Ismail assigned on 2026-09-08** |
 | Named AI & Algorithm Developer for Phase 7 | Before Phase 7 implementation | Project Owner | **RESOLVED — Nouran Ismail assigned on 2026-09-08** |
-| Different named Independent Verification Engineer | Phase 17 independent review | Project Owner | **PENDING** |
+| Different named Independent Verification Engineer | Phase 17 independent review | Project Owner | **RESOLVED — Yahya Helmy assigned on 2026-09-13; decision remains PENDING until review and approved verification execution** |
 | MATLAB/product release and availability evidence | Any product-dependent phase | Integration & Tooling Lead; Project Owner disposition | **PASS — all twelve required products installed and license available** |
 | Image Processing Toolbox approval | Phase 5A and Phase 5B use | Project Owner | **APPROVED FOR PHASE 5 — Nouran Ismail, Project Owner, 2026-09-07** |
 | Deep Learning Toolbox approval | Phase 7 use | Project Owner | **APPROVED FOR PHASE 7 — Nouran Ismail, Project Owner, 2026-09-08** |
@@ -602,7 +604,7 @@ Phase 17 verifies the complete set `IIW-REQ-001` through `IIW-REQ-025` and does 
 | Dataset source, license, ownership, permitted use, split, leakage control, version | Any training/tuning | Dataset owner and Project Owner | **PENDING** |
 | Taxonomy, anomaly classes, metric thresholds, support, operating slices | CV/DL/project evaluation | Lead Systems Engineer and Project Owner | **PENDING** |
 | Regression target, horizon, feature set, uncertainty method, metric thresholds | Phase 9 training | Lead Systems Engineer and Project Owner | **PENDING** |
-| Risk scale, thresholds, rationale codes, conservative fallback | Phase 10 project policy | Project Owner | **PENDING** |
+| Risk scale, thresholds, rationale codes, conservative fallback | Phase 10 project policy | Project Owner | **APPROVED — 2026-09-13** |
 | Approval roles, identity, timeout, rejection, expiry, delegation, escalation, audit | Phase 11 | Project Owner | **PENDING** |
 | Evidence store, integrity, privacy, access, and retention policy | Phase 12 persistence | Project Owner | **PENDING** |
 | Any new 3D/simulation dependency and environment scope | Phase 16 | Separate ECR/dependency approval | **PENDING** |

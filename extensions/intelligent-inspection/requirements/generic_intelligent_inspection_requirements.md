@@ -66,6 +66,18 @@ These requirements define observable behavior and governance constraints. They d
 
 `IIW-REQ-030` through `IIW-REQ-037` and the simplified Phase 9B clarification are approved by Nouran Ismail — Project Owner on 2026-09-13. Phase 9A remains complete, developer-verified at 16/16, and accepted; independent verification remains pending and requires a different reviewer. Phase 9B corrective implementation is complete, developer verification passed 14/14, locked performance acceptance passed, and Project Owner review is accepted on 2026-09-13. Phase 9B independent verification remains pending and requires a different named reviewer. `priorHealthScore` may be used only when genuinely available at inference time and shall contain no future-target information. Project feature IDs 104 and 105 remain catalogued for compatibility but are excluded from the active regression predictor set because location coordinates are contextual and shall not be treated as causal degradation measurements. Every valid health prediction shall be bounded to `[0,100]`; unsupported feature sets and out-of-distribution inputs shall return controlled invalid/review status. The synthetic model remains demonstration-only and is not production-ready. Phases 10–17 remain not authorized.
 
+### Approved Phase 10 elaboration of existing requirements
+
+**Status:** APPROVED by Nouran Ismail — Project Owner on 2026-09-13. No new requirement ID is introduced; this policy elaborates `IIW-REQ-011`, `IIW-REQ-012`, `IIW-REQ-014`–`IIW-REQ-018`, `IIW-REQ-020`, and `IIW-REQ-023`.
+
+- Policy version 1 encodes `UNKNOWN=0`, `LOW=1`, `MEDIUM=2`, `HIGH=3`, and `REVIEW_REQUIRED=4`.
+- Evidence sufficiency requires a conforming successful `HealthPrediction`, valid `[0,100]` estimate, valid `[0,1]` uncertainty, valid model identity/version, nonempty valid feature/evidence references, accepted quality when supplied, and valid detection confidence when supplied.
+- Confidence is `1-uncertainty`; uncertainty `<=0.20` and confidence `>=0.80` are acceptable inclusive boundaries.
+- With sufficient evidence, estimate `>=80` is low risk, `>=50 && <80` is medium risk, and `<50` is high risk.
+- Invalid, missing, rejected, contradictory, unsupported, nonfinite, out-of-range, or internally failed assessment is conservatively `REVIEW_REQUIRED`, requires human review, prohibits autonomous action, and emits no safety command.
+- Decision priority and rationale codes are normative as recorded in `architecture/safety_and_approval_priorities.md` and `architecture/interface_contracts.md`.
+- `RiskAssessment` remains advisory and cannot command or bypass an external safety authority or `HumanApprovalGate`.
+
 ### Approved Phase 9B Corrective Clarification
 
 **Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-13**

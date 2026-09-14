@@ -41,4 +41,23 @@ For the first project configuration, the verified `MissionSupervisor` remains un
 6. No approval, recommendation, or evidence port is a safety-critical command interface.
 7. Approval waiting and evidence persistence remain outside the external safety-response path.
 
-The representation of decisions, status, validity, identifiers, and timestamps is defined in `interface_contracts.md`. The interface-ambiguity blocker is **RESOLVED**, and Phase 4 is **AUTHORIZED AND READY TO EXECUTE**. Phases 5–17 remain **NOT AUTHORIZED**.
+The representation of decisions, status, validity, identifiers, and timestamps is defined in `interface_contracts.md`. The Phase 4 interface-ambiguity blocker was resolved by its recorded clarification; subsequent phase dispositions are controlled by the ECR and implementation plan.
+
+## Approved Phase 10 Risk-Assessment Priority
+
+**Decision:** APPROVED by Nouran Ismail — Project Owner on 2026-09-13. **Risk policy version:** `1`.
+
+Evidence is sufficient only when the input `HealthPrediction` conforms to its approved schema; prediction status is valid and successful; its estimate (`healthValue`) is valid and within `[0,100]`; uncertainty is valid and within `[0,1]`; model identity and version are valid; required feature/evidence references are valid and nonempty; upstream quality is accepted when supplied; and upstream detection confidence is valid when detection is supplied. Missing, malformed, rejected, or contradictory evidence is insufficient.
+
+| Priority | Condition | Risk level | Required rationale |
+|---:|---|---|---|
+| 1 | Invalid or malformed input | `REVIEW_REQUIRED` | `INVALID_INPUT`, or the applicable unsupported-status/version/internal-failure code |
+| 2 | Missing or rejected evidence | `REVIEW_REQUIRED` | `MISSING_EVIDENCE` or `QUALITY_REJECTED` |
+| 3 | Uncertainty `>0.20` or confidence `<0.80` | `REVIEW_REQUIRED` | `EXCESSIVE_UNCERTAINTY` or `LOW_CONFIDENCE` |
+| 4 | Valid `healthValue < 50` | `HIGH` | `HEALTH_HIGH_RISK` |
+| 5 | Valid `healthValue >= 50 && healthValue < 80` | `MEDIUM` | `HEALTH_MEDIUM_RISK` |
+| 6 | Valid `healthValue >= 80` | `LOW` | `HEALTH_LOW_RISK` |
+
+No lower-priority rule may override a higher-priority rule. Boundaries `uncertainty=0.20`, confidence `0.80`, and `healthValue=0`, `50`, `80`, and `100` are accepted as specified. Unsupported status/policy, missing fields, nonfinite/out-of-range values, or internal assessment failure conservatively produces `REVIEW_REQUIRED`, prohibits autonomous action, requires human review, and issues no safety command.
+
+`RiskAssessment` is advisory only. It cannot command `MissionSupervisor`, `ReturnToHome`, or `SafeLanding`; approve its own recommendation; bypass `HumanApprovalGate`; or produce an autonomous mission-changing action. External safety response retains unconditional priority.

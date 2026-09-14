@@ -193,6 +193,39 @@ The Project Owner approved the following deterministic comparison rules for Phas
 | `riskScoreValid` (added) | `boolean` | `[1 1]` | `1` | Boolean | Default `false`; false requires `riskScore=0` |
 | `rationaleCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
 
+#### Approved Phase 10 risk-policy realization
+
+**Decision:** APPROVED by Nouran Ismail — Project Owner on 2026-09-13. **Policy version:** `1`.
+
+The policy term `healthValue` means the approved `HealthPrediction.estimate`; it does not rename or add an interface element. It is usable only when `estimateValid=true`. Model identity is represented by the nonzero identifiers and version required by the approved `HealthPrediction` contract.
+
+| Code | Risk level |
+|---:|---|
+| 0 | `UNKNOWN` |
+| 1 | `LOW` |
+| 2 | `MEDIUM` |
+| 3 | `HIGH` |
+| 4 | `REVIEW_REQUIRED` |
+
+For policy version 1, `riskScore` is not configured: emit `riskScore=0` and `riskScoreValid=false`. `confidenceStatus` uses the existing encoding: `1=ACCEPTABLE`, `2=LOW`, `3=UNAVAILABLE`, and `4=INVALID`. Fixed-capacity reference and rationale arrays retain their approved representation.
+
+| Code | Rationale |
+|---:|---|
+| 0 | `NONE` |
+| 1 | `HEALTH_LOW_RISK` |
+| 2 | `HEALTH_MEDIUM_RISK` |
+| 3 | `HEALTH_HIGH_RISK` |
+| 10 | `INVALID_INPUT` |
+| 11 | `MISSING_EVIDENCE` |
+| 12 | `QUALITY_REJECTED` |
+| 13 | `LOW_CONFIDENCE` |
+| 14 | `EXCESSIVE_UNCERTAINTY` |
+| 15 | `UNSUPPORTED_STATUS` |
+| 16 | `UNSUPPORTED_POLICY_VERSION` |
+| 17 | `INTERNAL_ASSESSMENT_FAILURE` |
+
+Prediction confidence is deterministically `single(1)-uncertainty`. Uncertainty `<= single(0.20)` and confidence `>= single(0.80)` are acceptable, inclusive. Nonfinite or out-of-range values produce `REVIEW_REQUIRED`. After evidence sufficiency is established, `healthValue >= 80` produces `LOW`, `healthValue >= 50 && healthValue < 80` produces `MEDIUM`, and `healthValue < 50` produces `HIGH`.
+
 ### `ApprovalRequest`
 
 | Element | Type | Dimension | Unit | Range/encoding | Validity and default |

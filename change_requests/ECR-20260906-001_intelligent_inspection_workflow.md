@@ -713,3 +713,53 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Independent verification | **PENDING — different named reviewer required** |
 | Model classification | **DEMONSTRATION ONLY — NOT PRODUCTION READY** |
 | Later phases | Phases 10–17 remain **NOT AUTHORIZED**; this review authorizes no subsequent phase |
+
+## 28. Independent Reviewer Assignment and Phase 10 Readiness
+
+### Independent reviewer assignment
+
+| Assignment field | Recorded decision |
+|---|---|
+| Project Owner / date | Nouran Ismail; 2026-09-13 |
+| Reviewer | Yahya Helmy |
+| Role | Independent Verification & Validation Engineer |
+| Assignment status | **ASSIGNED** |
+| Scope | Independent verification of the intelligent-inspection extension |
+| Independence | Yahya Helmy did not implement the intelligent-extension artifacts |
+| Verification decision | **PENDING** until Yahya Helmy reviews the evidence and executes the approved verification procedure |
+| Decision restriction | No independent `PASS`, Project Owner final acceptance, or baseline decision is recorded by this assignment |
+
+### Phase 10 readiness
+
+| Readiness field | Result |
+|---|---|
+| Phase | Phase 10 — Risk Assessment |
+| Status | **SUPERSEDED BY THE APPROVAL AND AUTHORIZATION IN SECTION 29** |
+| Satisfied prerequisite | Required upstream contracts are accepted |
+| Unresolved decisions | **RESOLVED** by the Project Owner decision dated 2026-09-13 in Section 29 |
+| Existing exact allowlist | `extensions/intelligent-inspection/core/+iiw/+risk/assessRisk.m`; `extensions/intelligent-inspection/core/+iiw/+risk/validateRiskPolicy.m`; `extensions/intelligent-inspection/config/risk_policy_schema.yaml`; `tests/intelligent-inspection/test_risk_assessment.m`; `extensions/intelligent-inspection/evidence/risk_assessment_results.md` |
+| Required next decision | Superseded; Phase 10 is authorized in Section 29 |
+| Later phases | Phases 11–17 remain **NOT AUTHORIZED** |
+
+## 29. Approved Phase 10 Risk Policy and Authorization
+
+| Decision field | Approved record |
+|---|---|
+| Project Owner / decision date | Nouran Ismail; 2026-09-13 |
+| Policy clarification | **APPROVED** — risk policy version 1 |
+| Phase 10 | **AUTHORIZED — NOT STARTED** |
+| Implementer | Nouran Ismail — AI & Algorithm Developer |
+| Policy owner/reviewer | Nouran Ismail — Project Owner / Lead Systems Engineer |
+| Independent verifier | Yahya Helmy — Independent Verification & Validation Engineer; decision **PENDING** |
+| Risk levels | `0=UNKNOWN`; `1=LOW`; `2=MEDIUM`; `3=HIGH`; `4=REVIEW_REQUIRED` |
+| Evidence sufficiency | Conforming successful `HealthPrediction`; valid health estimate and uncertainty; valid model identity/version; nonempty valid feature/evidence references; accepted quality when supplied; valid detection confidence when supplied |
+| Confidence policy | `predictionConfidence=1-uncertainty`; uncertainty `<=0.20` and confidence `>=0.80` accepted inclusively; invalid values require review |
+| Health policy | With sufficient evidence: `<50=HIGH`; `>=50 && <80=MEDIUM`; `>=80=LOW` |
+| Priority | Invalid/malformed; missing/rejected evidence; excessive uncertainty/low confidence; high; medium; low — first applicable rule wins |
+| Conservative fallback | `REVIEW_REQUIRED`; autonomous action prohibited; human review required; safety command none |
+| Rationale codes | `0=NONE`; `1=HEALTH_LOW_RISK`; `2=HEALTH_MEDIUM_RISK`; `3=HEALTH_HIGH_RISK`; `10=INVALID_INPUT`; `11=MISSING_EVIDENCE`; `12=QUALITY_REJECTED`; `13=LOW_CONFIDENCE`; `14=EXCESSIVE_UNCERTAINTY`; `15=UNSUPPORTED_STATUS`; `16=UNSUPPORTED_POLICY_VERSION`; `17=INTERNAL_ASSESSMENT_FAILURE` |
+| Safety boundary | Advisory only; cannot command `MissionSupervisor`, `ReturnToHome`, or `SafeLanding`, self-approve, bypass `HumanApprovalGate`, or create an autonomous mission-changing action |
+| Exact Phase 10 allowlist | `extensions/intelligent-inspection/core/+iiw/+risk/assessRisk.m`; `extensions/intelligent-inspection/core/+iiw/+risk/validateRiskPolicy.m`; `extensions/intelligent-inspection/config/risk_policy_schema.yaml`; `tests/intelligent-inspection/test_risk_assessment.m`; `extensions/intelligent-inspection/evidence/risk_assessment_results.md` |
+| Required tests/targets | `IIW-TST-RISK-001` through `IIW-TST-RISK-007`; 100% decision-table conformance; decision/condition coverage 100% or documented structural infeasibility |
+| Later phases | Phases 11–17 remain **NOT AUTHORIZED** |
+| Implementation status | No Phase 10 implementation artifact was created or modified by this authorization record |
