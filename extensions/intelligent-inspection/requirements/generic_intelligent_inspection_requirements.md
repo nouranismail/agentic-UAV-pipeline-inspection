@@ -78,6 +78,18 @@ These requirements define observable behavior and governance constraints. They d
 - Decision priority and rationale codes are normative as recorded in `architecture/safety_and_approval_priorities.md` and `architecture/interface_contracts.md`.
 - `RiskAssessment` remains advisory and cannot command or bypass an external safety authority or `HumanApprovalGate`.
 
+### Approved Phase 11 elaboration of existing requirements
+
+**Status:** APPROVED by Nouran Ismail — Project Owner on 2026-09-14. No new requirement ID is introduced; this policy elaborates `IIW-REQ-012`–`IIW-REQ-018`, `IIW-REQ-020`, and `IIW-REQ-023`.
+
+- Approval policy version 1 uses states `MISSING=0`, `PENDING=1`, `DEFERRED=2`, `REJECTED=3`, `EXPIRED=4`, and `APPROVED=5`; only a valid `APPROVED` evaluation is forwarding-eligible.
+- Valid approval requires nonzero identity, authorized configured role, conforming identity evidence, matched request/recommendation references, supported policy version, and valid timestamps.
+- Pending/deferred age exactly 300 seconds remains waiting and blocked; greater age expires. Approval remains valid through exactly 900 seconds after decision and expires afterward.
+- Only one explicitly enabled and fully audited delegation level is permitted; nested or invalid delegation blocks forwarding.
+- Escalation indicates review only and cannot approve or issue an operational or safety command.
+- Authenticated external safety indication has priority, immediately blocks recommendation forwarding, and is never delayed or transformed by the gate.
+- Malformed, stale, mismatched, unsupported, invalidly delegated, or internally failed evaluation blocks forwarding, requires human review, and produces no autonomous or safety command.
+
 ### Approved Phase 9B Corrective Clarification
 
 **Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-13**

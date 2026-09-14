@@ -61,3 +61,21 @@ Evidence is sufficient only when the input `HealthPrediction` conforms to its ap
 No lower-priority rule may override a higher-priority rule. Boundaries `uncertainty=0.20`, confidence `0.80`, and `healthValue=0`, `50`, `80`, and `100` are accepted as specified. Unsupported status/policy, missing fields, nonfinite/out-of-range values, or internal assessment failure conservatively produces `REVIEW_REQUIRED`, prohibits autonomous action, requires human review, and issues no safety command.
 
 `RiskAssessment` is advisory only. It cannot command `MissionSupervisor`, `ReturnToHome`, or `SafeLanding`; approve its own recommendation; bypass `HumanApprovalGate`; or produce an autonomous mission-changing action. External safety response retains unconditional priority.
+
+## Approved Phase 11 Human-Approval Priority
+
+**Decision:** APPROVED by Nouran Ismail — Project Owner on 2026-09-14. **Policy version:** `1`.
+
+| Priority | Condition | Forwarding | Disposition |
+|---:|---|---:|---|
+| 1 | Authenticated external safety indication active | No | Assert `safetyBypass`; do not delay, generate, select, or modify the external safety response |
+| 2 | Malformed input, invalid identity/role/reference/version/timestamp/delegation, or internal failure | No | Controlled invalid result; human review required |
+| 3 | Missing approval | No | `MISSING` |
+| 4 | Pending/deferred beyond 300 seconds | No | `EXPIRED`; escalation/review indication only |
+| 5 | `PENDING`, `DEFERRED`, `REJECTED`, or `EXPIRED` | No | Preserve the supplied/derived nonapproving state |
+| 6 | `APPROVED` but outside its 900-second validity | No | `EXPIRED` |
+| 7 | Valid, matched, authorized, unexpired `APPROVED` | Yes | Advisory forwarding eligibility only |
+
+No state may self-convert to `APPROVED`. Rejection and expiration require a new request; deferral remains reviewable only until timeout. One delegation level is permitted only when enabled, both identities are nonzero and different, the delegated role is authorized, and reference/audit fields are complete. Nested or invalid delegation blocks forwarding.
+
+External safety authority remains outside the intelligent workflow and with the verified `MissionSupervisor`. `safetyBypass` blocks recommendation forwarding but does not carry, generate, select, modify, or delay a safety command.

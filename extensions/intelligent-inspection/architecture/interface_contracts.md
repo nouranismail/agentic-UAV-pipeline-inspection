@@ -250,6 +250,29 @@ Prediction confidence is deterministically `single(1)-uncertainty`. Uncertainty 
 | `comments` | `uint32` | `[1 1]` | `1` | Evidence-document reference | `0` explicitly means no comment; default `0` |
 | `decisionVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
 
+### Approved Phase 11 approval-policy realization
+
+**Decision:** APPROVED by Nouran Ismail — Project Owner on 2026-09-14. **Policy version:** `1`.
+
+The architecture-level `ApprovalRequest` and `ApprovalDecision` schemas remain unchanged. Phase 11 evaluates those records together with versioned policy/evaluation context; this context is not a new architecture boundary interface and does not authorize a dictionary or reference-architecture change.
+
+| Approval state | Code | Forwarding eligible |
+|---|---:|---:|
+| `MISSING` | 0 | No |
+| `PENDING` | 1 | No |
+| `DEFERRED` | 2 | No |
+| `REJECTED` | 3 | No |
+| `EXPIRED` | 4 | No |
+| `APPROVED` | 5 | Yes, only while all identity, reference, policy, and timing checks pass |
+
+These are Phase 11 evaluation-state codes, distinct from the unchanged external `ApprovalDecision.decision` encoding. External decision `1=APPROVED` maps to evaluation state `5`; `2=REJECTED` maps to `3`; `3=DEFERRED` maps to `2`; and `4=EXPIRED` maps to `4`. An active request with no supplied decision maps to `PENDING=1`; an absent request/decision maps to `MISSING=0`. `RecommendedAction.approvalStatus` retains its separately approved encoding.
+
+Authorized role codes are `1=INSPECTION_OPERATOR`, `2=MAINTENANCE_ENGINEER`, and `3=SAFETY_REVIEWER`. The evaluation context shall supply the resolved `approverRole`, `evaluationTimestamp`, original/delegated identity and delegation audit references when applicable, and authenticated external `safetyBypass` indication. `decidedBy` is the approver identifier; `ApprovalRequest.proposedRecommendation` is the recommendation/reference identifier. Policy configuration resolves authorized identities and roles without adding external authentication infrastructure.
+
+Timing uses unsigned milliseconds. Pending/deferred age exactly `300000` ms remains reviewable and blocked; age greater than `300000` ms is `EXPIRED`. An approval remains valid at exactly `decidedAt + 900000` ms and expires afterward. Missing, contradictory, overflowed, or otherwise invalid timestamps block forwarding with a controlled invalid disposition.
+
+The internal audit result shall record request ID, recommendation/reference ID, policy version, approval state, approver ID/role, decision/evaluation/valid-until timestamps, delegation status and delegator ID, escalation status, forwarding eligibility, rationale code, and safety-bypass indication. It is implementation-local evidence, not a new generic architecture interface.
+
 ### `RecommendedAction`
 
 | Element | Type | Dimension | Unit | Range/encoding | Validity and default |

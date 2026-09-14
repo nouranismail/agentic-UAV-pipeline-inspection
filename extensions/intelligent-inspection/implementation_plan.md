@@ -450,16 +450,18 @@ This decision supersedes the earlier Phase 7 acquisition-only execution hold. It
 
 ### Phase 11 — HumanApprovalGate
 
+**Authorization decision (2026-09-14):** **AUTHORIZED — NOT STARTED.** Nouran Ismail — Project Owner approved policy version 1 and resolved the Phase 11 approval-state, role, identity, timing, rejection, deferral, expiration, delegation, escalation, audit, conservative-fallback, and external-safety-bypass prerequisites. Nouran Ismail — AI & Algorithm Developer is implementer; Nouran Ismail — Project Owner / Lead Systems Engineer is policy owner and safety reviewer; Yahya Helmy — Independent Verification & Validation Engineer remains assigned with decision **PENDING**.
+
 - **Approved requirement IDs:** `IIW-REQ-012`–`IIW-REQ-018`, `IIW-REQ-020`, `IIW-REQ-023`.
-- **Prerequisites:** Phase 10 accepted; authenticated approver roles, timeout, rejection, expiration, delegation, escalation, identity, audit, and external-safety bypass policies explicitly approved.
+- **Prerequisites:** **SATISFIED for start.** Phase 10 is accepted and all listed policy decisions were explicitly approved on 2026-09-14. External authentication infrastructure is excluded; implementation validates supplied identity and role evidence only.
 - **Exact allowed files:** `extensions/intelligent-inspection/core/+iiw/+approval/evaluateApproval.m`; `extensions/intelligent-inspection/models/human_approval_gate.slx`; `extensions/intelligent-inspection/config/approval_policy_schema.yaml`; `tests/intelligent-inspection/test_human_approval_gate.m`; `extensions/intelligent-inspection/evidence/human_approval_gate_results.md`.
 - **Protected files:** Section 4, especially the verified `MissionSupervisor`; no connector to a safety-critical command is allowed.
-- **Responsible engineering role:** AI & Algorithm Developer with Lead Systems Engineer safety review.
+- **Responsible engineering role:** Nouran Ismail — AI & Algorithm Developer; policy owner/safety reviewer Nouran Ismail — Project Owner / Lead Systems Engineer; independent verifier Yahya Helmy — Independent Verification & Validation Engineer, decision pending.
 - **Implementation actions:** Implement deterministic missing, pending, deferred, rejected, expired, and approved states; validate accountable identity and validity interval; prevent forwarding except for approved/unexpired recommendations; provide an independent external-safety bypass path.
-- **Measurable acceptance criteria:** 100% approval-state table conformance; unauthorized states forward zero recommendations; external safety response is never blocked or delayed; audit fields are complete; no direct safety-command endpoint exists.
+- **Measurable acceptance criteria:** `IIW-AC-073` through `IIW-AC-082`; 100% approval-state table conformance; unauthorized states forward zero recommendations; external safety response is never blocked or delayed; audit fields are complete; no direct safety-command endpoint exists.
 - **Tests and metrics:** `IIW-TST-APR-001` through `IIW-TST-APR-010`; all states, timeout boundaries, invalid identity, delegation, escalation, stale decision, deterministic repetition, and external-safety priority; decision/condition coverage target 100% or reviewed structural infeasibility.
 - **Evidence produced:** Approved policy record, state/decision table, compile/update result, tests, coverage, audit samples, and safety-priority analysis.
-- **Approval gate:** Gate 3 plus a distinct Project Owner policy-approval hold point. Missing policy prevents Phase 11 implementation.
+- **Approval gate:** Phase 11 implementation is authorized within the exact five-file allowlist and must stop after developer evidence for Project Owner and independent review. Phases 12–17 remain **NOT AUTHORIZED**.
 - **Rollback approach:** Remove only the listed approval implementation/model/schema/tests/evidence and restore the prior architecture component to unimplemented status; do not touch the external safety subsystem.
 
 ### Phase 12 — Evidence Recording
@@ -607,7 +609,7 @@ Phase 17 verifies the complete set `IIW-REQ-001` through `IIW-REQ-025` and does 
 | Taxonomy, anomaly classes, metric thresholds, support, operating slices | CV/DL/project evaluation | Lead Systems Engineer and Project Owner | **PENDING** |
 | Regression target, horizon, feature set, uncertainty method, metric thresholds | Phase 9 training | Lead Systems Engineer and Project Owner | **PENDING** |
 | Risk scale, thresholds, rationale codes, conservative fallback | Phase 10 project policy | Project Owner | **APPROVED — 2026-09-13** |
-| Approval roles, identity, timeout, rejection, expiry, delegation, escalation, audit | Phase 11 | Project Owner | **PENDING** |
+| Approval roles, identity, timeout, rejection, expiry, delegation, escalation, audit | Phase 11 | Project Owner | **APPROVED — 2026-09-14** |
 | Evidence store, integrity, privacy, access, and retention policy | Phase 12 persistence | Project Owner | **PENDING** |
 | Any new 3D/simulation dependency and environment scope | Phase 16 | Separate ECR/dependency approval | **PENDING** |
 | Existing supervisor interface can accept a proposed request without change | Any direct UAV integration | Separate interface review; separate ECR if change needed | **UNRESOLVED — no change authorized** |

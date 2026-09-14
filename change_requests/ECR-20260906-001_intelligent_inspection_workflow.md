@@ -785,3 +785,27 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Project Owner acceptance | **APPROVED** — Nouran Ismail, Project Owner, 2026-09-14 |
 | Phase 10 final status | **COMPLETE, VERIFIED AND ACCEPTED** |
 | Later phases | Phase 11 and Phases 12–17 remain **NOT AUTHORIZED** |
+
+## 31. Approved Phase 11 HumanApprovalGate Policy and Authorization
+
+| Decision field | Approved record |
+|---|---|
+| Project Owner / date | Nouran Ismail; 2026-09-14 |
+| Phase 11 policy | **APPROVED** — version 1 |
+| Phase 11 | **AUTHORIZED — NOT STARTED** |
+| Implementer | Nouran Ismail — AI & Algorithm Developer |
+| Policy owner / safety reviewer | Nouran Ismail — Project Owner / Lead Systems Engineer |
+| Independent verifier | Yahya Helmy — Independent Verification & Validation Engineer; decision **PENDING** |
+| States | `0=MISSING`; `1=PENDING`; `2=DEFERRED`; `3=REJECTED`; `4=EXPIRED`; `5=APPROVED`; only valid `APPROVED` is forwarding-eligible |
+| Authorized roles | `1=INSPECTION_OPERATOR`; `2=MAINTENANCE_ENGINEER`; `3=SAFETY_REVIEWER` |
+| Timing | Pending/deferred exactly 300 seconds remains waiting; greater expires. Approval is valid through exactly 900 seconds after decision; greater expires. |
+| Delegation | One level only when enabled, identities are nonzero/distinct, role authorized, and reference/audit evidence complete; nested or invalid delegation blocks forwarding |
+| Escalation | Review indication only; cannot approve or issue an operational/safety command |
+| External safety | Authenticated external indication has priority, asserts `safetyBypass`, immediately blocks recommendation forwarding, and is not generated, selected, modified, or delayed by the gate |
+| Conservative fallback | Forwarding blocked; human review required; no autonomous action; no safety command |
+| Audit | Request/recommendation IDs, policy/state, identity/role, decision/evaluation/valid-until times, delegation/delegator, escalation, eligibility, rationale, and safety-bypass disposition |
+| Exact allowlist | `extensions/intelligent-inspection/core/+iiw/+approval/evaluateApproval.m`; `extensions/intelligent-inspection/models/human_approval_gate.slx`; `extensions/intelligent-inspection/config/approval_policy_schema.yaml`; `tests/intelligent-inspection/test_human_approval_gate.m`; `extensions/intelligent-inspection/evidence/human_approval_gate_results.md` |
+| Tests/targets | `IIW-TST-APR-001` through `IIW-TST-APR-010`; approval-state conformance 100%; decision/condition coverage 100% or independently reviewed structural infeasibility |
+| Exclusion | No external authentication infrastructure; supplied identity and role evidence is validated only |
+| Later phases | Phases 12–17 remain **NOT AUTHORIZED** |
+| Implementation status | No Phase 11 implementation artifact was created or modified by this authorization record |

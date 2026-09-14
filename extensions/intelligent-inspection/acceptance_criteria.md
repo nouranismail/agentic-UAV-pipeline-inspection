@@ -226,13 +226,30 @@ No acceptance criterion or threshold was weakened. The corrected generator versi
 
 **Project Owner acceptance:** **APPROVED — Nouran Ismail, 2026-09-14.** Phase 10 is **COMPLETE, VERIFIED AND ACCEPTED**. Phases 11–17 remain **NOT AUTHORIZED**.
 
+## Approved Phase 11 Human-Approval Acceptance Criteria
+
+**Status:** APPROVED — Nouran Ismail, Project Owner, 2026-09-14.
+
+| ID | Criterion | Required result |
+|---|---|---|
+| IIW-AC-073 | Approval-state encoding and forwarding conform. | All six states use their approved numeric codes; only valid, matched, authorized, unexpired `APPROVED` is eligible; state-table conformance is 100%. |
+| IIW-AC-074 | Identity and role checks conform. | Zero/nonconforming identity and roles outside `1`–`3` block forwarding; valid configured identities and roles are auditable. |
+| IIW-AC-075 | Pending timeout is inclusive. | Exactly 300 seconds remains waiting and blocked; any greater age produces `EXPIRED`, blocked forwarding, and review/escalation indication only. |
+| IIW-AC-076 | Approval validity is inclusive. | Exactly 900 seconds after approval remains valid; any later evaluation produces `EXPIRED` and blocks forwarding. |
+| IIW-AC-077 | Rejection, deferral, expiration, and missing behavior conform. | Each blocks forwarding; no state silently becomes `APPROVED`; rejected/expired require a new request and deferred remains reviewable only through timeout. |
+| IIW-AC-078 | Delegation is bounded and auditable. | One enabled, valid, distinct-identity delegation may be evaluated; nested, disabled, incomplete, same-identity, or unauthorized-role delegation blocks forwarding. |
+| IIW-AC-079 | References and versions conform. | Request/recommendation mismatch and unsupported policy version block forwarding with controlled rationale. |
+| IIW-AC-080 | External safety priority is preserved. | Active authenticated safety indication immediately blocks forwarding and asserts `safetyBypass`; the gate neither delays nor generates/selects/modifies a safety command. |
+| IIW-AC-081 | Audit and conservative fallback are complete. | Every evaluation records all approved audit fields; malformed/stale/invalid/internal-failure cases require review, block forwarding, and expose no autonomous or safety command. |
+| IIW-AC-082 | Phase 11 verification is complete. | `IIW-TST-APR-001` through `IIW-TST-APR-010` pass; decision/condition coverage is 100% or each residual has independently reviewed structural-infeasibility justification. |
+
 ## Unresolved Acceptance Decisions
 
 - Applicable data-quality measures and thresholds.
 - Label taxonomies and minimum per-label support not specifically approved for the Phase 7 KSDD2 binary task.
 - Detection, calibration, and regression pass thresholds other than the approved Phase 7 KSDD2 criteria.
 - Required operating-condition slices and robustness scenarios.
-- Approval expiry, timeout, delegation, and audit-retention policies.
+- Approval audit-retention duration; Phase 11 state, timeout, validity, delegation, escalation, identity, and audit-content behavior is approved.
 - Evidence-retention duration and integrity mechanism.
 
 ## Gate 2 Review
