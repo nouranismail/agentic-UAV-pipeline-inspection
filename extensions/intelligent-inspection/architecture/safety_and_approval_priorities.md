@@ -79,3 +79,11 @@ No lower-priority rule may override a higher-priority rule. Boundaries `uncertai
 No state may self-convert to `APPROVED`. Rejection and expiration require a new request; deferral remains reviewable only until timeout. One delegation level is permitted only when enabled, both identities are nonzero and different, the delegated role is authorized, and reference/audit fields are complete. Nested or invalid delegation blocks forwarding.
 
 External safety authority remains outside the intelligent workflow and with the verified `MissionSupervisor`. `safetyBypass` blocks recommendation forwarding but does not carry, generate, select, modify, or delay a safety command.
+
+### Approved Phase 11 rationale priority and audit fallback
+
+**Decision:** APPROVED by Nouran Ismail — Project Owner on 2026-09-14.
+
+The gate returns one scalar `uint16` rationale code for the highest-priority applicable decision and never combines codes. Authenticated external safety is always highest priority and returns `20=EXTERNAL_SAFETY_ACTIVE`. Controlled internal failure returns `38=INTERNAL_EVALUATION_FAILURE`. Successful valid current approval returns `29=APPROVAL_VALID_AND_CURRENT`. All other approved codes and their encodings are normative in `interface_contracts.md`.
+
+Any missing or invalid required audit field sets `auditValid=false`, blocks forwarding, requires human review, and cannot create approval or issue/delay a safety response. External safety priority remains effective even when audit construction or evaluation fails.

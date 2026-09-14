@@ -809,3 +809,21 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Exclusion | No external authentication infrastructure; supplied identity and role evidence is validated only |
 | Later phases | Phases 12–17 remain **NOT AUTHORIZED** |
 | Implementation status | No Phase 11 implementation artifact was created or modified by this authorization record |
+
+## 32. Phase 11 Rationale-Code and Audit-Schema Clarification
+
+| Decision field | Approved record |
+|---|---|
+| Project Owner / date | Nouran Ismail; 2026-09-14 |
+| Rationale-code clarification | **APPROVED** — one real, finite scalar `uint16` code; highest-priority applicable code only; approved codes `0`, `20` through `39` as defined in `architecture/interface_contracts.md` |
+| Audit-schema clarification | **APPROVED** — exactly 18 fixed-size implementation-local fields with approved identifier, version, timestamp, state, role, evidence-reference, and logical representations |
+| External safety rationale | `20=EXTERNAL_SAFETY_ACTIVE`; unconditional highest priority |
+| Internal failure rationale | `38=INTERNAL_EVALUATION_FAILURE` |
+| Successful approval rationale | `29=APPROVAL_VALID_AND_CURRENT` |
+| Audit fallback | Missing or invalid mandatory audit content sets `auditValid=false`, blocks forwarding, requires review, and cannot approve or issue/delay safety behavior |
+| External interface impact | **NONE** — all approved architecture interface schemas remain unchanged |
+| Previous implementation blocker | **RESOLVED** |
+| Phase 11 | **AUTHORIZED AND READY TO EXECUTE — NOT STARTED** |
+| Exact allowlist | Unchanged five paths recorded in Section 31 and the approved implementation plan |
+| Later phases | Phases 12–17 remain **NOT AUTHORIZED** |
+| Execution status | No Phase 11 implementation artifact was created or modified; MATLAB and tests were not run |

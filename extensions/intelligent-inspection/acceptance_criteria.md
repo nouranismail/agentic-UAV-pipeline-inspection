@@ -243,6 +243,8 @@ No acceptance criterion or threshold was weakened. The corrected generator versi
 | IIW-AC-081 | Audit and conservative fallback are complete. | Every evaluation records all approved audit fields; malformed/stale/invalid/internal-failure cases require review, block forwarding, and expose no autonomous or safety command. |
 | IIW-AC-082 | Phase 11 verification is complete. | `IIW-TST-APR-001` through `IIW-TST-APR-010` pass; decision/condition coverage is 100% or each residual has independently reviewed structural-infeasibility justification. |
 
+The approved interpretation of `IIW-AC-073`, `IIW-AC-079`, and `IIW-AC-081` includes the Phase 11 rationale and audit clarification approved on 2026-09-14: every evaluation returns exactly one highest-priority scalar `uint16` rationale code from the approved `0,20–39` table; the audit record contains exactly the 18 approved fixed-size fields and types; any missing or invalid mandatory audit field sets `auditValid=false` and blocks forwarding; and external interface schemas remain unchanged. The previous rationale/audit implementation blocker is **RESOLVED**.
+
 ## Unresolved Acceptance Decisions
 
 - Applicable data-quality measures and thresholds.

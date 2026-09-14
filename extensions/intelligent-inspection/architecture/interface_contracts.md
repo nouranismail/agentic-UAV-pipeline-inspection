@@ -273,6 +273,59 @@ Timing uses unsigned milliseconds. Pending/deferred age exactly `300000` ms rema
 
 The internal audit result shall record request ID, recommendation/reference ID, policy version, approval state, approver ID/role, decision/evaluation/valid-until timestamps, delegation status and delegator ID, escalation status, forwarding eligibility, rationale code, and safety-bypass indication. It is implementation-local evidence, not a new generic architecture interface.
 
+#### Approved rationale-code and implementation-local audit schema
+
+**Decision:** APPROVED by Nouran Ismail — Project Owner on 2026-09-14. The architecture-level `ApprovalRequest`, `ApprovalDecision`, and all other external interface schemas remain unchanged.
+
+| Code | Rationale |
+|---:|---|
+| 0 | `NONE` |
+| 20 | `EXTERNAL_SAFETY_ACTIVE` |
+| 21 | `INVALID_INPUT` |
+| 22 | `MISSING_APPROVAL_REQUEST` |
+| 23 | `MISSING_APPROVAL_DECISION` |
+| 24 | `APPROVAL_PENDING` |
+| 25 | `APPROVAL_DEFERRED` |
+| 26 | `APPROVAL_REJECTED` |
+| 27 | `WAITING_TIMEOUT_EXPIRED` |
+| 28 | `APPROVAL_VALIDITY_EXPIRED` |
+| 29 | `APPROVAL_VALID_AND_CURRENT` |
+| 30 | `INVALID_APPROVER_IDENTITY` |
+| 31 | `UNAUTHORIZED_APPROVER_ROLE` |
+| 32 | `REQUEST_REFERENCE_MISMATCH` |
+| 33 | `INVALID_TIMESTAMP_OR_VALIDITY_INTERVAL` |
+| 34 | `INVALID_DELEGATION` |
+| 35 | `SELF_APPROVAL_PROHIBITED` |
+| 36 | `NESTED_DELEGATION_PROHIBITED` |
+| 37 | `UNSUPPORTED_POLICY_VERSION` |
+| 38 | `INTERNAL_EVALUATION_FAILURE` |
+| 39 | `ESCALATION_REQUIRED` |
+
+`rationaleCode` is a real, finite scalar `uint16`. Exactly one code is returned: the highest-priority applicable code. Code `20` has unconditional priority for authenticated external safety, code `38` represents controlled internal failure, and code `29` represents a successful valid current approval.
+
+| Audit field | Type | Dimension | Unit/encoding | Invalid/default rule |
+|---|---|---:|---|---|
+| `requestId` | `uint32` | `[1 1]` | Identifier | `0` means unassigned |
+| `recommendationId` | `uint32` | `[1 1]` | Identifier | `0` means unassigned |
+| `policyVersion` | `uint16` | `[1 1]` | Version identifier | `0` means unsupported/unassigned |
+| `approvalState` | `uint8` | `[1 1]` | Approved Phase 11 state encoding | Default `0=MISSING` |
+| `approverId` | `uint32` | `[1 1]` | Actor identifier | `0` means unassigned |
+| `approverRole` | `uint8` | `[1 1]` | Approved role encoding | `0` means unassigned |
+| `decisionTimestamp` | `uint64` | `[1 1]` | Milliseconds since Unix epoch UTC | `0` means unavailable |
+| `evaluationTimestamp` | `uint64` | `[1 1]` | Milliseconds since Unix epoch UTC | `0` means unavailable |
+| `validUntilTimestamp` | `uint64` | `[1 1]` | Milliseconds since Unix epoch UTC | `0` means unavailable |
+| `delegationActive` | `logical` | `[1 1]` | Boolean | Default `false` |
+| `delegatorId` | `uint32` | `[1 1]` | Actor identifier | `0` means unassigned |
+| `escalationRequired` | `logical` | `[1 1]` | Boolean | Default `false` |
+| `forwardingEligible` | `logical` | `[1 1]` | Boolean | Default `false` |
+| `safetyBypass` | `logical` | `[1 1]` | Boolean | Default `false` |
+| `humanReviewRequired` | `logical` | `[1 1]` | Boolean | Default `true` for controlled fallback |
+| `rationaleCode` | `uint16` | `[1 1]` | Approved rationale encoding | Default `21=INVALID_INPUT` for malformed evaluation |
+| `evidenceReferences` | `uint32` | `[16 1]` | Zero-padded reference vector | Nonzero references precede unused zero entries; missing required evidence invalidates audit |
+| `auditValid` | `logical` | `[1 1]` | Boolean | `false` for any missing or invalid required audit field |
+
+No strings, variable-size fields, new timestamp format, or external interface element is introduced. Invalid audit data blocks forwarding; audit failure cannot approve, command, or delay a safety response.
+
 ### `RecommendedAction`
 
 | Element | Type | Dimension | Unit | Range/encoding | Validity and default |

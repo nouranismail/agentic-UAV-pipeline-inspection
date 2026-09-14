@@ -90,6 +90,15 @@ These requirements define observable behavior and governance constraints. They d
 - Authenticated external safety indication has priority, immediately blocks recommendation forwarding, and is never delayed or transformed by the gate.
 - Malformed, stale, mismatched, unsupported, invalidly delegated, or internally failed evaluation blocks forwarding, requires human review, and produces no autonomous or safety command.
 
+#### Approved Phase 11 rationale and audit clarification
+
+**Decision:** APPROVED by Nouran Ismail — Project Owner on 2026-09-14. The previous Phase 11 implementation blocker is **RESOLVED**.
+
+- `rationaleCode` is a real, finite scalar `uint16`. The approved codes are `0=NONE`, `20=EXTERNAL_SAFETY_ACTIVE`, `21=INVALID_INPUT`, `22=MISSING_APPROVAL_REQUEST`, `23=MISSING_APPROVAL_DECISION`, `24=APPROVAL_PENDING`, `25=APPROVAL_DEFERRED`, `26=APPROVAL_REJECTED`, `27=WAITING_TIMEOUT_EXPIRED`, `28=APPROVAL_VALIDITY_EXPIRED`, `29=APPROVAL_VALID_AND_CURRENT`, `30=INVALID_APPROVER_IDENTITY`, `31=UNAUTHORIZED_APPROVER_ROLE`, `32=REQUEST_REFERENCE_MISMATCH`, `33=INVALID_TIMESTAMP_OR_VALIDITY_INTERVAL`, `34=INVALID_DELEGATION`, `35=SELF_APPROVAL_PROHIBITED`, `36=NESTED_DELEGATION_PROHIBITED`, `37=UNSUPPORTED_POLICY_VERSION`, `38=INTERNAL_EVALUATION_FAILURE`, and `39=ESCALATION_REQUIRED`.
+- Each evaluation emits exactly one rationale code for the highest-priority applicable condition. External safety always emits `20`; controlled internal failure emits `38`; valid current approval emits `29`.
+- The implementation-local audit record contains exactly the 18 approved fields and reuses approved identifier, version, timestamp, state, role, evidence-reference, and Boolean representations. Missing or invalid mandatory audit content sets `auditValid=false`, blocks forwarding, and cannot produce approval or affect an external safety response.
+- This clarification does not add or change an external interface schema.
+
 ### Approved Phase 9B Corrective Clarification
 
 **Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-13**

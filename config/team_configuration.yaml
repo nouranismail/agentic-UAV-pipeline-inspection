@@ -363,7 +363,7 @@ extensions:
       - "extensions/intelligent-inspection/evidence/risk_assessment_results.md"
     phases_11_through_17_status: "PHASE 11 AUTHORIZED - NOT STARTED; PHASES 12-17 NOT AUTHORIZED"
     phase_11_title: "HumanApprovalGate"
-    phase_11_status: "AUTHORIZED - NOT STARTED"
+    phase_11_status: "AUTHORIZED AND READY TO EXECUTE - NOT STARTED"
     phase_11_policy_status: "APPROVED"
     phase_11_policy_version: 1
     phase_11_approver: "Nouran Ismail - Project Owner"
@@ -376,6 +376,9 @@ extensions:
     phase_11_authorized_roles: "1 INSPECTION_OPERATOR; 2 MAINTENANCE_ENGINEER; 3 SAFETY_REVIEWER"
     phase_11_timing: "Pending timeout 300 seconds inclusive; approval validity 900 seconds inclusive"
     phase_11_external_safety_priority: "Authenticated external safety indication asserts safetyBypass, blocks recommendation forwarding, and is never generated, selected, modified, or delayed by the gate"
+    phase_11_rationale_clarification: "APPROVED - Nouran Ismail, Project Owner, 2026-09-14; scalar uint16, one highest-priority code from 0 and 20-39"
+    phase_11_audit_schema_clarification: "APPROVED - fixed 18-field implementation-local audit record; external interfaces unchanged"
+    phase_11_previous_implementation_blocker: "RESOLVED"
     phase_11_tests: "IIW-TST-APR-001 through IIW-TST-APR-010; 100% approval-state conformance; decision/condition coverage 100% or independently reviewed structural infeasibility"
     phase_11_existing_allowlist:
       - "extensions/intelligent-inspection/core/+iiw/+approval/evaluateApproval.m"
