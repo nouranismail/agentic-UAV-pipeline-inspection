@@ -361,6 +361,16 @@ No strings, variable-size fields, new timestamp format, or external interface el
 | `modelVersionCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
 | `configurationVersionCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
 
+#### Approved Phase 12 evidence-policy realization
+
+**Decision:** APPROVED by Nouran Ismail — Project Owner on 2026-09-15.
+
+The external `EvidenceRecord` schema above is unchanged. Phase 12 uses implementation-local policy records to carry the nonzero `uint32` transaction ID, stage/component ID, input-reference set, output-artifact reference, applicable software version, failure status, policy/schema version, retention metadata, persistence disposition, access-role evidence, and canonical SHA-256 digest. Corresponding identifiers, timestamps, versions, and fixed evidence references reuse the approved interface representations.
+
+The SHA-256 digest is `uint8 [32 1]` and is calculated over a canonical record representation excluding the digest itself. `EvidenceRecord.integrityMetadata` remains the approved `uint32` reference to that integrity record; it is not retyped or expanded inline. Parent/evidence references use fixed `uint32 [16 1]` arrays with an approved count, zero padding, and zero never treated as a real reference.
+
+A valid chain has nonzero immutable record and transaction IDs, unique record IDs, resolvable nonzero references, no self-reference, no cycle, all mandatory IDs/versions, and consistent transaction-stage order. Persistence and chain validation report controlled failure rather than fabricating an externally conforming success record.
+
 ## Approved Architecture Boundary
 
 | Direction | Port | Interface |

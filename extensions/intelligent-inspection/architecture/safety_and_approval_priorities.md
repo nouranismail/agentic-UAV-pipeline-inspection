@@ -87,3 +87,11 @@ External safety authority remains outside the intelligent workflow and with the 
 The gate returns one scalar `uint16` rationale code for the highest-priority applicable decision and never combines codes. Authenticated external safety is always highest priority and returns `20=EXTERNAL_SAFETY_ACTIVE`. Controlled internal failure returns `38=INTERNAL_EVALUATION_FAILURE`. Successful valid current approval returns `29=APPROVAL_VALID_AND_CURRENT`. All other approved codes and their encodings are normative in `interface_contracts.md`.
 
 Any missing or invalid required audit field sets `auditValid=false`, blocks forwarding, requires human review, and cannot create approval or issue/delay a safety response. External safety priority remains effective even when audit construction or evaluation fails.
+
+## Approved Phase 12 Evidence-Recording Priority
+
+**Decision:** APPROVED by Nouran Ismail — Project Owner on 2026-09-15.
+
+`EvidenceRecorder` is observational and remains outside decision, approval, mission, and safety-authority paths. It shall not alter detection, prediction, risk, approval, or recommendation content; command `MissionSupervisor`; create or modify a safety command; delay an external safety response; or convert any failure into success.
+
+Writer unavailability/failure, invalid input or chain, integrity failure, access failure, or invalid retention metadata produces `persistenceSucceeded=false`, `failureRecorded=true`, and `successRecorded=false`. No record ID, timestamp, digest, success outcome, autonomous action, mission command, or safety command may be fabricated. External safety retains unconditional priority over evidence persistence and review.

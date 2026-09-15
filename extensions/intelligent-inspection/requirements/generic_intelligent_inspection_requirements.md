@@ -99,6 +99,20 @@ These requirements define observable behavior and governance constraints. They d
 - The implementation-local audit record contains exactly the 18 approved fields and reuses approved identifier, version, timestamp, state, role, evidence-reference, and Boolean representations. Missing or invalid mandatory audit content sets `auditValid=false`, blocks forwarding, and cannot produce approval or affect an external safety response.
 - This clarification does not add or change an external interface schema.
 
+### Approved Phase 12 elaboration of existing requirements
+
+**Status:** APPROVED by Nouran Ismail — Project Owner on 2026-09-15. No new requirement ID is introduced; this policy elaborates `IIW-REQ-006`, `IIW-REQ-010`, `IIW-REQ-011`, `IIW-REQ-016`–`IIW-REQ-018`, `IIW-REQ-023`, and `IIW-REQ-025`.
+
+- Evidence persistence uses an injected, generic append-only writer boundary. The reusable core has no database, cloud-provider, filesystem-location, or application-specific store dependency; Phase 12 verification uses a deterministic in-memory writer test double.
+- Every record and transaction has a nonzero immutable `uint32` identifier. References use the approved fixed `uint32 [16 1]` representation, with zero used only as padding. Duplicate, orphan, self, and circular references invalidate a chain.
+- A complete chain records stage/component and actor/component IDs; input evidence and output artifact references; applicable data, model, configuration, and software versions; timestamp; outcome/failure status; integrity metadata; and policy/schema version, with ordering consistent within the transaction.
+- Integrity is deterministic SHA-256 over a canonical representation excluding the integrity field itself. The implementation-local digest is `uint8 [32 1]` and is referenced through the existing `EvidenceRecord.integrityMetadata` field; inability to calculate or validate it produces controlled failure and no synthetic success.
+- Supplied role evidence uses `1=INSPECTION_OPERATOR`, `2=MAINTENANCE_ENGINEER`, `3=SAFETY_REVIEWER`, and `4=INDEPENDENT_VERIFIER`. Roles 1–2 may submit, role 3 may submit/review, and role 4 is read/review only. This does not implement external authentication.
+- Retention metadata defaults to 365 days. An open review, unresolved finding, or active baseline sets `retentionHold=true`; Phase 12 records deletion eligibility but deletes nothing.
+- Writer unavailability/failure, invalid input/chain, integrity failure, or access failure sets persistence failure, records failure, records no success, fabricates no record ID/timestamp/digest/outcome, and produces no autonomous, mission, or safety command.
+- Evidence stores IDs, references, and metadata by default, not credentials, names, secrets, authentication tokens, raw images, or sensor payloads. Project raw-data retention requires separate approval.
+- `EvidenceRecorder` is observational only and cannot alter upstream results, command `MissionSupervisor`, create/modify a safety command, or convert failure into success.
+
 ### Approved Phase 9B Corrective Clarification
 
 **Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-13**

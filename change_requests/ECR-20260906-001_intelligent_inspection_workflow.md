@@ -808,6 +808,7 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Tests/targets | `IIW-TST-APR-001` through `IIW-TST-APR-010`; approval-state conformance 100%; decision/condition coverage 100% or independently reviewed structural infeasibility |
 | Exclusion | No external authentication infrastructure; supplied identity and role evidence is validated only |
 | Later phases | Phases 12–17 remain **NOT AUTHORIZED** |
+
 | Implementation status | No Phase 11 implementation artifact was created or modified by this authorization record |
 
 ## 32. Phase 11 Rationale-Code and Audit-Schema Clarification
@@ -848,3 +849,27 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Project Owner acceptance | **APPROVED — Nouran Ismail, 2026-09-15** |
 | Phase 11 final status | **COMPLETE, VERIFIED AND ACCEPTED** |
 | Later phases | Phases 12–17 remain **NOT AUTHORIZED** |
+
+## 34. Approved Phase 12 Evidence Policy and Authorization
+
+| Decision field | Approved record |
+|---|---|
+| Project Owner / date | Nouran Ismail; 2026-09-15 |
+| Phase 12 evidence policy | **APPROVED** |
+| Phase 12 | **AUTHORIZED — NOT STARTED** |
+| Implementer | Nouran Ismail — Integration & Tooling Lead, with AI & Algorithm Developer responsibility |
+| Independent verifier | Yahya Helmy; decision **PENDING** |
+| Store boundary | Generic injected append-only writer; deterministic in-memory test double; no database, cloud service, filesystem location, or project-specific store in the reusable core |
+| Identifiers/references | Nonzero immutable `uint32` record and transaction IDs; fixed `uint32 [16 1]` zero-padded references; duplicate/orphan/self/circular references invalidate the chain |
+| Chain completeness | Mandatory stage/component, actor/component, reference, version, timestamp, outcome/failure, integrity, and policy/schema metadata with consistent transaction-stage order |
+| Integrity | Deterministic SHA-256 over canonical content excluding the digest; implementation-local digest `uint8 [32 1]`, referenced by unchanged external `integrityMetadata` |
+| Access | Roles 1–2 submit; role 3 submit/review; role 4 read/review; invalid roles rejected; supplied role evidence only |
+| Retention | Default 365 days; `retentionHold=true` prevents deletion eligibility; Phase 12 records eligibility and deletes nothing |
+| Failure | Persistence failure recorded explicitly; success not recorded; no fabricated ID, timestamp, digest, or outcome; no autonomous, mission, or safety command |
+| Privacy | No credentials, personal names, secrets, tokens, or raw payload by default; project raw-data retention requires separate approval |
+| Safety boundary | Observational only; cannot change upstream decisions, command MissionSupervisor, modify a safety command, or turn failure into success |
+| Exact allowlist | `extensions/intelligent-inspection/core/+iiw/+evidence/recordEvidence.m`; `extensions/intelligent-inspection/core/+iiw/+evidence/validateEvidenceChain.m`; `extensions/intelligent-inspection/config/evidence_policy_schema.yaml`; `tests/intelligent-inspection/test_evidence_recording.m`; `extensions/intelligent-inspection/evidence/evidence_recorder_results.md` |
+| Tests/targets | `IIW-TST-EVD-001` through `IIW-TST-EVD-006`; mandatory identifiers 100%; orphan references zero; synthetic-success records under failure zero |
+| External interface impact | **NONE** — approved `EvidenceRecord` schema unchanged |
+| Later phases | Phases 13–17 remain **NOT AUTHORIZED** |
+| Execution status | No Phase 12 implementation artifact created; MATLAB and tests not run |

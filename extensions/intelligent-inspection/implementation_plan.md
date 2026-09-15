@@ -468,16 +468,18 @@ This decision supersedes the earlier Phase 7 acquisition-only execution hold. It
 
 ### Phase 12 — Evidence Recording
 
+**Authorization decision (2026-09-15):** **AUTHORIZED — NOT STARTED.** Nouran Ismail — Project Owner approved the generic append-only writer boundary and the immutable-ID, chain, SHA-256 integrity, access, 365-day retention metadata, controlled-failure, privacy, and observational safety policies. Nouran Ismail is assigned as Integration & Tooling Lead with AI & Algorithm Developer responsibility. Yahya Helmy is the independent verifier; decision **PENDING**. Phases 13–17 remain **NOT AUTHORIZED**.
+
 - **Approved requirement IDs:** `IIW-REQ-006`, `IIW-REQ-010`, `IIW-REQ-011`, `IIW-REQ-016`–`IIW-REQ-018`, `IIW-REQ-023`, `IIW-REQ-025`.
-- **Prerequisites:** Evidence store, immutable identifier, integrity, access, retention, failure, and privacy policies approved; contracts from Phase 4 accepted.
+- **Prerequisites:** **SATISFIED for start.** The evidence-store boundary, immutable identifier, chain, integrity, access, retention, failure, privacy, and safety policies were approved on 2026-09-15; contracts from Phase 4 are accepted.
 - **Exact allowed files:** `extensions/intelligent-inspection/core/+iiw/+evidence/recordEvidence.m`; `extensions/intelligent-inspection/core/+iiw/+evidence/validateEvidenceChain.m`; `extensions/intelligent-inspection/config/evidence_policy_schema.yaml`; `tests/intelligent-inspection/test_evidence_recording.m`; `extensions/intelligent-inspection/evidence/evidence_recorder_results.md`.
 - **Protected files:** Section 4 and external evidence stores not explicitly approved.
-- **Responsible engineering role:** Integration & Tooling Lead with AI & Algorithm Developer input.
+- **Responsible engineering role:** Nouran Ismail — Integration & Tooling Lead, with AI & Algorithm Developer responsibility; independent verifier Yahya Helmy, decision pending.
 - **Implementation actions:** Record stage IDs, artifacts, data/model/configuration/software versions, actor/component, timestamp, outcome, and integrity metadata; expose chain validation; record persistence failure without fabricating success.
 - **Measurable acceptance criteria:** Every applicable transaction resolves a complete chain; orphan references equal zero; injected persistence failures create explicit failures and zero synthetic success records.
 - **Tests and metrics:** `IIW-TST-EVD-001` through `IIW-TST-EVD-006`; chain completeness, orphan, immutability, version, failure, and retention-policy tests; 100% mandatory identifiers present.
 - **Evidence produced:** Schema-validation results, sampled chains, failure logs, integrity observations, and traceability inventory.
-- **Approval gate:** Gate 3 plus evidence-policy approval hold point before persistence implementation.
+- **Approval gate:** Gate 3 and the evidence-policy hold point are satisfied for the exact five-file Phase 12 allowlist. Stop after developer evidence for Project Owner and independent review; Phases 13–17 remain **NOT AUTHORIZED**.
 - **Rollback approach:** Disable and remove only the listed recorder code/schema/tests/report; preserve already generated audit evidence according to retention rules.
 
 ### Phase 13 — UAV Pipeline Configuration
@@ -612,7 +614,7 @@ Phase 17 verifies the complete set `IIW-REQ-001` through `IIW-REQ-025` and does 
 | Regression target, horizon, feature set, uncertainty method, metric thresholds | Phase 9 training | Lead Systems Engineer and Project Owner | **PENDING** |
 | Risk scale, thresholds, rationale codes, conservative fallback | Phase 10 project policy | Project Owner | **APPROVED — 2026-09-13** |
 | Approval roles, identity, timeout, rejection, expiry, delegation, escalation, audit | Phase 11 | Project Owner | **APPROVED — 2026-09-14** |
-| Evidence store, integrity, privacy, access, and retention policy | Phase 12 persistence | Project Owner | **PENDING** |
+| Evidence store, immutable ID/chain, integrity, privacy, access, retention, failure, and safety policy | Phase 12 persistence | Project Owner | **APPROVED — 2026-09-15** |
 | Any new 3D/simulation dependency and environment scope | Phase 16 | Separate ECR/dependency approval | **PENDING** |
 | Existing supervisor interface can accept a proposed request without change | Any direct UAV integration | Separate interface review; separate ECR if change needed | **UNRESOLVED — no change authorized** |
 

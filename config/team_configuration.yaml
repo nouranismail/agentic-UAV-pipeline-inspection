@@ -24,11 +24,11 @@ extensions:
     gate_2_status: "APPROVED"
     gate_2_approver: "Nouran Ismail — Project Owner"
     gate_2_approval_date: "2026-09-06"
-    authorized_next_activity: "No Phase 12 implementation activity authorized; Phases 12-17 remain unauthorized"
+    authorized_next_activity: "Phase 12 Evidence Recording implementation within the exact five-file allowlist; Phases 13-17 remain unauthorized"
     gate_3_status: "APPROVED"
     gate_3_approver: "Nouran Ismail — Project Owner"
     gate_3_approval_date: "2026-09-06"
-    authorized_phase: "NONE - PHASES 12-17 NOT AUTHORIZED"
+    authorized_phase: "PHASE 12 - AUTHORIZED - NOT STARTED"
     phase_1_status: "PASS"
     phase_1_attempt_date: "2026-09-06"
     phase_1_completion_date: "2026-09-06"
@@ -394,6 +394,26 @@ extensions:
       - "extensions/intelligent-inspection/config/approval_policy_schema.yaml"
       - "tests/intelligent-inspection/test_human_approval_gate.m"
       - "extensions/intelligent-inspection/evidence/human_approval_gate_results.md"
+    phases_12_through_17_status: "PHASE 12 AUTHORIZED - NOT STARTED; PHASES 13-17 NOT AUTHORIZED"
+    phase_12_title: "Evidence Recording"
+    phase_12_status: "AUTHORIZED - NOT STARTED"
+    phase_12_policy_status: "APPROVED"
+    phase_12_approver: "Nouran Ismail - Project Owner"
+    phase_12_authorization_date: "2026-09-15"
+    phase_12_implementer: "Nouran Ismail - Integration & Tooling Lead, with AI & Algorithm Developer responsibility"
+    phase_12_independent_verifier: "Yahya Helmy - Independent Verification & Validation Engineer"
+    phase_12_independent_verification: "PENDING"
+    phase_12_store_boundary: "Generic injected append-only writer; deterministic in-memory test double; no external database, cloud service, filesystem location, or application-specific store dependency"
+    phase_12_integrity: "Deterministic SHA-256 uint8 [32 1] over canonical content excluding digest; referenced through unchanged EvidenceRecord.integrityMetadata"
+    phase_12_access_roles: "1 INSPECTION_OPERATOR submit; 2 MAINTENANCE_ENGINEER submit; 3 SAFETY_REVIEWER submit/review; 4 INDEPENDENT_VERIFIER read/review"
+    phase_12_retention: "Default 365 days; retentionHold prevents deletion eligibility; no deletion performed"
+    phase_12_tests: "IIW-TST-EVD-001 through IIW-TST-EVD-006; mandatory identifiers 100%; orphan references zero; synthetic-success records under failure zero"
+    phase_12_existing_allowlist:
+      - "extensions/intelligent-inspection/core/+iiw/+evidence/recordEvidence.m"
+      - "extensions/intelligent-inspection/core/+iiw/+evidence/validateEvidenceChain.m"
+      - "extensions/intelligent-inspection/config/evidence_policy_schema.yaml"
+      - "tests/intelligent-inspection/test_evidence_recording.m"
+      - "extensions/intelligent-inspection/evidence/evidence_recorder_results.md"
     independent_verification_assignment_status: "ASSIGNED"
     independent_verification_reviewer: "Yahya Helmy"
     independent_verification_reviewer_role: "Independent Verification & Validation Engineer"
@@ -459,8 +479,8 @@ roles:
     canonical_name: "AI & Algorithm Developer"
     assigned_to: "Nouran Ismail"
     assignment_alias: "Model Developer"
-    assigned_phase: "Phase 11 - HumanApprovalGate for ECR-20260906-001"
-    assignment_date: "2026-09-14"
+    assigned_phase: "Phase 12 - Evidence Recording support for ECR-20260906-001"
+    assignment_date: "2026-09-15"
     independent_verification_eligible_for_assigned_work: false
   independent_verification:
     canonical_name: "Independent Verification & Validation Engineer"
@@ -476,7 +496,9 @@ roles:
     separate_agent_session_is_sufficient: false
   integration_tooling:
     canonical_name: "Integration & Tooling Lead"
-    assigned_to: null
+    assigned_to: "Nouran Ismail"
+    assigned_phase: "Phase 12 - Evidence Recording for ECR-20260906-001"
+    assignment_date: "2026-09-15"
 
 approval_gates:
   gate_1_scope_ecr:

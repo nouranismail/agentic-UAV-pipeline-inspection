@@ -251,6 +251,22 @@ The approved interpretation of `IIW-AC-073`, `IIW-AC-079`, and `IIW-AC-081` incl
 
 **Project Owner acceptance:** **APPROVED — Nouran Ismail, 2026-09-15.** Phase 11 is **COMPLETE, VERIFIED AND ACCEPTED**. Phases 12–17 remain **NOT AUTHORIZED**.
 
+## Approved Phase 12 Evidence-Policy Acceptance Controls
+
+**Status:** APPROVED — Nouran Ismail, Project Owner, 2026-09-15.
+
+- `IIW-TST-EVD-001` through `IIW-TST-EVD-006` remain required and cover chain completeness, orphan handling, immutability, version recording, controlled failure, and retention-policy behavior.
+- Mandatory identifiers are present in 100% of accepted records.
+- Valid chains contain zero orphan, self, duplicate-ID, or circular references and maintain consistent transaction-stage order.
+- Canonical record content produces deterministic SHA-256 `uint8 [32 1]` integrity metadata; content change invalidates the previous digest.
+- Role permissions match the approved four-role table; unknown, zero, malformed, or write-ineligible roles cannot create a success record.
+- Retention metadata defaults to 365 days, `retentionHold=true` prevents deletion eligibility, and Phase 12 performs no deletion.
+- Every injected writer-unavailable, write-failure, invalid-input/chain, integrity-failure, and access-failure case produces an explicit failure and zero synthetic-success records.
+- Evidence contains no credentials, personal names, secrets, authentication tokens, or raw payload by default; the recorder remains application-independent and observational.
+- The approved external `EvidenceRecord` interface remains unchanged; its `integrityMetadata` value references the implementation-local digest record.
+
+**Phase 12 authorization:** **AUTHORIZED — NOT STARTED.** Phases 13–17 remain **NOT AUTHORIZED**.
+
 ## Unresolved Acceptance Decisions
 
 - Applicable data-quality measures and thresholds.
