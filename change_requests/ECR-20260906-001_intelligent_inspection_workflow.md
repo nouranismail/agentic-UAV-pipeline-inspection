@@ -900,3 +900,19 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Verification | `IIW-TST-UAV-001` through `IIW-TST-UAV-008` as clarified in the plan and acceptance criteria; protected hashes unchanged |
 | Execution prerequisites | Acquisition/compatibility preflight succeeds; RGB/fisheye output and required context metadata confirmed; example remains read-only/outside Git; correct branch and clean tree; Phase 12 accepted; all five products installed/licensed; exact six-file scope; protected hashes unchanged; no direct command or MissionSupervisor connector |
 | Later phases | Direct UAV/MissionSupervisor integration and Phases 14–17 remain **NOT AUTHORIZED** |
+
+## 36. Phase 13 Independent Verification and Project Owner Acceptance
+
+| Review field | Recorded decision |
+|---|---|
+| Independent reviewer | Yahya Helmy — Independent Verification & Validation Engineer |
+| Review date and method | 2026-09-16; saved implementation, test, YAML, hash, source-compatibility, scope, and corrective-history evidence reviewed; MATLAB was not independently rerun |
+| Developer verification | **PASS — 8/8**, zero failed, zero incomplete |
+| Independent verification | **PASS** |
+| Evidence findings | All fifteen requested review points supported: deterministic generic mapping; project-local semantics; exact taxonomy; PASS-only quality; inclusive `0.50` confidence; controlled invalid/rejected/malformed/low-confidence handling; advisory codes 0–4; external approval requirement; zero direct command endpoint; zero MissionSupervisor connection/change; unchanged 17-file core and 45-file protected hashes; external read-only example with no Git copy; retained initial 7/8/hash-ordering history; no real-world performance claim; exact six-file scope |
+| Reusable-core baseline | 17 files; SHA-256 `41ba04cb0ca590e2706f47fb561b57e0e0ee64ed2a3b6d31a987904480357665`; unchanged |
+| Protected UAV/MissionSupervisor baseline | 45 files; SHA-256 `d17c504b8ae794008c769757c31674d1728de8d55c7c21e5908aa0d627208afb`; unchanged |
+| Project Owner acceptance | **APPROVED — Nouran Ismail, 2026-09-16** |
+| Phase 13 final status | **COMPLETE, VERIFIED AND ACCEPTED** |
+| Classification | Integration/workflow demonstration only; not evidence of real-world inspection, anomaly-detection, pipeline-condition, flight, or production readiness |
+| Later phases | Phases 14–17 remain **NOT AUTHORIZED**; no later phase is authorized by this review |
