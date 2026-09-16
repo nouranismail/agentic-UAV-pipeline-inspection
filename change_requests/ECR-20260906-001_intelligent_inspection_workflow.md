@@ -876,3 +876,24 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Project Owner acceptance | **APPROVED — Nouran Ismail, 2026-09-16** |
 | Later phases | Phases 13–17 remain **NOT AUTHORIZED** |
 | Execution status | Phase 12 implementation **COMPLETE**; independently verified **PASS** and Project Owner accepted |
+
+## 35. Phase 13 UAV Pipeline Configuration Planning Clarification
+
+| Decision field | Planning record |
+|---|---|
+| Project Owner / Lead Systems Engineer | Nouran Ismail |
+| Planning date | 2026-09-16 |
+| Status | **PLANNING CLARIFICATION PREPARED — PHASE 13 IMPLEMENTATION NOT AUTHORIZED** |
+| Source | Simulated MathWorks UAV 3D camera image output only |
+| Purpose | Integration and workflow demonstration only; no real-world inspection, anomaly-detection, pipeline-condition, flight, or production-readiness claim |
+| Implementer | Nouran Ismail — AI & Algorithm Developer |
+| Independent verifier | Yahya Helmy — Independent Verification & Validation Engineer |
+| Taxonomy | `0=UNASSIGNED_OR_NO_DETECTION`, `1=SURFACE_ANOMALY_INDICATION`, `255=INVALID` |
+| Quality gate | Existing `DataQualityResult`; only `PASS` proceeds; demonstration thresholds brightness `[0.20,0.80]`, contrast `>=0.10`, sharpness `>=0.03`, saturation fraction `<=0.25`, saturation level `0.95` |
+| Confidence gate | Existing conventional `DetectionResult`; valid confidence `>=0.50` inclusive; all lower/unavailable/invalid/nonfinite cases produce review/reacquisition advice only |
+| Advisory actions | `0=NO_RECOMMENDATION`, `1=REVIEW_INSPECTION_EVIDENCE`, `2=SCHEDULE_FOLLOW_UP_INSPECTION`, `3=REQUEST_MAINTENANCE_ASSESSMENT`, `4=REQUEST_DATA_REACQUISITION` |
+| Safety/integration boundary | No direct flight, mission, approval, ReturnToHome, SafeLanding, or safety command; no MissionSupervisor change or connection; adapter stops at an unconnected advisory mission-request boundary |
+| Exact allowlist | Existing six Phase 13 paths in the approved implementation plan remain unchanged |
+| Verification | `IIW-TST-UAV-001` through `IIW-TST-UAV-008` as clarified in the plan and acceptance criteria; protected hashes unchanged |
+| Unresolved prerequisites | Exact MathWorks UAV/3D simulation products, versions, license availability, and permitted asset/content use; Project Owner approval of the completed clarification before execution |
+| Later phases | Direct UAV/MissionSupervisor integration and Phases 14–17 remain **NOT AUTHORIZED** |

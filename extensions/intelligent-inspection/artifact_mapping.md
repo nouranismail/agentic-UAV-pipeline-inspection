@@ -108,3 +108,13 @@ project CV + sensors + inspection history
 | `evidenceRecordOut` | `EvidenceRecord` | Reusable architecture to evidence store |
 
 No boundary port grants the reusable architecture external safety authority. The interface-ambiguity blocker is **RESOLVED**, and Phase 4 is **AUTHORIZED AND READY TO EXECUTE**. Phases 5–17 remain **NOT AUTHORIZED**.
+
+## Proposed Phase 13 UAV Adapter Boundary
+
+| Project-side source | Generic boundary | Phase 13 disposition |
+|---|---|---|
+| Simulated MathWorks UAV 3D camera frame/reference | `inspectionDataIn : InspectionData` | `source_adapter.m` supplies numeric item, payload, modality, source, sequence, timestamp, and schema values |
+| Simulated run, scene, camera, asset, pipeline-section, calibration, pose, frame, and image metadata | `inspectionMetadataIn : InspectionMetadata` | Project metadata is referenced through numeric `acquisitionContext`; names remain configuration/evidence-only |
+| Generic `RecommendedAction` after HumanApprovalGate | `recommendedActionOut : RecommendedAction` | `recommendation_adapter.m` maps only to an unconnected advisory mission-request boundary |
+
+The adapter has no MissionSupervisor, flight-controller, safety-command, or self-approval connector. Direct integration requires a separate ECR. Reusable-core and protected-UAV hashes must remain unchanged.

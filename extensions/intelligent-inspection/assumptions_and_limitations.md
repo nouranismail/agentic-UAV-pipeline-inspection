@@ -45,3 +45,6 @@
 - Approval timeout and escalation policies shall be defined before implementing `HumanApprovalGate`.
 - The verified `MissionSupervisor` remains unchanged; any future modification to its interface requires a separate ECR.
 - A named independent verifier, different from the implementer, shall be assigned before verification.
+# Phase 13 planning limitation
+
+The proposed UAV Pipeline Configuration is limited to simulated MathWorks UAV 3D camera output and exists only to demonstrate contract integration and advisory workflow behavior. It is not evidence of real-world inspection, anomaly-detection, pipeline-condition, flight, or production readiness. It does not validate camera realism, domain transfer, environmental robustness, anomaly taxonomy completeness, flight behavior, or MissionSupervisor compatibility. Exact required UAV/3D simulation products, versions, licenses, and permitted asset/content use remain unresolved execution prerequisites. No direct UAV or MissionSupervisor integration is authorized.

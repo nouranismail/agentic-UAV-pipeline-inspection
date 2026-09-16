@@ -273,6 +273,21 @@ The approved interpretation of `IIW-AC-073`, `IIW-AC-079`, and `IIW-AC-081` incl
 
 ## Unresolved Acceptance Decisions
 
+### Proposed Phase 13 UAV-configuration acceptance controls
+
+**Status:** PLANNING CLARIFICATION PREPARED — IMPLEMENTATION NOT AUTHORIZED.
+
+- `IIW-TST-UAV-001`: every accepted simulated MathWorks UAV 3D camera frame maps to the unchanged `InspectionData` and `InspectionMetadata` schemas with resolvable numeric provenance.
+- `IIW-TST-UAV-002`: 100% of required UAV project metadata fields match their fixed types, dimensions, units, ranges, and nonzero/reference rules; malformed or incomplete metadata is rejected controllably.
+- `IIW-TST-UAV-003`: taxonomy is exactly `0=UNASSIGNED_OR_NO_DETECTION`, `1=SURFACE_ANOMALY_INDICATION`, and `255=INVALID`; no unsupported defect/severity claim is present.
+- `IIW-TST-UAV-004`: only quality `PASS` proceeds; inclusive brightness `[0.20,0.80]`, contrast `>=0.10`, sharpness `>=0.03`, saturation fraction `<=0.25`, saturation level `0.95`, and all rejected/malformed cases conform to the existing quality contract.
+- `IIW-TST-UAV-005`: valid conventional-detection confidence `>=0.50` is acceptable at the inclusive boundary; lower/unavailable/invalid/nonfinite confidence produces review/reacquisition advice and no mission request; configured units remain project-local.
+- `IIW-TST-UAV-006`: every risk/evidence row deterministically maps to the approved five-code advisory table; only a valid current external approval makes a recommendation eligible at the advisory boundary.
+- `IIW-TST-UAV-007`: static and behavioral inspection finds zero direct flight, mission, approval, ReturnToHome, SafeLanding, or safety-command endpoint and zero MissionSupervisor connection.
+- `IIW-TST-UAV-008`: only the exact six Phase 13 files change; reusable-core and protected UAV hashes are identical; repeated inputs are deterministic; every artifact carries the demonstration-only limitation.
+
+Acceptance requires all eight tests to pass, zero schema violations, zero uncontrolled failures, zero protected-hash changes, zero command endpoints, and the mandatory disclaimer. No real-world performance metric or readiness claim is accepted.
+
 - Applicable data-quality measures and thresholds.
 - Label taxonomies and minimum per-label support not specifically approved for the Phase 7 KSDD2 binary task.
 - Detection, calibration, and regression pass thresholds other than the approved Phase 7 KSDD2 criteria.
