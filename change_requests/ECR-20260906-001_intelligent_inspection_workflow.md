@@ -916,3 +916,25 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Phase 13 final status | **COMPLETE, VERIFIED AND ACCEPTED** |
 | Classification | Integration/workflow demonstration only; not evidence of real-world inspection, anomaly-detection, pipeline-condition, flight, or production readiness |
 | Later phases | Phases 14–17 remain **NOT AUTHORIZED**; no later phase is authorized by this review |
+
+## 37. Approved Phase 14 Minimal Fixed-Camera Reuse Clarification
+
+| Planning field | Proposed disposition |
+|---|---|
+| Approver / date | Nouran Ismail — Project Owner; 2026-09-16 |
+| Status | **APPROVED; PHASE 14 AUTHORIZED — NOT STARTED** |
+| Purpose | Demonstrate reuse of the frozen generic core with one stationary-camera source, without performance evaluation or operational control |
+| Source | Deterministic synthetic RGB frames defined only inside `test_fixed_camera_configuration.m`; project-generated test data with no external license |
+| Excluded dependencies | No dataset/download, physical camera, credentials, network service, training, performance evaluation, or new product |
+| Metadata | Stationary camera, station ID, part ID, timestamp, sequence, and fixed reference frame using approved numeric contracts |
+| Generic interfaces | Existing `InspectionData`, `InspectionMetadata`, `DataQualityResult`, `DetectionResult`, `NumericalFeatureSet`, `HealthPrediction`, `RiskAssessment`, `HumanApprovalGate`, and evidence contracts remain unchanged |
+| Taxonomy and gates | Exact codes 0/1/255; only quality PASS proceeds; detection confidence `>=single(0.50)` inclusive |
+| Advisory behavior | Preserve Phase 13 recommendation codes 0–4; valid external approval required where applicable |
+| Prohibited outputs | No actuator, production-line, machine-control, mission, flight, approval, ReturnToHome, SafeLanding, or safety command |
+| Exact allowlist | The existing six Phase 14 paths in the approved implementation plan; fixtures only inside the test file |
+| Implementer | Nouran Ismail — AI & Algorithm Developer |
+| Independent verifier | Yahya Helmy — Independent Verification & Validation Engineer; decision **PENDING** |
+| Approved verification | `IIW-TST-FIX-001` through `IIW-TST-FIX-007` exactly as defined in the plan and acceptance criteria; deterministic behavior, exact contracts, protected hashes, and six-file isolation |
+| Locked acceptance | 7/7 test groups pass; zero failures/incomplete, schema violations, uncontrolled failures, and prohibited endpoints; unchanged reusable-core hashes; exact six-file isolation |
+| Scope-expansion stop | Any additional fixture, path, dependency, dataset, toolbox, hardware interface, core change, or control endpoint requires execution to stop for separate authorization |
+| Later phases | Phases 15–17 remain **NOT AUTHORIZED** |

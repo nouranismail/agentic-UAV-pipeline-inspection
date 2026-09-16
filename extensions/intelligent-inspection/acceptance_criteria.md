@@ -296,6 +296,20 @@ The exact six-file allowlist is mandatory. Example modification/copying, direct 
 
 **Project Owner acceptance:** **APPROVED — Nouran Ismail, 2026-09-16.** Phase 13 is **COMPLETE, VERIFIED AND ACCEPTED** and retains the classification **integration/workflow demonstration only; not evidence of real-world inspection or production readiness**. Phases 14–17 remain **NOT AUTHORIZED**.
 
+### Approved Phase 14 fixed-camera reuse acceptance controls
+
+**Status:** **APPROVED — PHASE 14 AUTHORIZED, NOT STARTED.** Nouran Ismail — Project Owner, 2026-09-16. The approved demonstration uses deterministic synthetic RGB frames defined only inside `test_fixed_camera_configuration.m`; the fixtures are project-generated test data, and no external dataset, download, camera, credential, network, training, performance evaluation, external license, new toolbox, or hardware interface is required.
+
+- `IIW-TST-FIX-001`: every valid stationary-camera frame and context maps deterministically to the exact unchanged `InspectionData` and `InspectionMetadata` schemas, with nonzero station, part, camera/source, payload/context, sequence, timestamp, and fixed-frame references.
+- `IIW-TST-FIX-002`: missing, nonscalar, mistyped, dimensionally invalid, nonfinite, zero-required-reference, invalid timestamp, and malformed source/context cases return controlled empty/rejected results with zero uncontrolled failures.
+- `IIW-TST-FIX-003`: taxonomy is exactly `0=UNASSIGNED_OR_NO_DETECTION`, `1=SURFACE_ANOMALY_INDICATION`, `255=INVALID`; finite valid confidence `>=single(0.50)` is accepted inclusively, while below-boundary, unavailable, invalid, and nonfinite confidence cannot become forwardable.
+- `IIW-TST-FIX-004`: only exact quality `PASS` proceeds; `REVIEW`, `REJECT`, missing, unsupported, and malformed quality results remain blocked and cannot be repaired into acceptable evidence.
+- `IIW-TST-FIX-005`: risk/evidence cases map deterministically only to advisory codes 0–4; invalid or insufficient evidence yields controlled review/reacquisition advice and no actuator or control output.
+- `IIW-TST-FIX-006`: applicable nonzero recommendations require a valid current external approval; pending, rejected, expired, missing, or malformed approval blocks forwarding; static/behavioral inspection finds zero actuator, production-line, machine-control, mission, flight, self-approval, ReturnToHome, SafeLanding, or safety-command endpoint.
+- `IIW-TST-FIX-007`: repeated identical inputs/configuration produce identical outputs; all deterministic fixtures reside inside the test file; reusable-core hashes match the accepted Phase 13 baseline; fixed-camera differences are confined to the exact six allowlisted files; the demonstration-only limitation is present.
+
+Acceptance is locked at 7/7 test groups passing, zero failed or incomplete tests, zero schema violations, zero uncontrolled failures, zero prohibited endpoints, unchanged reusable-core hashes, and exact six-file isolation. Any additional fixture, path, dependency, dataset, toolbox, hardware interface, core change, or control endpoint requires execution to stop for separate authorization. No project performance or production-readiness claim is permitted. Phases 15–17 remain **NOT AUTHORIZED**.
+
 - Applicable data-quality measures and thresholds.
 - Label taxonomies and minimum per-label support not specifically approved for the Phase 7 KSDD2 binary task.
 - Detection, calibration, and regression pass thresholds other than the approved Phase 7 KSDD2 criteria.
