@@ -938,3 +938,19 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Locked acceptance | 7/7 test groups pass; zero failures/incomplete, schema violations, uncontrolled failures, and prohibited endpoints; unchanged reusable-core hashes; exact six-file isolation |
 | Scope-expansion stop | Any additional fixture, path, dependency, dataset, toolbox, hardware interface, core change, or control endpoint requires execution to stop for separate authorization |
 | Later phases | Phases 15–17 remain **NOT AUTHORIZED** |
+
+## 38. Phase 14 Independent Verification and Project Owner Acceptance
+
+| Review field | Recorded decision |
+|---|---|
+| Independent reviewer | Yahya Helmy — Independent Verification & Validation Engineer |
+| Review date and method | 2026-09-16; saved implementation, test, YAML, hash, Git-scope, and limitation evidence reviewed; MATLAB was not independently rerun |
+| Developer verification | **PASS — 7/7**; zero failed, incomplete, schema violations, uncontrolled failures, and prohibited endpoints |
+| Independent verification | **PASS** |
+| Review findings | All fifteen requested findings supported: inline-only deterministic RGB fixtures; conforming stationary source mapping; controlled malformed handling; exact taxonomy; PASS-only quality; inclusive `0.50` confidence; advisory codes 0–4; external approval; zero prohibited endpoints; semantics confined to six files; determinism; unchanged core/Phase 13 hashes; exact allowlist; no performance claim; second-source reuse without core modification |
+| Reusable-core baseline | 17 files; SHA-256 `41ba04cb0ca590e2706f47fb561b57e0e0ee64ed2a3b6d31a987904480357665`; unchanged |
+| Accepted Phase 13 baseline | 6 files; SHA-256 `3446e6aadd70c609234e273423d73c37f89bc2ce13ca5935108b9d3ace49cd8b`; unchanged |
+| Project Owner acceptance | **APPROVED — Nouran Ismail, 2026-09-16** |
+| Phase 14 final status | **COMPLETE, VERIFIED AND ACCEPTED** |
+| Classification | Integration/workflow demonstration only; not evidence of real-world inspection, production-line performance, machine-control suitability, or production readiness |
+| Later phases | Phases 15–17 remain **NOT AUTHORIZED**; no later phase is authorized by this review |

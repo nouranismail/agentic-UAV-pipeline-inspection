@@ -310,6 +310,12 @@ The exact six-file allowlist is mandatory. Example modification/copying, direct 
 
 Acceptance is locked at 7/7 test groups passing, zero failed or incomplete tests, zero schema violations, zero uncontrolled failures, zero prohibited endpoints, unchanged reusable-core hashes, and exact six-file isolation. Any additional fixture, path, dependency, dataset, toolbox, hardware interface, core change, or control endpoint requires execution to stop for separate authorization. No project performance or production-readiness claim is permitted. Phases 15–17 remain **NOT AUTHORIZED**.
 
+### Phase 14 verification disposition
+
+**Independent decision:** **PASS — Yahya Helmy, Independent Verification & Validation Engineer, 2026-09-16.** Review used saved implementation, developer-test, YAML, hash, Git-scope, and limitation evidence; MATLAB was not independently rerun. Developer verification passed 7/7 with zero failures, incomplete tests, schema violations, uncontrolled failures, or prohibited endpoints. The review confirmed all fifteen requested findings, including inline-only deterministic fixtures, exact generic-contract mapping, controlled malformed handling, exact taxonomy and boundaries, advisory/approval behavior, zero command endpoints, confined project semantics, repeatability, unchanged protected hashes, exact six-file scope, and no performance claim.
+
+**Project Owner acceptance:** **APPROVED — Nouran Ismail, 2026-09-16.** Phase 14 is **COMPLETE, VERIFIED AND ACCEPTED**. It remains an integration/workflow demonstration only and does not establish real-world inspection, production-line, machine-control, or production readiness. Phases 15–17 remain **NOT AUTHORIZED**.
+
 - Applicable data-quality measures and thresholds.
 - Label taxonomies and minimum per-label support not specifically approved for the Phase 7 KSDD2 binary task.
 - Detection, calibration, and regression pass thresholds other than the approved Phase 7 KSDD2 criteria.
