@@ -886,7 +886,8 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Status | **PHASE 13 AUTHORIZED — NOT STARTED** |
 | Authorization authority/date | Nouran Ismail — Project Owner / Lead Systems Engineer; 2026-09-16 |
 | Approved dependencies | MATLAB R2026a, Simulink, UAV Toolbox, Simulink 3D Animation, Computer Vision Toolbox; preflight `installed=1`, `license=1` for each |
-| Source | Installed pregenerated MathWorks example “Simulate Simple Flight Scenario and Sensor in Unreal Engine Environment”; RGB camera output and simulation context metadata only; example modification prohibited |
+| Source | Pregenerated MathWorks example “Simulate Simple Flight Scenario and Sensor in Unreal Engine Environment”; currently not installed (`matlab.internal.examples.isInstalled=0`); official acquisition authorized to the external MATLAB-managed Examples directory; RGB/fisheye camera output and simulation context metadata only |
+| Source-acquisition authorization | Download/install only the named example through MATLAB Help Center Open in MATLAB/Open Live Script or another official MathWorks example mechanism; open/run read-only for availability and R2026a compatibility; do not modify, repackage, redistribute, commit, or copy into Git |
 | Purpose | Integration and workflow demonstration only; no real-world inspection, anomaly-detection, pipeline-condition, flight, or production-readiness claim |
 | Implementer | Nouran Ismail — AI & Algorithm Developer |
 | Independent verifier | Yahya Helmy — Independent Verification & Validation Engineer |
@@ -897,5 +898,5 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Safety/integration boundary | No direct flight, mission, approval, ReturnToHome, SafeLanding, or safety command; no MissionSupervisor change or connection; adapter stops at an unconnected advisory mission-request boundary |
 | Exact allowlist | Existing six Phase 13 paths in the approved implementation plan remain unchanged |
 | Verification | `IIW-TST-UAV-001` through `IIW-TST-UAV-008` as clarified in the plan and acceptance criteria; protected hashes unchanged |
-| Execution prerequisites | Correct branch and clean tree; Phase 12 accepted; all five products still installed/licensed; example available without copying/modification; exact six-file scope; protected hashes captured and unchanged; no direct command or MissionSupervisor connector |
+| Execution prerequisites | Acquisition/compatibility preflight succeeds; RGB/fisheye output and required context metadata confirmed; example remains read-only/outside Git; correct branch and clean tree; Phase 12 accepted; all five products installed/licensed; exact six-file scope; protected hashes unchanged; no direct command or MissionSupervisor connector |
 | Later phases | Direct UAV/MissionSupervisor integration and Phases 14–17 remain **NOT AUTHORIZED** |

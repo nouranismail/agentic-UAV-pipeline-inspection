@@ -275,7 +275,7 @@ The approved interpretation of `IIW-AC-073`, `IIW-AC-079`, and `IIW-AC-081` incl
 
 ### Proposed Phase 13 UAV-configuration acceptance controls
 
-**Status:** **APPROVED — PHASE 13 AUTHORIZED, NOT STARTED.** Nouran Ismail — Project Owner / Lead Systems Engineer, 2026-09-16. MATLAB R2026a, Simulink, UAV Toolbox, Simulink 3D Animation, and Computer Vision Toolbox are approved for this phase. The installed pregenerated MathWorks example “Simulate Simple Flight Scenario and Sensor in Unreal Engine Environment” is the sole source; only RGB output and simulation context metadata may be consumed, and the example shall not be modified.
+**Status:** **APPROVED — PHASE 13 AUTHORIZED, NOT STARTED; SOURCE ACQUISITION/COMPATIBILITY PENDING.** Nouran Ismail — Project Owner / Lead Systems Engineer, 2026-09-16. MATLAB R2026a, Simulink, UAV Toolbox, Simulink 3D Animation, and Computer Vision Toolbox are approved. The pregenerated MathWorks example “Simulate Simple Flight Scenario and Sensor in Unreal Engine Environment” is the sole source. It must be acquired through an official MathWorks mechanism to the external MATLAB-managed Examples directory and verified read-only before implementation. Only RGB/fisheye output and simulation context metadata may be consumed. Example modification, repository copying, repackaging, redistribution, or commit fails acceptance.
 
 - `IIW-TST-UAV-001`: every accepted simulated MathWorks UAV 3D camera frame maps to the unchanged `InspectionData` and `InspectionMetadata` schemas with resolvable numeric provenance.
 - `IIW-TST-UAV-002`: 100% of required UAV project metadata fields match their fixed types, dimensions, units, ranges, and nonzero/reference rules; malformed or incomplete metadata is rejected controllably.
