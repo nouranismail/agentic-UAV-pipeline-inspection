@@ -468,18 +468,18 @@ This decision supersedes the earlier Phase 7 acquisition-only execution hold. It
 
 ### Phase 12 — Evidence Recording
 
-**Authorization decision (2026-09-15):** **AUTHORIZED — NOT STARTED.** Nouran Ismail — Project Owner approved the generic append-only writer boundary and the immutable-ID, chain, SHA-256 integrity, access, 365-day retention metadata, controlled-failure, privacy, and observational safety policies. Nouran Ismail is assigned as Integration & Tooling Lead with AI & Algorithm Developer responsibility. Yahya Helmy is the independent verifier; decision **PENDING**. Phases 13–17 remain **NOT AUTHORIZED**.
+**Final disposition (2026-09-16):** **COMPLETE, VERIFIED AND ACCEPTED.** Developer verification passed 20/20. Yahya Helmy — Independent Verification & Validation Engineer — reviewed the saved implementation, diagnostic, test, and coverage evidence without independently rerunning MATLAB and recorded **PASS**. Nouran Ismail — Project Owner — recorded final acceptance as **APPROVED**. Function coverage was 17/17 (100%) and statement coverage was 146/162 (90.12%); unavailable decision/condition metrics remain recorded as a tool limitation and are not represented as 100%. Phases 13–17 remain **NOT AUTHORIZED**.
 
 - **Approved requirement IDs:** `IIW-REQ-006`, `IIW-REQ-010`, `IIW-REQ-011`, `IIW-REQ-016`–`IIW-REQ-018`, `IIW-REQ-023`, `IIW-REQ-025`.
 - **Prerequisites:** **SATISFIED for start.** The evidence-store boundary, immutable identifier, chain, integrity, access, retention, failure, privacy, and safety policies were approved on 2026-09-15; contracts from Phase 4 are accepted.
 - **Exact allowed files:** `extensions/intelligent-inspection/core/+iiw/+evidence/recordEvidence.m`; `extensions/intelligent-inspection/core/+iiw/+evidence/validateEvidenceChain.m`; `extensions/intelligent-inspection/config/evidence_policy_schema.yaml`; `tests/intelligent-inspection/test_evidence_recording.m`; `extensions/intelligent-inspection/evidence/evidence_recorder_results.md`.
 - **Protected files:** Section 4 and external evidence stores not explicitly approved.
-- **Responsible engineering role:** Nouran Ismail — Integration & Tooling Lead, with AI & Algorithm Developer responsibility; independent verifier Yahya Helmy, decision pending.
+- **Responsible engineering role:** Nouran Ismail — Integration & Tooling Lead, with AI & Algorithm Developer responsibility; independent verifier Yahya Helmy, decision **PASS** on 2026-09-16.
 - **Implementation actions:** Record stage IDs, artifacts, data/model/configuration/software versions, actor/component, timestamp, outcome, and integrity metadata; expose chain validation; record persistence failure without fabricating success.
 - **Measurable acceptance criteria:** Every applicable transaction resolves a complete chain; orphan references equal zero; injected persistence failures create explicit failures and zero synthetic success records.
 - **Tests and metrics:** `IIW-TST-EVD-001` through `IIW-TST-EVD-006`; chain completeness, orphan, immutability, version, failure, and retention-policy tests; 100% mandatory identifiers present.
 - **Evidence produced:** Schema-validation results, sampled chains, failure logs, integrity observations, and traceability inventory.
-- **Approval gate:** Gate 3 and the evidence-policy hold point are satisfied for the exact five-file Phase 12 allowlist. Stop after developer evidence for Project Owner and independent review; Phases 13–17 remain **NOT AUTHORIZED**.
+- **Approval gate:** Phase 12 is **COMPLETE, VERIFIED AND ACCEPTED**. The saved evidence preserves the initial 16/20 result, both diagnosed defects and repairs, and the final 20/20 result. Phases 13–17 remain **NOT AUTHORIZED**.
 - **Rollback approach:** Disable and remove only the listed recorder code/schema/tests/report; preserve already generated audit evidence according to retention rules.
 
 ### Phase 13 — UAV Pipeline Configuration

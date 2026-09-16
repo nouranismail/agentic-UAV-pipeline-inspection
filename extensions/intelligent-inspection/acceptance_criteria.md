@@ -265,7 +265,11 @@ The approved interpretation of `IIW-AC-073`, `IIW-AC-079`, and `IIW-AC-081` incl
 - Evidence contains no credentials, personal names, secrets, authentication tokens, or raw payload by default; the recorder remains application-independent and observational.
 - The approved external `EvidenceRecord` interface remains unchanged; its `integrityMetadata` value references the implementation-local digest record.
 
-**Phase 12 authorization:** **AUTHORIZED — NOT STARTED.** Phases 13–17 remain **NOT AUTHORIZED**.
+### Phase 12 verification disposition
+
+**Independent decision:** **PASS — Yahya Helmy, Independent Verification & Validation Engineer, 2026-09-16.** The review used saved implementation, diagnostic, test, and coverage evidence; MATLAB was not independently rerun. Developer verification passed 20/20; function coverage was 17/17 (100%) and statement coverage was 146/162 (90.12%). Decision and condition coverage were unavailable from the source-coverage provider and are recorded as a tool limitation, not as 100% coverage. Mandatory identifiers were present in 100% of accepted records; valid-chain orphan references were zero; multistage, self-reference, circular-reference, stage-order, duplicate-ID, persistence-failure, deterministic SHA-256, and no-command-authority checks passed. No test was removed, suppressed, or weakened.
+
+**Project Owner acceptance:** **APPROVED — Nouran Ismail, 2026-09-16.** Phase 12 is **COMPLETE, VERIFIED AND ACCEPTED**. The complete corrective history remains preserved. Phases 13–17 remain **NOT AUTHORIZED**.
 
 ## Unresolved Acceptance Decisions
 
