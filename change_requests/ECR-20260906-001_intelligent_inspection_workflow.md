@@ -883,8 +883,10 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 |---|---|
 | Project Owner / Lead Systems Engineer | Nouran Ismail |
 | Planning date | 2026-09-16 |
-| Status | **PLANNING CLARIFICATION PREPARED — PHASE 13 IMPLEMENTATION NOT AUTHORIZED** |
-| Source | Simulated MathWorks UAV 3D camera image output only |
+| Status | **PHASE 13 AUTHORIZED — NOT STARTED** |
+| Authorization authority/date | Nouran Ismail — Project Owner / Lead Systems Engineer; 2026-09-16 |
+| Approved dependencies | MATLAB R2026a, Simulink, UAV Toolbox, Simulink 3D Animation, Computer Vision Toolbox; preflight `installed=1`, `license=1` for each |
+| Source | Installed pregenerated MathWorks example “Simulate Simple Flight Scenario and Sensor in Unreal Engine Environment”; RGB camera output and simulation context metadata only; example modification prohibited |
 | Purpose | Integration and workflow demonstration only; no real-world inspection, anomaly-detection, pipeline-condition, flight, or production-readiness claim |
 | Implementer | Nouran Ismail — AI & Algorithm Developer |
 | Independent verifier | Yahya Helmy — Independent Verification & Validation Engineer |
@@ -895,5 +897,5 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Safety/integration boundary | No direct flight, mission, approval, ReturnToHome, SafeLanding, or safety command; no MissionSupervisor change or connection; adapter stops at an unconnected advisory mission-request boundary |
 | Exact allowlist | Existing six Phase 13 paths in the approved implementation plan remain unchanged |
 | Verification | `IIW-TST-UAV-001` through `IIW-TST-UAV-008` as clarified in the plan and acceptance criteria; protected hashes unchanged |
-| Unresolved prerequisites | Exact MathWorks UAV/3D simulation products, versions, license availability, and permitted asset/content use; Project Owner approval of the completed clarification before execution |
+| Execution prerequisites | Correct branch and clean tree; Phase 12 accepted; all five products still installed/licensed; example available without copying/modification; exact six-file scope; protected hashes captured and unchanged; no direct command or MissionSupervisor connector |
 | Later phases | Direct UAV/MissionSupervisor integration and Phases 14–17 remain **NOT AUTHORIZED** |

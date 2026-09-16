@@ -25,6 +25,14 @@ On 2026-09-07, Nouran Ismail — Project Owner approved Image Processing Toolbox
 
 ## Dependency Rules
 
+## Phase 13 Scoped Dependency Approval — 2026-09-16
+
+The Phase 13 preflight reported MATLAB release `2026a` and confirmed installed product plus available license (`installed=1`, `license=1`) for MATLAB, Simulink, UAV Toolbox, Simulink 3D Animation, and Computer Vision Toolbox. Nouran Ismail — Project Owner — approves these five products for Phase 13 UAV Pipeline Configuration only.
+
+The installed pregenerated MathWorks example **“Simulate Simple Flight Scenario and Sensor in Unreal Engine Environment”** is approved as the simulated source. Phase 13 may consume only its RGB camera output and simulation context metadata. The example shall not be copied into the repository, opened or modified during this authorization-recording task, or modified during Phase 13 execution. This approval authorizes no other example content, real camera, flight-control interface, or simulation-environment development.
+
+Availability and approval are scoped to integration/workflow demonstration. They do not establish real-world inspection performance, production readiness, or authorization to connect to MissionSupervisor. Any future MissionSupervisor connection requires a separate ECR.
+
 - Approval does not imply installation or licensed availability.
 - Availability does not imply approval for a work package.
 - An unavailable optional product requires an approved design disposition; it shall not be silently substituted.
