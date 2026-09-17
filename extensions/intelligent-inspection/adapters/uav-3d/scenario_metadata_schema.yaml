@@ -1,0 +1,46 @@
+schema_name: Phase16VirtualSourceMetadata
+schema_version: 1
+fixed_size: true
+variable_size_fields: false
+
+fields:
+  itemId: {type: uint32, dimensions: [1, 1], minimum: 1}
+  payloadRef: {type: uint32, dimensions: [1, 1], minimum: 1}
+  acquisitionContextRef: {type: uint32, dimensions: [1, 1], minimum: 1}
+  cameraCalibrationRef: {type: uint32, dimensions: [1, 1], minimum: 1}
+  sequenceId: {type: uint32, dimensions: [1, 1], minimum: 1}
+  scenarioId: {type: uint32, dimensions: [1, 1], minimum: 1}
+  captureTimestamp: {type: uint64, dimensions: [1, 1], minimum: 1}
+  referenceFrameId: {type: uint16, dimensions: [1, 1], allowed: [1, 2]}
+  imageWidth: {type: uint16, dimensions: [1, 1], minimum: 1}
+  imageHeight: {type: uint16, dimensions: [1, 1], minimum: 1}
+  channelCount: {type: uint8, dimensions: [1, 1], allowed: [3]}
+  projectionType: {type: uint8, dimensions: [1, 1], allowed: [1, 2]}
+  position: {type: double, dimensions: [3, 1], finite: true}
+  orientation: {type: double, dimensions: [4, 1], finite: true, unit_norm: true}
+  environmentalContext: {type: single, dimensions: [4, 1], finite: true}
+  sourceVersion: {type: uint16, dimensions: [1, 1], minimum: 1}
+  adapterVersion: {type: uint16, dimensions: [1, 1], minimum: 1}
+  scenarioVersion: {type: uint16, dimensions: [1, 1], minimum: 1}
+  metadataVersion: {type: uint16, dimensions: [1, 1], minimum: 1}
+  configurationVersion: {type: uint16, dimensions: [1, 1], minimum: 1}
+
+environmental_context:
+  order: [ambient_temperature_c, visibility_m, illumination_lux, wind_speed_mps]
+  minimum: [-50.0, 0.0, 0.0, 0.0]
+  maximum: [70.0, 100000.0, 200000.0, 100.0]
+
+generic_mapping:
+  InspectionData.itemId: itemId
+  InspectionData.payloadRef: payloadRef
+  InspectionData.modality: adapter_configuration.source.modality
+  InspectionData.sourceId: adapter_configuration.source.source_id
+  InspectionData.sequenceId: sequenceId
+  InspectionData.timestamp: captureTimestamp
+  InspectionData.schemaVersion: adapter_configuration.source.inspection_data_schema_version
+  InspectionMetadata.itemId: itemId
+  InspectionMetadata.acquisitionContext: acquisitionContextRef
+  InspectionMetadata.calibrationRef: cameraCalibrationRef
+  InspectionMetadata.contextSchemaVersion: metadataVersion
+
+provenance_rule: "acquisitionContextRef resolves the distinct scenarioId, sourceVersion, adapterVersion, scenarioVersion, pose, environmental context, timestamp, and reference-frame metadata; no generic contract field is added."
