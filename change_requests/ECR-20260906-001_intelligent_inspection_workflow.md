@@ -1044,3 +1044,23 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Phase 16 final status | **COMPLETE, VERIFIED AND ACCEPTED** |
 | Limitations | Future-adapter and demonstration-only classification retained; no real-world performance, production-readiness, or flight-safety claim |
 | Later phase | Phase 17 remains **NOT AUTHORIZED**; no later phase is authorized or executed by this decision |
+
+## 44. Approved Phase 16B Live MathWorks UAV Workflow Demonstration
+
+| Proposal field | Proposed disposition |
+|---|---|
+| Planning clarification | **APPROVED** — Nouran Ismail, Project Owner, 2026-09-17 |
+| Status | **AUTHORIZED — NOT STARTED** |
+| Implementer | Nouran Ismail — AI & Algorithm Developer / Integration & Tooling Lead |
+| Independent verifier | Yahya Helmy — Independent Verification & Validation Engineer; decision **PENDING** |
+| Objective | Acquire an actual runtime camera frame and only available pose/context from the external official MathWorks UAV project, process them through accepted reusable workflow components, and record advisory end-to-end results |
+| Acquisition | Prefer existing logged/runtime outputs; proposed fallback is temporary in-memory logging/observation in MATLAB R2026a, followed by close without saving and external-model hash verification; exact signal binding requires execution preflight |
+| External-project protection | No save, commit, redistribution, permanent modification, or repository copy; no invented camera/pose/context output |
+| Operational path | Accepted Phase 16 adapter; quality; preprocessing; accepted Phase 6 conventional detector; features; reusable prediction with Phase 9B demonstration context only where explicitly labeled; risk; HumanApprovalGate; evidence; advisory recommendation |
+| Model dispositions | Phase 7 remains experimental, performance-failed, and disabled; Phase 9B remains a synthetic workflow demonstration |
+| Exact authorized allowlist | `extensions/intelligent-inspection/demonstrations/uav-3d/run_external_project_demonstration.m`; `extensions/intelligent-inspection/demonstrations/uav-3d/external_project_demo_configuration.yaml`; `tests/intelligent-inspection/test_external_uav_project_demonstration.m`; `extensions/intelligent-inspection/evidence/external_uav_project_demonstration_results.md` |
+| Authorized tests | `IIW-TST-EXT-001` through `IIW-TST-EXT-008`: acquisition/provenance; adapter; stage outputs; source/context separation; detector disposition; advisory/safety boundary; evidence/determinism; hashes/scope/disclaimer |
+| Locked acceptance | 8/8 pass; zero failed/incomplete, schema violations, uncontrolled failures, prohibited endpoints, fabricated outputs, or protected-hash changes; actual external runtime frame required; explicit provenance for every value; all stage results recorded; exact four-file isolation |
+| Disclaimer | “External-project integration and workflow demonstration only; not evidence of real pipeline-defect detection, prognostic accuracy, or production readiness.” |
+| Stop conditions | Any fifth path, screenshot, unavailable actual frame, invented output, example save/copy/change, accepted/core/interface/model/dataset/MissionSupervisor change, command endpoint, protected mismatch, or new dependency |
+| Phase 17 | **NOT AUTHORIZED** until Phase 16B is approved, completed, independently reviewed, and accepted |

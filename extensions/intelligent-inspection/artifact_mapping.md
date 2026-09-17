@@ -122,3 +122,16 @@ No boundary port grants the reusable architecture external safety authority. The
 | Generic `RecommendedAction` after HumanApprovalGate | `recommendedActionOut : RecommendedAction` | `recommendation_adapter.m` maps only to an unconnected advisory mission-request boundary |
 
 The adapter has no MissionSupervisor, flight-controller, safety-command, or self-approval connector. Direct integration requires a separate ECR. Reusable-core and protected-UAV hashes must remain unchanged.
+
+## Approved Phase 16B Live External-Project Demonstration Mapping
+
+**Status:** **APPROVED — AUTHORIZED, NOT STARTED.** Nouran Ismail — Project Owner, 2026-09-17. Only the four artifacts below may be created during a later execution task.
+
+| Authorized artifact | Purpose | Boundary |
+|---|---|---|
+| `extensions/intelligent-inspection/demonstrations/uav-3d/run_external_project_demonstration.m` | Acquire actual external runtime output and orchestrate accepted components | Wrapper only; no accepted algorithm duplication or MissionSupervisor connection |
+| `extensions/intelligent-inspection/demonstrations/uav-3d/external_project_demo_configuration.yaml` | Identify external/model provenance and deterministic demonstration-only context | No observed-sensor claim for configured context |
+| `tests/intelligent-inspection/test_external_uav_project_demonstration.m` | Execute the eight proposed deterministic integration checks | No external fixture or copied model output committed |
+| `extensions/intelligent-inspection/evidence/external_uav_project_demonstration_results.md` | Record stage summaries, hashes, tests, limitations, and disclaimer | Metadata/results only; no raw frame payload |
+
+The flow is external frame and available pose/context -> accepted Phase 16 adapter -> unchanged generic contracts -> accepted workflow components -> advisory output and evidence. The exact allowlist contains four paths; screenshots and summary binaries are not approved.

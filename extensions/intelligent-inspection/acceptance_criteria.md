@@ -156,6 +156,21 @@ Acceptance is locked to `IIW-AC-016` through `IIW-AC-019`, 5/5 test groups passi
 
 **Final Phase 16 disposition (2026-09-17): COMPLETE, VERIFIED AND ACCEPTED.** Developer verification passed 5/5. Yahya Helmy — Independent Verification & Validation Engineer — reviewed saved evidence without independently rerunning MATLAB and recorded **PASS**. Nouran Ismail — Project Owner — recorded **APPROVED**. `IIW-AC-016` through `IIW-AC-019` are accepted as satisfied; all future-adapter and demonstration-only limitations remain, and Phase 17 remains **NOT AUTHORIZED**.
 
+### Approved Phase 16B live external-project demonstration acceptance
+
+**Status:** **APPROVED — PHASE 16B AUTHORIZED, NOT STARTED.** Nouran Ismail — Project Owner, 2026-09-17. Phase 17 remains **NOT AUTHORIZED**.
+
+- `IIW-TST-EXT-001`: prove external-model identity, unchanged hash, actual runtime camera-frame acquisition, exact acquisition method, and close-without-save behavior.
+- `IIW-TST-EXT-002`: prove the accepted Phase 16 adapter accepts the acquired frame/context and emits unchanged generic contracts.
+- `IIW-TST-EXT-003`: record valid outputs/statuses for quality, preprocessing, conventional detection, numerical features, health prediction where supported, risk, approval-gate behavior, advisory recommendation, and evidence chain.
+- `IIW-TST-EXT-004`: prove every value is classified as external simulation output or deterministic demonstration context, with zero misrepresented UAV observations.
+- `IIW-TST-EXT-005`: prove the Phase 6 conventional detector is selected and the Phase 7 deep-learning detector remains disabled.
+- `IIW-TST-EXT-006`: prove advisory-only behavior and zero flight, MissionSupervisor, actuator, ReturnToHome, SafeLanding, approval, or safety-command endpoints.
+- `IIW-TST-EXT-007`: prove evidence-chain completeness, version/provenance retention, controlled failure, and deterministic repetition.
+- `IIW-TST-EXT-008`: prove unchanged protected hashes, exact four-file isolation, no committed external payload, and presence of the mandatory disclaimer.
+
+Locked acceptance is 8/8 groups passing with zero failed/incomplete, schema violations, uncontrolled failures, prohibited endpoints, fabricated external outputs, or protected-hash changes. At least one actual runtime camera frame must be obtained from the external MathWorks project. Every external and configured value requires explicit provenance. All workflow-stage results must be recorded. All Phase 9B inputs not produced by the project must be deterministic, separately governed `DEMONSTRATION_CONTEXT`. Exact four-file isolation is mandatory. No screenshot artifact is approved.
+
 ## Approved Phase 4 Interface-Schema Acceptance Criteria
 
 | ID | Criterion | Measurement |

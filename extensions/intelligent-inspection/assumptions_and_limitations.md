@@ -52,3 +52,9 @@ The authorized UAV Pipeline Configuration is limited to RGB/fisheye camera outpu
 ## Phase 16 adapter-only limitation
 
 The Phase 16 authorization dated 2026-09-17 uses the already installed official MathWorks example and `uav_simple_flight_model.slx` only as an external read-only compatibility reference or optional read-only runtime source. It authorizes no new or modified environment, scene, vehicle, sensor, model, Unreal project, support package, external asset, copied simulation output, or MissionSupervisor connection. Deterministic representative virtual frames and metadata live only inside the authorized test file. The adapter demonstrates source-contract scalability, not simulation realism, AI performance, flight behavior, safety behavior, or production readiness.
+
+## Approved Phase 16B external-project demonstration limitations
+
+Phase 16B is **AUTHORIZED — NOT STARTED**, approved by Nouran Ismail — Project Owner on 2026-09-17. The external MathWorks project remains protected, external, and read-only. Existing runtime/logged outputs are the preferred source and unsaved temporary in-memory logging/observation is the only approved fallback. Exact signal paths have not been verified because MATLAB and the model were not opened during planning. If an actual camera frame cannot be acquired without saving or permanently modifying the project, execution must stop.
+
+Only values actually acquired from the external model may be called external simulation output. Missing predictive-maintenance inputs may be supplied only as deterministic demonstration context with explicit provenance; they are not observed UAV sensor measurements. The Phase 6 conventional detector remains selected, the Phase 7 model remains disabled, and Phase 9B remains synthetic. Mandatory disclaimer: “External-project integration and workflow demonstration only; not evidence of real pipeline-defect detection, prognostic accuracy, or production readiness.”

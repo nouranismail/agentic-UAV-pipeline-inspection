@@ -43,6 +43,10 @@ The official MathWorks example **“Simulate Simple Flight Scenario and Sensor i
 
 No new simulation environment, scene, vehicle, sensor, model, Unreal project, support package, external asset, toolbox, or service is approved. Phase 16 may consume only virtual RGB/fisheye frames, pose, environmental context, scenario ID, timestamp, reference frame, and source/adapter/scenario versions. Deterministic representative test inputs must be defined inside `test_3d_source_adapter.m`; no external fixture or copied example output may enter Git. Any additional dependency, path, environment artifact, or copied simulation data is a stop condition requiring separate approval.
 
+## Approved Phase 16B Dependency Use — 2026-09-17
+
+**APPROVED — PHASE 16B AUTHORIZED, NOT STARTED.** Nouran Ismail — Project Owner, 2026-09-17. Phase 16B introduces no new product, support package, external asset, dataset, or service. It may use the already verified MATLAB R2026a, Simulink, UAV Toolbox, Simulink 3D Animation, and Computer Vision Toolbox installation and the existing external official MathWorks project. The preferred acquisition path is existing logged/runtime output. Temporary in-memory logging/observation closed without saving is the only approved fallback. A temporary or permanent project copy, new environment, or additional dependency is prohibited. Phase 17 remains **NOT AUTHORIZED**.
+
 - Approval does not imply installation or licensed availability.
 - Availability does not imply approval for a work package.
 - An unavailable optional product requires an approved design disposition; it shall not be silently substituted.
