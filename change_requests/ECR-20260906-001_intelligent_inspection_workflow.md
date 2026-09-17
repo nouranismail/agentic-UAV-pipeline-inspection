@@ -991,3 +991,19 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Evidence-history requirement | Later `reusability_evaluation.md` shall retain the stopped preflight and state that the mismatch was caused by aggregate path-ordering convention, not file content change |
 | Phase 15 status | **AUTHORIZED — NOT STARTED / CORRECTIVE PREFLIGHT AUTHORIZED**; exact existing three-file allowlist unchanged |
 | Later phases | Phase 16 and Phase 17 remain **NOT AUTHORIZED** |
+
+## 41. Phase 15 Independent Verification and Final Acceptance
+
+| Review field | Recorded decision |
+|---|---|
+| Independent reviewer | Yahya Helmy — Independent Verification & Validation Engineer |
+| Review date and method | 2026-09-17; saved repository implementation, test, hash inventory, developer results, Git scope, protected-artifact comparison, and limitations reviewed; canonical and individual hashes independently reproduced from repository bytes; MATLAB was not independently rerun |
+| Developer assessment | **PASS — 4/4**; zero failed and zero incomplete |
+| Independent verification | **PASS** |
+| Supported findings | All fourteen requested findings supported: canonical serialization; 17/17 path/hash integrity; retained legacy evidence; two unchanged-core consumers; zero semantic core changes; conforming interfaces/directions; bidirectional terminology separation; zero detector-substitution consumer changes; disabled/nonaccepted experimental detector; zero protected changes; exact three-artifact scope; complete startup/execution history; and satisfaction of `IIW-AC-011`–`IIW-AC-013` |
+| Canonical aggregate | `cb92fed88d4818d9f55ff94b3ff25f23bdca04b37db5fc01f29995bacfda0096` |
+| Historical aggregate | `41ba04cb0ca590e2706f47fb561b57e0e0ee64ed2a3b6d31a987904480357665`; retained as legacy-ordering evidence without rewriting Phase 13/14 |
+| Project Owner acceptance | **APPROVED — Nouran Ismail, 2026-09-17** |
+| Phase 15 final status | **COMPLETE, VERIFIED AND ACCEPTED** |
+| Limitations | All demonstration-only, experimental-model, synthetic-data, real-world-performance, production-readiness, flight-safety, and MissionSupervisor limitations remain unchanged |
+| Later phases | Phase 16 and Phase 17 remain **NOT AUTHORIZED**; this decision authorizes no later phase |
