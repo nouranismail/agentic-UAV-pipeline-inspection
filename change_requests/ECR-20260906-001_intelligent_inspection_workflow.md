@@ -973,3 +973,21 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Protected scope | Both application configurations and all implementation, model, dataset, training, MissionSupervisor, interface, and reusable-core artifacts remain read-only |
 | Stop conditions | Any additional path, core/configuration/interface change, dependency, dataset, model, or implementation requirement |
 | Later phases | Phase 16 and Phase 17 remain **NOT AUTHORIZED** |
+
+## 40. Phase 15 Hash-Procedure Clarification
+
+| Clarification field | Project Owner decision |
+|---|---|
+| Approver / date | Nouran Ismail — Project Owner / Lead Systems Engineer / MBD Architect; 2026-09-17 |
+| Recorded preflight | Branch `feature/intelligent-inspection-extension`, clean at current/upstream commit `74f008c79227fb36d75e3ec52a0b72549c9841f2`; required baseline available; exactly 17 reusable-core files; no core file modification detected |
+| Historical aggregate | Preserve `41ba04cb0ca590e2706f47fb561b57e0e0ee64ed2a3b6d31a987904480357665` as the **legacy-ordering** aggregate used by accepted Phase 13 and Phase 14 evidence; do not rewrite or invalidate those records |
+| Canonical Phase 15 aggregate | Approve `cb92fed88d4818d9f55ff94b3ff25f23bdca04b37db5fc01f29995bacfda0096` as the **canonical ordinal** aggregate |
+| Canonical inventory and order | Exactly the approved 17-file inventory; repository-relative paths; forward slashes; no leading `./`; ascending ordinal bytewise path order |
+| Individual hashes | SHA-256 over each file's raw bytes, represented as 64 lowercase ASCII hexadecimal characters |
+| Exact aggregate serialization | For each sorted file append UTF-8 without BOM: `<normalized-path>`, LF (`0x0A`), `<lowercase-file-sha256>`, LF (`0x0A`). Include the final LF after the seventeenth hash. Use no CR, spaces, extra delimiter, or blank line. SHA-256 the concatenated bytes and render lowercase hexadecimal |
+| Authoritative unchanged-content proof | Equality of all 17 normalized paths and their individual raw-byte SHA-256 hashes; aggregate differences caused solely by ordering/serialization labels do not establish a content change |
+| Required future hash report | Record both labeled aggregates, all 17 paths and hashes, exact serialization, branch, commit, date, algorithm, and inventory count |
+| Corrective test | `IIW-TST-REUSE-001` shall reproduce canonical aggregate `cb92fed8...` and separately verify all individual path/hash pairs |
+| Evidence-history requirement | Later `reusability_evaluation.md` shall retain the stopped preflight and state that the mismatch was caused by aggregate path-ordering convention, not file content change |
+| Phase 15 status | **AUTHORIZED — NOT STARTED / CORRECTIVE PREFLIGHT AUTHORIZED**; exact existing three-file allowlist unchanged |
+| Later phases | Phase 16 and Phase 17 remain **NOT AUTHORIZED** |
