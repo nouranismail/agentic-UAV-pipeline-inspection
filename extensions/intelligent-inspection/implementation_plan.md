@@ -524,16 +524,19 @@ This decision supersedes the earlier Phase 7 acquisition-only execution hold. It
 
 ### Phase 15 — Reusability Evaluation
 
+**Authorization decision (2026-09-17):** **AUTHORIZED — NOT STARTED.** Nouran Ismail — Project Owner and Lead Systems Engineer / MBD Architect — authorized a minimal evaluation-only phase. Phases 13 and 14 are complete, independently verified, accepted, committed, and pushed at baseline `6c3d303611ef09d2b871e6c0244528c3b64531df`. All implementation, configuration, model, dataset, training, MissionSupervisor, interface, and reusable-core artifacts are read-only. Only the three Phase 15 outputs below may be created or modified.
+
 - **Approved requirement IDs:** `IIW-REQ-005`, `IIW-REQ-019`–`IIW-REQ-024`.
-- **Prerequisites:** Phases 13 and 14 completed with accepted developer evidence; reusable core frozen and hashed.
+- **Prerequisites:** **SATISFIED for execution entry**, subject to a clean-tree preflight. Phases 13 and 14 are complete, independently verified, accepted, committed, and pushed; reusable core is frozen at 17 files and aggregate SHA-256 `41ba04cb0ca590e2706f47fb561b57e0e0ee64ed2a3b6d31a987904480357665`; both application configurations are frozen read-only evidence.
 - **Exact allowed files:** `extensions/intelligent-inspection/evidence/reusability_evaluation.md`; `extensions/intelligent-inspection/evidence/reusable_core_hashes.txt`; `tests/intelligent-inspection/test_reusability.m`.
 - **Protected files:** Section 4 and all implementation/configuration artifacts; this phase is evaluation-only.
-- **Responsible engineering role:** Lead Systems Engineer / MBD Architect for developer assessment; later independent review by the assigned verifier.
-- **Implementation actions:** Compare configurations, adapter bindings, contracts, detector substitution, and reusable-core hashes; document deviations and whether application semantics leaked into the core.
-- **Measurable acceptance criteria:** At least two configurations use identical core hashes; zero core modifications are attributable to project semantics; all interface mandatory fields/directions match; detector replacement requires zero consumer-interface changes.
-- **Tests and metrics:** `IIW-TST-REUSE-001` through `IIW-TST-REUSE-004`; core-hash equality, cross-configuration contract conformance, terminology separation, and detector substitution; acceptance against `IIW-AC-011`–`IIW-AC-013`.
+- **Responsible engineering roles:** Nouran Ismail — Lead Systems Engineer / MBD Architect — implementer/developer assessor; Yahya Helmy — Independent Verification & Validation Engineer — decision **PENDING**.
+- **Implementation actions:** Read-only compare the accepted UAV and fixed-camera configurations, adapter bindings, generic contracts, detector substitution, terminology separation, and reusable-core hashes; document deviations and whether application semantics leaked into the core. Do not modify any compared artifact.
+- **Frozen hash procedure:** Enumerate protected files using repository-relative normalized paths; sort with deterministic ordinal ordering; hash every file with SHA-256; construct the aggregate SHA-256 from each normalized relative path plus its file hash; record branch, commit, algorithm, generation date, file count, individual hashes, and aggregate hash; compare the identical reusable-core inventory against accepted Phase 13 and Phase 14 evidence.
+- **Measurable acceptance criteria:** At least two configurations use identical reusable-core hashes; zero reusable-core changes are attributable to project semantics; all mandatory interface fields and directions match; detector substitution requires zero consumer-interface changes; exactly three Phase 15 artifacts change; and uncontrolled failures equal zero.
+- **Tests and metrics:** `IIW-TST-REUSE-001` core-hash equality using the frozen procedure; `IIW-TST-REUSE-002` cross-configuration mandatory contract and direction conformance; `IIW-TST-REUSE-003` project-terminology confinement and zero semantic leakage into the reusable core; `IIW-TST-REUSE-004` detector substitution with zero consumer-interface changes. Acceptance remains traceable to `IIW-AC-011`–`IIW-AC-013` and the locked criteria above.
 - **Evidence produced:** Reuse report, hash inventory, cross-project diff, conformance matrix, and deviations.
-- **Approval gate:** Gate 3 phase hold point. Phase 16 is blocked until this evaluation passes and findings are dispositioned.
+- **Approval gate:** **AUTHORIZED — NOT STARTED.** Stop after developer evidence for Project Owner and independent-verifier review. Any additional path, core/configuration/interface change, dependency, dataset, model, or implementation need is immediate scope expansion and requires separate authorization. Phase 16 and Phase 17 remain **NOT AUTHORIZED**; Phase 16 stays blocked until Phase 15 passes and findings are dispositioned.
 - **Rollback approach:** Remove only the evaluation test/report/hash inventory; evaluation findings remain recorded if retention policy requires them.
 
 ### Phase 16 — Future 3D UAV Adapter

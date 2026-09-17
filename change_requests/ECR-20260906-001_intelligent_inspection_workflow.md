@@ -954,3 +954,22 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Phase 14 final status | **COMPLETE, VERIFIED AND ACCEPTED** |
 | Classification | Integration/workflow demonstration only; not evidence of real-world inspection, production-line performance, machine-control suitability, or production readiness |
 | Later phases | Phases 15–17 remain **NOT AUTHORIZED**; no later phase is authorized by this review |
+
+## 39. Phase 15 Reusability Evaluation Authorization
+
+| Authorization field | Approved decision |
+|---|---|
+| Approver / date | Nouran Ismail — Project Owner / Lead Systems Engineer / MBD Architect; 2026-09-17 |
+| Baseline | Phases 13 and 14 complete, independently verified, accepted, committed, and pushed; branch commit `6c3d303611ef09d2b871e6c0244528c3b64531df` |
+| Phase 15 status | **AUTHORIZED — NOT STARTED** |
+| Scope | Minimal read-only reusability evaluation; only three allowlisted outputs may change |
+| Developer assessor | Nouran Ismail — Lead Systems Engineer / MBD Architect |
+| Independent verifier | Yahya Helmy — Independent Verification & Validation Engineer; decision **PENDING** |
+| Exact allowlist | `extensions/intelligent-inspection/evidence/reusability_evaluation.md`; `extensions/intelligent-inspection/evidence/reusable_core_hashes.txt`; `tests/intelligent-inspection/test_reusability.m` |
+| Required tests | `IIW-TST-REUSE-001` core-hash equality; `002` cross-configuration contract conformance; `003` terminology separation; `004` detector substitution |
+| Frozen core | 17 files; aggregate SHA-256 `41ba04cb0ca590e2706f47fb561b57e0e0ee64ed2a3b6d31a987904480357665` |
+| Hash procedure | Repository-relative normalized paths; deterministic ordinal sort; SHA-256 per file; aggregate over normalized path plus file hash; record file count, individual/aggregate hashes, branch, commit, algorithm, generation date; compare the same inventory to accepted Phase 13/14 evidence |
+| Locked acceptance | At least two configurations share identical core hashes; zero semantic core changes; mandatory fields/directions match; detector substitution changes zero consumer interfaces; exactly three artifacts change; zero uncontrolled failures |
+| Protected scope | Both application configurations and all implementation, model, dataset, training, MissionSupervisor, interface, and reusable-core artifacts remain read-only |
+| Stop conditions | Any additional path, core/configuration/interface change, dependency, dataset, model, or implementation requirement |
+| Later phases | Phase 16 and Phase 17 remain **NOT AUTHORIZED** |

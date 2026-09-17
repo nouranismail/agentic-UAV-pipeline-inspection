@@ -316,6 +316,17 @@ Acceptance is locked at 7/7 test groups passing, zero failed or incomplete tests
 
 **Project Owner acceptance:** **APPROVED — Nouran Ismail, 2026-09-16.** Phase 14 is **COMPLETE, VERIFIED AND ACCEPTED**. It remains an integration/workflow demonstration only and does not establish real-world inspection, production-line, machine-control, or production readiness. Phases 15–17 remain **NOT AUTHORIZED**.
 
+### Approved Phase 15 reusability-evaluation acceptance controls
+
+**Status:** **APPROVED — PHASE 15 AUTHORIZED, NOT STARTED.** Nouran Ismail — Project Owner / Lead Systems Engineer / MBD Architect, 2026-09-17. Phase 15 is read-only evaluation except for `reusability_evaluation.md`, `reusable_core_hashes.txt`, and `test_reusability.m`. Phases 13 and 14 are frozen accepted evidence.
+
+- `IIW-TST-REUSE-001`: enumerate the identical reusable-core inventory using normalized repository-relative paths and ordinal sorting; record per-file and aggregate SHA-256 evidence; confirm both accepted configurations resolve the 17-file baseline `41ba04cb0ca590e2706f47fb561b57e0e0ee64ed2a3b6d31a987904480357665`.
+- `IIW-TST-REUSE-002`: compare the UAV and fixed-camera bindings and confirm all mandatory generic interface fields, directions, types, dimensions, and semantics match.
+- `IIW-TST-REUSE-003`: confirm application terminology and semantics remain confined to their project configurations/adapters and that zero reusable-core changes are attributable to either project.
+- `IIW-TST-REUSE-004`: demonstrate detector substitution requires zero consumer-interface changes and produces no unauthorized modification.
+
+Acceptance is locked to: two or more configurations with identical reusable-core hashes; zero project-semantic core changes; complete mandatory interface/direction equality; zero consumer-interface changes for detector substitution; exactly three Phase 15 artifacts changed; and zero uncontrolled failures. Hash evidence must record normalized inventory paths, ordinal ordering, SHA-256 algorithm, individual hashes, aggregate hash, file count, branch, commit, and generation date. Any additional artifact, dependency, dataset, model, core/configuration/interface modification, or implementation need is a stop condition. Phases 16–17 remain **NOT AUTHORIZED**.
+
 - Applicable data-quality measures and thresholds.
 - Label taxonomies and minimum per-label support not specifically approved for the Phase 7 KSDD2 binary task.
 - Detection, calibration, and regression pass thresholds other than the approved Phase 7 KSDD2 criteria.
