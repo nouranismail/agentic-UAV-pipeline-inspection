@@ -1007,3 +1007,25 @@ The Phase 3 review is a Project Owner phase-exit acceptance decision. It is not 
 | Phase 15 final status | **COMPLETE, VERIFIED AND ACCEPTED** |
 | Limitations | All demonstration-only, experimental-model, synthetic-data, real-world-performance, production-readiness, flight-safety, and MissionSupervisor limitations remain unchanged |
 | Later phases | Phase 16 and Phase 17 remain **NOT AUTHORIZED**; this decision authorizes no later phase |
+
+## 42. Phase 16 Minimal Dependency, Scope, and Execution Authorization
+
+| Authorization field | Project Owner decision |
+|---|---|
+| Approver / date | Nouran Ismail — Project Owner / Lead Systems Engineer / MBD Architect; 2026-09-17 |
+| Phase 16 status | **AUTHORIZED — NOT STARTED** |
+| Implementer / interface owner | Nouran Ismail — AI & Algorithm Developer / Lead Systems Engineer / MBD Architect |
+| Independent verifier | Yahya Helmy — Independent Verification & Validation Engineer; decision **PENDING** |
+| Approved products | MATLAB R2026a, Simulink, UAV Toolbox, Simulink 3D Animation, Computer Vision Toolbox; installed and licensed |
+| External reference/source | Official MathWorks example “Simulate Simple Flight Scenario and Sensor in Unreal Engine Environment”; `uav_simple_flight_model.slx`; available outside Git; read-only compatibility reference and optional read-only runtime source |
+| Example evidence | `MODEL_AVAILABLE=1`; `FISHEYE_CAMERA_BLOCKS=1`; `UAV_CONTEXT_BLOCKS=2`; previously opened/read-only without saving |
+| Exact scope | Replaceable virtual source adapter, adapter configuration, scenario metadata schema, deterministic inline test, and evidence only |
+| Approved inputs | Virtual RGB/fisheye frames, pose, environmental context, scenario ID, timestamp, reference frame, source version, adapter version, scenario version |
+| Required outputs | Unchanged generic `InspectionData` and `InspectionMetadata` contracts |
+| Exact allowlist | `extensions/intelligent-inspection/adapters/uav-3d/adapter_configuration.yaml`; `extensions/intelligent-inspection/adapters/uav-3d/virtual_source_adapter.m`; `extensions/intelligent-inspection/adapters/uav-3d/scenario_metadata_schema.yaml`; `tests/intelligent-inspection/test_3d_source_adapter.m`; `extensions/intelligent-inspection/evidence/3d_adapter_scalability_results.md` |
+| Tests | `IIW-TST-3D-001`–`IIW-TST-3D-005`: contract equality, adapter substitution, metadata handling, provenance, architecture-boundary inspection |
+| Locked acceptance | `IIW-AC-016`–`IIW-AC-019`; 5/5 pass; zero failed/incomplete; zero downstream-interface changes; zero AI inside environment; zero prohibited endpoints; unchanged protected hashes; exact five-file isolation |
+| Protected scope | Reusable core; Phases 13–15; real-source adapters; MissionSupervisor; external example/model; all implementation outside the five-file allowlist |
+| Prohibited behavior | No example copy/change/save/repackage/redistribution/commit; no new environment/scene/vehicle/sensor/model/Unreal project/support package/external asset; no external fixture; no AI/decision/mission behavior; no command endpoint |
+| Stop conditions | Any new environment artifact, modified example, copied simulation data, additional dependency/path, MissionSupervisor connection, downstream/core/interface change, or protected-artifact change |
+| Later phase | Phase 17 remains **NOT AUTHORIZED** |

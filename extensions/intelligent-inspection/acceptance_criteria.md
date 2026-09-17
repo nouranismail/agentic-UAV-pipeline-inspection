@@ -142,6 +142,18 @@ Regression acceptance additionally requires proof that inputs are numerical feat
 | IIW-AC-018 | Inspection AI remains outside the simulation-environment boundary. | Architecture inspection finds no detection, feature, prediction, risk, or approval implementation inside that boundary. |
 | IIW-AC-019 | Source substitution preserves evidence provenance. | Evidence records distinguish adapter/source versions while retaining the same generic chain structure. |
 
+### Approved Phase 16 execution controls
+
+**Status:** **APPROVED — PHASE 16 AUTHORIZED, NOT STARTED.** Nouran Ismail — Project Owner / Lead Systems Engineer / MBD Architect, 2026-09-17. Phase 16 is limited to the replaceable source adapter, its configuration/schema, one test file, and evidence. Phase 17 remains **NOT AUTHORIZED**.
+
+- `IIW-TST-3D-001`: prove virtual and accepted source adapters expose equal mandatory `InspectionData` and `InspectionMetadata` fields, directions, types, dimensions, and semantics.
+- `IIW-TST-3D-002`: substitute the virtual adapter without changing a downstream interface or reusable-core consumer.
+- `IIW-TST-3D-003`: validate deterministic inline virtual RGB/fisheye frames and approved pose, environmental, scenario, timestamp, reference-frame, and version metadata; reject malformed input controllably.
+- `IIW-TST-3D-004`: prove provenance distinguishes source, adapter, and scenario versions while retaining the generic evidence-chain structure.
+- `IIW-TST-3D-005`: prove the simulation boundary contains no preprocessing, detection, prediction, risk, approval, evidence-decision, mission, or command implementation; verify unchanged protected hashes and exact five-file isolation.
+
+Acceptance is locked to `IIW-AC-016` through `IIW-AC-019`, 5/5 test groups passing, zero failed or incomplete tests, zero downstream-interface changes, zero AI inside the environment boundary, zero prohibited endpoints, unchanged reusable-core/Phase 13/Phase 14/Phase 15/real-source/MissionSupervisor hashes, and exactly five Phase 16 artifacts changed. The external MathWorks example remains read-only and outside Git. Any external fixture, example copy/change, new dependency or path, environment artifact, MissionSupervisor connection, or core change fails preflight and requires separate authorization.
+
 ## Approved Phase 4 Interface-Schema Acceptance Criteria
 
 | ID | Criterion | Measurement |

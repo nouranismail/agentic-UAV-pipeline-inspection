@@ -28,6 +28,10 @@
 | External safety boundary | Verified `MissionSupervisor` remains authoritative and unchanged | Facility or machine safety authority remains external | Simulated safety behavior remains separate from inspection AI |
 | Evidence | Source, GPS/asset, model, approval, and mapping versions | Source, station/part, model, approval, and mapping versions | Scenario, adapter, environment, source, and model versions |
 
+### Phase 16 adapter-only override — approved 2026-09-17
+
+For authorized Phase 16 execution, the future-3D column is limited to source translation and provenance. The adapter accepts only virtual RGB/fisheye frames, pose, environmental context, scenario ID, timestamp, reference frame, and source/adapter/scenario versions, and emits unchanged `InspectionData` and `InspectionMetadata`. The quality, detection-taxonomy, feature, prediction, risk, approval, evidence-decision, safety, mission, and command rows describe external downstream boundaries only; Phase 16 does not implement them inside the adapter or simulation environment. Deterministic test inputs remain inline in `test_3d_source_adapter.m`.
+
 ## Project-Specific Configuration Ownership
 
 | Configuration category | Reusable core | Project configuration/adapter |
