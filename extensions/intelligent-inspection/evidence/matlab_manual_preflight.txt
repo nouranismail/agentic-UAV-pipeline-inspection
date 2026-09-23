@@ -1,0 +1,172 @@
+
+disp("MATLAB VERSION")
+MATLAB VERSION
+disp(version)
+26.1.0.3312084 (R2026a) Update 4
+
+disp("MATLAB RELEASE")
+MATLAB RELEASE
+disp(version("-release"))
+2026a
+
+disp("PLATFORM")
+PLATFORM
+disp(computer)
+PCWIN64
+
+disp("INSTALLED PRODUCTS")
+INSTALLED PRODUCTS
+ver
+-----------------------------------------------------------------------------------------------------
+MATLAB Version: 26.1.0.3312084 (R2026a) Update 4
+MATLAB License Number: 41143519
+Operating System: Microsoft Windows 11 Pro Version 10.0 (Build 26200)
+Java Version: Java 1.8.0_202-b08 with Oracle Corporation Java HotSpot(TM) 64-Bit Server VM mixed mode
+-----------------------------------------------------------------------------------------------------
+MATLAB                                                Version 26.1        (R2026a)
+Simulink                                              Version 26.1        (R2026a)
+5G Toolbox                                            Version 26.1        (R2026a)
+AUTOSAR Blockset                                      Version 26.1        (R2026a)
+Aerospace Blockset                                    Version 26.1        (R2026a)
+Aerospace Toolbox                                     Version 26.1        (R2026a)
+Antenna Toolbox                                       Version 26.1        (R2026a)
+Audio Toolbox                                         Version 26.1        (R2026a)
+Automated Driving Toolbox                             Version 26.1        (R2026a)
+Bioinformatics Toolbox                                Version 26.1        (R2026a)
+Bluetooth Toolbox                                     Version 26.1        (R2026a)
+C2000 Microcontroller Blockset                        Version 26.1        (R2026a)
+Communications Toolbox                                Version 26.1        (R2026a)
+Computer Vision Toolbox                               Version 26.1        (R2026a)
+Control System Toolbox                                Version 26.1        (R2026a)
+Curve Fitting Toolbox                                 Version 26.1        (R2026a)
+DDS Blockset                                          Version 26.1        (R2026a)
+DO Qualification Kit                                  Version 26.1        (R2026a)
+DSP HDL Toolbox                                       Version 26.1        (R2026a)
+DSP System Toolbox                                    Version 26.1        (R2026a)
+Data Acquisition Toolbox                              Version 26.1        (R2026a)
+Database Toolbox                                      Version 26.1        (R2026a)
+Datafeed Toolbox                                      Version 26.1        (R2026a)
+Deep Learning HDL Toolbox                             Version 26.1        (R2026a)
+Deep Learning Toolbox                                 Version 26.1        (R2026a)
+Econometrics Toolbox                                  Version 26.1        (R2026a)
+Embedded Coder                                        Version 26.1        (R2026a)
+Financial Instruments Toolbox                         Version 26.1        (R2026a)
+Financial Toolbox                                     Version 26.1        (R2026a)
+Fixed-Point Designer                                  Version 26.1        (R2026a)
+Fuzzy Logic Toolbox                                   Version 26.1        (R2026a)
+GPU Coder                                             Version 26.1        (R2026a)
+Global Optimization Toolbox                           Version 26.1        (R2026a)
+HDL Coder                                             Version 26.1        (R2026a)
+HDL Verifier                                          Version 26.1        (R2026a)
+IEC Certification Kit                                 Version 26.1        (R2026a)
+Image Acquisition Toolbox                             Version 26.1        (R2026a)
+Image Processing Toolbox                              Version 26.1        (R2026a)
+Industrial Communication Toolbox                      Version 26.1        (R2026a)
+Instrument Control Toolbox                            Version 26.1        (R2026a)
+LTE Toolbox                                           Version 26.1        (R2026a)
+Lidar Toolbox                                         Version 26.1        (R2026a)
+MATLAB Coder                                          Version 26.1        (R2026a)
+MATLAB Compiler                                       Version 26.1        (R2026a)
+MATLAB Compiler SDK                                   Version 26.1        (R2026a)
+MATLAB MCP Server Toolbox                             Version 0.3.1       (R2026a)
+MATLAB Report Generator                               Version 26.1        (R2026a)
+MATLAB Test                                           Version 26.1        (R2026a)
+Mapping Toolbox                                       Version 26.1        (R2026a)
+Medical Imaging Toolbox                               Version 26.1        (R2026a)
+Mixed-Signal Blockset                                 Version 26.1        (R2026a)
+Model Predictive Control Toolbox                      Version 26.1        (R2026a)
+Model-Based Calibration Toolbox                       Version 26.1        (R2026a)
+Motor Control Blockset                                Version 26.1        (R2026a)
+Navigation Toolbox                                    Version 26.1        (R2026a)
+Optimization Toolbox                                  Version 26.1        (R2026a)
+Parallel Computing Toolbox                            Version 26.1        (R2026a)
+Partial Differential Equation Toolbox                 Version 26.1        (R2026a)
+Phased Array System Toolbox                           Version 26.1        (R2026a)
+Powertrain Blockset                                   Version 26.1        (R2026a)
+Predictive Maintenance Toolbox                        Version 26.1        (R2026a)
+RF Blockset                                           Version 26.1        (R2026a)
+RF PCB Toolbox                                        Version 26.1        (R2026a)
+RF Toolbox                                            Version 26.1        (R2026a)
+ROS Toolbox                                           Version 26.1        (R2026a)
+Radar Toolbox                                         Version 26.1        (R2026a)
+Raspberry Pi Blockset                                 Version 26.1        (R2026a)
+Reinforcement Learning Toolbox                        Version 26.1        (R2026a)
+Requirements Toolbox                                  Version 26.1        (R2026a)
+Risk Management Toolbox                               Version 26.1        (R2026a)
+Robotics System Toolbox                               Version 26.1        (R2026a)
+Robust Control Toolbox                                Version 26.1        (R2026a)
+STM32 Microcontroller Blockset                        Version 26.1        (R2026a)
+Satellite Communications Toolbox                      Version 26.1        (R2026a)
+Sensor Fusion and Tracking Toolbox                    Version 26.1        (R2026a)
+SerDes Toolbox                                        Version 26.1        (R2026a)
+Signal Integrity Toolbox                              Version 26.1        (R2026a)
+Signal Processing Toolbox                             Version 26.1        (R2026a)
+SimBiology                                            Version 26.1        (R2026a)
+SimEvents                                             Version 26.1        (R2026a)
+Simscape                                              Version 26.1        (R2026a)
+Simscape Battery                                      Version 26.1        (R2026a)
+Simscape Driveline                                    Version 26.1        (R2026a)
+Simscape Electrical                                   Version 26.1        (R2026a)
+Simscape Fluids                                       Version 26.1        (R2026a)
+Simscape Multibody                                    Version 26.1        (R2026a)
+Simulink 3D Animation                                 Version 26.1        (R2026a)
+Simulink Check                                        Version 26.1        (R2026a)
+Simulink Code Inspector                               Version 26.1        (R2026a)
+Simulink Coder                                        Version 26.1        (R2026a)
+Simulink Compiler                                     Version 26.1        (R2026a)
+Simulink Control Design                               Version 26.1        (R2026a)
+Simulink Coverage                                     Version 26.1        (R2026a)
+Simulink Design Optimization                          Version 26.1        (R2026a)
+Simulink Design Verifier                              Version 26.1        (R2026a)
+Simulink Desktop Real-Time                            Version 26.1        (R2026a)
+Simulink FMU Builder                                  Version 26.1        (R2026a)
+Simulink Fault Analyzer                               Version 26.1        (R2026a)
+Simulink PLC Coder                                    Version 26.1        (R2026a)
+Simulink Real-Time                                    Version 26.1        (R2026a)
+Simulink Report Generator                             Version 26.1        (R2026a)
+Simulink Test                                         Version 26.1        (R2026a)
+SoC Blockset                                          Version 26.1        (R2026a)
+Spreadsheet Link                                      Version 26.1        (R2026a)
+Stateflow                                             Version 26.1        (R2026a)
+Statistics and Machine Learning Toolbox               Version 26.1        (R2026a)
+Symbolic Math Toolbox                                 Version 26.1        (R2026a)
+System Composer                                       Version 26.1        (R2026a)
+System Identification Toolbox                         Version 26.1        (R2026a)
+Text Analytics Toolbox                                Version 26.1        (R2026a)
+UAV Toolbox                                           Version 26.1        (R2026a)
+Vehicle Dynamics Blockset                             Version 26.1        (R2026a)
+Vehicle Network Toolbox                               Version 26.1        (R2026a)
+Vision HDL Toolbox                                    Version 26.1        (R2026a)
+WLAN Toolbox                                          Version 26.1        (R2026a)
+Wavelet Toolbox                                       Version 26.1        (R2026a)
+Wireless HDL Toolbox                                  Version 26.1        (R2026a)
+Wireless Network Toolbox                              Version 26.1        (R2026a)
+Wireless Testbench                                    Version 26.1        (R2026a)
+
+disp("CURRENTLY CHECKED-OUT LICENSES")
+CURRENTLY CHECKED-OUT LICENSES
+license("inuse")
+matlab
+
+diary off
+
+disp("SYSTEM COMPOSER LOCATION")
+SYSTEM COMPOSER LOCATION
+which systemcomposer.createModel
+C:\Program Files\MATLAB\R2026a\toolbox\sysarch\sysarch_api\+systemcomposer\createModel.p  % static method or namespace function
+
+disp("SYSTEM COMPOSER LICENSE")
+SYSTEM COMPOSER LICENSE
+license("test","System_Composer")
+
+ans =
+
+     1
+
+
+disp("PREDICTIVE MAINTENANCE LOCATION")
+PREDICTIVE MAINTENANCE LOCATION
+which diagnosticFeatureDesigner
+C:\Program Files\MATLAB\R2026a\toolbox\predmaint\predmaintguis\diagnosticFeatureDesigner.m
+
+diary off

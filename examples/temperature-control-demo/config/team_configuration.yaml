@@ -1,0 +1,38 @@
+schema_version: 1
+
+project:
+  id: TEMP-CONTROL-DEMO
+  name: Temperature Control Reuse Demonstration
+  domain: temperature_control
+  classification: workflow_reusability_demonstration
+  model_builder: models/build_temperature_controller.m
+  generated_model: models/temperature_controller.slx
+
+shared_workflow:
+  skill: skills/simulink-engineering-workflow/SKILL.md
+  modification_allowed: false
+  sequence:
+    - read
+    - plan
+    - edit
+    - verify
+    - test
+    - review
+    - report
+
+roles:
+  project_owner: Nouran Ismail
+  model_developer: Nouran Ismail
+  independent_reviewer: Yahya Helmy
+
+thresholds:
+  heater_on_below_celsius: 18.0
+  high_temperature_alarm_at_or_above_celsius: 35.0
+
+acceptance:
+  expected_tests: 8
+  failed_tests: 0
+  incomplete_tests: 0
+  uncontrolled_failures: 0
+  reusable_skill_changes: 0
+  uav_artifact_changes: 0

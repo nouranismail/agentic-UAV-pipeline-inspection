@@ -1,0 +1,63 @@
+schema_version: 1
+configuration_version: 1
+adapter_version: 1
+purpose: future_3d_source_adapter_demonstration_only
+classification: interface_scalability_demonstration_not_production_ready
+
+source:
+  kind: external_mathworks_virtual_camera
+  example_reference: Simulate Simple Flight Scenario and Sensor in Unreal Engine Environment
+  model_reference: uav_simple_flight_model.slx
+  repository_copy_permitted: false
+  modification_permitted: false
+  runtime_use: optional_read_only
+  source_id: 16001
+  modality: 1
+  inspection_data_schema_version: 1
+  metadata_schema_version: 1
+
+input:
+  frame_types: [uint8, uint16, single, double]
+  channel_counts: [3]
+  projection_types:
+    1: RGB_PERSPECTIVE
+    2: RGB_FISHEYE
+  position_dimension: 3
+  orientation_dimension: 4
+  environment_dimension: 4
+  environment_order: [ambient_temperature_c, visibility_m, illumination_lux, wind_speed_mps]
+  environment_minimum: [-50.0, 0.0, 0.0, 0.0]
+  environment_maximum: [70.0, 100000.0, 200000.0, 100.0]
+  allowed_reference_frame_ids: [1, 2]
+
+provenance:
+  require_source_version: true
+  require_adapter_version: true
+  require_scenario_version: true
+  require_distinct_version_fields: true
+  acquisition_context_reference_required: true
+
+boundary:
+  output_contracts: [InspectionData, InspectionMetadata]
+  preprocessing: false
+  detection: false
+  feature_extraction: false
+  prediction: false
+  risk: false
+  approval: false
+  evidence_decision: false
+  mission_logic: false
+  flight_endpoint: false
+  mission_endpoint: false
+  approval_endpoint: false
+  return_to_home_endpoint: false
+  safe_landing_endpoint: false
+  actuator_endpoint: false
+  production_control_endpoint: false
+  safety_command_endpoint: false
+
+fixtures:
+  location: tests/intelligent-inspection/test_3d_source_adapter.m
+  external_fixture_permitted: false
+
+disclaimer: "Interface scalability demonstration only; not evidence of simulation realism, real-world inspection performance, flight safety, production readiness, or AI performance."

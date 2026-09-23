@@ -1,0 +1,420 @@
+manifest_version: "1.0"
+ecr_id: "ECR-20260906-001"
+phase: "Phase 7"
+dataset:
+  name: "Kolektor Surface-Defect Dataset 2"
+  short_name: "KSDD2"
+  task: "binary anomaly localization/detection"
+  selection_status: "ACCEPTED"
+  acquisition_status: "COMPLETE"
+  verification_status: "PASS WITH OBSERVATION"
+  training_readiness: "CORRECTIVE TRAINING EXECUTED - DEVELOPER ACCEPTANCE FAILED"
+  observation: >-
+    The publisher archive contains exact duplicate copies named
+    10301 (copy).png and 10301_GT (copy).png. Excluding those duplicate files,
+    the observed canonical counts exactly match the official documentation.
+
+training_execution:
+  status: "COMPLETE"
+  developer_acceptance: "FAIL"
+  execution_date: "2026-09-09"
+  split:
+    training_samples: 1865
+    validation_samples: 466
+    official_test_samples: 1004
+    official_test_used_for_tuning: false
+    official_test_evaluation_count: 2
+    method: "Deterministic stratified SHA-256 ordering of the official training partition"
+    seed: 7092026
+    seed_configuration: "KSDD2-validation-v1"
+  model:
+    artifact: "extensions/intelligent-inspection/models/deep_learning_detector.mat"
+    version: 1
+    byte_size: 733560
+    sha256: "5D44D817C708104A67632A0290B4C5D10A942FC9D130302F97C7E5C58A42D93B"
+    pixel_threshold: 0.45
+  validation_metrics:
+    pixel_dice: 0.5665564283
+    pixel_iou: 0.3952415285
+    image_precision: 0.9459459459
+    image_recall: 0.7291666667
+    image_f1: 0.8235294118
+    negative_image_false_positive_rate: 0.0047846890
+    positive_image_mean_dice: 0.4192863975
+  official_test_metrics:
+    pixel_dice: 0.4202618940
+    pixel_iou: 0.2660326369
+    image_precision: 0.875
+    image_recall: 0.6363636364
+    image_f1: 0.7368421053
+    negative_image_false_positive_rate: 0.0111856823
+    positive_image_mean_dice: 0.2959458171
+    confusion_matrix_tn_fp_fn_tp: [884, 10, 40, 70]
+    mean_inference_seconds: 0.0123093934
+    uncontrolled_failures: 0
+  acceptance:
+    passed: false
+    execution_deviation: >-
+      The official-test evaluation ran twice because the first completed
+      evaluation could not be persisted after a repository-root model-save
+      path error. Configuration and threshold were unchanged.
+    failed_thresholds:
+      - "Test image-level recall 0.6363636364 is below 0.75."
+      - "Positive-image mean Dice 0.2959458171 is below 0.50."
+
+provenance:
+  official_page: "https://www.vicos.si/resources/kolektorsdd2/"
+  official_download_link: "https://go.vicos.si/kolektorsdd2"
+  resolved_archive_url: "https://data.vicos.si/datasets/KSDD/KolektorSDD2.zip"
+  owner_provider:
+    - "ViCoS Laboratory, University of Ljubljana"
+    - "Kolektor Group"
+  source_restriction: "Official publisher-controlled download only"
+  download_date_utc: "2026-09-09"
+  citation: >-
+    Jakob Bozic, Domen Tabernik, and Danijel Skocaj, Mixed supervision for
+    surface-defect detection: from weakly to fully supervised learning,
+    Computers in Industry, 2021.
+
+license:
+  identifier: "CC BY-NC-SA 4.0"
+  url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+  permitted_project_use: "Non-commercial internship research/demonstration"
+  attribution_required: true
+  share_alike_required: true
+  commercial_use_claims_permitted: false
+  repository_redistribution_permitted: false
+  obligations:
+    - "Credit the dataset providers and cited publication."
+    - "Provide the license reference and indicate modifications."
+    - "Distribute adaptations only under the applicable ShareAlike terms."
+    - "Do not commit raw images, annotations, or the source archive to Git."
+
+locations:
+  root_environment_variable: "IIW_DATASET_ROOT"
+  archive: "KSDD2/source/KolektorSDD2.zip"
+  extracted_root: "KSDD2/extracted"
+  official_training_partition: "KSDD2/extracted/train"
+  official_test_partition: "KSDD2/extracted/test"
+  path_policy: >-
+    Resolve every location relative to IIW_DATASET_ROOT; reusable code shall
+    not contain a user-specific absolute path.
+
+archive:
+  filename: "KolektorSDD2.zip"
+  byte_size: 853126555
+  sha256: "EDCDB486809B24F1D17B785E30C52FAFC5999554DD5FE18DDF77B61CEB6F36A8"
+  content_type: "application/zip"
+  publisher_last_modified_utc: "2023-09-28T10:40:04Z"
+  preserved_unchanged: true
+  extraction_location_is_separate: true
+  unsafe_archive_paths_found: 0
+
+verified_facts:
+  official_documentation_counts:
+    training:
+      positive: 246
+      negative: 2085
+      total: 2331
+    test:
+      positive: 110
+      negative: 894
+      total: 1004
+    overall:
+      positive: 356
+      negative: 2979
+      total: 3335
+  observed_canonical_counts:
+    training:
+      images: 2331
+      annotations: 2331
+      positive: 246
+      negative: 2085
+    test:
+      images: 1004
+      annotations: 1004
+      positive: 110
+      negative: 894
+    overall:
+      images: 3335
+      annotations: 3335
+      positive: 356
+      negative: 2979
+  raw_archive_counts:
+    png_files: 6672
+    auxiliary_split_files: 5
+    extra_duplicate_files: 2
+  duplicate_copy_files:
+    - duplicate: "train/10301 (copy).png"
+      canonical: "train/10301.png"
+      exact_sha256_match: true
+    - duplicate: "train/10301_GT (copy).png"
+      canonical: "train/10301_GT.png"
+      exact_sha256_match: true
+
+formats:
+  image:
+    encoding: "PNG"
+    mode: "RGB"
+    channels: 3
+    observed_width_pixels: [184, 241]
+    observed_height_pixels: [597, 665]
+  annotation:
+    encoding: "PNG"
+    mode: "grayscale"
+    channels: 1
+    observed_values: [0, 255]
+    interpretation: "0 is background; 255 is the binary anomaly mask"
+  pairing:
+    image_pattern: "<sample_id>.png"
+    annotation_pattern: "<sample_id>_GT.png"
+  auxiliary_files:
+    format: "Python pickle protocol 4 (.pyb)"
+    filenames:
+      - "split_weakly_0.pyb"
+      - "split_weakly_16.pyb"
+      - "split_weakly_53.pyb"
+      - "split_weakly_126.pyb"
+      - "split_weakly_246.pyb"
+    execution_status: "NOT EXECUTED"
+
+integrity:
+  all_png_files_readable: true
+  unreadable_png_count: 0
+  canonical_missing_annotation_count: 0
+  canonical_orphan_annotation_count: 0
+  cross_partition_exact_input_image_duplicate_hashes: 0
+  cross_partition_exact_annotation_duplicate_hashes: 16
+  annotation_duplicate_interpretation: >-
+    Sixteen annotation byte hashes occur in both partitions. No corresponding
+    source image hash crosses partitions; repeated binary masks alone do not
+    establish duplicate inspection images.
+  official_partition_identification:
+    training_directory: "train"
+    test_directory: "test"
+  count_comparison: >-
+    Canonical observed counts match official documentation exactly after the
+    two exact publisher-archive copy files are identified and excluded from
+    sample membership. The original archive and extracted files remain
+    unchanged.
+
+proposed_validation_split:
+  status: "APPROVED - NOT MATERIALIZED"
+  source_partition: "Official training partition only"
+  official_test_partition_usage: "Held out unchanged for final testing"
+  target_fraction: 0.20
+  method:
+    - >-
+      Exclude the two documented copy filenames from split membership without
+      deleting or modifying them.
+    - >-
+      Group exact duplicate source-image hashes and any approved acquisition or
+      near-duplicate groups so that a group cannot cross train and validation.
+    - >-
+      Stratify groups by binary annotation disposition where group integrity
+      permits.
+    - >-
+      Order groups by SHA-256 of the UTF-8 string
+      KSDD2-validation-v1|<canonical-group-id> and select the first 20 percent
+      of each stratum for validation; assign the remainder to training.
+    - "Freeze sample IDs, hashes, method version, and membership before training."
+  seed_configuration: "KSDD2-validation-v1"
+  constraints:
+    - "Stratify by positive and negative annotation status."
+    - "Keep exact duplicates and approved acquisition groups in one partition."
+    - "Never use official test data for fitting, threshold tuning, model selection, early stopping, or preprocessing decisions."
+
+limitations:
+  - "Images represent one controlled industrial production context."
+  - "Lighting, material, camera, and product diversity are limited."
+  - "The binary classes are substantially imbalanced."
+  - "Physical location cannot be inferred without separate calibration."
+  - "The archive contains two redundant copy files in the training directory."
+  - "Auxiliary pickle files were identified but not executed or trusted as code."
+
+authorization:
+  dataset_selected_by_project_owner: true
+  acquisition_and_verification_authorized: true
+  manifest_creation_authorized: true
+  annotation_modification_authorized: false
+  dataset_manifest_review: "ACCEPTED"
+  project_owner: "Nouran Ismail"
+  review_date: "2026-09-09"
+  model_training_authorized: true
+  model_creation_authorized: true
+  performance_evaluation_authorized: true
+  phases_8_through_17_authorized: false
+
+corrective_training_authorization:
+  status: "AUTHORIZED"
+  phase_7_status: "FAIL - CORRECTIVE TRAINING AUTHORIZED"
+  implementer: "Nouran Ismail - AI & Algorithm Developer"
+  project_owner: "Nouran Ismail"
+  authorization_date: "2026-09-09"
+  failed_results:
+    official_test_image_recall: 0.636364
+    required_minimum_recall: 0.75
+    official_test_positive_image_mean_dice: 0.295946
+    required_minimum_positive_image_mean_dice: 0.50
+  acceptance_thresholds_unchanged: true
+  input_representation:
+    preferred_size: [72, 192, 3]
+    aspect_ratio_preserving: true
+    documented_downsampling_compatible_equivalent_permitted: true
+    mask_interpolation: "nearest-neighbor"
+    image_mask_alignment_required: true
+  training_controls:
+    maximum_epochs: 10
+    validation_early_stopping_required: true
+    patience_must_be_documented: true
+    maximum_candidates: 3
+    candidate_selection_data: "training and validation only"
+    imbalance_aware_method_required: true
+    deterministic_training_only_augmentation:
+      - "horizontal reflection where valid"
+      - "small translations with aligned image and mask transforms"
+      - "small intensity variation applied to images only"
+  threshold_controls:
+    predefined_grid_required_before_execution: true
+    selection_partition: "validation only"
+  freeze_before_final_evaluation:
+    architecture: true
+    weights: true
+    preprocessing: true
+    threshold: true
+  official_test_controls:
+    prior_evaluation_count_disclosed: 2
+    additional_evaluations_authorized: 1
+    fully_blind_claim_permitted: false
+    prohibited_uses:
+      - "training"
+      - "augmentation selection"
+      - "early stopping"
+      - "threshold selection"
+      - "candidate selection"
+  unchanged_controls:
+    - "dataset partitions and official-test membership"
+    - "DetectorContract and DetectionResult"
+    - "seven-file Phase 7 implementation allowlist"
+    - "CC BY-NC-SA 4.0 non-commercial restrictions"
+  phases_8_through_17_authorized: false
+
+corrective_training_execution:
+  status: "COMPLETE"
+  developer_status: "FAIL"
+  execution_date: "2026-09-09"
+  candidate_count: 1
+  selected_candidate: "corrective-01"
+  split_unchanged: true
+  counts:
+    training: 1865
+    validation: 466
+    official_test: 1004
+  frozen_configuration:
+    model_version: 2
+    input_size: [192, 72, 3]
+    input_representation: "aspect-ratio-preserving centered letterbox"
+    documented_equivalent_reason: "KSDD2 is portrait-oriented; 192x72 preserves its geometry and both dimensions are divisible by the U-Net downsampling factor."
+    mask_interpolation: "nearest-neighbor"
+    encoder_depth: 2
+    first_encoder_filters: 8
+    maximum_epochs: 10
+    completed_epoch: 6
+    output_network_iteration: 450
+    validation_patience: 4
+    training_seconds: 689.446329
+    class_weights: [1, 8]
+    threshold_grid: [0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75]
+    selected_threshold: 0.45
+    official_test_exposure_number: 3
+    fully_blind_evaluation: false
+  augmentation:
+    deterministic_seed: 7092026
+    horizontal_reflection: true
+    maximum_translation_pixels: 4
+    maximum_image_intensity_variation: 0.05
+    image_mask_alignment_preserved: true
+  selected_validation_metrics:
+    pixel_dice: 0.5791763341
+    pixel_iou: 0.4076342111
+    image_precision: 0.3644067797
+    image_recall: 0.8775510204
+    image_f1: 0.5149700599
+    positive_image_mean_dice: 0.5339601334
+    negative_image_false_positive_rate: 0.1798561151
+    mean_inference_seconds: 0.01352508004
+  third_official_test_metrics:
+    pixel_dice: 0.5009976587
+    pixel_iou: 0.3342207313
+    image_precision: 0.3692307692
+    image_recall: 0.8727272727
+    image_f1: 0.5189189189
+    positive_image_mean_dice: 0.4801202251
+    negative_image_false_positive_rate: 0.1834451902
+    confusion_matrix_tn_fp_fn_tp: [730, 164, 14, 96]
+    mean_inference_seconds: 0.01374497072
+    uncontrolled_failures: 0
+  locked_acceptance:
+    test_recall: "PASS"
+    test_precision: "FAIL"
+    test_f1: "FAIL"
+    positive_image_mean_dice: "FAIL"
+    negative_image_false_positive_rate: "FAIL"
+    schema_violations: "PASS"
+    uncontrolled_failures: "PASS"
+  model:
+    artifact: "extensions/intelligent-inspection/models/deep_learning_detector.mat"
+    byte_size: 773126
+    sha256: "2F5557B291B7220DD8E59A7B93ABDA7B54963B4E3C3E334577F214BB7976A0B6"
+  developer_tests:
+    passed: 10
+    failed: 0
+    incomplete: 0
+  limitations:
+    - "The third official-test exposure is not fully blind because two prior results were observed."
+    - "Four locked performance criteria remain unsatisfied."
+
+approved_learning_task:
+  type: "binary semantic segmentation"
+  classes: ["background", "anomaly"]
+  output_mapping: "Convert segmentation results to generic DetectionResult regions."
+  replacement_contract: "DetectorContract"
+  scope_boundary: "Segmentation is confined to the optional deep-learning detector and shall not modify the conventional detector or generic interfaces."
+
+approved_training_configuration:
+  architecture: "Compact U-Net-style network suitable for available hardware"
+  resizing: "Approved configurable preprocessing path"
+  imbalance_handling: "Class weighting or another approved imbalance-aware loss"
+  deterministic_random_seeds_required: true
+  validation_based_early_stopping_required: true
+  execution_record_fields: ["MATLAB version", "toolbox versions", "hardware", "random seed", "hyperparameters", "execution time"]
+  execution_device: "Controlled GPU when available, with controlled CPU fallback"
+  pretrained_weights_policy: "Prohibited unless source and license are recorded"
+
+approved_confidence_policy:
+  default_pixel_decision_threshold: 0.50
+  tuning_partition: "Validation data only"
+  final_threshold_record_required: true
+  low_confidence_disposition: "Abstain or return the approved controlled status"
+  operational_authority: "No mission or safety command authority"
+
+approved_metrics:
+  names: ["Pixel Dice score", "Pixel Intersection over Union", "Image-level precision", "Image-level recall", "Image-level F1", "False-positive rate on negative images", "Inference time", "Confusion matrix"]
+  reporting_partition_rule: "Report validation and untouched official-test results separately"
+
+minimum_demonstration_acceptance:
+  test_image_level_recall_minimum: 0.75
+  test_image_level_precision_minimum: 0.70
+  test_image_level_f1_minimum: 0.72
+  positive_image_mean_dice_minimum: 0.50
+  negative_image_false_positive_rate_maximum: 0.15
+  interface_schema_violations_maximum: 0
+  uncontrolled_execution_failures_maximum: 0
+  failure_disposition: "Report Phase 7 as FAIL or APPROVED WITH LIMITATIONS; do not change thresholds after viewing test results."
+
+model_license_and_claim_controls:
+  trained_model_attribution_required: true
+  model_card_attribution_required: true
+  trained_model_noncommercial_sharealike_notice_required: true
+  production_readiness_claim_permitted: false
+  pipeline_domain_validation_claim_permitted: false

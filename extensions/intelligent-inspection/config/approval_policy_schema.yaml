@@ -1,0 +1,47 @@
+schema: intelligent-inspection-approval-policy
+schema_version: 1
+policy_version: 1
+decision_version: 1
+states: {MISSING: 0, PENDING: 1, DEFERRED: 2, REJECTED: 3, EXPIRED: 4, APPROVED: 5}
+external_decisions: {PENDING: 0, APPROVED: 1, REJECTED: 2, DEFERRED: 3, EXPIRED: 4}
+authorized_roles: {INSPECTION_OPERATOR: 1, MAINTENANCE_ENGINEER: 2, SAFETY_REVIEWER: 3}
+timing:
+  waiting_timeout_ms: 300000
+  waiting_boundary: inclusive
+  approval_validity_ms: 900000
+  approval_boundary: inclusive
+delegation:
+  enabled: true
+  maximum_depth: 1
+  distinct_identity_required: true
+rationale_codes:
+  NONE: 0
+  EXTERNAL_SAFETY_ACTIVE: 20
+  INVALID_INPUT: 21
+  MISSING_APPROVAL_REQUEST: 22
+  MISSING_APPROVAL_DECISION: 23
+  APPROVAL_PENDING: 24
+  APPROVAL_DEFERRED: 25
+  APPROVAL_REJECTED: 26
+  WAITING_TIMEOUT_EXPIRED: 27
+  APPROVAL_VALIDITY_EXPIRED: 28
+  APPROVAL_VALID_AND_CURRENT: 29
+  INVALID_APPROVER_IDENTITY: 30
+  UNAUTHORIZED_APPROVER_ROLE: 31
+  REQUEST_REFERENCE_MISMATCH: 32
+  INVALID_TIMESTAMP_OR_VALIDITY_INTERVAL: 33
+  INVALID_DELEGATION: 34
+  SELF_APPROVAL_PROHIBITED: 35
+  NESTED_DELEGATION_PROHIBITED: 36
+  UNSUPPORTED_POLICY_VERSION: 37
+  INTERNAL_EVALUATION_FAILURE: 38
+  ESCALATION_REQUIRED: 39
+fallback:
+  forwarding_eligible: false
+  human_review_required: true
+  autonomous_action_permitted: false
+  safety_command: NONE
+external_safety:
+  highest_priority: true
+  forwarding_eligible: false
+  safety_bypass: true

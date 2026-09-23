@@ -1,0 +1,54 @@
+schema_version: 1
+configuration_version: 1
+purpose: integration_and_workflow_demonstration_only
+disclaimer: "Integration and workflow demonstration only; not evidence of real-world inspection, anomaly-detection, pipeline-condition, flight, or production readiness."
+
+source:
+  provider: MathWorks
+  example: "Simulate Simple Flight Scenario and Sensor in Unreal Engine Environment"
+  installation_root: MATLAB_EXAMPLES_ROOT
+  repository_copy_permitted: false
+  modification_permitted: false
+  frame_type: simulated_rgb_or_fisheye
+  accepted_channel_counts: [1, 3]
+  modality: 1
+  source_id: 13001
+  inspection_data_schema_version: 1
+  metadata_schema_version: 1
+
+quality:
+  required_status: 1
+  brightness_minimum: 0.20
+  brightness_maximum: 0.80
+  contrast_minimum: 0.10
+  sharpness_minimum: 0.03
+  saturation_fraction_maximum: 0.25
+  saturation_level: 0.95
+
+detection:
+  required_schema_version: 1
+  confidence_minimum: 0.50
+  confidence_boundary: inclusive
+  operational_detector: conventional
+  taxonomy:
+    0: UNASSIGNED_OR_NO_DETECTION
+    1: SURFACE_ANOMALY_INDICATION
+    255: INVALID
+
+recommendations:
+  0: NO_RECOMMENDATION
+  1: REVIEW_INSPECTION_EVIDENCE
+  2: SCHEDULE_FOLLOW_UP_INSPECTION
+  3: REQUEST_MAINTENANCE_ASSESSMENT
+  4: REQUEST_DATA_REACQUISITION
+  approval_required_for_nonzero_code: true
+  boundary: advisory_mission_request_only
+
+safety:
+  missionsupervisor_connection: false
+  autonomous_action: false
+  flight_command: false
+  safety_command: false
+  return_to_home_command: false
+  safe_landing_command: false
+
