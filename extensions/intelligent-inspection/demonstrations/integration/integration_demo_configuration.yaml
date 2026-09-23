@@ -1,0 +1,49 @@
+schema_version: 1
+demonstration_id: IIW-INT-DEMO-001
+classification: deterministic_integration_demonstration
+status: prepared_matlab_verification_pending
+
+input:
+  type: synthetic_in_memory_image
+  committed_payload: false
+  provenance: DEMONSTRATION_CONTEXT
+
+stages:
+  - data_quality_validation
+  - deterministic_preprocessing
+  - conventional_detection
+  - numerical_feature_extraction
+  - health_prediction_framework
+  - risk_assessment
+  - human_approval_gate
+  - advisory_recommendation
+  - evidence_recording
+
+detector:
+  implementation: accepted_phase_6_conventional_detector
+  minimum_confidence: 0.50
+  phase_7_deep_learning_enabled: false
+
+prediction:
+  classification: synthetic_workflow_demonstration
+  estimate: 72
+  uncertainty: 0.10
+  production_performance_claim: false
+
+safety_boundary:
+  advisory_only: true
+  mission_supervisor_connected: false
+  flight_command_output: false
+  actuator_command_output: false
+  safety_command_output: false
+
+acceptance:
+  required_test_groups: 8
+  required_failed: 0
+  required_incomplete: 0
+  evidence_chain_required: true
+  deterministic_repeatability_required: true
+
+disclaimer: >-
+  Integration demonstration only; not evidence of real pipeline-defect
+  detection, prognostic accuracy, flight safety, or production readiness.
