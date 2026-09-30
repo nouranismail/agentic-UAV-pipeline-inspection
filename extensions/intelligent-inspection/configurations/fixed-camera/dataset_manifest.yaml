@@ -1,0 +1,18 @@
+manifest_version: 1
+dataset_present: false
+source_kind: project_generated_deterministic_test_frames
+fixture_location: tests/intelligent-inspection/test_fixed_camera_configuration.m
+external_source: false
+external_license_required: false
+download_required: false
+physical_camera_required: false
+network_required: false
+training_authorized: false
+performance_evaluation_authorized: false
+fixture_storage_outside_test_file: false
+classes:
+  0: UNASSIGNED_OR_NO_DETECTION
+  1: SURFACE_ANOMALY_INDICATION
+  255: INVALID
+disclaimer: "Integration and workflow demonstration only; not evidence of real-world inspection, production-line performance, machine-control suitability, or production readiness."
+

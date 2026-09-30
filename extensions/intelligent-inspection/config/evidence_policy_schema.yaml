@@ -1,0 +1,47 @@
+schema_name: intelligent_inspection_evidence_policy
+schema_version: 1
+policy_version: 1
+writer:
+  boundary: injected_append_only
+  test_double: deterministic_in_memory
+  external_store_required: false
+identifiers:
+  type: uint32
+  nonzero_required: true
+  immutable_after_persistence: true
+references:
+  type: uint32
+  dimensions: [16, 1]
+  zero_is_padding_only: true
+integrity:
+  algorithm: SHA-256
+  digest_type: uint8
+  digest_dimensions: [32, 1]
+  canonical_content_excludes_digest: true
+  external_interface_field: integrityMetadata
+  external_interface_field_type: uint32_reference
+access_roles:
+  1: {name: INSPECTION_OPERATOR, submit: true, review: false}
+  2: {name: MAINTENANCE_ENGINEER, submit: true, review: false}
+  3: {name: SAFETY_REVIEWER, submit: true, review: true}
+  4: {name: INDEPENDENT_VERIFIER, submit: false, review: true}
+retention:
+  default_days: 365
+  hold_blocks_deletion_eligibility: true
+  deletion_performed: false
+privacy:
+  store_metadata_and_references_by_default: true
+  raw_payload_storage: false
+  personal_names: false
+  credentials_secrets_tokens: false
+failure:
+  persistence_succeeded: false
+  failure_recorded: true
+  success_recorded: false
+  fabricate_identifiers_or_metadata: false
+safety:
+  observational_only: true
+  autonomous_action: false
+  mission_command: false
+  approval_command: false
+  safety_command: false

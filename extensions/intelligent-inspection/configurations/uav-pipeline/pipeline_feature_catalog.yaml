@@ -1,0 +1,30 @@
+catalog:
+  name: uav_pipeline_health_features
+  version: 1
+  runtime_type: single
+  ordering: ascending_feature_id
+  active_regression_ids: [101, 102, 103, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115]
+  compatibility_only_ids: [104, 105]
+  features:
+    - {id: 101, name: detectionPresence, unit_code: 1, range: [0, 1], active: true}
+    - {id: 102, name: detectionConfidence, unit_code: 1, range: [0, 1], active: true}
+    - {id: 103, name: locationAvailability, unit_code: 1, range: [0, 1], active: true}
+    - {id: 104, name: longitudinalCoordinate, unit_code: 2, range: [-10000000, 10000000], active: false}
+    - {id: 105, name: lateralCoordinate, unit_code: 2, range: [-10000, 10000], active: false}
+    - {id: 106, name: surfaceTemperature, unit_code: 3, range: [-80, 300], active: true}
+    - {id: 107, name: ambientTemperature, unit_code: 3, range: [-80, 80], active: true}
+    - {id: 108, name: temperatureDifference, unit_code: 3, range: [-160, 380], active: true}
+    - {id: 109, name: gasConcentration, unit_code: 4, range: [0, 1000000], active: true}
+    - {id: 110, name: internalPressure, unit_code: 5, range: [0, 100000], active: true}
+    - {id: 111, name: pressureChangeRate, unit_code: 6, range: [-50000, 50000], active: true}
+    - {id: 112, name: inspectionAge, unit_code: 7, range: [0, 3650], active: true}
+    - {id: 113, name: priorFindingCount, unit_code: 8, range: [0, 65535], active: true}
+    - {id: 114, name: priorHealthScore, unit_code: 9, range: [0, 100], active: true}
+    - {id: 115, name: timeSinceMaintenance, unit_code: 7, range: [0, 3650], active: true}
+  invalid_value: 0
+  validity_rule: explicit_validity_flag
+  raw_images_permitted: false
+  operational_authority: none
+  generator_compatibility:
+    version: "1.1"
+    invariant: "locationAvailability=true implies detectionPresence=true"

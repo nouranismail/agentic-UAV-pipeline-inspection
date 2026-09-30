@@ -1,0 +1,29 @@
+schema: intelligent-inspection-risk-policy
+schema_version: 1
+policy_version: 1
+risk_levels: {UNKNOWN: 0, LOW: 1, MEDIUM: 2, HIGH: 3, REVIEW_REQUIRED: 4}
+thresholds:
+  maximum_uncertainty: 0.20
+  minimum_prediction_confidence: 0.80
+  medium_health: 50
+  low_health: 80
+boundaries: inclusive
+prediction_confidence: "1 - uncertainty"
+rationale_codes:
+  NONE: 0
+  HEALTH_LOW_RISK: 1
+  HEALTH_MEDIUM_RISK: 2
+  HEALTH_HIGH_RISK: 3
+  INVALID_INPUT: 10
+  MISSING_EVIDENCE: 11
+  QUALITY_REJECTED: 12
+  LOW_CONFIDENCE: 13
+  EXCESSIVE_UNCERTAINTY: 14
+  UNSUPPORTED_STATUS: 15
+  UNSUPPORTED_POLICY_VERSION: 16
+  INTERNAL_ASSESSMENT_FAILURE: 17
+fallback:
+  risk_level: REVIEW_REQUIRED
+  human_review_required: true
+  autonomous_action_permitted: false
+  safety_command: NONE

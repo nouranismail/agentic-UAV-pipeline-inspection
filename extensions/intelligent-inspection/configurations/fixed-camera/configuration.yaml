@@ -1,0 +1,41 @@
+schema_version: 1
+configuration_version: 1
+purpose: fixed_camera_reuse_demonstration_only
+disclaimer: "Integration and workflow demonstration only; not evidence of real-world inspection, production-line performance, machine-control suitability, or production readiness."
+source:
+  kind: deterministic_synthetic_rgb
+  fixture_location: test_fixed_camera_configuration.m
+  stationary: true
+  external_dataset: false
+  external_license: false
+  modality: 1
+  source_id: 14001
+  inspection_data_schema_version: 1
+  metadata_schema_version: 1
+quality:
+  required_status: 1
+detection:
+  required_schema_version: 1
+  confidence_minimum: 0.50
+  confidence_boundary: inclusive
+  taxonomy:
+    0: UNASSIGNED_OR_NO_DETECTION
+    1: SURFACE_ANOMALY_INDICATION
+    255: INVALID
+recommendations:
+  0: NO_RECOMMENDATION
+  1: REVIEW_INSPECTION_EVIDENCE
+  2: SCHEDULE_FOLLOW_UP_INSPECTION
+  3: REQUEST_MAINTENANCE_ASSESSMENT
+  4: REQUEST_DATA_REACQUISITION
+  external_approval_required_for_nonzero_code: true
+safety:
+  advisory_only: true
+  actuator_endpoint: false
+  production_line_endpoint: false
+  machine_control_endpoint: false
+  mission_endpoint: false
+  flight_endpoint: false
+  approval_endpoint: false
+  safety_command_endpoint: false
+
