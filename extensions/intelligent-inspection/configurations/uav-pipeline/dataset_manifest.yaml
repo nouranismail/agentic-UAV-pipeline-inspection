@@ -1,0 +1,23 @@
+manifest_version: 1
+dataset_present: false
+source_kind: official_external_simulation_example
+source_provider: MathWorks
+source_title: "Simulate Simple Flight Scenario and Sensor in Unreal Engine Environment"
+external_location: MATLAB_EXAMPLES_ROOT/uav/SimpleFlightAndSensorInUE4Example
+acquisition_method: openExample
+availability_verified: true
+outside_repository_verified: true
+read_only_compatibility_run_verified: true
+repository_files_copied: false
+source_files_modified: false
+approved_payloads:
+  - simulated_rgb_or_fisheye_camera_frame
+  - simulation_context_metadata
+performance_evaluation_authorized: false
+real_world_claim_authorized: false
+limitations:
+  - no_real_camera_data
+  - no_ground_truth_inspection_performance_dataset
+  - no_flight_or_safety_command_integration
+disclaimer: "Integration and workflow demonstration only; not evidence of real-world inspection, anomaly-detection, pipeline-condition, flight, or production readiness."
+

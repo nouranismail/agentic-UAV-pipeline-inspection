@@ -1,0 +1,19 @@
+which diagnosticFeatureDesigner
+C:\Program Files\MATLAB\R2026a\toolbox\predmaint\predmaintguis\diagnosticFeatureDesigner.m
+license("inuse")
+identification_toolbox
+image_toolbox
+matlab
+neural_network_toolbox
+pred_maintenance_toolbox
+signal_toolbox
+simulink
+simulink_coverage
+simulink_requirements
+simulink_test
+stateflow
+statistics_toolbox
+system_composer
+vehicle_dynamics_blockset
+video_and_image_blockset
+diary off

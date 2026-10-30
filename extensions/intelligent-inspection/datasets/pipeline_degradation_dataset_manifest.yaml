@@ -1,0 +1,42 @@
+dataset:
+  name: pipeline_degradation_synthetic
+  status: CORRECTIVE_GENERATOR_1_1_FROZEN_DEVELOPER_VERIFICATION_PASS
+  generator_version: "1.1"
+  seed: 20260910
+  groups: 100
+  observations_per_group: 6
+  rows: 600
+  observation_days: [0, 30, 60, 90, 120, 150]
+  partitions:
+    train: {groups: 70, rows: 420}
+    validation: {groups: 15, rows: 90}
+    test: {groups: 15, rows: 90, corrective_evaluation_count: 1, total_evidence_history_exposures: 2}
+  group_overlap: 0
+  invariant_violation_count: 0
+  artifact_bytes: 54738
+  artifact_sha256: 18BCA8F70BC0579DA5CBEE42903E9DE38039F90D72DE7B622A7F80F9B2EA1B9F
+  generator_source_sha256: 99819CCBAF7BE2AAC888EDE5639DFF074C17B2E82A582C260C108F71577A6066
+  prior_failed_candidate:
+    generator_version: 1
+    artifact_bytes: 50046
+    artifact_sha256: 7143B963C6DCE225BE71C45C1AA8459878972114B3BEA9710FFFA2DE1365D9AE
+    interface_result: FAIL
+  frozen_rules:
+    latent_initial: "Uniform(0,0.65)"
+    daily_progression: "Uniform(0,0.0015)"
+    severity: "clip(latentInitial + dailyProgression*day,0,1)"
+    finding_probability: "0.05 + 0.90*severity"
+    finding_confidence: "presence*clip(0.50 + 0.45*severity + Normal(0,0.03),0,1)"
+    location_available_candidate: "Bernoulli(0.95)"
+    location_available: "detectionPresent && locationAvailableCandidate"
+    ambient_temperature: "clip(22 + 8*sin(2*pi*day/365) + Normal(0,2),-80,80)"
+    temperature_difference: "clip(80*severity + Normal(0,5),-160,380)"
+    surface_temperature: "clip(ambient + difference,-80,300)"
+    gas_concentration: "clip(100000*severity^2 + Normal(0,2500),0,1000000)"
+    internal_pressure: "clip(5000*(1-0.30*severity) + Normal(0,100),0,100000)"
+    pressure_change_rate: "clip(-500*severity + Normal(0,25),-50000,50000)"
+    target_noise: "clip(Normal(0,1),-2,2)"
+    missing_data: "no missing fitting rows; controlled invalid cases are test-local"
+    post_test_tuning: prohibited
+  integrity_observation: "Generator 1.1 reproduced approved counts and split; zero groups cross partitions and locationAvailable=true with detectionPresent=false occurs in zero rows."
+  disclaimer: "Integration and workflow demonstration only; not evidence of real pipeline prognostic accuracy or production readiness."

@@ -1,0 +1,502 @@
+# Generic Interface Contracts
+
+**Associated ECR:** ECR-20260906-001
+
+**Baseline status:** APPROVED — Gate 2 on 2026-09-06
+
+**Clarification status:** APPROVED — Nouran Ismail, Project Owner, 2026-09-06
+
+The original contracts below preserve the approved logical element names. The approved runtime realization, exact types, dimensions, units, ranges, validity rules, defaults, and encodings are defined by the detailed schemas in this clarification. Phase 4 will implement those schemas under its existing approved plan and exact allowlist.
+
+| Contract | Producer -> consumer | Mandatory content | Validity rules |
+|---|---|---|---|
+| `InspectionData` | `InspectionSource` -> `DataQualityValidation` | `itemId`, `payloadRef`, `modality`, `sourceId`, `sequenceId`, `timestamp`, `schemaVersion` | Identifiers nonempty; timestamp defined; payload resolvable; supported schema. |
+| `InspectionMetadata` | `InspectionSource` -> validation and processing | `itemId`, `acquisitionContext`, `calibrationRef`, `contextSchemaVersion` | References same item; context fields follow project schema; missing mandatory context is explicit. |
+| `DataQualityResult` | `DataQualityValidation` -> processing, risk, evidence | `itemId`, `status`, `measures`, `thresholdRefs`, `reasonCodes`, `validatorVersion` | Status is `PASS`, `REVIEW`, or `REJECT`; every measure has definition and validity. |
+| `ProcessedData` | `Preprocessing` -> detection and feature extraction | `processedItemId`, `sourceItemId`, `representationRef`, `transformRecordRef`, `configurationVersion`, `schemaVersion` | Source trace preserved; representation resolvable; transformations recorded in order. |
+| `DetectionResult` | `Detection` -> feature extraction and risk | `resultId`, `processedItemId`, `labelId`, `confidence`, `location`, `modelVersion`, `schemaVersion` | Confidence domain declared; location may be explicitly not applicable; label belongs to project taxonomy. |
+| `NumericalFeatureSet` | `FeatureExtraction` -> `HealthPrediction` and risk | `featureSetId`, `sourceRefs`, `names`, `values`, `unitDeclarations`, `validity`, `extractorVersion`, `schemaVersion` | Values numeric; arrays aligned; invalid values explicitly flagged; no raw payload field. |
+| `HealthPrediction` | `HealthPrediction` -> risk and evidence | `predictionId`, `featureSetId`, `estimate`, `contextOrHorizon`, `uncertainty`, `confidenceStatus`, `modelVersion`, `schemaVersion` | Estimate and uncertainty semantics declared; input feature reference resolvable. |
+| `RiskAssessment` | `RiskAssessment` -> approval and recommendation | `assessmentId`, `evidenceRefs`, `riskLevel`, `riskScore`, `confidenceStatus`, `rationaleCodes`, `policyVersion` | Risk level uses project-approved scale; score may be not applicable but not silently omitted. |
+| `ApprovalRequest` | `HumanApprovalGate` -> approval authority | `requestId`, `assessmentId`, `proposedRecommendation`, `evidenceRefs`, `requestedAt`, `expiresAt`, `policyVersion` | Request is immutable after issue; expiry later than request time. |
+| `ApprovalDecision` | approval authority -> `HumanApprovalGate` | `requestId`, `decision`, `decidedBy`, `decidedAt`, `comments`, `decisionVersion` | Decision is `APPROVED`, `REJECTED`, `DEFERRED`, or `EXPIRED`; accountable identity required except system expiry. |
+| `RecommendedAction` | `RecommendedAction` -> project adapter | `recommendationId`, `actionCode`, `parameters`, `evidenceRefs`, `confidenceStatus`, `approvalStatus`, `validFrom`, `validUntil`, `configurationVersion` | Advisory only; approved action code must exist in project mapping; invalid/expired record not forwarded. |
+| `EvidenceRecord` | `EvidenceRecorder` -> evidence store | `recordId`, `eventType`, `artifactRefs`, `dataVersions`, `modelVersions`, `configurationVersions`, `actorOrComponent`, `timestamp`, `outcome`, `integrityMetadata` | References resolvable; outcome explicit; immutable identity; retention governed by project policy. |
+
+## Contract Evolution
+
+- Use explicit schema versions and backward-compatibility assessment.
+- Additive optional fields require documented defaults.
+- Removing, renaming, or changing mandatory-field semantics requires a controlled interface change.
+- Project adapters may translate external formats but shall emit these generic contracts unchanged.
+
+## Approved Runtime Representation Rules
+
+These rules refine, but do not replace, the approved logical elements above.
+
+| Concept | Runtime representation |
+|---|---|
+| Boolean | `boolean`, `[1 1]`, unit `1`, range `{false,true}`, default `false` |
+| Score | `single`, `[1 1]`, unit `1`, range `[0,1]`, default `0` |
+| Timestamp | `uint64`, `[1 1]`, unit `ms`, milliseconds since Unix epoch in UTC, default `0` meaning unassigned |
+| Identifier/reference | `uint32`, `[1 1]`, unit `1`, range `[0,4294967295]`, default `0` meaning unassigned |
+| Version identifier | `uint16`, `[1 1]`, unit `1`, range `[0,65535]`, default `0` meaning unassigned |
+| Status/category | `uint8`, `[1 1]`, unit `1`, default `0`; encoding defined below or supplied by approved project configuration where stated |
+| Optional numeric scalar | Value plus a `boolean` validity element; invalid value is `0`, never NaN-only |
+| Location | `double`, `[3 1]`, unit `m`, each coordinate in `[-realmax('double'),realmax('double')]`; `locationValid=false` requires `[0;0;0]`; `frameId` is `uint16` |
+| Feature vector | Capacity 32; `featureIds` is `uint16 [32 1]`; `featureValues` is `single [32 1]`; unused entries are zero; `featureCount` is `uint8` in `[0,32]` |
+| Reference vector | Capacity 16; existing logical reference-field names are retained; each reference array is `uint32 [16 1]`, unused entries are zero, the associated reference count is `uint8` in `[0,16]`, and identifier zero means unassigned. |
+| Human-readable text | Not carried at runtime. Numeric codes resolve through approved configuration and evidence documentation. |
+
+All numeric values shall be finite when valid. Unless a row says otherwise, units are `1` and arrays default to all zeros.
+
+## Approved Phase 5 Quality-Boundary Comparison Rules
+
+The Project Owner approved the following deterministic comparison rules for Phase 5 on 2026-09-07:
+
+1. Minimum acceptance boundaries are inclusive: `measuredValue >= minimumThreshold`.
+2. Maximum acceptance boundaries are inclusive: `measuredValue <= maximumThreshold`.
+3. The measured value and configured threshold shall both be represented as MATLAB `single` values before comparison.
+4. No implicit or undocumented numeric tolerance is permitted.
+5. `NaN`, positive infinity, and negative infinity shall be rejected before any comparison.
+6. If the minimum and maximum thresholds are equal, only a measured `single` value exactly equal to that threshold satisfies the range.
+
+| Clarification field | Entry |
+|---|---|
+| Decision | **APPROVED** |
+| Approver | Nouran Ismail — Project Owner |
+| Approval date | 2026-09-07 |
+| Corrective authority | Phase 5 corrective repair only |
+| Phase 5 status | **FAIL — CORRECTIVE REPAIR AUTHORIZED** |
+| Later phases | Phases 6–17 remain **NOT AUTHORIZED** |
+
+## Status and Category Encodings
+
+| Element | Encoding |
+|---|---|
+| `modality` | `0=UNASSIGNED`, `1=IMAGE`, `2=VIDEO`, `3=SIGNAL`, `4=MULTIMODAL`, `5=OTHER_CONFIGURED` |
+| Data-quality `status` | `0=UNASSIGNED`, `1=PASS`, `2=REVIEW`, `3=REJECT` |
+| `confidenceStatus` | `0=UNASSIGNED`, `1=ACCEPTABLE`, `2=LOW`, `3=UNAVAILABLE`, `4=INVALID` |
+| Approval `decision` | `0=UNASSIGNED`, `1=APPROVED`, `2=REJECTED`, `3=DEFERRED`, `4=EXPIRED` |
+| `approvalStatus` | `0=UNASSIGNED`, `1=PENDING`, `2=APPROVED`, `3=REJECTED`, `4=DEFERRED`, `5=EXPIRED`, `6=INVALID` |
+| `eventType` | `0=UNASSIGNED`, `1=SOURCE`, `2=QUALITY`, `3=PROCESSING`, `4=DETECTION`, `5=FEATURE`, `6=PREDICTION`, `7=RISK`, `8=APPROVAL`, `9=RECOMMENDATION`, `10=FAILURE` |
+| `outcome` | `0=UNASSIGNED`, `1=SUCCESS`, `2=REVIEW`, `3=REJECTED`, `4=FAILED`, `5=UNAVAILABLE`, `6=TIMEOUT` |
+| `labelId`, `riskLevel`, `actionCode`, `reasonCodes` | `0=UNASSIGNED`; values `1–254` are defined in approved project configuration; `255=INVALID` |
+
+## Approved Runtime Schemas
+
+### `InspectionData`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `itemId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `payloadRef` | `uint32` | `[1 1]` | `1` | Identifier | Must resolve when nonzero; default `0` |
+| `modality` | `uint8` | `[1 1]` | `1` | Modality encoding | Valid values `1–5`; default `0` |
+| `sourceId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `sequenceId` | `uint32` | `[1 1]` | `1` | `[0,4294967295]` | `0` is unassigned; default `0` |
+| `timestamp` | `uint64` | `[1 1]` | `ms` | Unix epoch UTC | Valid when nonzero; default `0` |
+| `schemaVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+
+### `InspectionMetadata`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `itemId` | `uint32` | `[1 1]` | `1` | Identifier | Must match `InspectionData.itemId`; default `0` |
+| `acquisitionContext` | `uint32` | `[1 1]` | `1` | Configuration/evidence reference | Must resolve when nonzero; default `0` |
+| `calibrationRef` | `uint32` | `[1 1]` | `1` | Reference | `0` explicitly means unavailable; default `0` |
+| `contextSchemaVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+
+### `DataQualityResult`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `itemId` | `uint32` | `[1 1]` | `1` | Identifier | Must reference the assessed item; default `0` |
+| `status` | `uint8` | `[1 1]` | `1` | Data-quality encoding | Valid values `1–3`; default `0` |
+| `measures` | `single` | `[32 1]` | `1` | Each entry `[0,1]` | First `measureCount` entries valid; unused entries `0` |
+| `thresholdRefs` | `uint32` | `[32 1]` | `1` | Reference identifiers | Aligned with `measures`; unused entries `0` |
+| `reasonCodes` | `uint8` | `[16 1]` | `1` | Configured code encoding | First `reasonCodeCount` entries valid; unused entries `0` |
+| `validatorVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `measureCount` (added) | `uint8` | `[1 1]` | `1` | `[0,32]` | Default `0` |
+| `reasonCodeCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+
+### `ProcessedData`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `processedItemId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `sourceItemId` | `uint32` | `[1 1]` | `1` | Identifier | Must resolve to the source item; default `0` |
+| `representationRef` | `uint32` | `[1 1]` | `1` | Reference | Must resolve when nonzero; default `0` |
+| `transformRecordRef` | `uint32` | `[1 1]` | `1` | Evidence reference | Must resolve when nonzero; default `0` |
+| `configurationVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `schemaVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+
+### `DetectionResult`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `resultId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `processedItemId` | `uint32` | `[1 1]` | `1` | Identifier | Must resolve to processed data; default `0` |
+| `labelId` | `uint8` | `[1 1]` | `1` | Configured category code | `0=UNASSIGNED`, `255=INVALID`; default `0` |
+| `confidence` | `single` | `[1 1]` | `1` | `[0,1]` | Validity declared by `confidenceValid`; default `0` |
+| `location` | `double` | `[3 1]` | `m` | Each entry `[-realmax('double'),realmax('double')]` | Validity declared by `locationValid`; invalid value `[0;0;0]` |
+| `modelVersion` | `uint16` | `[1 1]` | `1` | Version identifier | `0` means no model version; default `0` |
+| `schemaVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `confidenceValid` (added) | `boolean` | `[1 1]` | `1` | Boolean | Default `false`; false requires `confidence=0` |
+| `locationValid` (added) | `boolean` | `[1 1]` | `1` | Boolean | Default `false`; false requires zero location |
+| `frameId` (added) | `uint16` | `[1 1]` | `1` | Project-frame identifier | Nonzero when location is valid; default `0` |
+
+### `NumericalFeatureSet`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `featureSetId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `sourceRefs` | `uint32` | `[16 1]` | `1` | Reference vector | First `referenceCount` entries valid; unused entries `0` |
+| `names` | Logical concept only | — | — | Approved runtime realization is `featureIds` below | Human-readable names resolve through version-controlled project configuration |
+| `values` | Logical concept only | — | — | Approved runtime realization is `featureValues` below | The runtime interface carries only the fixed-capacity numeric vector |
+| `unitDeclarations` | `uint16` | `[32 1]` | `1` | Configured unit-code identifiers | Aligned with active features; unused entries `0` |
+| `validity` | `boolean` | `[32 1]` | `1` | Boolean vector | Aligned with active features; unused entries `false` |
+| `extractorVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `schemaVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `featureIds` (approved runtime realization of `names`) | `uint16` | `[32 1]` | `1` | Numeric feature identifiers | First `featureCount` entries active; unused entries `0` |
+| `featureValues` (approved runtime realization of `values`) | `single` | `[32 1]` | `1` | Each entry `[-realmax('single'),realmax('single')]` | First `featureCount` entries active; unused entries `0` |
+| `featureCount` (added) | `uint8` | `[1 1]` | `1` | `[0,32]` | Default `0` |
+| `referenceCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+
+### `HealthPrediction`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `predictionId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `featureSetId` | `uint32` | `[1 1]` | `1` | Identifier | Must resolve to a feature set; default `0` |
+| `estimate` | `single` | `[1 1]` | `1` | `[-realmax('single'),realmax('single')]` | Validity declared by `estimateValid`; default `0` |
+| `contextOrHorizon` | `uint32` | `[1 1]` | `1` | Reference to configured context/horizon definition | Validity declared by `contextOrHorizonValid`; default `0` |
+| `uncertainty` | `single` | `[1 1]` | `1` | `[0,1]` | Validity declared by `uncertaintyValid`; default `0` |
+| `confidenceStatus` | `uint8` | `[1 1]` | `1` | Confidence-status encoding | Default `0` |
+| `modelVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `schemaVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `estimateValid` (added) | `boolean` | `[1 1]` | `1` | Boolean | Default `false`; false requires `estimate=0` |
+| `contextOrHorizonValid` (added) | `boolean` | `[1 1]` | `1` | Boolean | Default `false`; false requires zero reference |
+| `uncertaintyValid` (added) | `boolean` | `[1 1]` | `1` | Boolean | Default `false`; false requires `uncertainty=0` |
+
+### `RiskAssessment`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `assessmentId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `evidenceRefs` | `uint32` | `[16 1]` | `1` | Reference vector | First `referenceCount` entries valid; unused entries `0` |
+| `riskLevel` | `uint8` | `[1 1]` | `1` | Configured category code | `0=UNASSIGNED`, `255=INVALID`; default `0` |
+| `riskScore` | `single` | `[1 1]` | `1` | `[0,1]` | Validity declared by `riskScoreValid`; default `0` |
+| `confidenceStatus` | `uint8` | `[1 1]` | `1` | Confidence-status encoding | Default `0` |
+| `rationaleCodes` | `uint8` | `[16 1]` | `1` | Configured code encoding | First `rationaleCount` entries valid; unused entries `0` |
+| `policyVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `referenceCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+| `riskScoreValid` (added) | `boolean` | `[1 1]` | `1` | Boolean | Default `false`; false requires `riskScore=0` |
+| `rationaleCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+
+#### Approved Phase 10 risk-policy realization
+
+**Decision:** APPROVED by Nouran Ismail — Project Owner on 2026-09-13. **Policy version:** `1`.
+
+The policy term `healthValue` means the approved `HealthPrediction.estimate`; it does not rename or add an interface element. It is usable only when `estimateValid=true`. Model identity is represented by the nonzero identifiers and version required by the approved `HealthPrediction` contract.
+
+| Code | Risk level |
+|---:|---|
+| 0 | `UNKNOWN` |
+| 1 | `LOW` |
+| 2 | `MEDIUM` |
+| 3 | `HIGH` |
+| 4 | `REVIEW_REQUIRED` |
+
+For policy version 1, `riskScore` is not configured: emit `riskScore=0` and `riskScoreValid=false`. `confidenceStatus` uses the existing encoding: `1=ACCEPTABLE`, `2=LOW`, `3=UNAVAILABLE`, and `4=INVALID`. Fixed-capacity reference and rationale arrays retain their approved representation.
+
+| Code | Rationale |
+|---:|---|
+| 0 | `NONE` |
+| 1 | `HEALTH_LOW_RISK` |
+| 2 | `HEALTH_MEDIUM_RISK` |
+| 3 | `HEALTH_HIGH_RISK` |
+| 10 | `INVALID_INPUT` |
+| 11 | `MISSING_EVIDENCE` |
+| 12 | `QUALITY_REJECTED` |
+| 13 | `LOW_CONFIDENCE` |
+| 14 | `EXCESSIVE_UNCERTAINTY` |
+| 15 | `UNSUPPORTED_STATUS` |
+| 16 | `UNSUPPORTED_POLICY_VERSION` |
+| 17 | `INTERNAL_ASSESSMENT_FAILURE` |
+
+Prediction confidence is deterministically `single(1)-uncertainty`. Uncertainty `<= single(0.20)` and confidence `>= single(0.80)` are acceptable, inclusive. Nonfinite or out-of-range values produce `REVIEW_REQUIRED`. After evidence sufficiency is established, `healthValue >= 80` produces `LOW`, `healthValue >= 50 && healthValue < 80` produces `MEDIUM`, and `healthValue < 50` produces `HIGH`.
+
+### `ApprovalRequest`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `requestId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `assessmentId` | `uint32` | `[1 1]` | `1` | Identifier | Must resolve to risk assessment; default `0` |
+| `proposedRecommendation` | `uint32` | `[1 1]` | `1` | Proposed-record reference | Must resolve when nonzero; default `0` |
+| `evidenceRefs` | `uint32` | `[16 1]` | `1` | Reference vector | First `referenceCount` entries valid; unused entries `0` |
+| `requestedAt` | `uint64` | `[1 1]` | `ms` | Unix epoch UTC | Valid when nonzero; default `0` |
+| `expiresAt` | `uint64` | `[1 1]` | `ms` | Unix epoch UTC | Must exceed `requestedAt`; default `0` |
+| `policyVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `referenceCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+
+### `ApprovalDecision`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `requestId` | `uint32` | `[1 1]` | `1` | Identifier | Must match a request; default `0` |
+| `decision` | `uint8` | `[1 1]` | `1` | Approval-decision encoding | Valid values `1–4`; default `0` |
+| `decidedBy` | `uint32` | `[1 1]` | `1` | Actor identifier | Required except system expiry; default `0` |
+| `decidedAt` | `uint64` | `[1 1]` | `ms` | Unix epoch UTC | Valid when nonzero; default `0` |
+| `comments` | `uint32` | `[1 1]` | `1` | Evidence-document reference | `0` explicitly means no comment; default `0` |
+| `decisionVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+
+### Approved Phase 11 approval-policy realization
+
+**Decision:** APPROVED by Nouran Ismail — Project Owner on 2026-09-14. **Policy version:** `1`.
+
+The architecture-level `ApprovalRequest` and `ApprovalDecision` schemas remain unchanged. Phase 11 evaluates those records together with versioned policy/evaluation context; this context is not a new architecture boundary interface and does not authorize a dictionary or reference-architecture change.
+
+| Approval state | Code | Forwarding eligible |
+|---|---:|---:|
+| `MISSING` | 0 | No |
+| `PENDING` | 1 | No |
+| `DEFERRED` | 2 | No |
+| `REJECTED` | 3 | No |
+| `EXPIRED` | 4 | No |
+| `APPROVED` | 5 | Yes, only while all identity, reference, policy, and timing checks pass |
+
+These are Phase 11 evaluation-state codes, distinct from the unchanged external `ApprovalDecision.decision` encoding. External decision `1=APPROVED` maps to evaluation state `5`; `2=REJECTED` maps to `3`; `3=DEFERRED` maps to `2`; and `4=EXPIRED` maps to `4`. An active request with no supplied decision maps to `PENDING=1`; an absent request/decision maps to `MISSING=0`. `RecommendedAction.approvalStatus` retains its separately approved encoding.
+
+Authorized role codes are `1=INSPECTION_OPERATOR`, `2=MAINTENANCE_ENGINEER`, and `3=SAFETY_REVIEWER`. The evaluation context shall supply the resolved `approverRole`, `evaluationTimestamp`, original/delegated identity and delegation audit references when applicable, and authenticated external `safetyBypass` indication. `decidedBy` is the approver identifier; `ApprovalRequest.proposedRecommendation` is the recommendation/reference identifier. Policy configuration resolves authorized identities and roles without adding external authentication infrastructure.
+
+Timing uses unsigned milliseconds. Pending/deferred age exactly `300000` ms remains reviewable and blocked; age greater than `300000` ms is `EXPIRED`. An approval remains valid at exactly `decidedAt + 900000` ms and expires afterward. Missing, contradictory, overflowed, or otherwise invalid timestamps block forwarding with a controlled invalid disposition.
+
+The internal audit result shall record request ID, recommendation/reference ID, policy version, approval state, approver ID/role, decision/evaluation/valid-until timestamps, delegation status and delegator ID, escalation status, forwarding eligibility, rationale code, and safety-bypass indication. It is implementation-local evidence, not a new generic architecture interface.
+
+#### Approved rationale-code and implementation-local audit schema
+
+**Decision:** APPROVED by Nouran Ismail — Project Owner on 2026-09-14. The architecture-level `ApprovalRequest`, `ApprovalDecision`, and all other external interface schemas remain unchanged.
+
+| Code | Rationale |
+|---:|---|
+| 0 | `NONE` |
+| 20 | `EXTERNAL_SAFETY_ACTIVE` |
+| 21 | `INVALID_INPUT` |
+| 22 | `MISSING_APPROVAL_REQUEST` |
+| 23 | `MISSING_APPROVAL_DECISION` |
+| 24 | `APPROVAL_PENDING` |
+| 25 | `APPROVAL_DEFERRED` |
+| 26 | `APPROVAL_REJECTED` |
+| 27 | `WAITING_TIMEOUT_EXPIRED` |
+| 28 | `APPROVAL_VALIDITY_EXPIRED` |
+| 29 | `APPROVAL_VALID_AND_CURRENT` |
+| 30 | `INVALID_APPROVER_IDENTITY` |
+| 31 | `UNAUTHORIZED_APPROVER_ROLE` |
+| 32 | `REQUEST_REFERENCE_MISMATCH` |
+| 33 | `INVALID_TIMESTAMP_OR_VALIDITY_INTERVAL` |
+| 34 | `INVALID_DELEGATION` |
+| 35 | `SELF_APPROVAL_PROHIBITED` |
+| 36 | `NESTED_DELEGATION_PROHIBITED` |
+| 37 | `UNSUPPORTED_POLICY_VERSION` |
+| 38 | `INTERNAL_EVALUATION_FAILURE` |
+| 39 | `ESCALATION_REQUIRED` |
+
+`rationaleCode` is a real, finite scalar `uint16`. Exactly one code is returned: the highest-priority applicable code. Code `20` has unconditional priority for authenticated external safety, code `38` represents controlled internal failure, and code `29` represents a successful valid current approval.
+
+| Audit field | Type | Dimension | Unit/encoding | Invalid/default rule |
+|---|---|---:|---|---|
+| `requestId` | `uint32` | `[1 1]` | Identifier | `0` means unassigned |
+| `recommendationId` | `uint32` | `[1 1]` | Identifier | `0` means unassigned |
+| `policyVersion` | `uint16` | `[1 1]` | Version identifier | `0` means unsupported/unassigned |
+| `approvalState` | `uint8` | `[1 1]` | Approved Phase 11 state encoding | Default `0=MISSING` |
+| `approverId` | `uint32` | `[1 1]` | Actor identifier | `0` means unassigned |
+| `approverRole` | `uint8` | `[1 1]` | Approved role encoding | `0` means unassigned |
+| `decisionTimestamp` | `uint64` | `[1 1]` | Milliseconds since Unix epoch UTC | `0` means unavailable |
+| `evaluationTimestamp` | `uint64` | `[1 1]` | Milliseconds since Unix epoch UTC | `0` means unavailable |
+| `validUntilTimestamp` | `uint64` | `[1 1]` | Milliseconds since Unix epoch UTC | `0` means unavailable |
+| `delegationActive` | `logical` | `[1 1]` | Boolean | Default `false` |
+| `delegatorId` | `uint32` | `[1 1]` | Actor identifier | `0` means unassigned |
+| `escalationRequired` | `logical` | `[1 1]` | Boolean | Default `false` |
+| `forwardingEligible` | `logical` | `[1 1]` | Boolean | Default `false` |
+| `safetyBypass` | `logical` | `[1 1]` | Boolean | Default `false` |
+| `humanReviewRequired` | `logical` | `[1 1]` | Boolean | Default `true` for controlled fallback |
+| `rationaleCode` | `uint16` | `[1 1]` | Approved rationale encoding | Default `21=INVALID_INPUT` for malformed evaluation |
+| `evidenceReferences` | `uint32` | `[16 1]` | Zero-padded reference vector | Nonzero references precede unused zero entries; missing required evidence invalidates audit |
+| `auditValid` | `logical` | `[1 1]` | Boolean | `false` for any missing or invalid required audit field |
+
+No strings, variable-size fields, new timestamp format, or external interface element is introduced. Invalid audit data blocks forwarding; audit failure cannot approve, command, or delay a safety response.
+
+### `RecommendedAction`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `recommendationId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `actionCode` | `uint8` | `[1 1]` | `1` | Configured category code | `0=UNASSIGNED`, `255=INVALID`; default `0` |
+| `parameters` | `single` | `[16 1]` | `1` | Each entry `[-realmax('single'),realmax('single')]` | First `parameterCount` entries active; unused entries `0` |
+| `evidenceRefs` | `uint32` | `[16 1]` | `1` | Reference vector | First `referenceCount` entries valid; unused entries `0` |
+| `confidenceStatus` | `uint8` | `[1 1]` | `1` | Confidence-status encoding | Default `0` |
+| `approvalStatus` | `uint8` | `[1 1]` | `1` | Approval-status encoding | Default `0` |
+| `validFrom` | `uint64` | `[1 1]` | `ms` | Unix epoch UTC | Valid when nonzero; default `0` |
+| `validUntil` | `uint64` | `[1 1]` | `ms` | Unix epoch UTC | Must exceed `validFrom`; default `0` |
+| `configurationVersion` | `uint16` | `[1 1]` | `1` | Version identifier | Valid when nonzero; default `0` |
+| `parameterCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+| `referenceCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+
+### `EvidenceRecord`
+
+| Element | Type | Dimension | Unit | Range/encoding | Validity and default |
+|---|---|---:|---|---|---|
+| `recordId` | `uint32` | `[1 1]` | `1` | Identifier | Valid when nonzero; default `0` |
+| `eventType` | `uint8` | `[1 1]` | `1` | Event-type encoding | Valid values `1–10`; default `0` |
+| `artifactRefs` | `uint32` | `[16 1]` | `1` | Reference vector | First `artifactReferenceCount` entries valid; unused entries `0` |
+| `dataVersions` | `uint16` | `[16 1]` | `1` | Version identifiers | First `dataVersionCount` entries valid; unused entries `0` |
+| `modelVersions` | `uint16` | `[16 1]` | `1` | Version identifiers | First `modelVersionCount` entries valid; unused entries `0` |
+| `configurationVersions` | `uint16` | `[16 1]` | `1` | Version identifiers | First `configurationVersionCount` entries valid; unused entries `0` |
+| `actorOrComponent` | `uint32` | `[1 1]` | `1` | Actor/component identifier | Valid when nonzero; default `0` |
+| `timestamp` | `uint64` | `[1 1]` | `ms` | Unix epoch UTC | Valid when nonzero; default `0` |
+| `outcome` | `uint8` | `[1 1]` | `1` | Outcome encoding | Valid values `1–6`; default `0` |
+| `integrityMetadata` | `uint32` | `[1 1]` | `1` | Integrity-record reference | `0` means unavailable; default `0` |
+| `artifactReferenceCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+| `dataVersionCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+| `modelVersionCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+| `configurationVersionCount` (added) | `uint8` | `[1 1]` | `1` | `[0,16]` | Default `0` |
+
+#### Approved Phase 12 evidence-policy realization
+
+**Decision:** APPROVED by Nouran Ismail — Project Owner on 2026-09-15.
+
+The external `EvidenceRecord` schema above is unchanged. Phase 12 uses implementation-local policy records to carry the nonzero `uint32` transaction ID, stage/component ID, input-reference set, output-artifact reference, applicable software version, failure status, policy/schema version, retention metadata, persistence disposition, access-role evidence, and canonical SHA-256 digest. Corresponding identifiers, timestamps, versions, and fixed evidence references reuse the approved interface representations.
+
+The SHA-256 digest is `uint8 [32 1]` and is calculated over a canonical record representation excluding the digest itself. `EvidenceRecord.integrityMetadata` remains the approved `uint32` reference to that integrity record; it is not retyped or expanded inline. Parent/evidence references use fixed `uint32 [16 1]` arrays with an approved count, zero padding, and zero never treated as a real reference.
+
+A valid chain has nonzero immutable record and transaction IDs, unique record IDs, resolvable nonzero references, no self-reference, no cycle, all mandatory IDs/versions, and consistent transaction-stage order. Persistence and chain validation report controlled failure rather than fabricating an externally conforming success record.
+
+## Approved Architecture Boundary
+
+| Direction | Port | Interface |
+|---|---|---|
+| Input | `inspectionDataIn` | `InspectionData` |
+| Input | `inspectionMetadataIn` | `InspectionMetadata` |
+| Input | `approvalDecisionIn` | `ApprovalDecision` |
+| Output | `approvalRequestOut` | `ApprovalRequest` |
+| Output | `recommendedActionOut` | `RecommendedAction` |
+| Output | `evidenceRecordOut` | `EvidenceRecord` |
+
+`HumanApprovalGate` emits `ApprovalRequest`, receives `ApprovalDecision` from the external approval authority, and forwards only a validated decision to `RecommendedAction`. It cannot approve its own request and has no safety-critical command interface.
+
+## Approved Evidence-Observation Interface Assignment
+
+| Producing component | Observation interface |
+|---|---|
+| `InspectionSource` | `InspectionMetadata` |
+| `DataQualityValidation` | `DataQualityResult` |
+| `Preprocessing` | `ProcessedData` |
+| `Detection` | `DetectionResult` |
+| `FeatureExtraction` | `NumericalFeatureSet` |
+| `HealthPrediction` | `HealthPrediction` |
+| `RiskAssessment` | `RiskAssessment` |
+| `HumanApprovalGate` | `ApprovalDecision` |
+| `RecommendedAction` | `RecommendedAction` |
+| `EvidenceRecorder` | `EvidenceRecord` |
+
+## Approved Clarification Decisions
+
+1. Logical `NumericalFeatureSet.names` is realized at runtime as `featureIds: uint16 [32 1]`; logical `values` is realized as `featureValues: single [32 1]`; `featureCount` is `uint8` in `[0,32]`. Human-readable feature names resolve through version-controlled project configuration.
+2. Existing reference-field names (`sourceRefs`, `evidenceRefs`, and `artifactRefs`) are retained. Each uses `uint32 [16 1]`, an associated `uint8` count in `[0,16]`, zero-filled unused entries, and identifier zero meaning unassigned.
+3. `contextOrHorizon` is a `uint32` reference with `contextOrHorizonValid`. Its meaning, unit, horizon, and interpretation are defined in the applicable version-controlled project configuration and evidence record.
+
+## Clarification Approval Record
+
+| Field | Entry |
+|---|---|
+| Decision | **APPROVED** |
+| Approver | Nouran Ismail — Project Owner |
+| Approval date | 2026-09-06 |
+| Interface-ambiguity blocker | **RESOLVED** |
+| Phase 4 | **AUTHORIZED AND READY TO EXECUTE** |
+| Later phases | Phases 5–17 remain **NOT AUTHORIZED** |
+
+This approval authorizes later Phase 4 execution only under its existing four-file implementation allowlist. It does not implement Phase 4.
+
+## Approved Phase 8 Numerical Feature Catalog Clarification
+
+**Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-10**
+
+The catalog is derived only from the approved ten-field `DetectionResult`. It does not infer region size, shape, count, masks, pixel measurements, or any other unavailable information. Runtime ordering is ascending `featureId`. Catalog version and proposed extractor version are both `1`.
+
+| ID | Generic feature name | Source or exact derivation | MATLAB type | Unit/code | Range | Default | Validity rule | No-detection behavior | Malformed/nonfinite behavior | Extractor version | Rationale for health prediction |
+|---:|---|---|---|---|---|---:|---|---|---|---:|---|
+| 1 | `detectionPresent` | `single(labelId >= 1 && labelId <= 254)` | `single [1 1]` | dimensionless/`1` | `[0,1]` | `0` | Valid for every conforming result; `labelId=255` is malformed | `0`, valid | Controlled empty set | 1 | Distinguishes absence from measured attributes |
+| 2 | `detectionConfidence` | `single(confidence)` | `single [1 1]` | dimensionless/`1` | `[0,1]` | `0` | Valid only when `confidenceValid=true` and the value is finite and in range | `0`; valid only when explicitly valid at source | Invalid asserted value produces the controlled empty set; `confidenceValid=false` gives `0`, invalid | 1 | Provides bounded evidence strength without raw data |
+| 3 | `locationAvailable` | `single(locationValid)` after location/frame validation | `single [1 1]` | dimensionless/`1` | `[0,1]` | `0` | Valid for every conforming result; asserted location requires nonzero `frameId` and finite coordinates | `0`, valid | Controlled empty set | 1 | Distinguishes unavailable spatial context from zero coordinates |
+| 4 | `locationCoordinate1` | `single(location(1))` | `single [1 1]` | metre/`2` | finite `single` range | `0` | Valid only for valid location/frame and finite conversion | `0`, invalid | Controlled empty set for malformed/nonfinite asserted location | 1 | Supplies calibrated generic spatial context when available |
+| 5 | `locationCoordinate2` | `single(location(2))` | `single [1 1]` | metre/`2` | finite `single` range | `0` | Same as feature 4 | `0`, invalid | Same as feature 4 | 1 | Supplies calibrated generic spatial context when available |
+| 6 | `locationCoordinate3` | `single(location(3))` | `single [1 1]` | metre/`2` | finite `single` range | `0` | Same as feature 4 | `0`, invalid | Same as feature 4 | 1 | Supplies calibrated generic spatial context when available |
+
+Proposed unit codes are `0=UNASSIGNED`, `1=DIMENSIONLESS`, and `2=METRE`. Human-readable names resolve from this version-controlled catalog; runtime continues to carry numeric IDs and values only. Category and version identifiers remain configuration/provenance and are not treated as ordinal regression features.
+
+For a conforming no-detection result (`labelId=0`), emit all six entries in ID order: `featureIds(1:6)=uint16(1:6)`, `featureCount=uint8(6)`, detection presence and location availability are valid zero, coordinates are zero and invalid, and confidence follows its explicit source validity. Set `sourceRefs(1)=resultId`, `referenceCount=1`, zero-fill all unused entries, and require configured nonzero `featureSetId`, `extractorVersion=1`, and supported `schemaVersion`.
+
+For a malformed result, unsupported schema, required identifier/version violation, `labelId=255`, invalid asserted confidence/location, or nonfinite asserted value, return the exact controlled empty `NumericalFeatureSet`: all numeric fields and arrays zero, all validity entries false, `featureCount=0`, and `referenceCount=0`. Emit no partial set.
+
+Schema validation requires the exact approved fields, types and dimensions; aligned IDs, values, units and validity; unique ascending active IDs; zero-filled unused capacity; supported nonzero schema/extractor versions for nonempty output; a resolvable source reference; and no raw payload. Catalog or extractor-version mismatch is rejected as controlled empty output and recorded as a failure.
+
+### Approved limitation and reuse boundary
+
+This catalog contains only features supported by the approved `DetectionResult`. It is not sufficient by itself to train a predictive-maintenance model and shall not be presented as containing anomaly size, degradation, vibration, temperature, current, operating time, or remaining-useful-life information.
+
+The generic `NumericalFeatureSet` remains the predictor input. Separately governed project sensor adapters may populate additional feature IDs. Domain-specific feature names, units, and mappings belong in the applicable project configuration, not the reusable Phase 8 implementation. Adding anomaly area, width, height, or mask features requires a separately approved interface change because those values are absent from the current `DetectionResult`.
+
+## Approved Phase 9A Boundary and Simplified Phase 9B Configuration
+
+**Status:** **APPROVED — Nouran Ismail, Project Owner, 2026-09-13**
+
+Phase 9A retains the approved `NumericalFeatureSet -> HealthPrediction` boundary without adding or changing interface fields. A generic predictor contract validates the input, loads and executes a replaceable model implementation, and emits the exact approved eleven-field `HealthPrediction`. Project-specific names, units, target semantics, horizon meaning, thresholds, and model selection are resolved by version-controlled configuration and evidence.
+
+The controlled invalid/failure output is: all numeric fields `0`; `estimateValid=false`; `contextOrHorizonValid=false`; `uncertaintyValid=false`; `confidenceStatus=4` (`INVALID`); and no valid prediction claim. A conforming no-estimate/abstention result uses the project-approved confidence status, zero invalid values, and preserves only identifiers and versions that remain valid and traceable. No exception is converted into a successful prediction.
+
+Phase 9B places `PipelineFeatureAdapter` before the reusable predictor. It converts approved project-specific CV, sensor, and inspection-history values into the unchanged `NumericalFeatureSet`; `predictHealth` consumes only that record. Proposed context/horizon configuration ID `9001` means “pipeline health score 30 days after the observation timestamp”; the runtime field remains the approved `uint32` reference and its human-readable meaning remains project configuration.
+
+### Approved UAV pipeline feature catalog version 1
+
+Runtime values remain `single`; validity is carried by `featureValidity`; IDs are emitted in ascending order. Invalid values are zero and invalid. Derived values are emitted only when every source is valid.
+
+| ID | Project feature name | Source/derivation | Unit | Valid range | Default/validity |
+|---:|---|---|---|---|---|
+| 101 | `inspectionFindingPresent` | Approved Phase 8 feature 1 | dimensionless | `[0,1]`, binary | `0`; valid when source feature is valid |
+| 102 | `inspectionFindingConfidence` | Approved Phase 8 feature 2 | dimensionless | `[0,1]` | `0`; follows source confidence validity |
+| 103 | `inspectionLocationAvailable` | Approved Phase 8 feature 3 | dimensionless | `[0,1]`, binary | `0`; valid when source feature is valid |
+| 104 | `assetLongitudinalCoordinate` | Approved Phase 8 feature 4 after approved frame mapping | metre | `[-1.0e7,1.0e7]` | `0`; valid only with approved frame and valid source |
+| 105 | `assetLateralCoordinate` | Approved Phase 8 feature 5 after approved frame mapping | metre | `[-1.0e4,1.0e4]` | `0`; valid only with approved frame and valid source |
+| 106 | `surfaceTemperature` | Calibrated thermal adapter | degree Celsius | `[-80,300]` | `0`; valid only with current calibrated measurement |
+| 107 | `ambientTemperature` | Calibrated environmental adapter | degree Celsius | `[-80,80]` | `0`; valid only with current calibrated measurement |
+| 108 | `temperatureDifference` | `surfaceTemperature-ambientTemperature` | degree Celsius | `[-160,380]` | `0`; valid only when IDs 106 and 107 are valid |
+| 109 | `gasConcentration` | Calibrated gas-sensor adapter | part per million | `[0,1.0e6]` | `0`; valid only with current calibrated measurement |
+| 110 | `internalPressure` | Calibrated pressure adapter | kilopascal | `[0,1.0e5]` | `0`; valid only with current calibrated measurement |
+| 111 | `pressureChangeRate` | Time-normalized change from valid pressure history | kilopascal/hour | `[-5.0e4,5.0e4]` | `0`; valid only with two valid ordered observations |
+| 112 | `inspectionAge` | Observation time minus previous valid inspection time | day | `[0,3650]` | `0`; valid only when both timestamps are valid |
+| 113 | `priorFindingCount` | Governed inspection-history count | count | `[0,65535]` | `0`; valid when history window is complete |
+| 114 | `priorHealthScore` | Most recent approved score | percent | `[0,100]` | `0`; valid only with approved prior record |
+| 115 | `timeSinceMaintenance` | Observation time minus last confirmed maintenance time | day | `[0,3650]` | `0`; valid only when maintenance timestamp exists |
+
+Proposed project unit codes are: `3=DEGREE_CELSIUS`, `4=PART_PER_MILLION`, `5=KILOPASCAL`, `6=KILOPASCAL_PER_HOUR`, `7=DAY`, `8=COUNT`, and `9=PERCENT`. Codes `0=UNASSIGNED`, `1=DIMENSIONLESS`, and `2=METRE` remain unchanged. The Phase 9B configuration shall own this mapping. This proposal does not infer anomaly area, width, height, leak rate, or other values unavailable from approved sources.
+
+### Approved Phase 9 controls
+
+- Phase 9A shall bound every valid estimate to `[0,100]` using the versioned project policy and shall emit controlled invalid/review status for unsupported feature sets or out-of-distribution inputs.
+- Phase 9B shall freeze and version target equations and noise distributions before generation.
+- Asset-group allocation shall occur before any data-dependent transformation; no group may cross partitions.
+- Test data shall not influence feature selection, model configuration, thresholds, preprocessing, or residual-uncertainty definition and shall remain untouched until the single model and thresholds are frozen.
+- Phase 9B shall use ridge linear regression with fixed `Lambda=0.1`, a median-target baseline for reference, and deterministic validation-residual uncertainty; model comparison, ensembles, hyperparameter search, Regression Learner, and conformal prediction are excluded.
+- Predictor columns shall be standardized using training-partition means and standard deviations only. Zero standard deviations shall be replaced by `1`; the stored training statistics shall be applied unchanged to validation, test, and future inputs.
+- The model artifact shall store the training means, training standard deviations after zero replacement, and `validationRMSE`. Uncertainty shall equal `min(validationRMSE/100,1)` and shall not use test data.
+- `priorHealthScore` is valid only when available at inference time and shall never contain the future target.
+- Location coordinates are contextual and are not causal degradation measurements.
+
+| Approval field | Entry |
+|---|---|
+| Decision | **APPROVED** |
+| Approver | Nouran Ismail — Project Owner |
+| Approval date | 2026-09-10 |
+| Approved catalog | Feature IDs 1–6; ascending order; catalog version 1; extractor version 1; unit codes `0=UNASSIGNED`, `1=DIMENSIONLESS`, `2=METRE` |
+| Approved behavior | Exact no-detection and malformed/invalid-input behavior defined above |
